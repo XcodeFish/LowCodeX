@@ -1,4 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+
+// 创建一个空的appSlice作为基础reducer
+const appSlice = createSlice({
+  name: 'app',
+  initialState: {
+    isLoading: false,
+    theme: 'light',
+  },
+  reducers: {
+    setLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
+    },
+  },
+});
+
+export const { setLoading, setTheme } = appSlice.actions;
 
 // 导入reducers
 // import userReducer from './userSlice';
@@ -6,6 +25,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
+    app: appSlice.reducer,
     // user: userReducer,
     // form: formReducer,
     // 更多reducer将在这里添加

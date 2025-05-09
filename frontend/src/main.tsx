@@ -1,20 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
+import zhCN from 'antd/es/locale/zh_CN';
 import router from './router';
 import { store } from './store';
 import './styles/index.css'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConfigProvider locale={zhCN}>
-        <RouterProvider router={router} />
+        {router}
       </ConfigProvider>
     </Provider>
   </React.StrictMode>,
+  document.getElementById('root')
 )

@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
 import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    createStyleImportPlugin({
-      resolves: [AntdResolve()],
-    }),
+    // 暂时注释掉这个插件，它需要consola依赖
+    // createStyleImportPlugin({
+    //   resolves: [AntdResolve()],
+    // }),
   ],
   resolve: {
     alias: {
