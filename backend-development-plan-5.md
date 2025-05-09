@@ -1,0 +1,862 @@
+# LowCodeX 后端开发规划文档 (第五部分)
+
+## 6. 工作流引擎模块 (续)
+
+### 6.4 核心控制器与服务定义
+
+**工作流定义控制器 (modules/workflows/controllers/workflow-definition.controller.ts)**
+
+```typescript
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../auth/guards/permission.guard';
+import { CheckPermission } from '../../auth/decorators/check-permission.decorator';
+import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { User } from '../../../entities/user.entity';
+import { WorkflowDefinitionService } from '../services/workflow-definition.service';
+import { CreateWorkflowDto } from '../dto/create-workflow.dto';
+import { UpdateWorkflowDto } from '../dto/update-workflow.dto';
+import { QueryWorkflowDto } from '../dto/query-workflow.dto';
+import { PublishWorkflowDto } from '../dto/publish-workflow.dto';
+
+@ApiTags('工作流定义')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, PermissionGuard)
+@Controller('workflow-definitions')
+export class WorkflowDefinitionController {
+  constructor(private readonly workflowDefinitionService: WorkflowDefinitionService) {}
+
+  @ApiOperation({ summary: '创建工作流定义' })
+  @ApiResponse({ status: 201, description: '创建成功' })
+  @CheckPermission('create', 'workflow')
+  @Post()
+  async create(
+    @Body() createWorkflowDto: CreateWorkflowDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.workflowDefinitionService.create(createWorkflowDto, user);
+  }
+
+  @ApiOperation({ summary: '获取工作流定义列表' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflow')
+  @Get()
+  async findAll(@Query() query: QueryWorkflowDto, @CurrentUser() user: User) {
+    return this.workflowDefinitionService.findAll(query, user);
+  }
+
+  @ApiOperation({ summary: '获取单个工作流定义' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflow')
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowDefinitionService.findOne(id, user);
+  }
+
+  @ApiOperation({ summary: '更新工作流定义' })
+  @ApiResponse({ status: 200, description: '更新成功' })
+  @CheckPermission('update', 'workflow')
+  @Put(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateWorkflowDto: UpdateWorkflowDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.workflowDefinitionService.update(id, updateWorkflowDto, user);
+  }
+
+  @ApiOperation({ summary: '删除工作流定义' })
+  @ApiResponse({ status: 200, description: '删除成功' })
+  @CheckPermission('delete', 'workflow')
+  @Delete(':id')
+  async remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowDefinitionService.remove(id, user);
+  }
+
+  @ApiOperation({ summary: '发布工作流定义' })
+  @ApiResponse({ status: 200, description: '发布成功' })
+  @CheckPermission('publish', 'workflow')
+  @Post(':id/publish')
+  async publish(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() publishDto: PublishWorkflowDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.workflowDefinitionService.publish(id, publishDto, user);
+  }
+
+  @ApiOperation({ summary: '获取工作流定义版本列表' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflow')
+  @Get(':id/versions')
+  async getVersions(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowDefinitionService.getVersions(id, user);
+  }
+
+  @ApiOperation({ summary: '验证工作流定义' })
+  @ApiResponse({ status: 200, description: '验证成功' })
+  @CheckPermission('read', 'workflow')
+  @Post(':id/validate')
+  async validate(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowDefinitionService.validate(id, user);
+  }
+}
+```
+
+**工作流实例控制器 (modules/workflows/controllers/workflow-instance.controller.ts)**
+
+```typescript
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../auth/guards/permission.guard';
+import { CheckPermission } from '../../auth/decorators/check-permission.decorator';
+import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { User } from '../../../entities/user.entity';
+import { WorkflowInstanceService } from '../services/workflow-instance.service';
+import { StartWorkflowDto } from '../dto/start-workflow.dto';
+import { QueryInstanceDto } from '../dto/query-instance.dto';
+
+@ApiTags('工作流实例')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, PermissionGuard)
+@Controller('workflow-instances')
+export class WorkflowInstanceController {
+  constructor(private readonly workflowInstanceService: WorkflowInstanceService) {}
+
+  @ApiOperation({ summary: '启动工作流实例' })
+  @ApiResponse({ status: 201, description: '启动成功' })
+  @CheckPermission('start', 'workflow')
+  @Post()
+  async start(
+    @Body() startWorkflowDto: StartWorkflowDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.workflowInstanceService.start(startWorkflowDto, user);
+  }
+
+  @ApiOperation({ summary: '获取工作流实例列表' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflowInstance')
+  @Get()
+  async findAll(@Query() query: QueryInstanceDto, @CurrentUser() user: User) {
+    return this.workflowInstanceService.findAll(query, user);
+  }
+
+  @ApiOperation({ summary: '获取单个工作流实例' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflowInstance')
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowInstanceService.findOne(id, user);
+  }
+
+  @ApiOperation({ summary: '暂停工作流实例' })
+  @ApiResponse({ status: 200, description: '暂停成功' })
+  @CheckPermission('manage', 'workflowInstance')
+  @Put(':id/suspend')
+  async suspend(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowInstanceService.suspend(id, user);
+  }
+
+  @ApiOperation({ summary: '恢复工作流实例' })
+  @ApiResponse({ status: 200, description: '恢复成功' })
+  @CheckPermission('manage', 'workflowInstance')
+  @Put(':id/resume')
+  async resume(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowInstanceService.resume(id, user);
+  }
+
+  @ApiOperation({ summary: '终止工作流实例' })
+  @ApiResponse({ status: 200, description: '终止成功' })
+  @CheckPermission('manage', 'workflowInstance')
+  @Put(':id/terminate')
+  async terminate(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('reason') reason: string,
+    @CurrentUser() user: User,
+  ) {
+    return this.workflowInstanceService.terminate(id, reason, user);
+  }
+
+  @ApiOperation({ summary: '获取工作流实例历史' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflowInstance')
+  @Get(':id/history')
+  async getHistory(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowInstanceService.getHistory(id, user);
+  }
+
+  @ApiOperation({ summary: '获取工作流实例变量' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'workflowInstance')
+  @Get(':id/variables')
+  async getVariables(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.workflowInstanceService.getVariables(id, user);
+  }
+}
+```
+
+**工作流执行引擎服务 (modules/workflows/services/workflow-engine.service.ts)**
+
+```typescript
+import { Injectable, Logger, NotFoundException, BadRequestException } from '@nestjs/common';
+import { PrismaService } from '../../../services/prisma.service';
+import { WorkflowDefinitionService } from './workflow-definition.service';
+import { NodeType, WorkflowInstance, WorkflowTask } from '../entities/workflow.entity';
+import { User } from '../../../entities/user.entity';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+
+@Injectable()
+export class WorkflowEngineService {
+  private readonly logger = new Logger(WorkflowEngineService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly workflowDefinitionService: WorkflowDefinitionService,
+    private readonly eventEmitter: EventEmitter2,
+  ) {}
+
+  /**
+   * 启动工作流实例
+   */
+  async startWorkflow(
+    workflowId: number,
+    businessKey: string,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<WorkflowInstance> {
+    // 获取工作流定义
+    const workflow = await this.workflowDefinitionService.findOne(workflowId, user);
+    if (!workflow) {
+      throw new NotFoundException(`工作流 ${workflowId} 不存在`);
+    }
+
+    if (workflow.status !== 'published') {
+      throw new BadRequestException(`工作流 ${workflowId} 未发布，无法启动`);
+    }
+
+    // 解析工作流定义
+    const definition = JSON.parse(workflow.definition);
+
+    // 创建工作流实例
+    const instance = await this.prisma.workflowInstance.create({
+      data: {
+        workflowId,
+        workflowVersion: workflow.version,
+        businessKey,
+        status: 'running',
+        variables: JSON.stringify(variables),
+        startedBy: user.id,
+        startedAt: new Date(),
+        tenantId: user.tenantId,
+      },
+    });
+
+    // 记录工作流启动历史
+    await this.prisma.workflowHistory.create({
+      data: {
+        instanceId: instance.id,
+        nodeId: 'start',
+        nodeName: '启动',
+        nodeType: 'startEvent',
+        actionType: 'start',
+        actionBy: user.id,
+        actionAt: new Date(),
+        currentState: 'running',
+        variables: JSON.stringify(variables),
+        tenantId: user.tenantId,
+      },
+    });
+
+    // 查找起始节点
+    const startNode = this.findStartNode(definition);
+    if (!startNode) {
+      throw new BadRequestException('工作流定义中未找到起始节点');
+    }
+
+    // 执行起始节点
+    await this.executeNode(instance.id, startNode, variables, user);
+
+    // 发布工作流启动事件
+    this.eventEmitter.emit('workflow.started', {
+      instanceId: instance.id,
+      workflowId,
+      businessKey,
+      startedBy: user.id,
+      variables,
+    });
+
+    return instance;
+  }
+
+  /**
+   * 执行工作流节点
+   */
+  private async executeNode(
+    instanceId: number,
+    node: any,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<void> {
+    // 根据节点类型执行不同的逻辑
+    switch (node.type) {
+      case 'startEvent':
+        await this.handleStartEvent(instanceId, node, variables, user);
+        break;
+      case 'userTask':
+        await this.handleUserTask(instanceId, node, variables, user);
+        break;
+      case 'serviceTask':
+        await this.handleServiceTask(instanceId, node, variables, user);
+        break;
+      case 'exclusiveGateway':
+        await this.handleExclusiveGateway(instanceId, node, variables, user);
+        break;
+      case 'parallelGateway':
+        await this.handleParallelGateway(instanceId, node, variables, user);
+        break;
+      case 'endEvent':
+        await this.handleEndEvent(instanceId, node, variables, user);
+        break;
+      default:
+        this.logger.warn(`未支持的节点类型: ${node.type}`);
+        break;
+    }
+  }
+
+  /**
+   * 处理起始事件节点
+   */
+  private async handleStartEvent(
+    instanceId: number,
+    node: any,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<void> {
+    // 记录节点执行历史
+    await this.recordNodeExecution(instanceId, node, 'complete', variables, user);
+
+    // 查找下一个节点并执行
+    await this.executeNextNodes(instanceId, node, variables, user);
+  }
+
+  /**
+   * 处理用户任务节点
+   */
+  private async handleUserTask(
+    instanceId: number,
+    node: any,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<void> {
+    // 获取实例信息
+    const instance = await this.prisma.workflowInstance.findUnique({
+      where: { id: instanceId },
+    });
+
+    if (!instance) {
+      throw new NotFoundException(`工作流实例 ${instanceId} 不存在`);
+    }
+
+    // 确定任务受理人
+    let assignee: number = null;
+    let candidateUsers: number[] = [];
+    let candidateGroups: string[] = [];
+
+    if (node.properties.assignee) {
+      // 解析assignee表达式
+      assignee = this.resolveAssignee(node.properties.assignee, variables, user);
+    } else if (node.properties.candidateUsers) {
+      // 解析候选用户列表
+      candidateUsers = this.resolveCandidateUsers(node.properties.candidateUsers, variables, user);
+    } else if (node.properties.candidateGroups) {
+      // 解析候选用户组
+      candidateGroups = this.resolveCandidateGroups(node.properties.candidateGroups, variables, user);
+    }
+
+    // 创建用户任务
+    const task = await this.prisma.workflowTask.create({
+      data: {
+        instanceId,
+        nodeId: node.id,
+        nodeName: node.name || '用户任务',
+        nodeType: 'userTask',
+        status: 'pending',
+        assignee: assignee,
+        candidateUsers: candidateUsers.length > 0 ? JSON.stringify(candidateUsers) : null,
+        candidateGroups: candidateGroups.length > 0 ? JSON.stringify(candidateGroups) : null,
+        formId: node.properties.formId,
+        dueDate: node.properties.dueDate ? new Date(node.properties.dueDate) : null,
+        priority: node.properties.priority || 0,
+        tenantId: instance.tenantId,
+      },
+    });
+
+    // 记录节点执行历史
+    await this.recordNodeExecution(instanceId, node, 'create', variables, user);
+
+    // 发布任务创建事件
+    this.eventEmitter.emit('workflow.task.created', {
+      instanceId,
+      taskId: task.id,
+      nodeId: node.id,
+      assignee,
+      candidateUsers,
+      candidateGroups,
+    });
+  }
+
+  /**
+   * 处理服务任务节点
+   */
+  private async handleServiceTask(
+    instanceId: number,
+    node: any,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<void> {
+    // 记录节点执行开始
+    await this.recordNodeExecution(instanceId, node, 'start', variables, user);
+
+    try {
+      // 执行服务任务
+      let taskResult: any = null;
+
+      // 根据服务类型执行不同的逻辑
+      if (node.properties.serviceType === 'httpRequest') {
+        taskResult = await this.executeHttpRequest(node.properties, variables);
+      } else if (node.properties.serviceType === 'scriptTask') {
+        taskResult = await this.executeScript(node.properties, variables);
+      } else {
+        // 默认服务类型处理
+        this.logger.warn(`未知的服务任务类型: ${node.properties.serviceType}`);
+      }
+
+      // 更新变量
+      if (taskResult && node.properties.resultVariable) {
+        variables[node.properties.resultVariable] = taskResult;
+      }
+
+      // 记录节点执行完成
+      await this.recordNodeExecution(instanceId, node, 'complete', variables, user);
+
+      // 执行下一个节点
+      await this.executeNextNodes(instanceId, node, variables, user);
+    } catch (error) {
+      // 记录节点执行失败
+      await this.recordNodeExecution(
+        instanceId,
+        node,
+        'error',
+        variables,
+        user,
+        error.message,
+      );
+
+      // 触发错误事件
+      this.eventEmitter.emit('workflow.task.error', {
+        instanceId,
+        nodeId: node.id,
+        error: error.message,
+      });
+    }
+  }
+
+  // ... 其他节点处理方法
+
+  /**
+   * 记录节点执行历史
+   */
+  private async recordNodeExecution(
+    instanceId: number,
+    node: any,
+    action: string,
+    variables: Record<string, any>,
+    user: User,
+    comments?: string,
+  ): Promise<void> {
+    await this.prisma.workflowHistory.create({
+      data: {
+        instanceId,
+        nodeId: node.id,
+        nodeName: node.name || node.id,
+        nodeType: node.type,
+        actionType: action,
+        actionBy: user.id,
+        actionAt: new Date(),
+        currentState: action,
+        comments,
+        variables: JSON.stringify(variables),
+        tenantId: user.tenantId,
+      },
+    });
+  }
+
+  /**
+   * 查找流程定义中的起始节点
+   */
+  private findStartNode(definition: any): any {
+    return definition.nodes.find(node => node.type === 'startEvent');
+  }
+
+  /**
+   * 查找并执行下一个节点
+   */
+  private async executeNextNodes(
+    instanceId: number,
+    currentNode: any,
+    variables: Record<string, any>,
+    user: User,
+  ): Promise<void> {
+    // 获取工作流实例状态，确保实例仍在运行中
+    const instance = await this.prisma.workflowInstance.findUnique({
+      where: { id: instanceId },
+    });
+
+    if (!instance || instance.status !== 'running') {
+      return; // 实例已不在运行状态，不继续执行
+    }
+
+    // 解析工作流定义
+    const definition = JSON.parse(instance.variables);
+
+    // 查找当前节点的出口连线
+    const outgoingEdges = definition.edges.filter(edge => edge.source === currentNode.id);
+
+    if (outgoingEdges.length === 0) {
+      // 没有出口连线，工作流可能结束
+      if (currentNode.type !== 'endEvent') {
+        this.logger.warn(`节点 ${currentNode.id} 没有出口连线且不是结束节点`);
+      }
+      return;
+    }
+
+    // 过滤出满足条件的连线
+    const validEdges = outgoingEdges.filter(edge => {
+      // 如果没有条件表达式，则默认有效
+      if (!edge.properties || !edge.properties.condition) {
+        return true;
+      }
+
+      // 评估条件表达式
+      return this.evaluateCondition(edge.properties.condition, variables);
+    });
+
+    // 执行有效连线指向的节点
+    for (const edge of validEdges) {
+      const nextNode = definition.nodes.find(node => node.id === edge.target);
+      if (nextNode) {
+        await this.executeNode(instanceId, nextNode, variables, user);
+      }
+    }
+  }
+
+  /**
+   * 评估条件表达式
+   */
+  private evaluateCondition(condition: string, variables: Record<string, any>): boolean {
+    try {
+      // 使用Function构造器动态执行条件表达式
+      // 注意：这里有潜在的安全风险，生产环境应该使用更安全的表达式评估方式
+      const evalFn = new Function('vars', `with(vars) { return ${condition}; }`);
+      return evalFn(variables);
+    } catch (error) {
+      this.logger.error(`条件表达式评估失败: ${error.message}`, error.stack);
+      return false;
+    }
+  }
+
+  // 其他辅助方法...
+}
+```
+
+### 6.5 Cursor提示词
+
+```
+创建工作流引擎模块，实现流程定义、执行和管理功能。
+
+1. 设置工作流相关的Prisma模型，包括WorkflowDefinition、WorkflowInstance等
+2. 实现WorkflowDefinitionService，提供流程模板管理功能
+3. 开发WorkflowInstanceService，处理流程实例的生命周期
+4. 创建WorkflowEngineService，实现流程执行引擎
+5. 实现TaskService，处理用户任务分配和状态管理
+6. 添加工作流历史记录功能，跟踪流程执行
+7. 开发工作流监控功能，提供流程状态统计
+8. 实现工作流触发机制，支持定时和事件触发
+9. 创建表达式解析器，处理条件路由和变量解析
+```
+
+## 7. API生成模块
+
+### 7.1 功能点详细拆解
+
+1. **API模型定义**
+   - API元数据管理
+   - API参数定义
+   - API响应定义
+   - API文档生成
+
+2. **动态API路由**
+   - 动态路由注册
+   - 路由参数解析
+   - 请求验证
+   - 响应格式化
+
+3. **API权限控制**
+   - API访问控制
+   - 速率限制
+   - 权限策略管理
+   - 访问令牌管理
+
+4. **API数据操作**
+   - 数据查询处理
+   - 数据筛选和排序
+   - 数据分页
+   - 批量操作支持
+
+5. **API网关功能**
+   - 请求转发
+   - 请求合并
+   - 响应缓存
+   - 错误处理
+
+### 7.2 开发任务与时间安排
+
+| 任务 | 描述 | 时间估计 | 优先级 |
+|-----|------|---------|-------|
+| 设计API元数据模型 | 定义API的数据结构 | 3天 | P0 |
+| 实现API元数据管理 | API定义的CRUD操作 | 4天 | P0 |
+| 开发动态路由系统 | 根据元数据生成路由 | 5天 | P0 |
+| 实现参数验证机制 | 请求参数的验证 | 3天 | P0 |
+| 添加API权限控制 | 控制API访问权限 | 4天 | P1 |
+| 开发数据操作处理 | 实现数据CRUD操作 | 5天 | P0 |
+| 实现API文档生成 | 自动生成OpenAPI文档 | 3天 | P1 |
+| 添加API测试功能 | API在线测试工具 | 3天 | P2 |
+| 开发API监控统计 | API使用情况统计 | 3天 | P2 |
+| 单元测试 | 测试API生成功能 | 3天 | P1 |
+
+### 7.3 核心实体与接口定义
+
+**API模型实体 (modules/dynamic-api/entities/api-model.entity.ts)**
+
+```typescript
+import { Prisma } from '@prisma/client';
+
+export class ApiDefinition implements Prisma.ApiDefinitionUncheckedCreateInput {
+  id?: number;
+  name: string;
+  path: string;
+  method: string; // GET, POST, PUT, DELETE, etc.
+  description?: string;
+  version: string;
+  dataModelId?: number;
+  isSystem: boolean;
+  isActive: boolean;
+  tags?: string; // JSON数组存储标签
+  security?: string; // JSON格式存储安全配置
+  tenantId: number;
+  applicationId?: number;
+  createdBy: number;
+  updatedAt?: Date | string;
+  createdAt?: Date | string;
+}
+
+export class ApiParameter implements Prisma.ApiParameterUncheckedCreateInput {
+  id?: number;
+  apiId: number;
+  name: string;
+  location: string; // path, query, header, body
+  type: string; // string, number, boolean, object, array, etc.
+  required: boolean;
+  description?: string;
+  schema?: string; // JSON Schema格式
+  example?: string;
+  defaultValue?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
+export class ApiResponse implements Prisma.ApiResponseUncheckedCreateInput {
+  id?: number;
+  apiId: number;
+  statusCode: number;
+  description?: string;
+  schema?: string; // JSON Schema格式
+  example?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
+export class ApiOperation implements Prisma.ApiOperationUncheckedCreateInput {
+  id?: number;
+  apiId: number;
+  operationType: string; // query, mutation, custom, etc.
+  implementation: string; // JSON格式存储操作实现
+  timeout?: number; // 超时时间，毫秒
+  cache?: string; // 缓存配置
+  rateLimiting?: string; // 速率限制配置
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
+export class ApiLog implements Prisma.ApiLogUncheckedCreateInput {
+  id?: number;
+  apiId: number;
+  userId?: number;
+  clientIp?: string;
+  method: string;
+  path: string;
+  queryParams?: string;
+  requestHeaders?: string;
+  requestBody?: string;
+  responseStatus: number;
+  responseTime: number; // 毫秒
+  responseSize?: number;
+  responseBody?: string;
+  errorMessage?: string;
+  tenantId: number;
+  timestamp: Date | string;
+}
+```
+
+**API定义控制器 (modules/dynamic-api/controllers/api-definition.controller.ts)**
+
+```typescript
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../auth/guards/permission.guard';
+import { CheckPermission } from '../../auth/decorators/check-permission.decorator';
+import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { User } from '../../../entities/user.entity';
+import { ApiDefinitionService } from '../services/api-definition.service';
+import { CreateApiDto } from '../dto/create-api.dto';
+import { UpdateApiDto } from '../dto/update-api.dto';
+import { QueryApiDto } from '../dto/query-api.dto';
+
+@ApiTags('API定义')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, PermissionGuard)
+@Controller('api-definitions')
+export class ApiDefinitionController {
+  constructor(private readonly apiDefinitionService: ApiDefinitionService) {}
+
+  @ApiOperation({ summary: '创建API定义' })
+  @ApiResponse({ status: 201, description: '创建成功' })
+  @CheckPermission('create', 'api')
+  @Post()
+  async create(
+    @Body() createApiDto: CreateApiDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.apiDefinitionService.create(createApiDto, user);
+  }
+
+  @ApiOperation({ summary: '获取API定义列表' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'api')
+  @Get()
+  async findAll(@Query() query: QueryApiDto, @CurrentUser() user: User) {
+    return this.apiDefinitionService.findAll(query, user);
+  }
+
+  @ApiOperation({ summary: '获取单个API定义' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @CheckPermission('read', 'api')
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.apiDefinitionService.findOne(id, user);
+  }
+
+  @ApiOperation({ summary: '更新API定义' })
+  @ApiResponse({ status: 200, description: '更新成功' })
+  @CheckPermission('update', 'api')
+  @Put(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateApiDto: UpdateApiDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.apiDefinitionService.update(id, updateApiDto, user);
+  }
+
+  @ApiOperation({ summary: '删除API定义' })
+  @ApiResponse({ status: 200, description: '删除成功' })
+  @CheckPermission('delete', 'api')
+  @Delete(':id')
+  async remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.apiDefinitionService.remove(id, user);
+  }
+
+  @ApiOperation({ summary: '生成API文档' })
+  @ApiResponse({ status: 200, description: '生成成功' })
+  @CheckPermission('read', 'api')
+  @Get(':id/swagger')
+  async generateSwagger(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User) {
+    return this.apiDefinitionService.generateSwagger(id, user);
+  }
+
+  @ApiOperation({ summary: '测试API' })
+  @ApiResponse({ status: 200, description: '测试成功' })
+  @CheckPermission('execute', 'api')
+  @Post(':id/test')
+  async testApi(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() testData: any,
+    @CurrentUser() user: User,
+  ) {
+    return this.apiDefinitionService.testApi(id, testData, user);
+  }
+}
+```
+
+### 7.4 Cursor提示词
+
+```
+创建API生成模块，实现动态API的定义和发布。
+
+1. 设置API相关的Prisma模型，包括ApiDefinition、ApiParameter等
+2. 实现ApiDefinitionService，提供API元数据管理功能
+3. 开发ApiRoutingService，处理动态路由的创建和解析
+4. a创建ApiValidationService，验证API请求参数
+5. 实现ApiSecurityService，提供API访问控制
+6. 添加ApiDocumentationService，生成OpenAPI文档
+7. 开发ApiLogService，记录API调用日志
+8. 实现ApiTestService，提供API测试功能
+9. 创建ApiMonitoringService，统计API使用情况
+```

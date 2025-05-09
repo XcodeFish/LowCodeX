@@ -1,0 +1,831 @@
+# LowCodeX 技术架构文档
+
+## 1. 项目概述
+
+LowCodeX 是一款企业级低代码开发平台，旨在通过可视化界面快速构建应用系统，降低开发门槛，提高开发效率。平台融合了现代前端技术与强大的后端框架，实现了动态模型管理、灵活的工作流引擎、细粒度权限控制以及多租户架构，满足不同规模企业的应用开发需求。
+
+### 1.1 技术栈选型
+
+| 层级     | 技术选型                           | 选型理由                                 |
+|----------|-----------------------------------|----------------------------------------|
+| **前端** | React + TypeScript + Ant Design   | 组件化开发、类型安全、企业级UI组件库      |
+| **后端** | Nest.js + Prisma + Swagger        | 模块化架构、ORM支持、API文档自动化        |
+| **数据库** | MySQL + Redis                    | 关系型数据存储 + 高性能缓存/消息队列      |
+| **部署** | Docker + K8s/Docker Compose       | 容器化部署、编排管理                     |
+
+## 2. 系统架构
+
+### 2.1 整体架构
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        客户端/浏览器                             │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                           负载均衡层                             │
+│                    (Nginx/Kubernetes Ingress)                    │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                           前端应用层                             │
+│  ┌───────────────┐   ┌───────────────┐   ┌───────────────────┐  │
+│  │  表单设计器   │   │  页面编辑器   │   │  业务组件库      │  │
+│  └───────────────┘   └───────────────┘   └───────────────────┘  │
+│                                                                  │
+│  ┌───────────────┐   ┌───────────────┐   ┌───────────────────┐  │
+│  │  流程设计器   │   │  权限配置     │   │  数据模型设计器   │  │
+│  └───────────────┘   └───────────────┘   └───────────────────┘  │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                           后端服务层                             │
+│  ┌───────────────┐   ┌───────────────┐   ┌───────────────────┐  │
+│  │  认证授权模块 │   │  表单引擎     │   │  工作流引擎      │  │
+│  └───────────────┘   └───────────────┘   └───────────────────┘  │
+│                                                                  │
+│  ┌───────────────┐   ┌───────────────┐   ┌───────────────────┐  │
+│  │  动态模型     │   │  动态API      │   │  多租户管理      │  │
+│  └───────────────┘   └───────────────┘   └───────────────────┘  │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                           数据持久层                             │
+│          ┌───────────────────┐      ┌───────────────┐           │
+│          │     MySQL         │      │    Redis      │           │
+│          │ (业务数据/元数据) │      │ (缓存/队列)   │           │
+│          └───────────────────┘      └───────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 2.2 模块架构
+
+![模块架构图](https://via.placeholder.com/800x500?text=LowCodeX+模块架构图)
+
+## 3. 核心模块设计
+
+### 3.1 动态模型管理
+
+动态模型管理是系统的核心能力，实现了灵活的数据结构定义与管理。
+
+#### 3.1.1 元数据设计
+
+```
+┌─────────────────┐       ┌─────────────────┐
+│   meta_tables   │       │   meta_fields   │
+├─────────────────┤       ├─────────────────┤
+│ id              │◄──┐   │ id              │
+│ table_name      │   │   │ table_id        │
+│ display_name    │   └───┤ field_name      │
+│ description     │       │ display_name    │
+│ tenant_id       │       │ field_type      │
+│ is_system       │       │ is_required     │
+│ created_at      │       │ default_value   │
+│ updated_at      │       │ validators      │
+└─────────────────┘       │ tenant_id       │
+                          │ created_at      │
+                          │ updated_at      │
+                          └─────────────────┘
+```
+
+#### 3.1.2 动态实体实现
+
+```typescript
+/**
+ * 动态实体工厂
+ * 根据元数据创建Prisma模型并生成对应的服务和控制器
+ */
+class DynamicEntityFactory {
+  /**
+   * 创建动态实体服务
+   * @param metaTable 表元数据
+   * @param metaFields 字段元数据数组
+   * @returns 动态实体服务实例
+   */
+  createEntityService(metaTable: MetaTable, metaFields: MetaField[]) {
+    // 构建Prisma查询映射
+    const prismaModelName = this.formatModelName(metaTable.table_name);
+
+    // 创建动态服务类
+    const DynamicService = class extends BaseEntityService {
+      constructor(private prisma: PrismaService) {
+        super();
+      }
+
+      async findAll(params: QueryParams) {
+        return this.prisma[prismaModelName].findMany({
+          where: this.buildWhereClause(params.filters),
+          orderBy: this.buildOrderByClause(params.sort),
+          skip: params.skip,
+          take: params.take
+        });
+      }
+
+      // 其他CRUD方法...
+    };
+
+    return new DynamicService(this.prismaService);
+  }
+
+  // 其他辅助方法...
+}
+```
+
+### 3.2 动态API生成
+
+LowCodeX通过Nest.js的动态模块和控制器功能，实现了基于元数据自动生成REST API的能力。
+
+#### 3.2.1 API设计原则
+
+- **标准化**: 遵循RESTful设计规范
+- **自动化**: 基于元数据自动生成CRUD接口
+- **文档化**: 集成Swagger自动生成API文档
+- **安全性**: 内置权限验证机制
+- **扩展性**: 支持自定义业务逻辑扩展
+
+#### 3.2.2 动态控制器实现
+
+```typescript
+/**
+ * 创建动态API控制器
+ * @param metaTable 表元数据
+ * @param entityService 实体服务
+ * @returns 动态控制器类
+ */
+function createDynamicController(metaTable: MetaTable, entityService: any) {
+  const controllerPath = `api/${metaTable.table_name}`;
+
+  @Controller(controllerPath)
+  @ApiTags(metaTable.display_name)
+  class DynamicController {
+    constructor(private service: typeof entityService) {}
+
+    @Get()
+    @ApiOperation({ summary: `获取${metaTable.display_name}列表` })
+    async findAll(@Query() query: QueryDto) {
+      return this.service.findAll(query);
+    }
+
+    @Get(':id')
+    @ApiOperation({ summary: `获取单个${metaTable.display_name}` })
+    async findOne(@Param('id') id: string) {
+      return this.service.findOne(id);
+    }
+
+    @Post()
+    @ApiOperation({ summary: `创建${metaTable.display_name}` })
+    async create(@Body() data: any) {
+      return this.service.create(data);
+    }
+
+    @Put(':id')
+    @ApiOperation({ summary: `更新${metaTable.display_name}` })
+    async update(@Param('id') id: string, @Body() data: any) {
+      return this.service.update(id, data);
+    }
+
+    @Delete(':id')
+    @ApiOperation({ summary: `删除${metaTable.display_name}` })
+    async remove(@Param('id') id: string) {
+      return this.service.remove(id);
+    }
+  }
+
+  return DynamicController;
+}
+```
+
+### 3.3 RBAC权限系统
+
+LowCodeX基于RBAC（基于角色的访问控制）模型实现了细粒度的权限管理，支持资源、操作、数据三个维度的权限控制。
+
+#### 3.3.1 权限模型
+
+```
+┌───────────────┐      ┌───────────────┐      ┌───────────────┐
+│     User      │      │     Role      │      │  Permission   │
+├───────────────┤      ├───────────────┤      ├───────────────┤
+│ id            │      │ id            │      │ id            │
+│ username      │      │ name          │      │ resource      │
+│ password      │◄────►│ description   │◄────►│ action        │
+│ email         │      │ tenant_id     │      │ conditions    │
+│ tenant_id     │      │ is_system     │      │ tenant_id     │
+│ roles         │      │ permissions   │      │ created_at    │
+│ created_at    │      │ created_at    │      │ updated_at    │
+│ updated_at    │      │ updated_at    │      └───────────────┘
+└───────────────┘      └───────────────┘
+```
+
+#### 3.3.2 权限策略实现
+
+```typescript
+/**
+ * 权限能力工厂
+ * 基于CASL实现细粒度权限控制
+ */
+@Injectable()
+export class AbilityFactory {
+  constructor(private permissionService: PermissionService) {}
+
+  /**
+   * 为用户创建权限能力实例
+   * @param user 当前用户
+   * @returns 权限能力实例
+   */
+  async createForUser(user: User) {
+    // 获取用户所有角色权限
+    const permissions = await this.permissionService.findByRoles(user.roles);
+
+    // 构建CASL能力实例
+    const { can, cannot, build } = new AbilityBuilder<AppAbility>(Ability);
+
+    // 应用所有权限规则
+    permissions.forEach(permission => {
+      const conditions = this.parseConditions(permission.conditions, user);
+
+      // 支持数据行级权限
+      can(permission.action, permission.resource, conditions);
+    });
+
+    return build();
+  }
+
+  /**
+   * 解析条件表达式
+   * 支持用户上下文变量替换，如 $user.id, $tenant.id 等
+   */
+  private parseConditions(conditionStr: string, user: User) {
+    if (!conditionStr) return undefined;
+
+    // 替换条件中的上下文变量
+    const context = {
+      $user: {
+        id: user.id,
+        tenant_id: user.tenant_id
+      }
+    };
+
+    // 这里简化处理，实际实现需要安全地解析JSON并替换变量
+    const conditionObj = JSON.parse(conditionStr);
+    return this.replaceContextVars(conditionObj, context);
+  }
+
+  private replaceContextVars(obj: any, context: any) {
+    // 实现变量替换逻辑
+    // ...
+    return obj;
+  }
+}
+```
+
+### 3.4 多租户架构
+
+LowCodeX采用多租户架构设计，支持多种隔离模式，满足不同安全级别和成本需求。
+
+#### 3.4.1 租户隔离策略
+
+![租户隔离模式](https://via.placeholder.com/800x400?text=租户隔离模式对比)
+
+| 隔离模式 | 描述 | 优点 | 缺点 |
+|---------|------|-----|------|
+| **独立数据库** | 每个租户使用独立的数据库实例 | 完全隔离，安全性最高 | 成本高，资源利用率低 |
+| **共享数据库，独立Schema** | 租户共享数据库实例，使用独立Schema | 较好的隔离性，成本适中 | 管理复杂度增加 |
+| **共享数据库，共享表** | 租户共享数据库和表，通过租户ID区分 | 成本低，易于管理 | 隔离性较弱，安全风险增加 |
+
+#### 3.4.2 多租户请求流程
+
+```
+┌──────────────┐    ┌───────────────┐    ┌────────────────┐    ┌───────────────┐
+│  客户端请求  │───►│ 租户识别中间件 │───►│ 租户上下文设置 │───►│ 业务逻辑处理  │
+└──────────────┘    └───────────────┘    └────────────────┘    └───────┬───────┘
+                                                                       │
+                                                                       ▼
+┌──────────────┐    ┌───────────────┐    ┌────────────────┐    ┌───────────────┐
+│  响应返回    │◄───│  数据转换     │◄───│  权限过滤     │◄───│ 数据访问层    │
+└──────────────┘    └───────────────┘    └────────────────┘    └───────────────┘
+```
+
+#### 3.4.3 租户上下文实现
+
+```typescript
+/**
+ * 租户上下文服务
+ * 管理当前请求的租户信息
+ */
+@Injectable()
+export class TenantContextService {
+  private readonly tenantContext: AsyncLocalStorage<TenantContext>;
+
+  constructor() {
+    this.tenantContext = new AsyncLocalStorage<TenantContext>();
+  }
+
+  /**
+   * 设置当前租户上下文
+   * @param tenantId 租户ID
+   * @param callback 在租户上下文中执行的回调函数
+   */
+  run(tenantId: string, callback: () => any) {
+    const context: TenantContext = { tenantId };
+    return this.tenantContext.run(context, callback);
+  }
+
+  /**
+   * 获取当前租户ID
+   * @returns 当前租户ID或undefined
+   */
+  getCurrentTenantId(): string | undefined {
+    const context = this.tenantContext.getStore();
+    return context?.tenantId;
+  }
+}
+
+/**
+ * 租户中间件
+ * 从请求中提取租户标识并设置租户上下文
+ */
+@Injectable()
+export class TenantMiddleware implements NestMiddleware {
+  constructor(private tenantService: TenantService,
+              private tenantContext: TenantContextService) {}
+
+  async use(req: Request, res: Response, next: NextFunction) {
+    // 从请求中提取租户标识（可以从子域名、请求头、JWT等获取）
+    const tenantId = this.extractTenantId(req);
+
+    if (tenantId) {
+      // 验证租户是否有效
+      const tenant = await this.tenantService.findById(tenantId);
+      if (tenant) {
+        // 在租户上下文中执行后续处理
+        return this.tenantContext.run(tenantId, () => next());
+      }
+    }
+
+    // 无有效租户，返回错误
+    res.status(401).json({ message: '无效的租户' });
+  }
+
+  private extractTenantId(req: Request): string | undefined {
+    // 实现租户提取逻辑
+    // ...
+  }
+}
+```
+
+### 3.5 工作流引擎
+
+LowCodeX内置了强大的工作流引擎，支持业务流程的可视化设计、自动化执行和监控。
+
+#### 3.5.1 工作流模型
+
+```
+┌───────────────┐      ┌───────────────┐      ┌───────────────┐
+│   Workflow    │      │     Node      │      │  Transition   │
+├───────────────┤      ├───────────────┤      ├───────────────┤
+│ id            │      │ id            │      │ id            │
+│ name          │      │ workflow_id   │      │ workflow_id   │
+│ description   │◄────►│ type          │◄────►│ from_node_id  │
+│ tenant_id     │      │ config        │      │ to_node_id    │
+│ version       │      │ tenant_id     │      │ condition     │
+│ status        │      │ position_x    │      │ tenant_id     │
+│ created_at    │      │ position_y    │      │ created_at    │
+│ updated_at    │      │ created_at    │      │ updated_at    │
+└───────────────┘      │ updated_at    │      └───────────────┘
+                       └───────────────┘
+
+┌───────────────┐      ┌───────────────┐
+│   Instance    │      │    Task       │
+├───────────────┤      ├───────────────┤
+│ id            │      │ id            │
+│ workflow_id   │      │ instance_id   │
+│ reference_id  │◄────►│ node_id       │
+│ status        │      │ status        │
+│ context       │      │ result        │
+│ tenant_id     │      │ tenant_id     │
+│ created_at    │      │ created_at    │
+│ updated_at    │      │ updated_at    │
+└───────────────┘      └───────────────┘
+```
+
+#### 3.5.2 工作流执行引擎
+
+```typescript
+/**
+ * 工作流执行引擎
+ * 负责工作流实例的创建和执行
+ */
+@Injectable()
+export class WorkflowEngine {
+  constructor(
+    private workflowService: WorkflowService,
+    private instanceService: InstanceService,
+    private taskService: TaskService,
+    private nodeHandlerRegistry: NodeHandlerRegistry,
+    private queueService: QueueService,
+  ) {}
+
+  /**
+   * 创建并启动工作流实例
+   * @param workflowId 工作流定义ID
+   * @param context 初始上下文数据
+   * @param referenceId 关联的业务对象ID
+   * @returns 工作流实例
+   */
+  async startWorkflow(workflowId: string, context: any, referenceId?: string) {
+    // 获取工作流定义
+    const workflow = await this.workflowService.findById(workflowId);
+    if (!workflow) {
+      throw new NotFoundException(`工作流不存在: ${workflowId}`);
+    }
+
+    // 创建工作流实例
+    const instance = await this.instanceService.create({
+      workflow_id: workflowId,
+      reference_id: referenceId,
+      status: 'RUNNING',
+      context,
+    });
+
+    // 查找起始节点
+    const startNode = await this.workflowService.findStartNode(workflowId);
+    if (!startNode) {
+      throw new BadRequestException(`工作流缺少起始节点: ${workflowId}`);
+    }
+
+    // 创建并执行第一个任务
+    await this.createTask(instance.id, startNode.id, context);
+
+    return instance;
+  }
+
+  /**
+   * 创建并执行任务
+   * @param instanceId 工作流实例ID
+   * @param nodeId 节点ID
+   * @param context 任务上下文
+   */
+  async createTask(instanceId: string, nodeId: string, context: any) {
+    // 创建任务记录
+    const task = await this.taskService.create({
+      instance_id: instanceId,
+      node_id: nodeId,
+      status: 'PENDING',
+      context,
+    });
+
+    // 将任务加入队列异步执行
+    await this.queueService.add('workflow-tasks', {
+      taskId: task.id,
+    });
+
+    return task;
+  }
+
+  /**
+   * 执行任务
+   * @param taskId 任务ID
+   */
+  async executeTask(taskId: string) {
+    // 获取任务信息
+    const task = await this.taskService.findById(taskId);
+    if (!task || task.status !== 'PENDING') {
+      return; // 任务不存在或已处理
+    }
+
+    try {
+      // 更新任务状态
+      await this.taskService.updateStatus(taskId, 'RUNNING');
+
+      // 获取节点信息
+      const node = await this.workflowService.findNodeById(task.node_id);
+
+      // 获取节点处理器
+      const handler = this.nodeHandlerRegistry.getHandler(node.type);
+      if (!handler) {
+        throw new Error(`未找到节点处理器: ${node.type}`);
+      }
+
+      // 执行节点逻辑
+      const result = await handler.execute(node.config, task.context);
+
+      // 更新任务状态和结果
+      await this.taskService.update(taskId, {
+        status: 'COMPLETED',
+        result,
+      });
+
+      // 获取实例信息
+      const instance = await this.instanceService.findById(task.instance_id);
+
+      // 查找下一个节点
+      const transitions = await this.workflowService.findTransitionsByFromNode(task.node_id);
+      const nextNodes = this.evaluateTransitions(transitions, {
+        ...instance.context,
+        ...result,
+      });
+
+      if (nextNodes.length === 0) {
+        // 没有下一个节点，工作流完成
+        await this.instanceService.updateStatus(task.instance_id, 'COMPLETED');
+      } else {
+        // 创建下一个任务
+        for (const nextNode of nextNodes) {
+          await this.createTask(task.instance_id, nextNode.id, {
+            ...instance.context,
+            ...result,
+          });
+        }
+      }
+    } catch (error) {
+      // 处理错误
+      await this.taskService.update(taskId, {
+        status: 'FAILED',
+        result: { error: error.message },
+      });
+
+      // 更新实例状态
+      await this.instanceService.updateStatus(task.instance_id, 'FAILED');
+    }
+  }
+
+  /**
+   * 评估转换条件，确定下一个节点
+   * @param transitions 转换列表
+   * @param context 上下文数据
+   * @returns 符合条件的下一个节点列表
+   */
+  private evaluateTransitions(transitions: Transition[], context: any) {
+    const nextNodes = [];
+
+    for (const transition of transitions) {
+      if (!transition.condition || this.evaluateCondition(transition.condition, context)) {
+        nextNodes.push({ id: transition.to_node_id });
+      }
+    }
+
+    return nextNodes;
+  }
+
+  /**
+   * 评估条件表达式
+   * @param condition 条件表达式
+   * @param context 上下文数据
+   * @returns 条件是否满足
+   */
+  private evaluateCondition(condition: string, context: any): boolean {
+    // 安全地评估条件表达式
+    try {
+      // 这里需要一个安全的表达式求值器，避免注入风险
+      // 可以使用专门的表达式引擎如json-rules-engine或自行实现
+      // 简化示例：
+      return new Function('context', `with(context) { return ${condition}; }`)(context);
+    } catch (error) {
+      console.error('条件评估错误:', error);
+      return false;
+    }
+  }
+}
+```
+
+## 4. 前端架构设计
+
+### 4.1 组件化设计
+
+LowCodeX前端采用高度组件化的设计思路，分为基础组件、业务组件和页面组件三个层次。
+
+![组件层次结构](https://via.placeholder.com/800x400?text=组件层次结构)
+
+#### 4.1.1 组件层次
+
+1. **基础组件层**：封装UI基础控件，如按钮、输入框、表格等
+2. **业务组件层**：组合基础组件实现特定业务功能，如用户选择器、权限配置面板等
+3. **页面组件层**：组合业务组件构建完整页面，如表单设计器、工作流设计器等
+
+#### 4.1.2 组件通信模式
+
+![组件通信模式](https://via.placeholder.com/800x300?text=组件通信模式)
+
+### 4.2 低代码编辑器设计
+
+#### 4.2.1 表单设计器
+
+表单设计器基于JSON Schema标准，实现了拖拽式表单构建、实时预览和表单验证。
+
+![表单设计器架构](https://via.placeholder.com/800x500?text=表单设计器架构)
+
+#### 4.2.2 工作流设计器
+
+工作流设计器采用可视化图形编辑方式，支持节点拖拽、连线和条件配置。
+
+![工作流设计器架构](https://via.placeholder.com/800x500?text=工作流设计器架构)
+
+## 5. 性能与扩展性
+
+### 5.1 性能优化策略
+
+#### 5.1.1 缓存策略
+
+LowCodeX采用多级缓存策略，减少数据库访问，提高系统响应速度：
+
+1. **客户端缓存**：使用Service Worker和浏览器缓存
+2. **应用层缓存**：Redis缓存热点数据
+3. **数据库缓存**：MySQL查询缓存和索引优化
+
+#### 5.1.2 异步处理
+
+对于耗时操作，采用异步处理方式减少用户等待：
+
+1. **任务队列**：使用Redis+BullMQ处理后台任务
+2. **消息通知**：WebSocket实时更新处理结果
+3. **定时任务**：使用`@nestjs/schedule`调度周期性任务
+
+### 5.2 扩展性设计
+
+#### 5.2.1 横向扩展
+
+![横向扩展架构](https://via.placeholder.com/800x400?text=横向扩展架构)
+
+#### 5.2.2 插件机制
+
+LowCodeX实现了插件机制，支持功能模块的动态加载和卸载：
+
+```typescript
+/**
+ * 插件管理器
+ * 负责插件的注册、加载和卸载
+ */
+@Injectable()
+export class PluginManager {
+  private plugins: Map<string, Plugin> = new Map();
+
+  constructor(
+    private moduleRef: ModuleRef,
+    private discoveryService: DiscoveryService,
+  ) {}
+
+  /**
+   * 注册插件
+   * @param plugin 插件实例
+   */
+  async register(plugin: Plugin) {
+    // 验证插件合法性
+    if (this.plugins.has(plugin.id)) {
+      throw new Error(`插件已存在: ${plugin.id}`);
+    }
+
+    // 注册插件
+    this.plugins.set(plugin.id, plugin);
+
+    // 加载插件模块
+    await this.loadPluginModule(plugin);
+
+    return true;
+  }
+
+  /**
+   * 加载插件模块
+   * @param plugin 插件实例
+   */
+  private async loadPluginModule(plugin: Plugin) {
+    try {
+      // 动态加载插件模块
+      const moduleClass = plugin.getModuleClass();
+      const dynamicModule = await this.moduleRef.create(moduleClass);
+
+      // 初始化插件
+      await plugin.onLoad(dynamicModule);
+
+      // 注册插件提供的服务
+      this.registerPluginProviders(dynamicModule);
+
+      // 注册插件路由
+      this.registerPluginControllers(dynamicModule);
+
+      return true;
+    } catch (error) {
+      console.error(`加载插件失败: ${plugin.id}`, error);
+      throw error;
+    }
+  }
+
+  // 其他插件管理方法...
+}
+```
+
+## 6. 私有化部署
+
+### 6.1 部署架构
+
+![部署架构图](https://via.placeholder.com/800x500?text=部署架构图)
+
+### 6.2 容器化配置
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - lowcodex-network
+    volumes:
+      - frontend-dist:/app/dist
+      - frontend-node-modules:/app/node_modules
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=mysql://user:password@mysql:3306/lowcodex
+      - REDIS_URL=redis://redis:6379
+    networks:
+      - lowcodex-network
+    volumes:
+      - backend-dist:/app/dist
+      - backend-node-modules:/app/node_modules
+
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=lowcodex
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    networks:
+      - lowcodex-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - lowcodex-network
+    volumes:
+      - redis-data:/data
+
+networks:
+  lowcodex-network:
+    driver: bridge
+
+volumes:
+  frontend-dist:
+  frontend-node-modules:
+  backend-dist:
+  backend-node-modules:
+  mysql-data:
+  redis-data:
+```
+
+## 7. 安全设计
+
+### 7.1 身份认证
+
+LowCodeX实现了多种身份认证方式：
+
+1. **用户名密码认证**
+2. **OAuth2.0/OpenID Connect集成**
+3. **LDAP/AD集成**
+4. **多因素认证**
+
+### 7.2 数据安全
+
+1. **传输加密**：全站HTTPS
+2. **数据加密**：敏感数据字段加密存储
+3. **审计日志**：关键操作全程记录
+4. **数据备份**：自动备份和恢复机制
+
+## 8. 总结与展望
+
+LowCodeX在架构设计上充分考虑了企业级应用的核心需求，通过模块化设计、动态模型、细粒度权限控制和多租户支持，为企业提供了灵活、安全、高效的低代码开发平台。未来将继续在以下方面进行优化和扩展：
+
+1. **AI辅助开发**：集成大语言模型，实现智能代码生成和需求分析
+2. **跨平台支持**：扩展移动端和小程序开发能力
+3. **集成DevOps**：提供完整的CI/CD流水线支持
+4. **更多预置组件**：丰富业务组件库，提高开发效率
+5. **行业模板**：针对特定行业提供专业解决方案模板
+
+LowCodeX将持续以"简单易用、功能强大、安全可靠"为核心理念，帮助企业加速数字化转型。

@@ -1,0 +1,508 @@
+# LowCodeX 角色与权限设计方案
+
+## 1. 角色模型设计
+
+### 1.1 角色分类
+
+LowCodeX平台的角色分为两个维度：系统角色和应用角色。
+
+#### 系统角色
+
+| 角色名称 | 角色编码 | 描述 |
+|---------|---------|------|
+| 系统管理员 | SYSTEM_ADMIN | 拥有整个平台的管理权限，可以管理所有租户和系统配置 |
+| 租户管理员 | TENANT_ADMIN | 管理单个租户内的所有资源，包括用户、角色、应用等 |
+| 开发者 | DEVELOPER | 可以创建和管理应用，包括表单、流程、数据模型的设计 |
+| 应用管理员 | APP_ADMIN | 管理指定应用的配置和权限，但不能修改应用结构 |
+| 业务用户 | BUSINESS_USER | 使用应用提交表单、处理流程等 |
+| 游客 | GUEST | 只有查看权限，无操作权限 |
+
+#### 应用角色
+
+应用角色是在特定应用内部定义的角色，由应用开发者自定义，例如：
+
+- 审批人
+- 填表人
+- 查看者
+- 数据分析员
+- ...等
+
+### 1.2 角色层级关系
+
+系统采用基于继承的角色层级结构：
+
+```
+系统管理员
+  └── 租户管理员
+        ├── 开发者
+        |     └── 应用管理员
+        └── 业务用户
+              └── 游客
+```
+
+每个上级角色自动继承下级角色的所有权限。
+
+## 2. 权限模型设计
+
+### 2.1 权限分类
+
+权限按照不同维度分类：
+
+#### 按资源类型分类
+
+| 资源类型 | 描述 |
+|---------|------|
+| 系统资源 | 系统配置、租户管理等 |
+| 租户资源 | 用户管理、角色管理、应用管理等 |
+| 应用资源 | 表单、流程、数据模型、页面、API等 |
+| 数据资源 | 业务数据的行级和列级权限 |
+
+#### 按操作类型分类
+
+| 操作类型 | 编码 | 描述 |
+|---------|------|------|
+| 创建 | CREATE | 创建资源的权限 |
+| 读取 | READ | 查看资源的权限 |
+| 更新 | UPDATE | 修改资源的权限 |
+| 删除 | DELETE | 删除资源的权限 |
+| 执行 | EXECUTE | 执行特定操作的权限 |
+| 管理 | MANAGE | 管理资源的全部权限 |
+
+### 2.2 权限表达式
+
+权限使用以下格式表达：
+
+```
+{操作类型}:{资源类型}:{资源ID}:{条件}
+```
+
+示例：
+
+- `READ:FORM:*:*` - 可以读取所有表单
+- `MANAGE:APP:app123:*` - 可以管理ID为app123的应用
+- `UPDATE:DATA:customers:{"dept":"sales"}` - 可以更新customers表中dept为sales的数据
+
+### 2.3 权限授予方式
+
+系统支持以下权限授予方式：
+
+1. **基于角色的权限授予**：角色绑定权限集合
+2. **基于用户的权限授予**：直接给用户分配特定权限
+3. **基于规则的权限授予**：根据条件动态计算权限
+
+## 3. 数据模型设计
+
+### 3.1 核心实体
+
+```typescript
+// 用户实体
+interface User {
+  id: number;
+  username: string;
+  password: string; // 加密存储
+  email: string;
+  phone?: string;
+  status: UserStatus; // ACTIVE, INACTIVE, LOCKED
+  tenantId: number; // 多租户标识
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// 角色实体
+interface Role {
+  id: number;
+  code: string; // 角色编码，如SYSTEM_ADMIN
+  name: string; // 角色名称，如"系统管理员"
+  description?: string;
+  type: RoleType; // SYSTEM, TENANT, APPLICATION
+  applicationId?: number; // 应用角色关联的应用ID
+  tenantId?: number; // 租户角色关联的租户ID
+  parentId?: number; // 父角色ID
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// 权限实体
+interface Permission {
+  id: number;
+  code: string; // 权限编码
+  name: string; // 权限名称
+  description?: string;
+  resourceType: ResourceType; // SYSTEM, TENANT, APPLICATION, DATA
+  actionType: ActionType; // CREATE, READ, UPDATE, DELETE, EXECUTE, MANAGE
+  resourcePattern: string; // 资源匹配模式，支持通配符
+  conditionExpression?: string; // JSON格式的条件表达式
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// 角色-权限关联
+interface RolePermission {
+  id: number;
+  roleId: number;
+  permissionId: number;
+  createdAt: Date;
+}
+
+// 用户-角色关联
+interface UserRole {
+  id: number;
+  userId: number;
+  roleId: number;
+  tenantId?: number;
+  applicationId?: number;
+  createdAt: Date;
+}
+
+// 用户-权限关联（用于特殊授权）
+interface UserPermission {
+  id: number;
+  userId: number;
+  permissionId: number;
+  tenantId?: number;
+  applicationId?: number;
+  allow: boolean; // true表示授予，false表示拒绝
+  createdAt: Date;
+}
+```
+
+### 3.2 枚举定义
+
+```typescript
+enum UserStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+  LOCKED = 'locked'
+}
+
+enum RoleType {
+  SYSTEM = 'system',
+  TENANT = 'tenant',
+  APPLICATION = 'application'
+}
+
+enum ResourceType {
+  SYSTEM = 'system',
+  TENANT = 'tenant',
+  APPLICATION = 'application',
+  DATA = 'data'
+}
+
+enum ActionType {
+  CREATE = 'create',
+  READ = 'read',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  EXECUTE = 'execute',
+  MANAGE = 'manage'
+}
+```
+
+## 4. 权限实现机制
+
+### 4.1 基于CASL的权限实现
+
+LowCodeX采用CASL库实现权限控制，核心代码如下：
+
+```typescript
+import { AbilityBuilder, Ability, AbilityClass, ExtractSubjectType } from '@casl/ability';
+import { Injectable } from '@nestjs/common';
+import { User } from '../users/entities/user.entity';
+import { Role } from '../roles/entities/role.entity';
+import { Permission } from '../permissions/entities/permission.entity';
+
+type Subjects = string | typeof User | typeof Role | { type: string; id?: string; tenantId?: string };
+type Actions = 'create' | 'read' | 'update' | 'delete' | 'execute' | 'manage';
+
+export type AppAbility = Ability<[Actions, Subjects]>;
+
+@Injectable()
+export class AbilityFactory {
+  constructor(
+    private userRoleService: UserRoleService,
+    private rolePermissionService: RolePermissionService,
+    private userPermissionService: UserPermissionService,
+  ) {}
+
+  async createForUser(user: User): Promise<AppAbility> {
+    const { can, cannot, build } = new AbilityBuilder<AppAbility>(
+      Ability as AbilityClass<AppAbility>,
+    );
+
+    // 如果是系统管理员，赋予所有权限
+    if (user.isSystemAdmin) {
+      can('manage', 'all');
+      return build();
+    }
+
+    // 获取用户角色
+    const userRoles = await this.userRoleService.findByUserId(user.id);
+    const roleIds = userRoles.map(ur => ur.roleId);
+
+    // 获取角色对应的权限
+    const rolePermissions = await this.rolePermissionService.findByRoleIds(roleIds);
+    const permissions = await this.permissionService.findByIds(
+      rolePermissions.map(rp => rp.permissionId)
+    );
+
+    // 获取用户特殊权限（直接分配的）
+    const userPermissions = await this.userPermissionService.findByUserId(user.id);
+
+    // 处理角色权限
+    permissions.forEach(permission => {
+      const { actionType, resourceType, resourcePattern, conditionExpression } = permission;
+
+      // 构建条件
+      let conditions = {};
+      if (conditionExpression) {
+        try {
+          conditions = JSON.parse(conditionExpression);
+        } catch (e) {
+          console.error('Invalid condition expression', e);
+        }
+      }
+
+      // 添加租户条件（多租户隔离）
+      if (resourceType !== 'SYSTEM' && user.tenantId) {
+        conditions['tenantId'] = user.tenantId;
+      }
+
+      // 赋予权限
+      can(actionType.toLowerCase() as Actions, resourcePattern, conditions);
+    });
+
+    // 处理用户特殊权限
+    userPermissions.forEach(userPermission => {
+      const { permissionId, allow } = userPermission;
+      const permission = permissions.find(p => p.id === permissionId);
+
+      if (permission) {
+        const { actionType, resourceType, resourcePattern, conditionExpression } = permission;
+        let conditions = {};
+        if (conditionExpression) {
+          try {
+            conditions = JSON.parse(conditionExpression);
+          } catch (e) {
+            console.error('Invalid condition expression', e);
+          }
+        }
+
+        // 添加租户条件
+        if (resourceType !== 'SYSTEM' && user.tenantId) {
+          conditions['tenantId'] = user.tenantId;
+        }
+
+        // 允许或拒绝权限
+        if (allow) {
+          can(actionType.toLowerCase() as Actions, resourcePattern, conditions);
+        } else {
+          cannot(actionType.toLowerCase() as Actions, resourcePattern, conditions);
+        }
+      }
+    });
+
+    return build({
+      // 检测目标类型
+      detectSubjectType: (item) =>
+        item.constructor as ExtractSubjectType<Subjects>,
+    });
+  }
+}
+```
+
+### 4.2 权限守卫实现
+
+```typescript
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { AbilityFactory } from './ability.factory';
+
+@Injectable()
+export class PermissionGuard implements CanActivate {
+  constructor(
+    private reflector: Reflector,
+    private abilityFactory: AbilityFactory,
+  ) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    // 获取必要的权限元数据
+    const requiredPermission = this.reflector.get<{
+      action: string;
+      subject: string;
+    }>('permission', context.getHandler());
+
+    if (!requiredPermission) {
+      return true; // 没有权限要求，直接通过
+    }
+
+    const { action, subject } = requiredPermission;
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
+
+    if (!user) {
+      return false; // 未认证用户
+    }
+
+    // 构建用户权限
+    const ability = await this.abilityFactory.createForUser(user);
+
+    // 验证权限
+    return ability.can(action, subject);
+  }
+}
+```
+
+### 4.3 权限装饰器
+
+```typescript
+import { SetMetadata } from '@nestjs/common';
+
+export const CheckPermission = (action: string, subject: string) =>
+  SetMetadata('permission', { action, subject });
+```
+
+### 4.4 使用示例
+
+```typescript
+@Controller('forms')
+export class FormController {
+  constructor(private formService: FormService) {}
+
+  @Post()
+  @CheckPermission('create', 'form')
+  async create(@Body() createFormDto: CreateFormDto, @Request() req) {
+    return this.formService.create(createFormDto, req.user);
+  }
+
+  @Get(':id')
+  @CheckPermission('read', 'form')
+  async findOne(@Param('id') id: string, @Request() req) {
+    return this.formService.findOne(+id, req.user);
+  }
+
+  @Put(':id')
+  @CheckPermission('update', 'form')
+  async update(
+    @Param('id') id: string,
+    @Body() updateFormDto: UpdateFormDto,
+    @Request() req,
+  ) {
+    return this.formService.update(+id, updateFormDto, req.user);
+  }
+
+  @Delete(':id')
+  @CheckPermission('delete', 'form')
+  async remove(@Param('id') id: string, @Request() req) {
+    return this.formService.remove(+id, req.user);
+  }
+}
+```
+
+## 5. 数据权限控制
+
+除了API级别的权限控制外，LowCodeX还支持数据级别的权限控制：
+
+### 5.1 行级权限
+
+通过CASL的条件表达式实现，例如：
+
+```typescript
+// 只能查看自己创建的表单
+ability.can('read', 'Form', { createdBy: user.id });
+
+// 只能查看自己部门的数据
+ability.can('read', 'CustomerData', { departmentId: user.departmentId });
+```
+
+### 5.2 列级权限
+
+通过字段过滤器实现：
+
+```typescript
+@Injectable()
+export class DataFilterInterceptor implements NestInterceptor {
+  constructor(private abilityFactory: AbilityFactory) {}
+
+  async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
+
+    if (!user) {
+      return next.handle();
+    }
+
+    const ability = await this.abilityFactory.createForUser(user);
+
+    return next.handle().pipe(
+      map(data => {
+        // 单个对象
+        if (data && !Array.isArray(data)) {
+          return this.filterFields(data, ability);
+        }
+
+        // 数组
+        if (Array.isArray(data)) {
+          return data.map(item => this.filterFields(item, ability));
+        }
+
+        return data;
+      }),
+    );
+  }
+
+  private filterFields(data: any, ability: AppAbility): any {
+    if (!data || typeof data !== 'object') {
+      return data;
+    }
+
+    const resourceType = data.constructor.name || data.type || 'unknown';
+    const result = { ...data };
+
+    // 检查每个字段的权限
+    Object.keys(data).forEach(key => {
+      if (!ability.can('read', `${resourceType}.${key}`, data)) {
+        delete result[key];
+      }
+    });
+
+    return result;
+  }
+}
+```
+
+## 6. 权限管理界面设计
+
+### 6.1 系统角色管理
+
+- 角色列表展示 (名称、描述、类型、操作)
+- 角色创建/编辑
+- 角色权限分配界面 (树形结构展示权限)
+- 角色用户分配
+
+### 6.2 应用角色管理
+
+- 应用角色列表
+- 应用角色创建/编辑
+- 应用角色权限分配
+- 应用角色用户分配
+
+### 6.3 权限管理
+
+- 权限列表展示 (分类、名称、操作)
+- 权限创建/编辑 (支持条件表达式编辑器)
+
+### 6.4 用户权限管理
+
+- 用户角色分配
+- 用户特殊权限分配 (覆盖角色权限)
+- 用户权限查看 (汇总展示)
+
+## 7. 后续扩展点
+
+1. **动态权限**：基于业务规则的动态权限计算
+2. **权限委托**：临时将权限委托给其他用户
+3. **权限审计**：记录权限变更历史和权限使用日志
+4. **权限分析**：分析用户权限使用情况，优化权限配置
+5. **工作流权限**：与工作流集成的动态权限控制
+
+此权限设计方案为LowCodeX平台提供完整的RBAC权限控制框架，能够满足多租户环境下的复杂权限需求，同时保持良好的扩展性和灵活性。

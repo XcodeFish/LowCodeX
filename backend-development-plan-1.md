@@ -1,0 +1,952 @@
+# LowCodeX 后端开发规划文档 (第一部分)
+
+## 1. 整体开发流程
+
+LowCodeX后端开发将按照以下顺序进行：
+
+### 1.1 开发阶段划分
+
+| 阶段 | 时间节点 | 主要任务 |
+|-----|---------|---------|
+| 准备阶段 | 第1周 | 项目初始化、技术选型确认、基础架构搭建 |
+| 基础阶段 | 第2-4周 | 核心基础设施建设、通用功能实现、权限体系搭建 |
+| 功能阶段 | 第5-10周 | 各功能模块开发、API实现、业务逻辑实现 |
+| 优化阶段 | 第11-12周 | 性能优化、安全加固、兼容性测试 |
+| 测试阶段 | 第13-14周 | 单元测试、集成测试、压力测试 |
+| 部署阶段 | 第15-16周 | 构建部署、文档编写、上线准备 |
+
+### 1.2 优先级排序
+
+模块开发优先级（从高到低）：
+
+1. **核心基础设施** - 数据库连接、Redis集成、日志系统等
+2. **用户认证与权限模块** - 身份验证和授权系统
+3. **数据模型管理模块** - 动态模型定义与管理
+4. **表单管理模块** - 表单模板和表单数据处理
+5. **工作流引擎模块** - 流程定义和执行
+6. **API生成模块** - 动态API生成和管理
+7. **多租户管理模块** - 租户隔离和管理
+8. **系统管理模块** - 配置、监控和维护功能
+
+## 2. 技术栈与基础设施
+
+### 2.1 技术栈选择
+
+| 类别 | 技术选择 | 说明 |
+|-----|---------|------|
+| 框架 | Nest.js | 基于TypeScript的企业级后端框架 |
+| 类型系统 | TypeScript | 强类型支持，提高代码质量 |
+| ORM | Prisma | 现代化ORM工具，支持类型安全和模型生成 |
+| 数据库 | MySQL | 关系型数据库，适合结构化数据 |
+| 缓存 | Redis | 高性能缓存和消息队列 |
+| API文档 | Swagger/OpenAPI | 自动生成API文档 |
+| 消息队列 | Bull | 基于Redis的队列系统，处理异步任务 |
+| 日志 | Winston | 灵活的日志库 |
+| 监控 | Prometheus + Grafana | 系统监控和可视化 |
+| 测试 | Jest | 单元测试和集成测试 |
+| CI/CD | GitHub Actions | 持续集成和部署 |
+| 容器化 | Docker + Docker Compose | 容器化部署 |
+
+### 2.2 项目初始化
+
+```bash
+# 安装Nest CLI
+npm install -g @nestjs/cli
+
+# 创建新项目
+nest new lowcodex-backend
+
+# 进入项目目录
+cd lowcodex-backend
+
+# 安装核心依赖
+npm install @nestjs/config @nestjs/swagger @nestjs/passport passport passport-jwt passport-local
+npm install prisma @prisma/client @casl/prisma @casl/ability
+npm install @nestjs/bull bull cache-manager redis
+npm install class-validator class-transformer helmet compression
+
+# 安装开发依赖
+npm install -D @types/passport-jwt @types/passport-local @types/cache-manager @types/bull
+npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+### 2.3 项目结构
+
+```
+src/
+├── config/                 # 配置文件和环境变量
+├── common/                 # 通用功能
+│   ├── decorators/        # 自定义装饰器
+│   ├── filters/           # 全局异常过滤器
+│   ├── guards/            # 全局守卫
+│   ├── interceptors/      # 全局拦截器
+│   ├── middlewares/       # 全局中间件
+│   ├── pipes/             # 全局管道
+│   └── utils/             # 工具函数
+├── modules/                # 业务模块
+│   ├── auth/              # 认证模块
+│   ├── users/             # 用户模块
+│   ├── tenants/           # 租户模块
+│   ├── data-models/       # 数据模型模块
+│   ├── forms/             # 表单模块
+│   ├── workflows/         # 工作流模块
+│   ├── dynamic-api/       # 动态API模块
+│   └── system/            # 系统管理模块
+├── dto/                    # 数据传输对象
+├── entities/               # 数据库实体
+├── interfaces/             # 接口定义
+├── services/               # 核心服务
+│   ├── prisma.service.ts  # Prisma服务
+│   ├── redis.service.ts   # Redis服务
+│   └── logger.service.ts  # 日志服务
+├── main.ts                 # 应用入口
+└── app.module.ts           # 根模块
+```
+
+### 2.4 核心配置文件设置
+
+**1. nest-cli.json**
+
+```json
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@nestjs/swagger",
+        "options": {
+          "classValidatorShim": true,
+          "introspectComments": true
+        }
+      }
+    ],
+    "assets": [
+      "config/env/*",
+      "**/*.json"
+    ],
+    "watchAssets": true
+  }
+}
+```
+
+**2. .env 文件模板**
+
+```
+# 环境
+NODE_ENV=development
+
+# HTTP服务器
+PORT=3100
+API_PREFIX=api
+API_VERSION=v1
+GLOBAL_PREFIX=true
+
+# 数据库连接
+DATABASE_URL="mysql://username:password@localhost:3306/lowcodex"
+
+# Redis连接
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
+
+# JWT配置
+JWT_SECRET=your-secret-key
+JWT_EXPIRES_IN=30d
+
+# 日志配置
+LOG_LEVEL=debug
+LOG_FILE_PATH=logs/app.log
+
+# 跨域配置
+CORS_ORIGIN=*
+CORS_METHODS=GET,HEAD,PUT,PATCH,POST,DELETE
+CORS_CREDENTIALS=true
+
+# 多租户配置
+TENANT_MODE=database  # database, schema 或 column
+TENANT_ID_FIELD=tenantId
+```
+
+**3. docker-compose.yml**
+
+```yaml
+version: '3.8'
+services:
+  api:
+    container_name: lowcodex_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3100:3100"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+  mysql:
+    container_name: lowcodex_mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=lowcodex
+      - MYSQL_USER=lowcodex
+      - MYSQL_PASSWORD=password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+  redis:
+    container_name: lowcodex_redis
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+networks:
+  lowcodex-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
+```
+
+## 3. 核心模块开发规划
+
+### 3.1 核心基础设施
+
+#### 3.1.1 功能点详细拆解
+
+1. **数据库连接服务**
+   - Prisma服务集成
+   - 连接池管理
+   - 事务支持
+   - 多租户数据隔离
+
+2. **缓存服务**
+   - Redis客户端集成
+   - 缓存策略管理
+   - 序列化与反序列化
+   - 缓存失效处理
+
+3. **日志系统**
+   - 多级别日志支持
+   - 日志轮转与归档
+   - 结构化日志格式
+   - 错误追踪集成
+
+4. **配置管理**
+   - 环境变量加载
+   - 不同环境配置分离
+   - 敏感信息保护
+   - 动态配置更新
+
+5. **异常处理**
+   - 全局异常过滤器
+   - 统一错误响应格式
+   - 错误码体系
+   - 错误日志记录
+
+#### 3.1.2 开发任务与时间安排
+
+| 任务 | 描述 | 时间估计 | 优先级 |
+|-----|------|---------|-------|
+| 设计数据库架构 | 确定主要表结构和关系 | 3天 | P0 |
+| 实现Prisma集成 | 配置ORM和生成模型 | 2天 | P0 |
+| 开发Redis服务 | 缓存和队列功能实现 | 2天 | P0 |
+| 实现日志系统 | 多级别日志和轮转 | 1天 | P0 |
+| 配置环境变量 | 不同环境的配置管理 | 1天 | P0 |
+| 开发全局异常处理 | 统一异常处理机制 | 2天 | P0 |
+| 实现健康检查API | 系统组件健康状态监控 | 1天 | P1 |
+
+#### 3.1.3 核心服务与接口定义
+
+**Prisma服务 (services/prisma.service.ts)**
+
+```typescript
+import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+import { ConfigService } from '@nestjs/config';
+
+@Injectable()
+export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+  private readonly logger = new Logger(PrismaService.name);
+
+  constructor(private configService: ConfigService) {
+    super({
+      log: [
+        { emit: 'event', level: 'query' },
+        { emit: 'stdout', level: 'info' },
+        { emit: 'stdout', level: 'warn' },
+        { emit: 'stdout', level: 'error' },
+      ],
+      errorFormat: 'colorless',
+    });
+  }
+
+  async onModuleInit() {
+    await this.$connect();
+    this.logger.log('Database connection established');
+
+    // 添加中间件用于多租户隔离
+    const tenantMode = this.configService.get('TENANT_MODE');
+    const tenantIdField = this.configService.get('TENANT_ID_FIELD');
+
+    if (tenantMode === 'column') {
+      this.$use(async (params, next) => {
+        const tenantId = this.getTenantId();
+
+        if (tenantId && this.isTenantAwareModel(params.model)) {
+          if (params.action === 'findUnique' || params.action === 'findFirst') {
+            params.args.where[tenantIdField] = tenantId;
+            return next(params);
+          }
+
+          if (params.action === 'findMany') {
+            if (!params.args) params.args = {};
+            if (!params.args.where) params.args.where = {};
+            params.args.where[tenantIdField] = tenantId;
+            return next(params);
+          }
+
+          if (params.action === 'create') {
+            if (!params.args.data) params.args.data = {};
+            params.args.data[tenantIdField] = tenantId;
+            return next(params);
+          }
+
+          if (params.action === 'update' || params.action === 'updateMany') {
+            if (!params.args.where) params.args.where = {};
+            params.args.where[tenantIdField] = tenantId;
+            return next(params);
+          }
+
+          if (params.action === 'delete' || params.action === 'deleteMany') {
+            if (!params.args.where) params.args.where = {};
+            params.args.where[tenantIdField] = tenantId;
+            return next(params);
+          }
+        }
+
+        return next(params);
+      });
+    }
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect();
+    this.logger.log('Database connection closed');
+  }
+
+  // 获取当前租户ID (通常从请求上下文中获取)
+  private getTenantId(): number | null {
+    // 实现从上下文中获取租户ID的逻辑
+    return null;
+  }
+
+  // 检查模型是否应用租户隔离
+  private isTenantAwareModel(model: string): boolean {
+    const tenantAwareModels = [
+      'User', 'Role', 'Permission', 'Application',
+      'DataModel', 'Form', 'Workflow'
+    ];
+    return tenantAwareModels.includes(model);
+  }
+}
+```
+
+**Redis服务 (services/redis.service.ts)**
+
+```typescript
+import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import Redis from 'ioredis';
+
+@Injectable()
+export class RedisService implements OnModuleInit, OnModuleDestroy {
+  private readonly logger = new Logger(RedisService.name);
+  private client: Redis;
+
+  constructor(private configService: ConfigService) {}
+
+  async onModuleInit() {
+    this.client = new Redis({
+      host: this.configService.get('REDIS_HOST', 'localhost'),
+      port: this.configService.get('REDIS_PORT', 6379),
+      password: this.configService.get('REDIS_PASSWORD', ''),
+      db: this.configService.get<number>('REDIS_DB', 0),
+      retryStrategy: (times) => {
+        const delay = Math.min(times * 100, 3000);
+        return delay;
+      },
+    });
+
+    this.client.on('connect', () => {
+      this.logger.log('Redis connection established');
+    });
+
+    this.client.on('error', (error) => {
+      this.logger.error(`Redis error: ${error.message}`, error.stack);
+    });
+  }
+
+  async onModuleDestroy() {
+    if (this.client) {
+      await this.client.quit();
+      this.logger.log('Redis connection closed');
+    }
+  }
+
+  getClient(): Redis {
+    return this.client;
+  }
+
+  async get<T>(key: string): Promise<T | null> {
+    const data = await this.client.get(key);
+    if (!data) return null;
+    try {
+      return JSON.parse(data) as T;
+    } catch (error) {
+      return data as unknown as T;
+    }
+  }
+
+  async set(key: string, value: any, ttl?: number): Promise<void> {
+    const data = typeof value === 'object' ? JSON.stringify(value) : value;
+    if (ttl) {
+      await this.client.setex(key, ttl, data);
+    } else {
+      await this.client.set(key, data);
+    }
+  }
+
+  async del(key: string | string[]): Promise<void> {
+    await this.client.del(Array.isArray(key) ? key : [key]);
+  }
+
+  async keys(pattern: string): Promise<string[]> {
+    return this.client.keys(pattern);
+  }
+
+  async hset(key: string, field: string, value: any): Promise<void> {
+    const data = typeof value === 'object' ? JSON.stringify(value) : value;
+    await this.client.hset(key, field, data);
+  }
+
+  async hget<T>(key: string, field: string): Promise<T | null> {
+    const data = await this.client.hget(key, field);
+    if (!data) return null;
+    try {
+      return JSON.parse(data) as T;
+    } catch (error) {
+      return data as unknown as T;
+    }
+  }
+
+  async publish(channel: string, message: any): Promise<void> {
+    const data = typeof message === 'object' ? JSON.stringify(message) : message;
+    await this.client.publish(channel, data);
+  }
+
+  async subscribe(channel: string, callback: (message: string) => void): Promise<void> {
+    const subscriber = this.client.duplicate();
+    await subscriber.subscribe(channel);
+    subscriber.on('message', (ch, message) => {
+      if (ch === channel) {
+        callback(message);
+      }
+    });
+  }
+}
+```
+
+**日志服务 (services/logger.service.ts)**
+
+```typescript
+import { Injectable, LoggerService as NestLoggerService } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import * as winston from 'winston';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
+import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
+
+@Injectable()
+export class LoggerService implements NestLoggerService {
+  private logger: winston.Logger;
+
+  constructor(private configService: ConfigService) {
+    const logLevel = this.configService.get('LOG_LEVEL', 'info');
+    const logFilePath = this.configService.get('LOG_FILE_PATH', 'logs/app.log');
+    const env = this.configService.get('NODE_ENV', 'development');
+
+    // 日志格式
+    const logFormat = winston.format.combine(
+      winston.format.timestamp(),
+      winston.format.ms(),
+      env === 'development'
+        ? nestWinstonModuleUtilities.format.nestLike('LowCodeX', { prettyPrint: true })
+        : winston.format.json()
+    );
+
+    // 控制台传输
+    const consoleTransport = new winston.transports.Console({
+      format: logFormat,
+    });
+
+    // 文件传输（按日期轮转）
+    const fileTransport = new DailyRotateFile({
+      filename: `${logFilePath}-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+      format: logFormat,
+    });
+
+    // 错误日志单独存储
+    const errorFileTransport = new DailyRotateFile({
+      filename: `${logFilePath}-error-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+      level: 'error',
+      format: logFormat,
+    });
+
+    // 创建logger实例
+    this.logger = winston.createLogger({
+      level: logLevel,
+      transports: [
+        consoleTransport,
+        fileTransport,
+        errorFileTransport,
+      ],
+    });
+
+    this.logger.info(`Logger initialized with level: ${logLevel}`);
+  }
+
+  getWinstonLogger(): winston.Logger {
+    return this.logger;
+  }
+
+  log(message: string, context?: string): void {
+    this.logger.info(message, { context });
+  }
+
+  error(message: string, trace?: string, context?: string): void {
+    this.logger.error(message, { trace, context });
+  }
+
+  warn(message: string, context?: string): void {
+    this.logger.warn(message, { context });
+  }
+
+  debug(message: string, context?: string): void {
+    this.logger.debug(message, { context });
+  }
+
+  verbose(message: string, context?: string): void {
+    this.logger.verbose(message, { context });
+  }
+}
+```
+
+#### 3.1.4 Cursor提示词
+
+```
+创建核心基础设施，包括数据库连接、缓存和日志系统。
+
+1. 设置基础Prisma配置，创建schema.prisma文件
+2. 实现PrismaService，添加连接管理和多租户支持
+3. 开发RedisService，提供缓存和消息功能
+4. 创建LoggerService，实现多级别日志和文件轮转
+5. 设置ConfigModule，管理环境配置
+6. 实现全局异常过滤器，统一错误处理
+7. 添加健康检查API，监控系统组件状态
+8. 创建通用工具类和装饰器
+```
+
+### 3.2 用户认证与权限模块
+
+#### 3.2.1 功能点详细拆解
+
+1. **用户认证**
+   - 本地用户名密码认证
+   - JWT令牌生成与验证
+   - 刷新令牌机制
+   - 记住我功能
+   - 多因素认证支持
+
+2. **OAuth集成**
+   - OAuth2.0支持
+   - 第三方登录集成
+   - 身份提供商管理
+   - 用户信息同步
+
+3. **权限控制**
+   - 基于角色的访问控制(RBAC)
+   - 基于属性的访问控制(ABAC)
+   - 权限检查装饰器
+   - 动态权限计算
+
+4. **用户管理**
+   - 用户CRUD操作
+   - 密码重置与修改
+   - 用户激活与锁定
+   - 用户配置文件
+
+5. **审计日志**
+   - 用户操作记录
+   - 登录日志
+   - 权限变更日志
+   - 安全事件记录
+
+#### 3.2.2 开发任务与时间安排
+
+| 任务 | 描述 | 时间估计 | 优先级 |
+|-----|------|---------|-------|
+| 设计用户认证流程 | 确定认证方式和流程 | 2天 | P0 |
+| 实现JWT认证 | Token生成和验证 | 3天 | P0 |
+| 开发用户API | 用户CRUD操作 | 3天 | P0 |
+| 实现RBAC权限 | 基于角色的权限控制 | 4天 | P0 |
+| 集成CASL权限库 | 细粒度权限控制 | 3天 | P1 |
+| 添加OAuth支持 | 第三方登录集成 | 3天 | P2 |
+| 实现多因素认证 | 增强认证安全性 | 2天 | P2 |
+| 开发审计日志功能 | 记录用户操作 | 2天 | P1 |
+
+#### 3.2.3 核心控制器与服务
+
+**用户实体 (entities/user.entity.ts)**
+
+```typescript
+import { Prisma } from '@prisma/client';
+
+// 通过Prisma模型扩展用户实体
+export class User implements Prisma.UserUncheckedCreateInput {
+  id?: number;
+  username: string;
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+  status: string;
+  tenantId: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  lastLoginAt?: Date | string;
+
+  // 扩展属性（不存储在数据库中）
+  roles?: UserRole[];
+  permissions?: string[];
+  isActivated?: boolean;
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
+
+  get fullName(): string {
+    return `${this.firstName || ''} ${this.lastName || ''}`.trim();
+  }
+
+  get isActive(): boolean {
+    return this.status === 'active';
+  }
+}
+
+export class UserRole implements Prisma.UserRoleUncheckedCreateInput {
+  id?: number;
+  userId: number;
+  roleId: number;
+  tenantId?: number;
+  applicationId?: number;
+  createdAt?: Date | string;
+
+  role?: Role;
+}
+
+export class Role implements Prisma.RoleUncheckedCreateInput {
+  id?: number;
+  code: string;
+  name: string;
+  description?: string;
+  type: string;
+  applicationId?: number;
+  tenantId?: number;
+  parentId?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+
+  permissions?: RolePermission[];
+}
+
+export class RolePermission implements Prisma.RolePermissionUncheckedCreateInput {
+  id?: number;
+  roleId: number;
+  permissionId: number;
+  createdAt?: Date | string;
+
+  permission?: Permission;
+}
+
+export class Permission implements Prisma.PermissionUncheckedCreateInput {
+  id?: number;
+  code: string;
+  name: string;
+  description?: string;
+  resourceType: string;
+  actionType: string;
+  resourcePattern: string;
+  conditionExpression?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+```
+
+**认证控制器 (modules/auth/auth.controller.ts)**
+
+```typescript
+import {
+  Controller, Post, Body, UseGuards, Get, Req,
+  HttpCode, HttpStatus, Res, UnauthorizedException
+} from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { Response } from 'express';
+import { AuthService } from './auth.service';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { RequestWithUser } from './interfaces/request-with-user.interface';
+
+@ApiTags('认证')
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @ApiOperation({ summary: '用户登录' })
+  @ApiResponse({ status: 200, description: '登录成功' })
+  @ApiResponse({ status: 401, description: '认证失败' })
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  async login(
+    @Body() loginDto: LoginDto,
+    @Req() req: RequestWithUser,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const user = req.user;
+    const result = await this.authService.login(user, loginDto.rememberMe);
+
+    // 设置刷新令牌为HttpOnly cookie
+    if (result.refreshToken) {
+      const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30天
+        path: '/api/auth/refresh-token'
+      };
+      res.cookie('refreshToken', result.refreshToken, cookieOptions);
+    }
+
+    return {
+      accessToken: result.accessToken,
+      user: result.user,
+      expiresIn: result.expiresIn
+    };
+  }
+
+  @ApiOperation({ summary: '用户注册' })
+  @ApiResponse({ status: 201, description: '注册成功' })
+  @ApiResponse({ status: 400, description: '无效输入' })
+  @Post('register')
+  async register(@Body() registerDto: RegisterDto) {
+    return this.authService.register(registerDto);
+  }
+
+  @ApiOperation({ summary: '刷新令牌' })
+  @ApiResponse({ status: 200, description: '令牌刷新成功' })
+  @ApiResponse({ status: 401, description: '无效的刷新令牌' })
+  @Post('refresh-token')
+  @HttpCode(HttpStatus.OK)
+  async refreshToken(
+    @Body() refreshTokenDto: RefreshTokenDto,
+    @Req() req: Request,
+  ) {
+    // 从cookie或请求体获取刷新令牌
+    const token = req['cookies']?.refreshToken || refreshTokenDto.refreshToken;
+
+    if (!token) {
+      throw new UnauthorizedException('刷新令牌不存在');
+    }
+
+    return this.authService.refreshToken(token);
+  }
+
+  @ApiOperation({ summary: '退出登录' })
+  @ApiResponse({ status: 200, description: '退出成功' })
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  async logout(
+    @Req() req: RequestWithUser,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    // 清除刷新令牌cookie
+    res.clearCookie('refreshToken');
+
+    // 使当前访问令牌失效
+    await this.authService.logout(req.user.id);
+
+    return { success: true, message: '退出成功' };
+  }
+
+  @ApiOperation({ summary: '获取当前用户信息' })
+  @ApiResponse({ status: 200, description: '获取成功' })
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  async getProfile(@Req() req: RequestWithUser) {
+    return this.authService.getProfile(req.user.id);
+  }
+}
+```
+
+**权限服务 (modules/auth/ability.factory.ts)**
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../../services/prisma.service';
+import { PrismaAbility, createPrismaAbility } from '@casl/prisma';
+import { Ability, AbilityBuilder, AbilityClass, ExtractSubjectType } from '@casl/ability';
+import { User } from '../../entities/user.entity';
+
+type Actions = 'create' | 'read' | 'update' | 'delete' | 'manage';
+type Subjects = string;
+
+type AppAbility = PrismaAbility<[Actions, Subjects]>;
+const AppAbility = Ability as AbilityClass<AppAbility>;
+
+@Injectable()
+export class AbilityFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async createForUser(user: User): Promise<AppAbility> {
+    const { can, cannot, build } = new AbilityBuilder<AppAbility>(AppAbility);
+
+    // 系统管理员拥有所有权限
+    if (user.roles?.some(role => role.role.code === 'SYSTEM_ADMIN')) {
+      can('manage', 'all');
+      return build();
+    }
+
+    // 获取用户所有角色
+    const userRoles = await this.prisma.userRole.findMany({
+      where: { userId: user.id },
+      include: { role: true },
+    });
+
+    // 获取角色关联的所有权限
+    const roleIds = userRoles.map(ur => ur.roleId);
+    const rolePermissions = await this.prisma.rolePermission.findMany({
+      where: { roleId: { in: roleIds } },
+      include: { permission: true },
+    });
+
+    // 应用权限
+    rolePermissions.forEach(rp => {
+      const { permission } = rp;
+      const action = permission.actionType.toLowerCase() as Actions;
+      const subject = permission.resourcePattern;
+
+      // 解析条件表达式
+      let conditions = {};
+      if (permission.conditionExpression) {
+        try {
+          conditions = JSON.parse(permission.conditionExpression);
+        } catch (e) {
+          console.error('Invalid condition expression', permission.conditionExpression);
+        }
+      }
+
+      // 添加多租户条件
+      if (permission.resourceType !== 'SYSTEM' && user.tenantId) {
+        conditions['tenantId'] = user.tenantId;
+      }
+
+      can(action, subject, conditions);
+    });
+
+    // 获取用户直接分配的权限
+    const userPermissions = await this.prisma.userPermission.findMany({
+      where: { userId: user.id },
+      include: { permission: true },
+    });
+
+    // 应用用户特殊权限
+    userPermissions.forEach(up => {
+      const { permission, allow } = up;
+      const action = permission.actionType.toLowerCase() as Actions;
+      const subject = permission.resourcePattern;
+
+      let conditions = {};
+      if (permission.conditionExpression) {
+        try {
+          conditions = JSON.parse(permission.conditionExpression);
+        } catch (e) {
+          console.error('Invalid condition expression', permission.conditionExpression);
+        }
+      }
+
+      if (permission.resourceType !== 'SYSTEM' && user.tenantId) {
+        conditions['tenantId'] = user.tenantId;
+      }
+
+      if (allow) {
+        can(action, subject, conditions);
+      } else {
+        cannot(action, subject, conditions);
+      }
+    });
+
+    return createPrismaAbility(build());
+  }
+}
+```
+
+#### 3.2.4 Cursor提示词
+
+```
+创建用户认证与权限模块，实现安全的身份验证和授权系统。
+
+1. 设置用户相关的Prisma模型，包括User、Role和Permission
+2. 实现AuthService，提供登录、注册和令牌刷新功能
+3. 开发AuthController，暴露认证相关的API接口
+4. 创建JWT策略和守卫，实现基于令牌的认证
+5. 实现AbilityFactory，基于CASL提供细粒度权限控制
+6. 添加PermissionGuard，用于接口权限控制
+7. 开发CheckPermission装饰器，简化权限验证
+8. 实现AuditLogService，记录用户操作日志
+```
