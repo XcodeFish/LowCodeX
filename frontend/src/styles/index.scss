@@ -1,0 +1,98 @@
+/* 全局样式定义 */
+
+/* 重置样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+
+  &:hover {
+    background: #aaa;
+  }
+}
+
+/* 通用工具类 */
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-col {
+    flex-direction: column;
+  }
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify {
+  &-center {
+    justify-content: center;
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* 间距类 */
+@for $i from 0 through 5 {
+  $size: $i * 4px;
+
+  .m-#{$i} { margin: $size; }
+  .mt-#{$i} { margin-top: $size; }
+  .mr-#{$i} { margin-right: $size; }
+  .mb-#{$i} { margin-bottom: $size; }
+  .ml-#{$i} { margin-left: $size; }
+
+  .p-#{$i} { padding: $size; }
+  .pt-#{$i} { padding-top: $size; }
+  .pr-#{$i} { padding-right: $size; }
+  .pb-#{$i} { padding-bottom: $size; }
+  .pl-#{$i} { padding-left: $size; }
+}

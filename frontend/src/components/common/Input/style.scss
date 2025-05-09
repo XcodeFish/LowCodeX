@@ -1,0 +1,71 @@
+.custom-input,
+.custom-textarea,
+.custom-input-number,
+.custom-password,
+.custom-search,
+.custom-auto-complete {
+  width: 100%;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    border-color: #40a9ff;
+  }
+
+  &.ant-input-affix-wrapper {
+    padding: 0 11px;
+
+    .ant-input {
+      padding: 4px 0;
+    }
+  }
+}
+
+// 针对TextArea的特殊样式
+.custom-textarea {
+  min-height: 80px;
+  resize: vertical;
+
+  &.ant-input-textarea-show-count::after {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+  }
+}
+
+// 针对InputNumber的特殊样式
+.custom-input-number {
+  width: 100%;
+
+  .ant-input-number-handler-wrap {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+// 针对密码框的特殊样式
+.custom-password {
+  .ant-input-password-icon {
+    color: rgba(0, 0, 0, 0.45);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+// 针对搜索框的特殊样式
+.custom-search {
+  .ant-input-search-button {
+    height: 32px;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+// 针对自动完成的特殊样式
+.custom-auto-complete {
+  width: 100%;
+
+  .ant-select-selector {
+    border-radius: 4px !important;
+  }
+}

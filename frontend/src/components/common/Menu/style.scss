@@ -1,0 +1,41 @@
+.custom-menu {
+  &.ant-menu {
+    border-right: none;
+
+    .ant-menu-item {
+      margin: 0;
+      border-radius: 0;
+      transition: all 0.3s;
+
+      &::after {
+        display: none;
+      }
+
+      &-selected {
+        font-weight: 500;
+      }
+    }
+
+    &-inline {
+      .ant-menu-item {
+        padding-left: 24px !important;
+
+        &-selected {
+          background-color: rgba(24, 144, 255, 0.1);
+        }
+      }
+
+      .ant-menu-submenu-title {
+        padding-left: 24px !important;
+      }
+    }
+
+    &-vertical {
+      .ant-menu-item {
+        &-selected {
+          color: #1890ff;
+        }
+      }
+    }
+  }
+}

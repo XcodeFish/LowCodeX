@@ -5,8 +5,8 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import router from './router';
 import { store } from './store';
-import './styles/index.css'
-import './index.css'
+import './styles/index.scss'
+import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>

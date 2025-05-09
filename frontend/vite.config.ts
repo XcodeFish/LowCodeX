@@ -18,13 +18,12 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        modifyVars: {
-          'primary-color': '#1890ff',
-          'link-color': '#1890ff',
-          'border-radius-base': '2px',
-        },
+      scss: {
+        additionalData: `
+          $primary-color: #1890ff;
+          $link-color: #1890ff;
+          $border-radius-base: 2px;
+        `,
       },
     },
   },
