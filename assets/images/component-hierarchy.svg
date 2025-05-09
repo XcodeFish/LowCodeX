@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">组件层次结构</text>
+
+  <!-- 金字塔结构 -->
+  <polygon points="400,80 150,350 650,350" fill="#e6f7ff" stroke="#1890ff" stroke-width="2"/>
+
+  <!-- 分层线 -->
+  <line x1="232" y1="260" x2="568" y2="260" stroke="#1890ff" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="191" y1="305" x2="609" y2="305" stroke="#1890ff" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- 层级标签 -->
+  <text x="400" y="180" font-family="Arial" font-size="18" text-anchor="middle" fill="#1890ff">页面组件层</text>
+  <text x="400" y="240" font-family="Arial" font-size="14" text-anchor="middle">工作流设计器, 表单设计器, 应用管理页...</text>
+
+  <text x="400" y="285" font-family="Arial" font-size="18" text-anchor="middle" fill="#1890ff">业务组件层</text>
+  <text x="400" y="330" font-family="Arial" font-size="14" text-anchor="middle">用户选择器, 权限配置面板, 数据源选择器...</text>
+
+  <text x="400" y="370" font-family="Arial" font-size="18" text-anchor="middle" fill="#1890ff">基础组件层</text>
+  <text x="400" y="390" font-family="Arial" font-size="14" text-anchor="middle">按钮, 表单控件, 表格, 弹窗, 列表...</text>
+
+  <!-- 箭头说明 -->
+  <text x="110" y="220" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" transform="rotate(-65 110,220)">组合复用</text>
+  <text x="690" y="220" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" transform="rotate(65 690,220)">组合复用</text>
+
+  <!-- 图例 -->
+  <rect x="300" y="50" width="15" height="15" fill="#e6f7ff" stroke="#1890ff" stroke-width="1"/>
+  <text x="360" y="62" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">组件</text>
+
+  <line x1="420" y1="60" x2="450" y2="60" stroke="#1890ff" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="500" y="62" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">边界</text>
+</svg>

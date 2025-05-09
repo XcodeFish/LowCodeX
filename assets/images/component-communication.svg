@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">组件通信模式</text>
+
+  <!-- 父子组件通信 -->
+  <rect x="50" y="80" width="200" height="180" rx="10" fill="#f6ffed" stroke="#52c41a" stroke-width="2"/>
+  <text x="150" y="110" font-family="Arial" font-size="18" text-anchor="middle" fill="#52c41a">父子组件通信</text>
+
+  <rect x="75" y="130" width="150" height="40" rx="5" fill="#fff" stroke="#52c41a" stroke-width="1"/>
+  <text x="150" y="155" font-family="Arial" font-size="14" text-anchor="middle">父组件</text>
+
+  <rect x="100" y="200" width="100" height="40" rx="5" fill="#fff" stroke="#52c41a" stroke-width="1"/>
+  <text x="150" y="225" font-family="Arial" font-size="14" text-anchor="middle">子组件</text>
+
+  <!-- 父子通信箭头 -->
+  <line x1="130" y1="170" x2="130" y2="200" stroke="#52c41a" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <text x="115" y="185" font-family="Arial" font-size="10" text-anchor="middle" fill="#52c41a">Props</text>
+
+  <line x1="170" y1="200" x2="170" y2="170" stroke="#52c41a" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <text x="195" y="185" font-family="Arial" font-size="10" text-anchor="middle" fill="#52c41a">Events</text>
+
+  <!-- 全局状态管理 -->
+  <rect x="300" y="80" width="200" height="180" rx="10" fill="#e6f7ff" stroke="#1890ff" stroke-width="2"/>
+  <text x="400" y="110" font-family="Arial" font-size="18" text-anchor="middle" fill="#1890ff">全局状态管理</text>
+
+  <rect x="350" y="130" width="100" height="40" rx="5" fill="#fff" stroke="#1890ff" stroke-width="1"/>
+  <text x="400" y="155" font-family="Arial" font-size="14" text-anchor="middle">组件A</text>
+
+  <rect x="350" y="200" width="100" height="40" rx="5" fill="#fff" stroke="#1890ff" stroke-width="1"/>
+  <text x="400" y="225" font-family="Arial" font-size="14" text-anchor="middle">组件B</text>
+
+  <circle cx="500" cy="170" r="30" fill="#91d5ff" stroke="#1890ff" stroke-width="1"/>
+  <text x="500" y="175" font-family="Arial" font-size="12" text-anchor="middle">Store</text>
+
+  <!-- 状态管理箭头 -->
+  <line x1="450" y1="150" x2="470" y2="160" stroke="#1890ff" stroke-width="2" marker-end="url(#blueArrow)"/>
+  <line x1="470" y1="180" x2="450" y2="200" stroke="#1890ff" stroke-width="2" marker-end="url(#blueArrow)"/>
+  <line x1="380" y1="170" x2="380" y2="200" stroke="#1890ff" stroke-width="2" stroke-dasharray="3,3"/>
+
+  <!-- 事件总线 -->
+  <rect x="550" y="80" width="200" height="180" rx="10" fill="#fff2e8" stroke="#fa541c" stroke-width="2"/>
+  <text x="650" y="110" font-family="Arial" font-size="18" text-anchor="middle" fill="#fa541c">事件总线</text>
+
+  <rect x="580" y="130" width="60" height="40" rx="5" fill="#fff" stroke="#fa541c" stroke-width="1"/>
+  <text x="610" y="155" font-family="Arial" font-size="12" text-anchor="middle">组件C</text>
+
+  <rect x="580" y="200" width="60" height="40" rx="5" fill="#fff" stroke="#fa541c" stroke-width="1"/>
+  <text x="610" y="225" font-family="Arial" font-size="12" text-anchor="middle">组件D</text>
+
+  <rect x="660" y="130" width="60" height="40" rx="5" fill="#fff" stroke="#fa541c" stroke-width="1"/>
+  <text x="690" y="155" font-family="Arial" font-size="12" text-anchor="middle">组件E</text>
+
+  <rect x="660" y="200" width="60" height="40" rx="5" fill="#fff" stroke="#fa541c" stroke-width="1"/>
+  <text x="690" y="225" font-family="Arial" font-size="12" text-anchor="middle">组件F</text>
+
+  <!-- 事件总线箭头和连线 -->
+  <line x1="650" y1="170" x2="650" y2="170" stroke="#fa541c" stroke-width="4"/>
+  <line x1="610" y1="170" x2="690" y2="170" stroke="#fa541c" stroke-width="2"/>
+  <line x1="610" y1="130" x2="610" y2="170" stroke="#fa541c" stroke-width="2" marker-end="url(#redArrow)"/>
+  <line x1="690" y1="170" x2="690" y2="200" stroke="#fa541c" stroke-width="2" marker-end="url(#redArrow)"/>
+
+  <!-- 图例 -->
+  <text x="400" y="280" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">不同场景下的组件通信策略</text>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#52c41a" />
+    </marker>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1890ff" />
+    </marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#fa541c" />
+    </marker>
+  </defs>
+</svg>
