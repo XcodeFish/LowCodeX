@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core';
+import { ApiExceptionFilter, ApiResponseInterceptor } from './common';
 
 // 控制器模块
 import { AppController } from './app.controller';
@@ -83,6 +84,18 @@ import { configModules } from './config';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+
+    // 全局API响应拦截器
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ApiResponseInterceptor,
+    },
+
+    // 全局API异常过滤器
+    {
+      provide: APP_FILTER,
+      useClass: ApiExceptionFilter,
     },
   ],
 })

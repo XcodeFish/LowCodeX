@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 import { AppConfig } from './config';
+import { ApiResponse, PageData } from './common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,12 +26,9 @@ async function bootstrap() {
   // 配置全局管道
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // 过滤掉非DTO中定义的属性
-      transform: true, // 自动转换类型
-      forbidNonWhitelisted: true, // 对非白名单属性抛出错误
-      transformOptions: {
-        enableImplicitConversion: true, // 启用隐式类型转换
-      },
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
     }),
   );
 
@@ -53,17 +51,20 @@ async function bootstrap() {
   // Swagger文档配置
   const swaggerConfig = new DocumentBuilder()
     .setTitle('LowCodeX API')
-    .setDescription('低代码平台API文档')
+    .setDescription('LowCodeX平台API文档')
     .setVersion(appConfig.apiVersion)
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('docs', app, document);
+  const document = SwaggerModule.createDocument(app, swaggerConfig, {
+    extraModels: [ApiResponse, PageData],
+  });
+  SwaggerModule.setup('api/docs', app, document);
 
   // 启动应用
-  await app.listen(appConfig.port);
-  console.log(`应用已启动: http://localhost:${appConfig.port}`);
-  console.log(`API文档: http://localhost:${appConfig.port}/docs`);
+  const port = process.env.PORT || appConfig.port;
+  await app.listen(port);
+  console.log(`应用已启动，监听端口: ${port}`);
+  console.log(`API文档: http://localhost:${port}/docs`);
 }
 
 bootstrap();
