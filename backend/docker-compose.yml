@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  api:
+    container_name: lowcodex_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3100:3100"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+  mysql:
+    container_name: lowcodex_mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=lowcodex
+      - MYSQL_USER=lowcodex
+      - MYSQL_PASSWORD=password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+  redis:
+    container_name: lowcodex_redis
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    networks:
+      - lowcodex-network
+
+networks:
+  lowcodex-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
