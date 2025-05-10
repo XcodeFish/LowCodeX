@@ -7,13 +7,14 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../services/prisma.service';
 import * as bcrypt from 'bcryptjs';
+import { CreateUserDto, UpdateUserDto, UserQueryParamsDto } from './dto';
 import {
-  CreateUserDto,
-  UpdateUserDto,
-  UserQueryParams,
-  PaginatedUsersResponse,
   UserWithRelations,
-} from '../../types/users.types';
+  PaginatedUsersResponse,
+  RoleWithRelations,
+  Permission,
+} from './interfaces';
+import { Prisma } from '../../../generated/prisma';
 
 @Injectable()
 export class UsersService {
@@ -48,24 +49,36 @@ export class UsersService {
 
     try {
       // 创建用户
+      const userData: Prisma.UserCreateInput = {
+        username: createUserDto.username,
+        email: createUserDto.email,
+        password: hashedPassword,
+        name: createUserDto.name,
+        avatar: createUserDto.avatar,
+        status: createUserDto.status || 'active',
+        tenantId: createUserDto.tenantId,
+      };
+
+      // 如果有角色，建立关联
+      if (createUserDto.roleIds && createUserDto.roleIds.length > 0) {
+        userData.roles = {
+          connect: createUserDto.roleIds.map((id) => ({ id })),
+        };
+      }
+
       const user = await this.prisma.user.create({
-        data: {
-          username: createUserDto.username,
-          email: createUserDto.email,
-          password: hashedPassword,
-          name: createUserDto.name,
-          avatar: createUserDto.avatar,
-          status: createUserDto.status || 'active',
-          tenantId: createUserDto.tenantId,
+        data: userData,
+        include: {
+          roles: {
+            include: {
+              permissions: true,
+            },
+          },
         },
       });
 
-      // 如果有提供角色ID，分配角色给用户
-      if (createUserDto.roleIds && createUserDto.roleIds.length > 0) {
-        await this.assignRolesToUser(user.id, createUserDto.roleIds);
-      }
-
-      return this.findOneWithRoles(user.id);
+      // 转换为业务模型
+      return this.mapToUserWithRelations(user);
     } catch (error) {
       this.logger.error(`创建用户失败: ${error.message}`, error.stack);
       throw new BadRequestException('创建用户失败，请稍后再试');
@@ -73,7 +86,7 @@ export class UsersService {
   }
 
   // 查询用户列表（分页）
-  async findAll(params: UserQueryParams): Promise<PaginatedUsersResponse> {
+  async findAll(params: UserQueryParamsDto): Promise<PaginatedUsersResponse> {
     const {
       page = 1,
       limit = 10,
@@ -105,11 +118,11 @@ export class UsersService {
       where.tenantId = tenantId;
     }
 
-    // 角色过滤较为复杂，需要使用关系过滤
+    // 角色过滤
     if (roleId) {
       where.roles = {
         some: {
-          roleId: roleId,
+          id: roleId,
         },
       };
     }
@@ -127,18 +140,16 @@ export class UsersService {
           [sortBy]: sortOrder,
         },
         include: {
-          roles: true,
+          roles: {
+            include: {
+              permissions: true,
+            },
+          },
         },
       });
 
       // 转换为期望的响应格式
-      const items = users.map((user) => {
-        // 将Prisma模型转换为我们的自定义类型
-        return {
-          ...user,
-          roles: user.roles || [],
-        } as unknown as UserWithRelations;
-      });
+      const items = users.map((user) => this.mapToUserWithRelations(user));
 
       return {
         items,
@@ -154,13 +165,17 @@ export class UsersService {
   }
 
   // 根据ID查找用户（包含角色和权限信息）
-  async findOneWithRoles(id: number): Promise<UserWithRelations> {
+  async findOneWithRoles(id: string): Promise<UserWithRelations> {
     this.logger.log(`正在查询用户ID: ${id}`);
 
     const user = await this.prisma.user.findUnique({
       where: { id },
       include: {
-        roles: true,
+        roles: {
+          include: {
+            permissions: true,
+          },
+        },
       },
     });
 
@@ -169,10 +184,7 @@ export class UsersService {
     }
 
     // 转换为期望的响应格式
-    return {
-      ...user,
-      roles: user.roles || [],
-    } as unknown as UserWithRelations;
+    return this.mapToUserWithRelations(user);
   }
 
   // 根据用户名查找用户（用于认证）
@@ -182,7 +194,11 @@ export class UsersService {
     const user = await this.prisma.user.findFirst({
       where: { username },
       include: {
-        roles: true,
+        roles: {
+          include: {
+            permissions: true,
+          },
+        },
       },
     });
 
@@ -191,15 +207,12 @@ export class UsersService {
     }
 
     // 转换为期望的响应格式
-    return {
-      ...user,
-      roles: user.roles || [],
-    } as unknown as UserWithRelations;
+    return this.mapToUserWithRelations(user);
   }
 
   // 更新用户信息
   async update(
-    id: number,
+    id: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UserWithRelations> {
     this.logger.log(`正在更新用户ID: ${id}`);
@@ -213,14 +226,16 @@ export class UsersService {
       throw new NotFoundException(`未找到ID为 ${id} 的用户`);
     }
 
-    // 如果更新用户名或邮箱，需要检查是否已存在
+    // 检查用户名和邮箱是否已被其他用户使用
     if (updateUserDto.username || updateUserDto.email) {
       const existingUser = await this.prisma.user.findFirst({
         where: {
           OR: [
-            updateUserDto.username ? { username: updateUserDto.username } : {},
-            updateUserDto.email ? { email: updateUserDto.email } : {},
-          ],
+            updateUserDto.username
+              ? { username: updateUserDto.username }
+              : undefined,
+            updateUserDto.email ? { email: updateUserDto.email } : undefined,
+          ].filter(Boolean) as any,
           NOT: { id },
         },
       });
@@ -233,50 +248,55 @@ export class UsersService {
           throw new ConflictException(
             `用户名 ${updateUserDto.username} 已存在`,
           );
-        }
-        if (updateUserDto.email && existingUser.email === updateUserDto.email) {
+        } else if (
+          updateUserDto.email &&
+          existingUser.email === updateUserDto.email
+        ) {
           throw new ConflictException(`邮箱 ${updateUserDto.email} 已被使用`);
         }
       }
     }
 
-    // 准备更新数据
-    const updateData: any = { ...updateUserDto };
-
-    // 如果有密码更新，进行加密
-    if (updateUserDto.password) {
-      updateData.password = await this.hashPassword(updateUserDto.password);
-    }
-
-    // 排除不属于用户表的字段
-    const { roleIds, ...userData } = updateData;
-
     try {
-      // 更新用户信息
-      await this.prisma.user.update({
-        where: { id },
-        data: userData,
-      });
+      // 准备更新数据
+      const updateData: Prisma.UserUpdateInput = {};
 
-      // 如果有提供角色ID，更新用户角色
-      if (roleIds) {
-        // 使用正确的方式连接用户和角色
-        // 需要根据实际的Prisma模型来操作关系表
-        // 移除现有关联
-        await this.prisma.user.update({
-          where: { id },
-          data: {
-            roles: {
-              set: [],
-            },
-          },
-        });
+      // 基本信息
+      if (updateUserDto.username) updateData.username = updateUserDto.username;
+      if (updateUserDto.email) updateData.email = updateUserDto.email;
+      if (updateUserDto.name !== undefined)
+        updateData.name = updateUserDto.name;
+      if (updateUserDto.avatar !== undefined)
+        updateData.avatar = updateUserDto.avatar;
+      if (updateUserDto.status) updateData.status = updateUserDto.status;
 
-        // 分配新角色
-        await this.assignRolesToUser(id, roleIds);
+      // 如果有提供新密码，需要加密
+      if (updateUserDto.password) {
+        updateData.password = await this.hashPassword(updateUserDto.password);
       }
 
-      return this.findOneWithRoles(id);
+      // 角色更新
+      if (updateUserDto.roleIds !== undefined) {
+        updateData.roles = {
+          set: updateUserDto.roleIds.map((roleId) => ({ id: roleId })),
+        };
+      }
+
+      // 更新用户
+      const updatedUser = await this.prisma.user.update({
+        where: { id },
+        data: updateData,
+        include: {
+          roles: {
+            include: {
+              permissions: true,
+            },
+          },
+        },
+      });
+
+      // 返回更新后的用户
+      return this.mapToUserWithRelations(updatedUser);
     } catch (error) {
       this.logger.error(`更新用户失败: ${error.message}`, error.stack);
       throw new BadRequestException('更新用户失败，请稍后再试');
@@ -284,7 +304,7 @@ export class UsersService {
   }
 
   // 删除用户
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     this.logger.log(`正在删除用户ID: ${id}`);
 
     // 检查用户是否存在
@@ -297,7 +317,7 @@ export class UsersService {
     }
 
     try {
-      // 删除用户，Prisma会自动处理关联关系
+      // 删除用户 (many-to-many关系会自动处理)
       await this.prisma.user.delete({
         where: { id },
       });
@@ -309,34 +329,45 @@ export class UsersService {
 
   // 密码加密
   private async hashPassword(password: string): Promise<string> {
-    const saltRounds = 10;
-    return bcrypt.hash(password, saltRounds);
+    const salt = await bcrypt.genSalt();
+    return bcrypt.hash(password, salt);
   }
 
-  // 分配角色给用户
-  private async assignRolesToUser(
-    userId: number,
-    roleIds: number[],
-  ): Promise<void> {
-    // 检查角色是否存在
-    const roles = await this.prisma.role.findMany({
-      where: { id: { in: roleIds } },
-    });
-
-    if (roles.length !== roleIds.length) {
-      const foundIds = roles.map((role) => role.id);
-      const missingIds = roleIds.filter((id) => !foundIds.includes(id));
-      throw new NotFoundException(`未找到以下角色ID: ${missingIds.join(', ')}`);
-    }
-
-    // 使用connect来连接用户和角色
-    await this.prisma.user.update({
-      where: { id: userId },
-      data: {
-        roles: {
-          connect: roleIds.map((id) => ({ id })),
-        },
-      },
-    });
+  // 将Prisma用户对象映射到业务接口类型
+  private mapToUserWithRelations(user: any): UserWithRelations {
+    return {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      name: user.name || undefined,
+      avatar: user.avatar || undefined,
+      status: user.status,
+      tenantId: user.tenantId || undefined,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      lastLoginAt: user.lastLoginAt,
+      roles: Array.isArray(user.roles)
+        ? user.roles.map((role) => ({
+            id: role.id,
+            name: role.name,
+            description: role.description || undefined,
+            tenantId: role.tenantId || undefined,
+            createdAt: role.createdAt,
+            updatedAt: role.updatedAt,
+            permissions: Array.isArray(role.permissions)
+              ? role.permissions.map((perm) => ({
+                  id: perm.id,
+                  name: perm.name,
+                  code: perm.code,
+                  description: perm.description || undefined,
+                  tenantId: perm.tenantId || undefined,
+                  createdAt: perm.createdAt,
+                  updatedAt: perm.updatedAt,
+                }))
+              : [],
+          }))
+        : [],
+    };
   }
 }

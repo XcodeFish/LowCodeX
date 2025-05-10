@@ -130,7 +130,8 @@ exports.Prisma.UserScalarFieldEnum = {
   status: 'status',
   tenantId: 'tenantId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lastLoginAt: 'lastLoginAt'
 };
 
 exports.Prisma.RoleScalarFieldEnum = {
@@ -163,23 +164,29 @@ exports.Prisma.NullsOrder = {
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
   username: 'username',
   email: 'email',
   password: 'password',
   name: 'name',
   avatar: 'avatar',
-  status: 'status'
+  status: 'status',
+  tenantId: 'tenantId'
 };
 
 exports.Prisma.RoleOrderByRelevanceFieldEnum = {
+  id: 'id',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  tenantId: 'tenantId'
 };
 
 exports.Prisma.PermissionOrderByRelevanceFieldEnum = {
+  id: 'id',
   name: 'name',
   code: 'code',
-  description: 'description'
+  description: 'description',
+  tenantId: 'tenantId'
 };
 
 

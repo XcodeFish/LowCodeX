@@ -1,5 +1,14 @@
 import { UserWithRelations } from './users.types';
 
+/**
+ * @deprecated 请使用模块内的类型定义
+ * import { LoginDto, RegisterDto, RefreshTokenDto } from '../modules/auth/dto';
+ * import { LoginResponse, TokenResponse, JwtPayload } from '../modules/auth/interfaces';
+ */
+
+export * from '../modules/auth/dto';
+export * from '../modules/auth/interfaces';
+
 // 登录请求DTO
 export interface LoginDto {
   username: string;
@@ -13,7 +22,7 @@ export interface RegisterDto {
   email: string;
   password: string;
   name?: string;
-  tenantId?: number;
+  tenantId?: string;
 }
 
 // 登录响应
@@ -38,9 +47,9 @@ export interface TokenResponse {
 
 // JWT令牌负载
 export interface JwtPayload {
-  sub: number; // 用户ID
-  username: string; // 用户名
-  tenantId?: number; // 租户ID
+  sub: string; // 用户ID
+  username?: string; // 用户名，可选
+  tenantId?: string; // 租户ID
   roles?: string[]; // 角色代码列表
   permissions?: string[]; // 权限代码列表
   iat?: number; // 签发时间

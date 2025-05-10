@@ -1,33 +1,42 @@
+/**
+ * @deprecated 请使用模块内的类型定义
+ * import { CreateUserDto, UpdateUserDto, ... } from '../modules/users/dto';
+ * import { User, Role, Permission, ... } from '../modules/users/interfaces';
+ */
+
+export * from '../modules/users/dto';
+export * from '../modules/users/interfaces';
+
 // 由于无法直接从@prisma/client导入类型，我们自定义基础类型
 export interface User {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;
   name?: string;
   avatar?: string;
   status: string;
-  tenantId?: number;
+  tenantId?: string;
   createdAt: Date;
   updatedAt: Date;
   lastLoginAt?: Date;
 }
 
 export interface Role {
-  id: number;
+  id: string;
   name: string;
   description?: string;
-  tenantId?: number;
+  tenantId?: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface Permission {
-  id: number;
+  id: string;
   name: string;
   code: string;
   description?: string;
-  tenantId?: number;
+  tenantId?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -41,37 +50,14 @@ export interface RoleWithRelations extends Role {
   permissions?: Permission[];
 }
 
-// 用户创建请求DTO
-export interface CreateUserDto {
-  username: string;
-  email: string;
-  password: string;
-  name?: string;
-  avatar?: string;
-  status?: string;
-  roleIds?: number[];
-  tenantId?: number;
-}
-
-// 用户更新请求DTO
-export interface UpdateUserDto {
-  username?: string;
-  email?: string;
-  password?: string;
-  name?: string;
-  avatar?: string;
-  status?: string;
-  roleIds?: number[];
-}
-
 // 用户查询参数
 export interface UserQueryParams {
   page?: number;
   limit?: number;
   search?: string;
   status?: string;
-  roleId?: number;
-  tenantId?: number;
+  roleId?: string;
+  tenantId?: string;
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
 }
@@ -90,26 +76,26 @@ export type PaginatedUsersResponse = PaginatedResponse<UserWithRelations>;
 
 // 用户认证信息
 export interface UserAuth {
-  id: number;
+  id: string;
   username: string;
   password: string;
   status: string;
-  tenantId?: number;
+  tenantId?: string;
 }
 
 // 角色创建DTO
 export interface CreateRoleDto {
   name: string;
   description?: string;
-  permissionIds?: number[];
-  tenantId?: number;
+  permissionIds?: string[];
+  tenantId?: string;
 }
 
 // 角色更新DTO
 export interface UpdateRoleDto {
   name?: string;
   description?: string;
-  permissionIds?: number[];
+  permissionIds?: string[];
 }
 
 // 权限创建DTO

@@ -1,28 +1,93 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
-import { AuthService } from '../auth.service';
+import { PrismaService } from '../../../services/prisma.service';
+import * as bcrypt from 'bcryptjs';
+import {
+  AuditLogService,
+  AuditLogAction,
+} from '../../system/services/audit-log.service';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-  constructor(private authService: AuthService) {
+  constructor(
+    private prismaService: PrismaService,
+    private auditLogService: AuditLogService,
+  ) {
     super({
-      usernameField: 'username',
-      passwordField: 'password',
+      usernameField: 'email',
     });
   }
 
-  async validate(username: string, password: string) {
-    const user = await this.authService.validateUser(username, password);
+  /**
+   * 本地策略验证方法
+   * 验证用户名密码
+   */
+  async validate(email: string, password: string) {
+    // 查询用户
+    const users = await this.prismaService.$queryRaw<
+      {
+        id: string;
+        tenantId: string;
+        email: string;
+        username: string;
+        password: string;
+        status: string;
+      }[]
+    >`
+      SELECT u.id, u."tenantId", u.email, u.username, u.password, u.status
+      FROM "User" u
+      WHERE u.email = ${email}
+    `;
 
-    if (!user) {
-      throw new UnauthorizedException('用户名或密码无效');
+    if (!users.length) {
+      throw new UnauthorizedException('用户名或密码错误');
     }
 
-    if (user.status !== 'active') {
-      throw new UnauthorizedException('用户账号已禁用');
+    const user = users[0];
+
+    // 验证用户状态
+    if (user.status !== 'ACTIVE') {
+      this.auditLogService.log({
+        userId: user.id,
+        tenantId: user.tenantId || '',
+        action: AuditLogAction.LOGIN,
+        resource: 'auth',
+        description: '用户登录失败：账号已被禁用',
+        ipAddress: '',
+      });
+      throw new UnauthorizedException('账号已被禁用');
     }
 
-    return user;
+    // 验证密码
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      this.auditLogService.log({
+        userId: user.id,
+        tenantId: user.tenantId || '',
+        action: AuditLogAction.LOGIN,
+        resource: 'auth',
+        description: '用户登录失败：密码错误',
+        ipAddress: '',
+      });
+      throw new UnauthorizedException('用户名或密码错误');
+    }
+
+    // 登录成功，记录审计日志
+    this.auditLogService.logWithUser(
+      user,
+      AuditLogAction.LOGIN,
+      'auth',
+      undefined,
+      '用户登录成功',
+    );
+
+    // 返回用户信息(不包含密码)
+    return {
+      userId: user.id,
+      username: user.username,
+      email: user.email,
+      tenantId: user.tenantId,
+    };
   }
 }

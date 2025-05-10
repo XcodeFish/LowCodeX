@@ -20,8 +20,9 @@ import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { LoginDto, RegisterDto, RefreshTokenDto } from '../../types/auth.types';
+import { LoginDto, RegisterDto, RefreshTokenDto } from './dto';
 import { Public } from './decorators/public.decorator';
+import { LoginResponse } from './interfaces';
 
 @ApiTags('认证')
 @Controller('auth')
@@ -39,9 +40,11 @@ export class AuthController {
     @Body() loginDto: LoginDto,
     @Req() req: any,
     @Res({ passthrough: true }) res: Response,
-  ) {
+  ): Promise<Omit<LoginResponse, 'refreshToken'>> {
+    // LocalAuthGuard已经验证用户，user对象已附加到请求中
     const user = req.user;
-    const result = await this.authService.login(user, loginDto.rememberMe);
+    // 直接使用LoginDto对象传递
+    const result = await this.authService.login(loginDto);
 
     // 设置刷新令牌为HttpOnly cookie
     if (result.refreshToken) {
@@ -54,10 +57,12 @@ export class AuthController {
       res.cookie('refreshToken', result.refreshToken, cookieOptions);
     }
 
+    // 返回不包含refreshToken的结果
+    // 注意：此处需要修改auth.service.ts的login方法返回值类型为LoginResponse
     return {
       accessToken: result.accessToken,
-      user: result.user,
       expiresIn: result.expiresIn,
+      user: user,
     };
   }
 
@@ -88,7 +93,7 @@ export class AuthController {
       throw new UnauthorizedException('刷新令牌不存在');
     }
 
-    return this.authService.refreshToken(token);
+    return this.authService.refreshToken({ refreshToken: token });
   }
 
   @UseGuards(JwtAuthGuard)

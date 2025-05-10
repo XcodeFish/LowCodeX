@@ -18,12 +18,15 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { RolesGuard } from './common/guards/roles.guard';
 
 // 健康检查模块
-import { HealthModule } from './modules/health/health.module';
+import { HealthModule } from './health/health.module';
 
 // 用户和认证模块
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
+
+// 系统模块
+import { SystemModule } from './modules/system/system.module';
 
 // 配置模块
 import { configModules } from './config';
@@ -43,6 +46,8 @@ import { configModules } from './config';
     UsersModule,
     // 认证模块
     AuthModule,
+    // 系统模块
+    SystemModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1134,46 +1134,36 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
 
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
   export type UserMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     username: string | null
     email: string | null
     password: string | null
     name: string | null
     avatar: string | null
     status: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    lastLoginAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     username: string | null
     email: string | null
     password: string | null
     name: string | null
     avatar: string | null
     status: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    lastLoginAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1187,19 +1177,10 @@ export namespace Prisma {
     tenantId: number
     createdAt: number
     updatedAt: number
+    lastLoginAt: number
     _all: number
   }
 
-
-  export type UserAvgAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -1212,6 +1193,7 @@ export namespace Prisma {
     tenantId?: true
     createdAt?: true
     updatedAt?: true
+    lastLoginAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1225,6 +1207,7 @@ export namespace Prisma {
     tenantId?: true
     createdAt?: true
     updatedAt?: true
+    lastLoginAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1238,6 +1221,7 @@ export namespace Prisma {
     tenantId?: true
     createdAt?: true
     updatedAt?: true
+    lastLoginAt?: true
     _all?: true
   }
 
@@ -1279,18 +1263,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -1321,26 +1293,23 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
 
   export type UserGroupByOutputType = {
-    id: number
+    id: string
     username: string
     email: string
     password: string
     name: string | null
     avatar: string | null
     status: string
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date
     updatedAt: Date
+    lastLoginAt: Date | null
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -1370,6 +1339,7 @@ export namespace Prisma {
     tenantId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    lastLoginAt?: boolean
     roles?: boolean | User$rolesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1387,9 +1357,10 @@ export namespace Prisma {
     tenantId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    lastLoginAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "name" | "avatar" | "status" | "tenantId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "name" | "avatar" | "status" | "tenantId" | "createdAt" | "updatedAt" | "lastLoginAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     roles?: boolean | User$rolesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1401,16 +1372,17 @@ export namespace Prisma {
       roles: Prisma.$RolePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       username: string
       email: string
       password: string
       name: string | null
       avatar: string | null
       status: string
-      tenantId: number | null
+      tenantId: string | null
       createdAt: Date
       updatedAt: Date
+      lastLoginAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1781,16 +1753,17 @@ export namespace Prisma {
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
+    readonly id: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly status: FieldRef<"User", 'String'>
-    readonly tenantId: FieldRef<"User", 'Int'>
+    readonly tenantId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly lastLoginAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -2182,36 +2155,24 @@ export namespace Prisma {
 
   export type AggregateRole = {
     _count: RoleCountAggregateOutputType | null
-    _avg: RoleAvgAggregateOutputType | null
-    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
   }
 
-  export type RoleAvgAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
-  export type RoleSumAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
   export type RoleMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type RoleMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2226,16 +2187,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type RoleAvgAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
-
-  export type RoleSumAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
 
   export type RoleMinAggregateInputType = {
     id?: true
@@ -2303,18 +2254,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: RoleAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: RoleSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: RoleMinAggregateInputType
@@ -2345,22 +2284,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: RoleCountAggregateInputType | true
-    _avg?: RoleAvgAggregateInputType
-    _sum?: RoleSumAggregateInputType
     _min?: RoleMinAggregateInputType
     _max?: RoleMaxAggregateInputType
   }
 
   export type RoleGroupByOutputType = {
-    id: number
+    id: string
     name: string
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date
     updatedAt: Date
     _count: RoleCountAggregateOutputType | null
-    _avg: RoleAvgAggregateOutputType | null
-    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
   }
@@ -2416,10 +2351,10 @@ export namespace Prisma {
       permissions: Prisma.$PermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       description: string | null
-      tenantId: number | null
+      tenantId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["role"]>
@@ -2793,10 +2728,10 @@ export namespace Prisma {
    * Fields of the Role model
    */
   interface RoleFieldRefs {
-    readonly id: FieldRef<"Role", 'Int'>
+    readonly id: FieldRef<"Role", 'String'>
     readonly name: FieldRef<"Role", 'String'>
     readonly description: FieldRef<"Role", 'String'>
-    readonly tenantId: FieldRef<"Role", 'Int'>
+    readonly tenantId: FieldRef<"Role", 'String'>
     readonly createdAt: FieldRef<"Role", 'DateTime'>
     readonly updatedAt: FieldRef<"Role", 'DateTime'>
   }
@@ -3214,38 +3149,26 @@ export namespace Prisma {
 
   export type AggregatePermission = {
     _count: PermissionCountAggregateOutputType | null
-    _avg: PermissionAvgAggregateOutputType | null
-    _sum: PermissionSumAggregateOutputType | null
     _min: PermissionMinAggregateOutputType | null
     _max: PermissionMaxAggregateOutputType | null
   }
 
-  export type PermissionAvgAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
-  export type PermissionSumAggregateOutputType = {
-    id: number | null
-    tenantId: number | null
-  }
-
   export type PermissionMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     code: string | null
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type PermissionMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     code: string | null
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3261,16 +3184,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type PermissionAvgAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
-
-  export type PermissionSumAggregateInputType = {
-    id?: true
-    tenantId?: true
-  }
 
   export type PermissionMinAggregateInputType = {
     id?: true
@@ -3341,18 +3254,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: PermissionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PermissionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: PermissionMinAggregateInputType
@@ -3383,23 +3284,19 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PermissionCountAggregateInputType | true
-    _avg?: PermissionAvgAggregateInputType
-    _sum?: PermissionSumAggregateInputType
     _min?: PermissionMinAggregateInputType
     _max?: PermissionMaxAggregateInputType
   }
 
   export type PermissionGroupByOutputType = {
-    id: number
+    id: string
     name: string
     code: string
     description: string | null
-    tenantId: number | null
+    tenantId: string | null
     createdAt: Date
     updatedAt: Date
     _count: PermissionCountAggregateOutputType | null
-    _avg: PermissionAvgAggregateOutputType | null
-    _sum: PermissionSumAggregateOutputType | null
     _min: PermissionMinAggregateOutputType | null
     _max: PermissionMaxAggregateOutputType | null
   }
@@ -3454,11 +3351,11 @@ export namespace Prisma {
       roles: Prisma.$RolePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       code: string
       description: string | null
-      tenantId: number | null
+      tenantId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["permission"]>
@@ -3831,11 +3728,11 @@ export namespace Prisma {
    * Fields of the Permission model
    */
   interface PermissionFieldRefs {
-    readonly id: FieldRef<"Permission", 'Int'>
+    readonly id: FieldRef<"Permission", 'String'>
     readonly name: FieldRef<"Permission", 'String'>
     readonly code: FieldRef<"Permission", 'String'>
     readonly description: FieldRef<"Permission", 'String'>
-    readonly tenantId: FieldRef<"Permission", 'Int'>
+    readonly tenantId: FieldRef<"Permission", 'String'>
     readonly createdAt: FieldRef<"Permission", 'DateTime'>
     readonly updatedAt: FieldRef<"Permission", 'DateTime'>
   }
@@ -4247,7 +4144,8 @@ export namespace Prisma {
     status: 'status',
     tenantId: 'tenantId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    lastLoginAt: 'lastLoginAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4295,29 +4193,35 @@ export namespace Prisma {
 
 
   export const UserOrderByRelevanceFieldEnum: {
+    id: 'id',
     username: 'username',
     email: 'email',
     password: 'password',
     name: 'name',
     avatar: 'avatar',
-    status: 'status'
+    status: 'status',
+    tenantId: 'tenantId'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
 
 
   export const RoleOrderByRelevanceFieldEnum: {
+    id: 'id',
     name: 'name',
-    description: 'description'
+    description: 'description',
+    tenantId: 'tenantId'
   };
 
   export type RoleOrderByRelevanceFieldEnum = (typeof RoleOrderByRelevanceFieldEnum)[keyof typeof RoleOrderByRelevanceFieldEnum]
 
 
   export const PermissionOrderByRelevanceFieldEnum: {
+    id: 'id',
     name: 'name',
     code: 'code',
-    description: 'description'
+    description: 'description',
+    tenantId: 'tenantId'
   };
 
   export type PermissionOrderByRelevanceFieldEnum = (typeof PermissionOrderByRelevanceFieldEnum)[keyof typeof PermissionOrderByRelevanceFieldEnum]
@@ -4326,13 +4230,6 @@ export namespace Prisma {
   /**
    * Field references
    */
-
-
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
 
 
   /**
@@ -4350,9 +4247,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Int'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
   /**
    * Deep Input Types
@@ -4363,16 +4260,17 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     status?: StringFilter<"User"> | string
-    tenantId?: IntNullableFilter<"User"> | number | null
+    tenantId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    lastLoginAt?: DateTimeNullableFilter<"User"> | Date | string | null
     roles?: RoleListRelationFilter
   }
 
@@ -4387,12 +4285,13 @@ export namespace Prisma {
     tenantId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    lastLoginAt?: SortOrderInput | SortOrder
     roles?: RoleOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     username?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
@@ -4402,9 +4301,10 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     status?: StringFilter<"User"> | string
-    tenantId?: IntNullableFilter<"User"> | number | null
+    tenantId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    lastLoginAt?: DateTimeNullableFilter<"User"> | Date | string | null
     roles?: RoleListRelationFilter
   }, "id" | "username" | "email">
 
@@ -4419,37 +4319,37 @@ export namespace Prisma {
     tenantId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    lastLoginAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
+    id?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     status?: StringWithAggregatesFilter<"User"> | string
-    tenantId?: IntNullableWithAggregatesFilter<"User"> | number | null
+    tenantId?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    lastLoginAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type RoleWhereInput = {
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
-    id?: IntFilter<"Role"> | number
+    id?: StringFilter<"Role"> | string
     name?: StringFilter<"Role"> | string
     description?: StringNullableFilter<"Role"> | string | null
-    tenantId?: IntNullableFilter<"Role"> | number | null
+    tenantId?: StringNullableFilter<"Role"> | string | null
     createdAt?: DateTimeFilter<"Role"> | Date | string
     updatedAt?: DateTimeFilter<"Role"> | Date | string
     users?: UserListRelationFilter
@@ -4469,13 +4369,13 @@ export namespace Prisma {
   }
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     name?: string
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
     description?: StringNullableFilter<"Role"> | string | null
-    tenantId?: IntNullableFilter<"Role"> | number | null
+    tenantId?: StringNullableFilter<"Role"> | string | null
     createdAt?: DateTimeFilter<"Role"> | Date | string
     updatedAt?: DateTimeFilter<"Role"> | Date | string
     users?: UserListRelationFilter
@@ -4490,20 +4390,18 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RoleCountOrderByAggregateInput
-    _avg?: RoleAvgOrderByAggregateInput
     _max?: RoleMaxOrderByAggregateInput
     _min?: RoleMinOrderByAggregateInput
-    _sum?: RoleSumOrderByAggregateInput
   }
 
   export type RoleScalarWhereWithAggregatesInput = {
     AND?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
     OR?: RoleScalarWhereWithAggregatesInput[]
     NOT?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Role"> | number
+    id?: StringWithAggregatesFilter<"Role"> | string
     name?: StringWithAggregatesFilter<"Role"> | string
     description?: StringNullableWithAggregatesFilter<"Role"> | string | null
-    tenantId?: IntNullableWithAggregatesFilter<"Role"> | number | null
+    tenantId?: StringNullableWithAggregatesFilter<"Role"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Role"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Role"> | Date | string
   }
@@ -4512,11 +4410,11 @@ export namespace Prisma {
     AND?: PermissionWhereInput | PermissionWhereInput[]
     OR?: PermissionWhereInput[]
     NOT?: PermissionWhereInput | PermissionWhereInput[]
-    id?: IntFilter<"Permission"> | number
+    id?: StringFilter<"Permission"> | string
     name?: StringFilter<"Permission"> | string
     code?: StringFilter<"Permission"> | string
     description?: StringNullableFilter<"Permission"> | string | null
-    tenantId?: IntNullableFilter<"Permission"> | number | null
+    tenantId?: StringNullableFilter<"Permission"> | string | null
     createdAt?: DateTimeFilter<"Permission"> | Date | string
     updatedAt?: DateTimeFilter<"Permission"> | Date | string
     roles?: RoleListRelationFilter
@@ -4535,14 +4433,14 @@ export namespace Prisma {
   }
 
   export type PermissionWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     name?: string
     code?: string
     AND?: PermissionWhereInput | PermissionWhereInput[]
     OR?: PermissionWhereInput[]
     NOT?: PermissionWhereInput | PermissionWhereInput[]
     description?: StringNullableFilter<"Permission"> | string | null
-    tenantId?: IntNullableFilter<"Permission"> | number | null
+    tenantId?: StringNullableFilter<"Permission"> | string | null
     createdAt?: DateTimeFilter<"Permission"> | Date | string
     updatedAt?: DateTimeFilter<"Permission"> | Date | string
     roles?: RoleListRelationFilter
@@ -4557,121 +4455,130 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PermissionCountOrderByAggregateInput
-    _avg?: PermissionAvgOrderByAggregateInput
     _max?: PermissionMaxOrderByAggregateInput
     _min?: PermissionMinOrderByAggregateInput
-    _sum?: PermissionSumOrderByAggregateInput
   }
 
   export type PermissionScalarWhereWithAggregatesInput = {
     AND?: PermissionScalarWhereWithAggregatesInput | PermissionScalarWhereWithAggregatesInput[]
     OR?: PermissionScalarWhereWithAggregatesInput[]
     NOT?: PermissionScalarWhereWithAggregatesInput | PermissionScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Permission"> | number
+    id?: StringWithAggregatesFilter<"Permission"> | string
     name?: StringWithAggregatesFilter<"Permission"> | string
     code?: StringWithAggregatesFilter<"Permission"> | string
     description?: StringNullableWithAggregatesFilter<"Permission"> | string | null
-    tenantId?: IntNullableWithAggregatesFilter<"Permission"> | number | null
+    tenantId?: StringNullableWithAggregatesFilter<"Permission"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Permission"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Permission"> | Date | string
   }
 
   export type UserCreateInput = {
+    id?: string
     username: string
     email: string
     password: string
     name?: string | null
     avatar?: string | null
     status?: string
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    lastLoginAt?: Date | string | null
     roles?: RoleCreateNestedManyWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
+    id?: string
     username: string
     email: string
     password: string
     name?: string | null
     avatar?: string | null
     status?: string
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    lastLoginAt?: Date | string | null
     roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     roles?: RoleUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UserCreateManyInput = {
-    id?: number
+    id?: string
     username: string
     email: string
     password: string
     name?: string | null
     avatar?: string | null
     status?: string
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    lastLoginAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type RoleCreateInput = {
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutRolesInput
@@ -4679,10 +4586,10 @@ export namespace Prisma {
   }
 
   export type RoleUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutRolesInput
@@ -4690,9 +4597,10 @@ export namespace Prisma {
   }
 
   export type RoleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutRolesNestedInput
@@ -4700,10 +4608,10 @@ export namespace Prisma {
   }
 
   export type RoleUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutRolesNestedInput
@@ -4711,111 +4619,104 @@ export namespace Prisma {
   }
 
   export type RoleCreateManyInput = {
-    id?: number
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type RoleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoleUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PermissionCreateInput = {
+    id?: string
     name: string
     code: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     roles?: RoleCreateNestedManyWithoutPermissionsInput
   }
 
   export type PermissionUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     code: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     roles?: RoleUncheckedCreateNestedManyWithoutPermissionsInput
   }
 
   export type PermissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUpdateManyWithoutPermissionsNestedInput
   }
 
   export type PermissionUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUncheckedUpdateManyWithoutPermissionsNestedInput
   }
 
   export type PermissionCreateManyInput = {
-    id?: number
+    id?: string
     name: string
     code: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PermissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PermissionUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4848,17 +4749,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -4868,6 +4758,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type RoleListRelationFilter = {
@@ -4902,11 +4803,7 @@ export namespace Prisma {
     tenantId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
+    lastLoginAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -4920,6 +4817,7 @@ export namespace Prisma {
     tenantId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    lastLoginAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -4933,27 +4831,7 @@ export namespace Prisma {
     tenantId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    lastLoginAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4992,22 +4870,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -5020,6 +4882,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type UserListRelationFilter = {
@@ -5057,11 +4933,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type RoleAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
-  }
-
   export type RoleMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -5080,11 +4951,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type RoleSumOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
-  }
-
   export type PermissionOrderByRelevanceInput = {
     fields: PermissionOrderByRelevanceFieldEnum | PermissionOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -5099,11 +4965,6 @@ export namespace Prisma {
     tenantId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type PermissionAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
   }
 
   export type PermissionMaxOrderByAggregateInput = {
@@ -5126,11 +4987,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type PermissionSumOrderByAggregateInput = {
-    id?: SortOrder
-    tenantId?: SortOrder
-  }
-
   export type RoleCreateNestedManyWithoutUsersInput = {
     create?: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput> | RoleCreateWithoutUsersInput[] | RoleUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: RoleCreateOrConnectWithoutUsersInput | RoleCreateOrConnectWithoutUsersInput[]
@@ -5151,16 +5007,12 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type RoleUpdateManyWithoutUsersNestedInput = {
@@ -5174,14 +5026,6 @@ export namespace Prisma {
     update?: RoleUpdateWithWhereUniqueWithoutUsersInput | RoleUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: RoleUpdateManyWithWhereWithoutUsersInput | RoleUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: RoleScalarWhereInput | RoleScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type RoleUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -5311,17 +5155,6 @@ export namespace Prisma {
     deleteMany?: RoleScalarWhereInput | RoleScalarWhereInput[]
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -5352,17 +5185,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -5374,31 +5196,15 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5419,6 +5225,17 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -5437,7 +5254,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
     notIn?: number[] | null
@@ -5445,23 +5262,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5478,20 +5279,35 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type RoleCreateWithoutUsersInput = {
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     permissions?: PermissionCreateNestedManyWithoutRolesInput
   }
 
   export type RoleUncheckedCreateWithoutUsersInput = {
-    id?: number
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     permissions?: PermissionUncheckedCreateNestedManyWithoutRolesInput
@@ -5522,37 +5338,40 @@ export namespace Prisma {
     AND?: RoleScalarWhereInput | RoleScalarWhereInput[]
     OR?: RoleScalarWhereInput[]
     NOT?: RoleScalarWhereInput | RoleScalarWhereInput[]
-    id?: IntFilter<"Role"> | number
+    id?: StringFilter<"Role"> | string
     name?: StringFilter<"Role"> | string
     description?: StringNullableFilter<"Role"> | string | null
-    tenantId?: IntNullableFilter<"Role"> | number | null
+    tenantId?: StringNullableFilter<"Role"> | string | null
     createdAt?: DateTimeFilter<"Role"> | Date | string
     updatedAt?: DateTimeFilter<"Role"> | Date | string
   }
 
   export type UserCreateWithoutRolesInput = {
+    id?: string
     username: string
     email: string
     password: string
     name?: string | null
     avatar?: string | null
     status?: string
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    lastLoginAt?: Date | string | null
   }
 
   export type UserUncheckedCreateWithoutRolesInput = {
-    id?: number
+    id?: string
     username: string
     email: string
     password: string
     name?: string | null
     avatar?: string | null
     status?: string
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    lastLoginAt?: Date | string | null
   }
 
   export type UserCreateOrConnectWithoutRolesInput = {
@@ -5561,20 +5380,21 @@ export namespace Prisma {
   }
 
   export type PermissionCreateWithoutRolesInput = {
+    id?: string
     name: string
     code: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PermissionUncheckedCreateWithoutRolesInput = {
-    id?: number
+    id?: string
     name: string
     code: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5604,16 +5424,17 @@ export namespace Prisma {
     AND?: UserScalarWhereInput | UserScalarWhereInput[]
     OR?: UserScalarWhereInput[]
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     status?: StringFilter<"User"> | string
-    tenantId?: IntNullableFilter<"User"> | number | null
+    tenantId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    lastLoginAt?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
   export type PermissionUpsertWithWhereUniqueWithoutRolesInput = {
@@ -5636,29 +5457,30 @@ export namespace Prisma {
     AND?: PermissionScalarWhereInput | PermissionScalarWhereInput[]
     OR?: PermissionScalarWhereInput[]
     NOT?: PermissionScalarWhereInput | PermissionScalarWhereInput[]
-    id?: IntFilter<"Permission"> | number
+    id?: StringFilter<"Permission"> | string
     name?: StringFilter<"Permission"> | string
     code?: StringFilter<"Permission"> | string
     description?: StringNullableFilter<"Permission"> | string | null
-    tenantId?: IntNullableFilter<"Permission"> | number | null
+    tenantId?: StringNullableFilter<"Permission"> | string | null
     createdAt?: DateTimeFilter<"Permission"> | Date | string
     updatedAt?: DateTimeFilter<"Permission"> | Date | string
   }
 
   export type RoleCreateWithoutPermissionsInput = {
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutRolesInput
   }
 
   export type RoleUncheckedCreateWithoutPermissionsInput = {
-    id?: number
+    id?: string
     name: string
     description?: string | null
-    tenantId?: number | null
+    tenantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutRolesInput
@@ -5686,124 +5508,131 @@ export namespace Prisma {
   }
 
   export type RoleUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: PermissionUpdateManyWithoutRolesNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: PermissionUncheckedUpdateManyWithoutRolesNestedInput
   }
 
   export type RoleUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUpdateWithoutRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateWithoutRolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyWithoutRolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PermissionUpdateWithoutRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PermissionUncheckedUpdateWithoutRolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PermissionUncheckedUpdateManyWithoutRolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoleUpdateWithoutPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutRolesNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutPermissionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutRolesNestedInput
   }
 
   export type RoleUncheckedUpdateManyWithoutPermissionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tenantId?: NullableIntFieldUpdateOperationsInput | number | null
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

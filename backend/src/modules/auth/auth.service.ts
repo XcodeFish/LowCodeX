@@ -3,6 +3,7 @@ import {
   Logger,
   UnauthorizedException,
   BadRequestException,
+  ConflictException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -11,13 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { UsersService } from '../users/users.service';
 import { RedisService } from '../../services/redis.service';
 import { PrismaService } from '../../services/prisma.service';
-import {
-  LoginResponse,
-  TokenResponse,
-  JwtPayload,
-  RegisterDto,
-} from '../../types/auth.types';
-import { UserWithRelations } from '../../types/users.types';
+import { LoginResponse, TokenResponse, JwtPayload } from './interfaces';
+import { RegisterDto, LoginDto, RefreshTokenDto } from './dto';
+import { UserWithRelations } from '../users/interfaces';
+import { Prisma } from '../../../generated/prisma';
 
 @Injectable()
 export class AuthService {
@@ -62,188 +60,107 @@ export class AuthService {
 
     // 返回用户（排除密码）
     const { password: _, ...result } = user;
-    return result as UserWithRelations;
+    return result as unknown as UserWithRelations;
   }
 
-  // 用户登录
-  async login(
-    user: UserWithRelations,
-    rememberMe: boolean = false,
-  ): Promise<LoginResponse> {
-    this.logger.log(`用户登录: ${user.username}, ID: ${user.id}`);
+  /**
+   * 用户注册
+   */
+  async register(registerDto: RegisterDto): Promise<TokenResponse> {
+    this.logger.log(`尝试注册用户: ${registerDto.username}`);
 
-    // 计算令牌过期时间
-    const expiresIn = rememberMe ? this.jwtExpiresIn * 2 : this.jwtExpiresIn;
-
-    // 创建JWT载荷
-    const payload: JwtPayload = {
-      sub: user.id,
-      username: user.username,
-      tenantId: user.tenantId,
-    };
-
-    // 如果用户有角色，将角色代码添加到载荷中
-    if (user.roles && user.roles.length > 0) {
-      payload.roles = user.roles.map((role) => role.name);
-
-      // 收集所有权限
-      const permissions = new Set<string>();
-      user.roles.forEach((role) => {
-        if (role.permissions) {
-          role.permissions.forEach((perm) => permissions.add(perm.code));
-        }
+    try {
+      // 创建用户
+      const user = await this.usersService.create({
+        username: registerDto.username,
+        email: registerDto.email,
+        password: registerDto.password,
+        name: registerDto.name,
+        status: 'active',
+        tenantId: registerDto.tenantId,
+        roleIds: [],
       });
 
-      if (permissions.size > 0) {
-        payload.permissions = Array.from(permissions);
+      // 生成令牌
+      return this.generateTokens(user.id, user.username, user.tenantId);
+    } catch (error) {
+      if (error instanceof ConflictException) {
+        // 将冲突异常直接传递
+        throw error;
       }
+      this.logger.error('注册失败:', error.stack);
+      throw new BadRequestException('注册失败，请稍后再试');
+    }
+  }
+
+  /**
+   * 用户登录
+   */
+  async login(loginDto: LoginDto): Promise<LoginResponse> {
+    this.logger.log(`尝试登录: ${loginDto.username}`);
+
+    // 查找用户
+    const user = await this.usersService.findByUsername(loginDto.username);
+    if (!user) {
+      throw new UnauthorizedException('用户名或密码错误');
     }
 
-    // 生成访问令牌
-    const accessToken = this.jwtService.sign(payload, {
-      expiresIn: expiresIn,
-    });
+    // 检查用户状态
+    if (user.status !== 'active') {
+      throw new UnauthorizedException('用户已被禁用，请联系管理员');
+    }
 
-    // 生成刷新令牌（如果需要）
-    let refreshToken: string | undefined;
-    if (rememberMe) {
-      const refreshTokenId = uuidv4();
-      refreshToken = this.jwtService.sign(
-        { ...payload, id: refreshTokenId },
-        { expiresIn: this.refreshExpiresIn },
-      );
-
-      // 存储刷新令牌到Redis
-      await this.redisService.set(
-        `refresh_token:${user.id}:${refreshTokenId}`,
-        { valid: true },
-        this.refreshExpiresIn,
-      );
+    // 验证密码
+    const isPasswordValid = await bcrypt.compare(
+      loginDto.password,
+      user.password,
+    );
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('用户名或密码错误');
     }
 
     // 更新最后登录时间
-    // 此操作不需要等待完成，可以在后台异步执行
-    this.updateLastLoginTime(user.id).catch((err) => {
-      this.logger.error(`更新最后登录时间失败: ${err.message}`, err.stack);
-    });
+    await this.updateLastLoginTime(user.id);
 
-    // 从返回的用户对象中移除密码
-    const { password, ...userWithoutPassword } = user;
+    // 生成令牌
+    const tokens = this.generateTokens(user.id, user.username, user.tenantId);
+
+    // 排除密码字段
+    const { password: _, ...userWithoutPassword } = user;
 
     // 返回登录响应
     return {
-      accessToken,
-      refreshToken,
+      ...tokens,
       user: userWithoutPassword as UserWithRelations,
-      expiresIn,
     };
   }
 
-  // 刷新令牌
-  async refreshToken(refreshToken: string): Promise<TokenResponse> {
+  /**
+   * 刷新令牌
+   */
+  async refreshToken(refreshTokenDto: RefreshTokenDto): Promise<TokenResponse> {
     try {
       // 验证刷新令牌
-      const payload = this.jwtService.verify(refreshToken);
+      const payload = this.jwtService.verify(refreshTokenDto.refreshToken, {
+        secret: process.env.JWT_REFRESH_SECRET,
+      }) as JwtPayload;
 
-      // 检查令牌类型
-      if (!payload.id) {
+      // 查找用户
+      const user = await this.usersService.findOneWithRoles(payload.sub);
+      if (!user || user.status !== 'active') {
         throw new UnauthorizedException('无效的刷新令牌');
       }
 
-      // 从Redis检查令牌有效性
-      const tokenKey = `refresh_token:${payload.sub}:${payload.id}`;
-      const tokenData = await this.redisService.get<{ valid: boolean }>(
-        tokenKey,
-      );
-
-      if (!tokenData || !tokenData.valid) {
-        throw new UnauthorizedException('刷新令牌已失效');
-      }
-
-      // 删除旧的刷新令牌
-      await this.redisService.del(tokenKey);
-
-      // 查询用户
-      const user = await this.usersService.findOneWithRoles(payload.sub);
-
-      if (!user || user.status !== 'active') {
-        throw new UnauthorizedException('用户不存在或已禁用');
-      }
-
-      // 创建新的访问令牌和刷新令牌
-      const newRefreshTokenId = uuidv4();
-      const newPayload: JwtPayload = {
-        sub: user.id,
-        username: user.username,
-        tenantId: user.tenantId,
-      };
-
-      // 如果用户有角色，将角色代码添加到载荷中
-      if (user.roles && user.roles.length > 0) {
-        newPayload.roles = user.roles.map((role) => role.name);
-
-        // 收集所有权限
-        const permissions = new Set<string>();
-        user.roles.forEach((role) => {
-          if (role.permissions) {
-            role.permissions.forEach((perm) => permissions.add(perm.code));
-          }
-        });
-
-        if (permissions.size > 0) {
-          newPayload.permissions = Array.from(permissions);
-        }
-      }
-
-      // 生成新的访问令牌
-      const accessToken = this.jwtService.sign(newPayload, {
-        expiresIn: this.jwtExpiresIn,
-      });
-
-      // 生成新的刷新令牌
-      const newRefreshToken = this.jwtService.sign(
-        { ...newPayload, id: newRefreshTokenId },
-        { expiresIn: this.refreshExpiresIn },
-      );
-
-      // 存储新的刷新令牌到Redis
-      await this.redisService.set(
-        `refresh_token:${user.id}:${newRefreshTokenId}`,
-        { valid: true },
-        this.refreshExpiresIn,
-      );
-
-      return {
-        accessToken,
-        refreshToken: newRefreshToken,
-        expiresIn: this.jwtExpiresIn,
-      };
+      // 生成新令牌
+      return this.generateTokens(user.id, user.username, user.tenantId);
     } catch (error) {
-      if (error instanceof UnauthorizedException) {
-        throw error;
-      }
-      this.logger.error(`刷新令牌失败: ${error.message}`, error.stack);
-      throw new UnauthorizedException('刷新令牌失败');
+      this.logger.error('刷新令牌失败:', error.stack);
+      throw new UnauthorizedException('无效的刷新令牌');
     }
   }
 
-  // 用户注册
-  async register(registerDto: RegisterDto): Promise<UserWithRelations> {
-    this.logger.log(`用户注册: ${registerDto.username}`);
-
-    // 创建用户
-    return this.usersService.create({
-      username: registerDto.username,
-      email: registerDto.email,
-      password: registerDto.password,
-      name: registerDto.name,
-      tenantId: registerDto.tenantId,
-      status: 'active',
-    });
-  }
-
   // 退出登录
-  async logout(userId: number): Promise<void> {
+  async logout(userId: string): Promise<void> {
     this.logger.log(`用户退出登录: ID=${userId}`);
     try {
       // 删除该用户的所有刷新令牌
@@ -261,21 +178,64 @@ export class AuthService {
   }
 
   // 获取用户个人资料
-  async getProfile(userId: number): Promise<UserWithRelations> {
+  async getProfile(userId: string): Promise<UserWithRelations> {
     this.logger.log(`获取用户个人资料: ID=${userId}`);
     return this.usersService.findOneWithRoles(userId);
   }
 
-  // 更新最后登录时间
-  private async updateLastLoginTime(userId: number): Promise<void> {
+  /**
+   * 更新用户最后登录时间
+   * 由于lastLoginAt字段尚未通过迁移添加到数据库，暂时更新updatedAt字段
+   */
+  private async updateLastLoginTime(userId: string): Promise<void> {
     try {
-      // 由于schema中没有lastLoginAt字段，我们使用updatedAt代替
       await this.prisma.user.update({
         where: { id: userId },
-        data: { updatedAt: new Date() },
+        data: {
+          updatedAt: new Date(), // 暂时使用updatedAt字段
+        } as Prisma.UserUpdateInput,
       });
     } catch (error) {
-      this.logger.error(`更新登录时间失败: ${error.message}`, error.stack);
+      this.logger.error(`更新用户登录时间失败: ${error.message}`);
+      // 不抛出异常，这是非关键操作
     }
+  }
+
+  /**
+   * 生成访问令牌和刷新令牌
+   */
+  private generateTokens(
+    userId: string,
+    username: string,
+    tenantId?: string,
+  ): TokenResponse {
+    // 构建JWT负载
+    const payload: JwtPayload = {
+      sub: userId,
+      username: username,
+      tenantId: tenantId || undefined,
+    };
+
+    // 设置令牌过期时间（秒）
+    const accessExpiresIn = 900; // 15分钟
+    const refreshExpiresIn = 604800; // 7天
+
+    // 生成访问令牌（短期）
+    const accessToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_ACCESS_SECRET,
+      expiresIn: `${accessExpiresIn}s`,
+    });
+
+    // 生成刷新令牌（长期）
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_REFRESH_SECRET,
+      expiresIn: `${refreshExpiresIn}s`,
+    });
+
+    return {
+      accessToken,
+      refreshToken,
+      expiresIn: accessExpiresIn,
+    };
   }
 }
