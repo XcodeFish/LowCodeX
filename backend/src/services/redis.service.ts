@@ -150,12 +150,17 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  async del(key: string): Promise<void> {
+  async del(key: string | string[]): Promise<void> {
     try {
-      await this.redisClient.del(key);
-      this.logger.debug(`Redis缓存删除: key=${key}`);
+      if (Array.isArray(key)) {
+        await this.redisClient.del(key);
+        this.logger.debug(`Redis批量删除: ${key.length}个键`);
+      } else {
+        await this.redisClient.del(key);
+        this.logger.debug(`Redis缓存删除: key=${key}`);
+      }
     } catch (error) {
-      this.logger.error(`❌ Redis删除键值对失败: ${error.message}, key=${key}`);
+      this.logger.error(`❌ Redis删除键值对失败: ${error.message}`);
       throw error;
     }
   }
@@ -169,6 +174,18 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
         `❌ Redis检查键是否存在失败: ${error.message}, key=${key}`,
       );
       return false;
+    }
+  }
+
+  // 添加keys方法
+  async keys(pattern: string): Promise<string[]> {
+    try {
+      return this.redisClient.keys(pattern);
+    } catch (error) {
+      this.logger.error(
+        `❌ Redis查询键失败: ${error.message}, pattern=${pattern}`,
+      );
+      return [];
     }
   }
 

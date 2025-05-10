@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as compression from 'compression';
 import helmet from 'helmet';
+import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 import { AppConfig } from './config';
 
@@ -38,6 +39,9 @@ async function bootstrap() {
 
   // 启用压缩
   app.use(compression());
+
+  // 启用cookie解析
+  app.use(cookieParser());
 
   // 跨域配置
   app.enableCors({

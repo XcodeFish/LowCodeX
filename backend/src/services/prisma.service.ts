@@ -30,7 +30,7 @@ export class PrismaService
       errorFormat: 'colorless',
     });
 
-     this.logger.log('dbConfig', dbConfig);
+    this.logger.log('dbConfig', dbConfig);
 
     // 保存配置以供后续使用
     this.dbConfig = dbConfig;
@@ -52,55 +52,55 @@ export class PrismaService
       this.logger.log('✅ 数据库连接成功');
 
       // 添加中间件用于多租户隔离
-      const tenantConfig = this.configService.get<TenantConfig>('tenant');
+      const tenantMode = this.configService.get('TENANT_MODE', 'column');
+      const tenantIdField = this.configService.get(
+        'TENANT_ID_FIELD',
+        'tenantId',
+      );
 
-      if (tenantConfig && tenantConfig.mode === TenantModeEnum.COLUMN) {
+      if (tenantMode === 'column') {
         this.logger.log(
-          `已启用多租户隔离，模式: ${tenantConfig.mode}, 字段: ${tenantConfig.idField}`,
-        );
-        this.logger.log(
-          `多租户启用的模型: ${tenantConfig.enabledModels.join(', ')}`,
+          `已启用多租户隔离，模式: ${tenantMode}, 字段: ${tenantIdField}`,
         );
 
         this.$use(async (params, next) => {
           const tenantId = this.getTenantId();
-          const modelName = params.model as string | undefined;
 
           if (
             tenantId &&
-            modelName &&
-            tenantConfig.enabledModels.includes(modelName)
+            params.model &&
+            this.isTenantAwareModel(params.model)
           ) {
             if (
               params.action === 'findUnique' ||
               params.action === 'findFirst'
             ) {
-              params.args.where[tenantConfig.idField] = tenantId;
+              params.args.where[tenantIdField] = tenantId;
               return next(params);
             }
 
             if (params.action === 'findMany') {
               if (!params.args) params.args = {};
               if (!params.args.where) params.args.where = {};
-              params.args.where[tenantConfig.idField] = tenantId;
+              params.args.where[tenantIdField] = tenantId;
               return next(params);
             }
 
             if (params.action === 'create') {
               if (!params.args.data) params.args.data = {};
-              params.args.data[tenantConfig.idField] = tenantId;
+              params.args.data[tenantIdField] = tenantId;
               return next(params);
             }
 
             if (params.action === 'update' || params.action === 'updateMany') {
               if (!params.args.where) params.args.where = {};
-              params.args.where[tenantConfig.idField] = tenantId;
+              params.args.where[tenantIdField] = tenantId;
               return next(params);
             }
 
             if (params.action === 'delete' || params.action === 'deleteMany') {
               if (!params.args.where) params.args.where = {};
-              params.args.where[tenantConfig.idField] = tenantId;
+              params.args.where[tenantIdField] = tenantId;
               return next(params);
             }
           }
@@ -153,8 +153,23 @@ export class PrismaService
 
   // 获取当前租户ID (通常从请求上下文中获取)
   private getTenantId(): number | null {
-    // 实现从上下文中获取租户ID的逻辑
+    // 后续会从请求上下文中获取租户ID
+    // 在初始阶段，这里返回null，表示不进行租户过滤
     return null;
+  }
+
+  // 检查模型是否应用租户隔离
+  private isTenantAwareModel(model: string): boolean {
+    const tenantAwareModels = [
+      'User',
+      'Role',
+      'Permission',
+      'Application',
+      'DataModel',
+      'Form',
+      'Workflow',
+    ];
+    return tenantAwareModels.includes(model);
   }
 
   // 格式化数据库连接信息（隐藏敏感信息）

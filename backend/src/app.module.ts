@@ -20,6 +20,11 @@ import { RolesGuard } from './common/guards/roles.guard';
 // 健康检查模块
 import { HealthModule } from './modules/health/health.module';
 
+// 用户和认证模块
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
+
 // 配置模块
 import { configModules } from './config';
 
@@ -34,6 +39,10 @@ import { configModules } from './config';
     }),
     // 健康检查模块
     HealthModule,
+    // 用户模块
+    UsersModule,
+    // 认证模块
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
@@ -63,6 +72,12 @@ import { configModules } from './config';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
+    },
+
+    // 全局JWT认证守卫
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
     },
   ],
 })
