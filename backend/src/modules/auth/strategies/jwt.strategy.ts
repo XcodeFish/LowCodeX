@@ -37,8 +37,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
     // 验证令牌中的用户ID是否有效
     const users = await this.prismaService.$queryRaw<JwtUser[]>`
-      SELECT u.id, u."tenantId", u.username, u.email, u.status
-      FROM "User" u
+      SELECT u.id, u.\`tenantId\`, u.username, u.email, u.status
+      FROM \`users\` u
       WHERE u.id = ${payload.sub}
     `;
 

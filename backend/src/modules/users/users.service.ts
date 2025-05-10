@@ -59,26 +59,52 @@ export class UsersService {
         tenantId: createUserDto.tenantId,
       };
 
-      // 如果有角色，建立关联
-      if (createUserDto.roleIds && createUserDto.roleIds.length > 0) {
-        userData.roles = {
-          connect: createUserDto.roleIds.map((id) => ({ id })),
-        };
-      }
-
+      // 先创建用户
       const user = await this.prisma.user.create({
         data: userData,
-        include: {
-          roles: {
-            include: {
-              permissions: true,
-            },
-          },
-        },
       });
 
+      // 如果有角色，建立关联
+      if (createUserDto.roleIds && createUserDto.roleIds.length > 0) {
+        // 创建用户后，创建用户与角色的关联
+        await Promise.all(
+          createUserDto.roleIds.map((roleId) =>
+            this.prisma.userroles.create({
+              data: {
+                A: user.id,
+                B: roleId,
+              },
+            }),
+          ),
+        );
+      }
+
+      // 获取用户的角色信息
+      const roles = await this.prisma.$queryRaw`
+        SELECT r.*
+        FROM \`roles\` r
+        JOIN \`_userroles\` ur ON r.id = ur.B
+        WHERE ur.A = ${user.id}
+      `;
+
+      // 为角色获取权限
+      const rolesWithPermissions = await Promise.all(
+        (roles as any[]).map(async (role) => {
+          const permissions = await this.prisma.$queryRaw`
+            SELECT p.*
+            FROM \`permissions\` p
+            JOIN \`_rolepermissions\` rp ON p.id = rp.B
+            WHERE rp.A = ${role.id}
+          `;
+          return { ...role, permissions };
+        }),
+      );
+
       // 转换为业务模型
-      return this.mapToUserWithRelations(user);
+      return this.mapToUserWithRelations({
+        ...user,
+        roles: rolesWithPermissions,
+      } as any);
     } catch (error) {
       this.logger.error(`创建用户失败: ${error.message}`, error.stack);
       throw new BadRequestException('创建用户失败，请稍后再试');
@@ -139,17 +165,39 @@ export class UsersService {
         orderBy: {
           [sortBy]: sortOrder,
         },
-        include: {
-          roles: {
-            include: {
-              permissions: true,
-            },
-          },
-        },
       });
 
+      // 为每个用户获取角色信息
+      const usersWithRoles = await Promise.all(
+        users.map(async (user) => {
+          const roles = await this.prisma.$queryRaw`
+            SELECT r.*
+            FROM \`roles\` r
+            JOIN \`_userroles\` ur ON r.id = ur.B
+            WHERE ur.A = ${user.id}
+          `;
+
+          // 为每个角色获取权限
+          const rolesWithPermissions = await Promise.all(
+            (roles as any[]).map(async (role) => {
+              const permissions = await this.prisma.$queryRaw`
+                SELECT p.*
+                FROM \`permissions\` p
+                JOIN \`_rolepermissions\` rp ON p.id = rp.B
+                WHERE rp.A = ${role.id}
+              `;
+              return { ...role, permissions };
+            }),
+          );
+
+          return { ...user, roles: rolesWithPermissions };
+        }),
+      );
+
       // 转换为期望的响应格式
-      const items = users.map((user) => this.mapToUserWithRelations(user));
+      const items = usersWithRoles.map((user) =>
+        this.mapToUserWithRelations(user),
+      );
 
       return {
         items,
@@ -170,21 +218,38 @@ export class UsersService {
 
     const user = await this.prisma.user.findUnique({
       where: { id },
-      include: {
-        roles: {
-          include: {
-            permissions: true,
-          },
-        },
-      },
     });
 
     if (!user) {
       throw new NotFoundException(`未找到ID为 ${id} 的用户`);
     }
 
+    // 获取用户的角色
+    const roles = await this.prisma.$queryRaw`
+      SELECT r.*
+      FROM \`roles\` r
+      JOIN \`_userroles\` ur ON r.id = ur.B
+      WHERE ur.A = ${user.id}
+    `;
+
+    // 为角色获取权限
+    const rolesWithPermissions = await Promise.all(
+      (roles as any[]).map(async (role) => {
+        const permissions = await this.prisma.$queryRaw`
+          SELECT p.*
+          FROM \`permissions\` p
+          JOIN \`_rolepermissions\` rp ON p.id = rp.B
+          WHERE rp.A = ${role.id}
+        `;
+        return { ...role, permissions };
+      }),
+    );
+
     // 转换为期望的响应格式
-    return this.mapToUserWithRelations(user);
+    return this.mapToUserWithRelations({
+      ...user,
+      roles: rolesWithPermissions,
+    } as any);
   }
 
   // 根据用户名查找用户（用于认证）
@@ -193,21 +258,38 @@ export class UsersService {
 
     const user = await this.prisma.user.findFirst({
       where: { username },
-      include: {
-        roles: {
-          include: {
-            permissions: true,
-          },
-        },
-      },
     });
 
     if (!user) {
       return null;
     }
 
+    // 获取用户的角色
+    const roles = await this.prisma.$queryRaw`
+      SELECT r.*
+      FROM \`roles\` r
+      JOIN \`_userroles\` ur ON r.id = ur.B
+      WHERE ur.A = ${user.id}
+    `;
+
+    // 为角色获取权限
+    const rolesWithPermissions = await Promise.all(
+      (roles as any[]).map(async (role) => {
+        const permissions = await this.prisma.$queryRaw`
+          SELECT p.*
+          FROM \`permissions\` p
+          JOIN \`_rolepermissions\` rp ON p.id = rp.B
+          WHERE rp.A = ${role.id}
+        `;
+        return { ...role, permissions };
+      }),
+    );
+
     // 转换为期望的响应格式
-    return this.mapToUserWithRelations(user);
+    return this.mapToUserWithRelations({
+      ...user,
+      roles: rolesWithPermissions,
+    } as any);
   }
 
   // 更新用户信息
@@ -277,26 +359,60 @@ export class UsersService {
 
       // 角色更新
       if (updateUserDto.roleIds !== undefined) {
-        updateData.roles = {
-          set: updateUserDto.roleIds.map((roleId) => ({ id: roleId })),
-        };
+        // 先删除现有角色关联
+        await this.prisma.userroles.deleteMany({
+          where: {
+            A: id,
+          },
+        });
+
+        // 添加新的角色关联
+        if (updateUserDto.roleIds.length > 0) {
+          await Promise.all(
+            updateUserDto.roleIds.map((roleId) =>
+              this.prisma.userroles.create({
+                data: {
+                  A: id,
+                  B: roleId,
+                },
+              }),
+            ),
+          );
+        }
       }
 
       // 更新用户
       const updatedUser = await this.prisma.user.update({
         where: { id },
         data: updateData,
-        include: {
-          roles: {
-            include: {
-              permissions: true,
-            },
-          },
-        },
       });
 
+      // 获取用户的角色
+      const roles = await this.prisma.$queryRaw`
+        SELECT r.*
+        FROM \`roles\` r
+        JOIN \`_userroles\` ur ON r.id = ur.B
+        WHERE ur.A = ${id}
+      `;
+
+      // 为角色获取权限
+      const rolesWithPermissions = await Promise.all(
+        (roles as any[]).map(async (role) => {
+          const permissions = await this.prisma.$queryRaw`
+            SELECT p.*
+            FROM \`permissions\` p
+            JOIN \`_rolepermissions\` rp ON p.id = rp.B
+            WHERE rp.A = ${role.id}
+          `;
+          return { ...role, permissions };
+        }),
+      );
+
       // 返回更新后的用户
-      return this.mapToUserWithRelations(updatedUser);
+      return this.mapToUserWithRelations({
+        ...updatedUser,
+        roles: rolesWithPermissions,
+      } as any);
     } catch (error) {
       this.logger.error(`更新用户失败: ${error.message}`, error.stack);
       throw new BadRequestException('更新用户失败，请稍后再试');

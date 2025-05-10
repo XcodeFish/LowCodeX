@@ -15,7 +15,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     private auditLogService: AuditLogService,
   ) {
     super({
-      usernameField: 'email',
+      usernameField: 'username',
     });
   }
 
@@ -23,7 +23,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
    * 本地策略验证方法
    * 验证用户名密码
    */
-  async validate(email: string, password: string) {
+  async validate(username: string, password: string) {
     // 查询用户
     const users = await this.prismaService.$queryRaw<
       {
@@ -35,9 +35,9 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         status: string;
       }[]
     >`
-      SELECT u.id, u."tenantId", u.email, u.username, u.password, u.status
-      FROM "User" u
-      WHERE u.email = ${email}
+      SELECT u.id, u.\`tenantId\`, u.email, u.username, u.password, u.status
+      FROM \`users\` u
+      WHERE u.username = ${username}
     `;
 
     if (!users.length) {
@@ -47,7 +47,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const user = users[0];
 
     // 验证用户状态
-    if (user.status !== 'ACTIVE') {
+    if (user.status.toUpperCase() !== 'ACTIVE') {
       this.auditLogService.log({
         userId: user.id,
         tenantId: user.tenantId || '',

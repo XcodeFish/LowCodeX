@@ -45,9 +45,9 @@ export class AbilityFactory {
     try {
       // 获取用户所有角色
       const userRoles = await this.prisma.$queryRaw`
-        SELECT r.* FROM "Role" r
-        JOIN "UserRole" ur ON r.id = ur.roleId
-        WHERE ur.userId = ${user.id}
+        SELECT r.* FROM \`roles\` r
+        JOIN \`_userroles\` ur ON r.id = ur.B
+        WHERE ur.A = ${user.id}
       `;
 
       // 获取角色关联的所有权限
@@ -55,9 +55,9 @@ export class AbilityFactory {
         const roleIds = userRoles.map((ur) => ur.id);
 
         const rolePermissions = await this.prisma.$queryRaw`
-          SELECT p.* FROM "Permission" p
-          JOIN "RolePermission" rp ON p.id = rp.permissionId
-          WHERE rp.roleId IN (${roleIds.join(',')})
+          SELECT p.* FROM \`permissions\` p
+          JOIN \`_rolepermissions\` rp ON p.id = rp.B
+          WHERE rp.A IN (${roleIds.join(',')})
         `;
 
         // 应用权限
@@ -90,10 +90,12 @@ export class AbilityFactory {
       }
 
       // 获取用户直接分配的权限
+      // 注释掉这段代码，因为目前似乎没有用户权限表
+      /*
       const userPermissions = await this.prisma.$queryRaw`
-        SELECT p.*, up.allow FROM "Permission" p
-        JOIN "UserPermission" up ON p.id = up.permissionId
-        WHERE up.userId = ${user.id}
+        SELECT p.*, up.allow FROM \`permissions\` p
+        JOIN \`_userpermissions\` up ON p.id = up.B
+        WHERE up.A = ${user.id}
       `;
 
       // 应用用户特殊权限
@@ -126,6 +128,7 @@ export class AbilityFactory {
           }
         }
       }
+      */
     } catch (error) {
       console.error('Error creating abilities:', error);
     }

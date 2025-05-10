@@ -153,6 +153,27 @@ exports.Prisma.PermissionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RolepermissionsScalarFieldEnum = {
+  A: 'A',
+  B: 'B'
+};
+
+exports.Prisma.UserrolesScalarFieldEnum = {
+  A: 'A',
+  B: 'B'
+};
+
+exports.Prisma.System_configsScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  description: 'description',
+  isPublic: 'isPublic',
+  group: 'group',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -189,11 +210,32 @@ exports.Prisma.PermissionOrderByRelevanceFieldEnum = {
   tenantId: 'tenantId'
 };
 
+exports.Prisma.rolepermissionsOrderByRelevanceFieldEnum = {
+  A: 'A',
+  B: 'B'
+};
+
+exports.Prisma.userrolesOrderByRelevanceFieldEnum = {
+  A: 'A',
+  B: 'B'
+};
+
+exports.Prisma.system_configsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  description: 'description',
+  group: 'group'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Role: 'Role',
-  Permission: 'Permission'
+  Permission: 'Permission',
+  rolepermissions: 'rolepermissions',
+  userroles: 'userroles',
+  system_configs: 'system_configs'
 };
 
 /**

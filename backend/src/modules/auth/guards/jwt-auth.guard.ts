@@ -6,6 +6,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 import { SKIP_AUTH_KEY } from '../decorators/skip-auth.decorator';
+import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
@@ -29,8 +30,14 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       context.getClass(),
     ]);
 
-    // 如果路由标记为跳过验证，允许访问
-    if (skipAuth) {
+    // 检查是否标记为公开路由
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+
+    // 如果路由标记为跳过验证或公开路由，允许访问
+    if (skipAuth || isPublic) {
       return true;
     }
 

@@ -45,10 +45,33 @@ export class AuditLogService {
    */
   async log(params: AuditLogParams): Promise<void> {
     try {
+      // 检查表是否存在，如果不存在则尝试创建
+      try {
+        await this.prisma.$executeRaw`
+          CREATE TABLE IF NOT EXISTS \`audit_logs\` (
+            \`id\` VARCHAR(36) NOT NULL DEFAULT (UUID()),
+            \`userId\` VARCHAR(255) NOT NULL,
+            \`tenantId\` VARCHAR(255) NOT NULL,
+            \`action\` VARCHAR(50) NOT NULL,
+            \`resource\` VARCHAR(100) NOT NULL,
+            \`resourceId\` VARCHAR(255),
+            \`description\` TEXT NOT NULL,
+            \`oldValue\` TEXT,
+            \`newValue\` TEXT,
+            \`ipAddress\` VARCHAR(50),
+            \`userAgent\` VARCHAR(255),
+            \`timestamp\` DATETIME NOT NULL,
+            PRIMARY KEY (\`id\`)
+          )
+        `;
+      } catch (error) {
+        this.logger.warn(`创建审计日志表失败: ${error.message}`);
+      }
+
       await this.prisma.$executeRaw`
-        INSERT INTO "AuditLog" (
-          "userId", "tenantId", "action", "resource", "resourceId",
-          "description", "oldValue", "newValue", "ipAddress", "userAgent", "timestamp"
+        INSERT INTO \`audit_logs\` (
+          \`userId\`, \`tenantId\`, \`action\`, \`resource\`, \`resourceId\`,
+          \`description\`, \`oldValue\`, \`newValue\`, \`ipAddress\`, \`userAgent\`, \`timestamp\`
         ) VALUES (
           ${params.userId},
           ${params.tenantId},
@@ -123,42 +146,53 @@ export class AuditLogService {
     const { skip = 0, take = 20 } = query;
 
     try {
+      // 检查表是否存在
+      try {
+        await this.prisma.$executeRaw`
+          SELECT 1 FROM \`audit_logs\` LIMIT 1
+        `;
+      } catch (error) {
+        // 表不存在，返回空结果
+        this.logger.warn(`审计日志表不存在: ${error.message}`);
+        return { items: [], total: 0, skip, take };
+      }
+
       // 构建查询条件
       let whereClause = '';
       const params: any[] = [];
 
       if (query.userId) {
-        whereClause += `"userId" = $${params.length + 1} AND `;
+        whereClause += `\`userId\` = $${params.length + 1} AND `;
         params.push(query.userId);
       }
 
       if (query.tenantId) {
-        whereClause += `"tenantId" = $${params.length + 1} AND `;
+        whereClause += `\`tenantId\` = $${params.length + 1} AND `;
         params.push(query.tenantId);
       }
 
       if (query.action) {
-        whereClause += `"action" = $${params.length + 1} AND `;
+        whereClause += `\`action\` = $${params.length + 1} AND `;
         params.push(query.action);
       }
 
       if (query.resource) {
-        whereClause += `"resource" = $${params.length + 1} AND `;
+        whereClause += `\`resource\` = $${params.length + 1} AND `;
         params.push(query.resource);
       }
 
       if (query.resourceId) {
-        whereClause += `"resourceId" = $${params.length + 1} AND `;
+        whereClause += `\`resourceId\` = $${params.length + 1} AND `;
         params.push(query.resourceId);
       }
 
       if (query.startDate) {
-        whereClause += `"timestamp" >= $${params.length + 1} AND `;
+        whereClause += `\`timestamp\` >= $${params.length + 1} AND `;
         params.push(query.startDate);
       }
 
       if (query.endDate) {
-        whereClause += `"timestamp" <= $${params.length + 1} AND `;
+        whereClause += `\`timestamp\` <= $${params.length + 1} AND `;
         params.push(query.endDate);
       }
 
@@ -167,7 +201,7 @@ export class AuditLogService {
       }
 
       // 获取总数
-      const countQuery = `SELECT COUNT(*) FROM "AuditLog" ${whereClause}`;
+      const countQuery = `SELECT COUNT(*) FROM \`audit_logs\` ${whereClause}`;
       const countResult: Array<{ count: string }> =
         await this.prisma.$queryRawUnsafe(countQuery, ...params);
       const total = parseInt(countResult[0]?.count || '0', 10);
@@ -175,10 +209,10 @@ export class AuditLogService {
       // 获取数据
       const dataQuery = `
         SELECT al.*, u.username, u.email
-        FROM "AuditLog" al
-        LEFT JOIN "User" u ON al."userId" = u.id
+        FROM \`audit_logs\` al
+        LEFT JOIN \`users\` u ON al.\`userId\` = u.id
         ${whereClause}
-        ORDER BY al."timestamp" DESC
+        ORDER BY al.\`timestamp\` DESC
         LIMIT ${take} OFFSET ${skip}
       `;
       const items = await this.prisma.$queryRawUnsafe(dataQuery, ...params);

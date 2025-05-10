@@ -32,16 +32,40 @@ export class ConfigService {
    */
   private async initializeCache(): Promise<void> {
     try {
-      // 查询所有公共配置并加载到缓存中
-      const configs = await this.prisma.$queryRaw<SystemConfig[]>`
-        SELECT * FROM "SystemConfig" WHERE "isPublic" = true
-      `;
-
-      for (const config of configs) {
-        this.setCache(config.key, config.value);
+      // 检查表是否存在，如果不存在则尝试创建
+      try {
+        await this.prisma.$executeRaw`
+          CREATE TABLE IF NOT EXISTS \`system_configs\` (
+            \`id\` VARCHAR(36) NOT NULL DEFAULT (UUID()),
+            \`key\` VARCHAR(100) NOT NULL,
+            \`value\` TEXT NOT NULL,
+            \`description\` TEXT,
+            \`isPublic\` BOOLEAN NOT NULL DEFAULT true,
+            \`group\` VARCHAR(50) NOT NULL DEFAULT 'system',
+            \`createdAt\` DATETIME NOT NULL,
+            \`updatedAt\` DATETIME NOT NULL,
+            PRIMARY KEY (\`id\`),
+            UNIQUE INDEX \`system_configs_key_key\` (\`key\`)
+          )
+        `;
+      } catch (error) {
+        this.logger.warn(`创建系统配置表失败: ${error.message}`);
       }
 
-      this.logger.log(`已加载 ${configs.length} 条系统配置到缓存`);
+      // 查询所有公共配置并加载到缓存中
+      try {
+        const configs = await this.prisma.$queryRaw<SystemConfig[]>`
+          SELECT * FROM \`system_configs\` WHERE \`isPublic\` = true
+        `;
+
+        for (const config of configs) {
+          this.setCache(config.key, config.value);
+        }
+
+        this.logger.log(`已加载 ${configs.length} 条系统配置到缓存`);
+      } catch (error) {
+        this.logger.warn(`加载系统配置失败，可能是表不存在: ${error.message}`);
+      }
     } catch (error) {
       this.logger.error('初始化系统配置缓存失败', error.stack);
     }
@@ -89,9 +113,29 @@ export class ConfigService {
     const { description, isPublic = true, group = 'system' } = options;
 
     try {
+      // 检查表是否存在，如果不存在则创建
+      try {
+        await this.prisma.$executeRaw`
+          CREATE TABLE IF NOT EXISTS \`system_configs\` (
+            \`id\` VARCHAR(36) NOT NULL DEFAULT (UUID()),
+            \`key\` VARCHAR(100) NOT NULL,
+            \`value\` TEXT NOT NULL,
+            \`description\` TEXT,
+            \`isPublic\` BOOLEAN NOT NULL DEFAULT true,
+            \`group\` VARCHAR(50) NOT NULL DEFAULT 'system',
+            \`createdAt\` DATETIME NOT NULL,
+            \`updatedAt\` DATETIME NOT NULL,
+            PRIMARY KEY (\`id\`),
+            UNIQUE INDEX \`system_configs_key_key\` (\`key\`)
+          )
+        `;
+      } catch (error) {
+        this.logger.warn(`创建系统配置表失败: ${error.message}`);
+      }
+
       // 检查配置是否存在
       const exists = await this.prisma.$queryRaw<any[]>`
-        SELECT COUNT(*) as count FROM "SystemConfig" WHERE key = ${key}
+        SELECT COUNT(*) as count FROM \`system_configs\` WHERE \`key\` = ${key}
       `;
 
       const count = parseInt(exists[0]?.count || '0', 10);
@@ -99,20 +143,20 @@ export class ConfigService {
       if (count > 0) {
         // 更新现有配置
         await this.prisma.$executeRaw`
-          UPDATE "SystemConfig"
+          UPDATE \`system_configs\`
           SET
-            "value" = ${JSON.stringify(value)},
-            "description" = ${description || null},
-            "isPublic" = ${isPublic},
-            "group" = ${group},
-            "updatedAt" = ${new Date()}
-          WHERE key = ${key}
+            \`value\` = ${JSON.stringify(value)},
+            \`description\` = ${description || null},
+            \`isPublic\` = ${isPublic},
+            \`group\` = ${group},
+            \`updatedAt\` = ${new Date()}
+          WHERE \`key\` = ${key}
         `;
       } else {
         // 创建新配置
         await this.prisma.$executeRaw`
-          INSERT INTO "SystemConfig"
-          ("key", "value", "description", "isPublic", "group", "createdAt", "updatedAt")
+          INSERT INTO \`system_configs\`
+          (\`key\`, \`value\`, \`description\`, \`isPublic\`, \`group\`, \`createdAt\`, \`updatedAt\`)
           VALUES
           (${key}, ${JSON.stringify(value)}, ${description || null}, ${isPublic}, ${group}, ${new Date()}, ${new Date()})
         `;
@@ -150,7 +194,7 @@ export class ConfigService {
     try {
       // 从数据库中查找
       const result = await this.prisma.$queryRaw<SystemConfig[]>`
-        SELECT * FROM "SystemConfig" WHERE key = ${key}
+        SELECT * FROM \`system_configs\` WHERE \`key\` = ${key}
       `;
 
       if (result.length === 0) {
@@ -181,7 +225,7 @@ export class ConfigService {
     try {
       // 从数据库中删除
       await this.prisma.$executeRaw`
-        DELETE FROM "SystemConfig" WHERE key = ${key}
+        DELETE FROM \`system_configs\` WHERE \`key\` = ${key}
       `;
 
       // 从缓存中删除
@@ -207,10 +251,10 @@ export class ConfigService {
     includePrivate = false,
   ): Promise<SystemConfig[]> {
     try {
-      let query = `SELECT * FROM "SystemConfig" WHERE "group" = ${group}`;
+      let query = `SELECT * FROM \`system_configs\` WHERE \`group\` = ${group}`;
 
       if (!includePrivate) {
-        query += ` AND "isPublic" = true`;
+        query += ` AND \`isPublic\` = true`;
       }
 
       const configs = await this.prisma.$queryRawUnsafe<SystemConfig[]>(query);
@@ -231,10 +275,10 @@ export class ConfigService {
     includePrivate = false,
   ): Promise<Record<string, SystemConfig[]>> {
     try {
-      let query = `SELECT * FROM "SystemConfig"`;
+      let query = `SELECT * FROM \`system_configs\``;
 
       if (!includePrivate) {
-        query += ` WHERE "isPublic" = true`;
+        query += ` WHERE \`isPublic\` = true`;
       }
 
       const configs = await this.prisma.$queryRawUnsafe<SystemConfig[]>(query);
