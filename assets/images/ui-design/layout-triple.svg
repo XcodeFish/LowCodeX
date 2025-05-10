@@ -1,0 +1,22 @@
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 布局框架 -->
+  <rect x="10" y="10" width="580" height="280" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+
+  <!-- 顶部工具栏 -->
+  <rect x="10" y="10" width="580" height="40" rx="4" fill="#1890FF" />
+  <text x="300" y="35" font-family="Arial" font-size="16" text-anchor="middle" fill="white">设计器工具栏</text>
+
+  <!-- 左侧面板 -->
+  <rect x="10" y="50" width="140" height="240" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="100" font-family="Arial" font-size="14" text-anchor="middle" fill="#595959">组件面板</text>
+  <text x="80" y="120" font-family="Arial" font-size="14" text-anchor="middle" fill="#595959">(工具面板)</text>
+
+  <!-- 中间画布 -->
+  <rect x="150" y="50" width="300" height="240" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="300" y="170" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">设计画布</text>
+
+  <!-- 右侧面板 -->
+  <rect x="450" y="50" width="140" height="240" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="100" font-family="Arial" font-size="14" text-anchor="middle" fill="#595959">属性面板</text>
+  <text x="520" y="120" font-family="Arial" font-size="14" text-anchor="middle" fill="#595959">(配置面板)</text>
+</svg>

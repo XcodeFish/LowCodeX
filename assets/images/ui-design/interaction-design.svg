@@ -1,0 +1,64 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 标题 -->
+  <text x="300" y="30" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#262626">交互设计</text>
+
+  <!-- 分隔线 -->
+  <line x1="50" y1="45" x2="550" y2="45" stroke="#D9D9D9" stroke-width="2" />
+
+  <!-- 拖拽交互 -->
+  <rect x="50" y="60" width="500" height="120" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+  <text x="300" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#262626">拖拽交互</text>
+
+  <!-- 拖拽源 -->
+  <rect x="70" y="90" width="120" height="80" rx="4" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="130" y="115" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">组件面板</text>
+
+  <rect x="90" y="125" width="80" height="30" rx="2" fill="#E6F7FF" stroke="#1890FF" stroke-width="1" />
+  <text x="130" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#1890FF">按钮组件</text>
+
+  <!-- 拖拽箭头 -->
+  <line x1="200" y1="130" x2="280" y2="130" stroke="#1890FF" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="275,125 285,130 275,135" fill="#1890FF" />
+
+  <!-- 拖拽目标 -->
+  <rect x="300" y="90" width="220" height="80" rx="4" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="410" y="115" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">设计画布</text>
+
+  <rect x="370" y="125" width="80" height="30" rx="2" fill="#E6F7FF" stroke="#1890FF" stroke-width="1" stroke-dasharray="3,2" />
+  <text x="410" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#1890FF">预览位置</text>
+
+  <!-- 状态反馈 -->
+  <rect x="50" y="190" width="500" height="100" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+  <text x="300" y="210" font-family="Arial" font-size="14" text-anchor="middle" fill="#262626">状态反馈</text>
+
+  <!-- 默认状态 -->
+  <rect x="70" y="225" width="120" height="50" rx="4" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="130" y="255" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">默认状态</text>
+
+  <!-- 悬停状态 -->
+  <rect x="210" y="225" width="120" height="50" rx="4" fill="#E6F7FF" stroke="#91D5FF" stroke-width="1" />
+  <text x="270" y="255" font-family="Arial" font-size="12" text-anchor="middle" fill="#1890FF">悬停状态</text>
+
+  <!-- 选中状态 -->
+  <rect x="350" y="225" width="120" height="50" rx="4" fill="#E6F7FF" stroke="#1890FF" stroke-width="2" />
+  <text x="410" y="255" font-family="Arial" font-size="12" text-anchor="middle" fill="#1890FF">选中状态</text>
+
+  <!-- 消息提示 -->
+  <rect x="50" y="300" width="500" height="90" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+  <text x="300" y="320" font-family="Arial" font-size="14" text-anchor="middle" fill="#262626">消息提示</text>
+
+  <!-- 成功消息 -->
+  <rect x="70" y="335" width="150" height="40" rx="4" fill="#F6FFED" stroke="#B7EB8F" stroke-width="1" />
+  <circle cx="85" cy="355" r="8" fill="#52C41A" />
+  <text x="155" y="355" font-family="Arial" font-size="12" text-anchor="middle" fill="#389E0D">操作成功</text>
+
+  <!-- 警告消息 -->
+  <rect x="240" y="335" width="150" height="40" rx="4" fill="#FFFBE6" stroke="#FFE58F" stroke-width="1" />
+  <circle cx="255" cy="355" r="8" fill="#FAAD14" />
+  <text x="325" y="355" font-family="Arial" font-size="12" text-anchor="middle" fill="#D48806">警告提示</text>
+
+  <!-- 错误消息 -->
+  <rect x="410" y="335" width="150" height="40" rx="4" fill="#FFF1F0" stroke="#FFA39E" stroke-width="1" />
+  <circle cx="425" cy="355" r="8" fill="#F5222D" />
+  <text x="495" y="355" font-family="Arial" font-size="12" text-anchor="middle" fill="#CF1322">操作失败</text>
+</svg>

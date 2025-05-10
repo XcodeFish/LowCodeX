@@ -1,0 +1,129 @@
+<svg width="600" height="380" xmlns="http://www.w3.org/2000/svg">
+  <!-- 整体框架 -->
+  <rect x="10" y="10" width="580" height="360" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+
+  <!-- 顶部工具栏 -->
+  <rect x="10" y="10" width="580" height="40" rx="4" fill="#1890FF" />
+  <text x="300" y="35" font-family="Arial" font-size="16" text-anchor="middle" fill="white">页面设计器工具栏</text>
+
+  <!-- 左侧组件面板 -->
+  <rect x="10" y="50" width="140" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <rect x="20" y="60" width="120" height="30" rx="2" fill="#E6F7FF" />
+  <text x="80" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#1890FF">组件库</text>
+
+  <!-- 组件分类 -->
+  <rect x="20" y="95" width="120" height="25" rx="2" fill="#F5F5F5" />
+  <text x="80" y="112" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">布局组件</text>
+
+  <!-- 布局组件列表 -->
+  <rect x="25" y="125" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="140" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">容器</text>
+
+  <rect x="25" y="152" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="167" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">行</text>
+
+  <rect x="25" y="179" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="194" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">列</text>
+
+  <rect x="20" y="206" width="120" height="25" rx="2" fill="#F5F5F5" />
+  <text x="80" y="223" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">数据组件</text>
+
+  <!-- 数据组件列表 -->
+  <rect x="25" y="236" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="251" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">表格</text>
+
+  <rect x="25" y="263" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="278" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">表单</text>
+
+  <rect x="25" y="290" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="305" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">卡片</text>
+
+  <rect x="25" y="317" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="332" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">图表</text>
+
+  <rect x="25" y="344" width="110" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="359" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">列表</text>
+
+  <!-- 中间设计画布 -->
+  <rect x="150" y="50" width="300" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="300" y="75" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">设计画布</text>
+
+  <!-- 页面元素 -->
+  <!-- 页头 -->
+  <rect x="160" y="90" width="280" height="40" rx="2" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="1" />
+  <text x="200" y="115" font-family="Arial" font-size="14" fill="#595959">客户管理</text>
+  <rect x="375" y="95" width="55" height="30" rx="2" fill="#1890FF" />
+  <text x="402" y="115" font-family="Arial" font-size="12" text-anchor="middle" fill="white">新增</text>
+
+  <!-- 搜索栏 -->
+  <rect x="160" y="135" width="280" height="40" rx="2" fill="#F5F5F5" stroke="#D9D9D9" stroke-width="1" />
+  <text x="190" y="160" font-family="Arial" font-size="12" fill="#595959">搜索:</text>
+  <rect x="230" y="140" width="150" height="30" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <rect x="385" y="140" width="45" height="30" rx="2" fill="#1890FF" />
+  <text x="407" y="160" font-family="Arial" font-size="12" text-anchor="middle" fill="white">搜索</text>
+
+  <!-- 表格 -->
+  <rect x="160" y="180" width="280" height="180" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+
+  <!-- 表头 -->
+  <rect x="160" y="180" width="280" height="30" rx="0" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="200" font-family="Arial" font-size="12" fill="#595959">ID</text>
+  <text x="230" y="200" font-family="Arial" font-size="12" fill="#595959">客户名称</text>
+  <text x="310" y="200" font-family="Arial" font-size="12" fill="#595959">联系人</text>
+  <text x="380" y="200" font-family="Arial" font-size="12" fill="#595959">操作</text>
+
+  <!-- 表格行 -->
+  <rect x="160" y="210" width="280" height="30" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="230" font-family="Arial" font-size="12" fill="#595959">1</text>
+  <text x="230" y="230" font-family="Arial" font-size="12" fill="#595959">ABC公司</text>
+  <text x="310" y="230" font-family="Arial" font-size="12" fill="#595959">张三</text>
+  <text x="380" y="230" font-family="Arial" font-size="12" fill="#1890FF">编辑</text>
+
+  <rect x="160" y="240" width="280" height="30" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="260" font-family="Arial" font-size="12" fill="#595959">2</text>
+  <text x="230" y="260" font-family="Arial" font-size="12" fill="#595959">XYZ科技</text>
+  <text x="310" y="260" font-family="Arial" font-size="12" fill="#595959">李四</text>
+  <text x="380" y="260" font-family="Arial" font-size="12" fill="#1890FF">编辑</text>
+
+  <rect x="160" y="270" width="280" height="30" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="290" font-family="Arial" font-size="12" fill="#595959">3</text>
+  <text x="230" y="290" font-family="Arial" font-size="12" fill="#595959">123贸易</text>
+  <text x="310" y="290" font-family="Arial" font-size="12" fill="#595959">王五</text>
+  <text x="380" y="290" font-family="Arial" font-size="12" fill="#1890FF">编辑</text>
+
+  <!-- 分页 -->
+  <rect x="160" y="300" width="280" height="30" rx="0" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="1" />
+  <text x="300" y="320" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">1/10 页</text>
+  <text x="350" y="320" font-family="Arial" font-size="12" fill="#1890FF">下一页</text>
+  <text x="230" y="320" font-family="Arial" font-size="12" fill="#1890FF">上一页</text>
+
+  <!-- 右侧属性面板 -->
+  <rect x="450" y="50" width="140" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <rect x="460" y="60" width="120" height="30" rx="2" fill="#E6F7FF" />
+  <text x="520" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#1890FF">属性配置</text>
+
+  <!-- 属性面板内容 - 表格属性 -->
+  <text x="470" y="110" font-family="Arial" font-size="12" fill="#595959">组件类型:</text>
+  <rect x="470" y="115" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="130" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">表格</text>
+
+  <text x="470" y="150" font-family="Arial" font-size="12" fill="#595959">数据源:</text>
+  <rect x="470" y="155" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="170" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">客户实体</text>
+
+  <text x="470" y="190" font-family="Arial" font-size="12" fill="#595959">显示字段:</text>
+  <rect x="470" y="195" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="210" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">ID,名称,联系人</text>
+
+  <text x="470" y="230" font-family="Arial" font-size="12" fill="#595959">分页大小:</text>
+  <rect x="470" y="235" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="250" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">10</text>
+
+  <text x="470" y="270" font-family="Arial" font-size="12" fill="#595959">排序字段:</text>
+  <rect x="470" y="275" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="290" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">创建时间</text>
+
+  <text x="470" y="310" font-family="Arial" font-size="12" fill="#595959">操作按钮:</text>
+  <rect x="470" y="315" width="100" height="22" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="520" y="330" font-family="Arial" font-size="10" text-anchor="middle" fill="#8C8C8C">编辑,详情,删除</text>
+</svg>

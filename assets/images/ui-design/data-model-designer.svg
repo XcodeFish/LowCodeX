@@ -1,0 +1,125 @@
+<svg width="600" height="380" xmlns="http://www.w3.org/2000/svg">
+  <!-- 整体框架 -->
+  <rect x="10" y="10" width="580" height="360" rx="4" fill="#FAFAFA" stroke="#D9D9D9" stroke-width="2" />
+
+  <!-- 顶部工具栏 -->
+  <rect x="10" y="10" width="580" height="40" rx="4" fill="#1890FF" />
+  <text x="300" y="35" font-family="Arial" font-size="16" text-anchor="middle" fill="white">数据模型设计器工具栏</text>
+
+  <!-- 左侧实体面板 -->
+  <rect x="10" y="50" width="140" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <rect x="20" y="60" width="120" height="30" rx="2" fill="#E6F7FF" />
+  <text x="80" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#1890FF">实体列表</text>
+
+  <!-- 实体列表 -->
+  <rect x="20" y="100" width="120" height="30" rx="2" fill="#F5F5F5" />
+  <text x="80" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">系统实体</text>
+
+  <rect x="25" y="135" width="110" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="152" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">用户</text>
+
+  <rect x="25" y="165" width="110" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="182" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">部门</text>
+
+  <rect x="25" y="195" width="110" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="212" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">角色</text>
+
+  <rect x="20" y="230" width="120" height="30" rx="2" fill="#F5F5F5" />
+  <text x="80" y="250" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">业务实体</text>
+
+  <rect x="25" y="265" width="110" height="25" rx="2" fill="#FFF" stroke="#1890FF" stroke-width="1.5" />
+  <text x="80" y="282" font-family="Arial" font-size="12" text-anchor="middle" fill="#1890FF">客户</text>
+
+  <rect x="25" y="295" width="110" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="312" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">订单</text>
+
+  <rect x="25" y="325" width="110" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="80" y="342" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">产品</text>
+
+  <!-- 中间字段面板 -->
+  <rect x="150" y="50" width="160" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <rect x="160" y="60" width="140" height="30" rx="2" fill="#E6F7FF" />
+  <text x="230" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#1890FF">字段列表</text>
+
+  <!-- 字段列表 -->
+  <rect x="160" y="100" width="140" height="30" rx="2" fill="#F5F5F5" />
+  <text x="230" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#595959">客户实体字段</text>
+
+  <!-- 字段表格 -->
+  <rect x="160" y="135" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="152" font-family="Arial" font-size="12" fill="#595959">id</text>
+  <text x="270" y="152" font-family="Arial" font-size="12" fill="#595959">编号</text>
+
+  <rect x="160" y="160" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="177" font-family="Arial" font-size="12" fill="#595959">name</text>
+  <text x="270" y="177" font-family="Arial" font-size="12" fill="#595959">名称</text>
+
+  <rect x="160" y="185" width="140" height="25" rx="0" fill="#FFF" stroke="#1890FF" stroke-width="1.5" />
+  <text x="180" y="202" font-family="Arial" font-size="12" fill="#1890FF">contact</text>
+  <text x="270" y="202" font-family="Arial" font-size="12" fill="#1890FF">联系人</text>
+
+  <rect x="160" y="210" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="227" font-family="Arial" font-size="12" fill="#595959">phone</text>
+  <text x="270" y="227" font-family="Arial" font-size="12" fill="#595959">电话</text>
+
+  <rect x="160" y="235" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="252" font-family="Arial" font-size="12" fill="#595959">email</text>
+  <text x="270" y="252" font-family="Arial" font-size="12" fill="#595959">邮箱</text>
+
+  <rect x="160" y="260" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="277" font-family="Arial" font-size="12" fill="#595959">address</text>
+  <text x="270" y="277" font-family="Arial" font-size="12" fill="#595959">地址</text>
+
+  <rect x="160" y="285" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="302" font-family="Arial" font-size="12" fill="#595959">type</text>
+  <text x="270" y="302" font-family="Arial" font-size="12" fill="#595959">类型</text>
+
+  <rect x="160" y="310" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="327" font-family="Arial" font-size="12" fill="#595959">created_at</text>
+  <text x="270" y="327" font-family="Arial" font-size="12" fill="#595959">创建时间</text>
+
+  <rect x="160" y="335" width="140" height="25" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="180" y="352" font-family="Arial" font-size="12" fill="#595959">updated_at</text>
+  <text x="270" y="352" font-family="Arial" font-size="12" fill="#595959">更新时间</text>
+
+  <!-- 右侧设计面板 -->
+  <rect x="310" y="50" width="280" height="320" rx="0" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+
+  <!-- 设计面板标题 -->
+  <rect x="320" y="60" width="260" height="30" rx="2" fill="#E6F7FF" />
+  <text x="450" y="80" font-family="Arial" font-size="14" text-anchor="middle" fill="#1890FF">字段属性</text>
+
+  <!-- 字段属性配置 -->
+  <text x="330" y="110" font-family="Arial" font-size="12" fill="#595959">字段标识:</text>
+  <rect x="420" y="95" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="112" font-family="Arial" font-size="12" fill="#1890FF">contact</text>
+
+  <text x="330" y="140" font-family="Arial" font-size="12" fill="#595959">字段名称:</text>
+  <rect x="420" y="125" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="142" font-family="Arial" font-size="12" fill="#595959">联系人</text>
+
+  <text x="330" y="170" font-family="Arial" font-size="12" fill="#595959">字段类型:</text>
+  <rect x="420" y="155" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="172" font-family="Arial" font-size="12" fill="#595959">字符串</text>
+
+  <text x="330" y="200" font-family="Arial" font-size="12" fill="#595959">是否必填:</text>
+  <rect x="420" y="185" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="202" font-family="Arial" font-size="12" fill="#595959">是</text>
+
+  <text x="330" y="230" font-family="Arial" font-size="12" fill="#595959">最大长度:</text>
+  <rect x="420" y="215" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="232" font-family="Arial" font-size="12" fill="#595959">50</text>
+
+  <text x="330" y="260" font-family="Arial" font-size="12" fill="#595959">验证规则:</text>
+  <rect x="420" y="245" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="262" font-family="Arial" font-size="12" fill="#595959">无</text>
+
+  <text x="330" y="290" font-family="Arial" font-size="12" fill="#595959">默认值:</text>
+  <rect x="420" y="275" width="150" height="25" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="292" font-family="Arial" font-size="12" fill="#595959">空</text>
+
+  <text x="330" y="320" font-family="Arial" font-size="12" fill="#595959">描述:</text>
+  <rect x="420" y="305" width="150" height="55" rx="2" fill="#FFF" stroke="#D9D9D9" stroke-width="1" />
+  <text x="430" y="322" font-family="Arial" font-size="12" fill="#595959">客户的主要联系人</text>
+  <text x="430" y="342" font-family="Arial" font-size="12" fill="#595959">信息</text>
+</svg>

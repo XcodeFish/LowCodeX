@@ -1,0 +1,25 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="580" height="40" rx="4" fill="#262626" />
+  <text x="300" y="35" font-family="Arial" font-size="16" text-anchor="middle" fill="white">标题文字 #262626</text>
+
+  <rect x="10" y="60" width="580" height="40" rx="4" fill="#595959" />
+  <text x="300" y="85" font-family="Arial" font-size="16" text-anchor="middle" fill="white">主要文字 #595959</text>
+
+  <rect x="10" y="110" width="580" height="40" rx="4" fill="#8C8C8C" />
+  <text x="300" y="135" font-family="Arial" font-size="16" text-anchor="middle" fill="white">次要文字 #8C8C8C</text>
+
+  <rect x="10" y="160" width="580" height="40" rx="4" fill="#BFBFBF" />
+  <text x="300" y="185" font-family="Arial" font-size="16" text-anchor="middle" fill="white">辅助文字 #BFBFBF</text>
+
+  <rect x="10" y="210" width="580" height="40" rx="4" fill="#D9D9D9" stroke="#8C8C8C" stroke-width="1" />
+  <text x="300" y="235" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">边框色 #D9D9D9</text>
+
+  <rect x="10" y="260" width="580" height="40" rx="4" fill="#F0F0F0" stroke="#8C8C8C" stroke-width="1" />
+  <text x="300" y="285" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">分割线 #F0F0F0</text>
+
+  <rect x="10" y="310" width="580" height="40" rx="4" fill="#F5F5F5" stroke="#8C8C8C" stroke-width="1" />
+  <text x="300" y="335" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">背景色 #F5F5F5</text>
+
+  <rect x="10" y="360" width="580" height="40" rx="4" fill="#FAFAFA" stroke="#8C8C8C" stroke-width="1" />
+  <text x="300" y="385" font-family="Arial" font-size="16" text-anchor="middle" fill="#595959">表格头部 #FAFAFA</text>
+</svg>
