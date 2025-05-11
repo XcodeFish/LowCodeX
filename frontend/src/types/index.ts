@@ -1,23 +1,16 @@
-// 通用响应类型
-export interface ApiResponse<T = any> {
-  code: number;
-  message: string;
-  data: T;
-}
-
-// 分页请求参数
-export interface PaginationParams {
-  page: number;
-  pageSize: number;
-}
-
-// 分页响应数据
-export interface PaginationResult<T> {
-  list: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-}
+// 从constants中重新导出API相关类型，保持向后兼容
+export type {
+  ApiResponse,
+  PaginationData,
+  PaginationParams,
+  BaseEntity,
+  ApiData,
+  ApiListResponse,
+  ApiItemResponse,
+  ApiClient,
+  ApiError
+} from '../constants/api';
+export { ApiCode } from '../constants/api';
 
 // 用户信息类型
 export interface User {

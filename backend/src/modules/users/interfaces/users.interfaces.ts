@@ -48,7 +48,8 @@ export interface Permission {
 }
 
 // 用户相关类型定义
-export interface UserWithRelations extends User {
+// UserWithRelations用于API响应，出于安全考虑，不包含password字段
+export interface UserWithRelations extends Omit<User, 'password'> {
   roles?: RoleWithRelations[];
 }
 

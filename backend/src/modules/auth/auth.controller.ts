@@ -9,6 +9,8 @@ import {
   HttpStatus,
   Res,
   UnauthorizedException,
+  Logger,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -27,6 +29,8 @@ import { LoginResponse } from './interfaces';
 @ApiTags('认证')
 @Controller('auth')
 export class AuthController {
+  private readonly logger = new Logger(AuthController.name);
+
   constructor(private readonly authService: AuthService) {}
 
   @Public()
@@ -62,7 +66,7 @@ export class AuthController {
     return {
       accessToken: result.accessToken,
       expiresIn: result.expiresIn,
-      user: user,
+      user: result.user, // 使用result.user包含更完整的信息
     };
   }
 
@@ -96,7 +100,7 @@ export class AuthController {
     return this.authService.refreshToken({ refreshToken: token });
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Public()
   @Post('logout')
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -106,8 +110,16 @@ export class AuthController {
     // 清除刷新令牌cookie
     res.clearCookie('refreshToken');
 
-    // 使当前访问令牌失效
-    await this.authService.logout(req.user.id);
+    // 检查用户是否已登录
+    if (req.user && req.user.id) {
+      try {
+        // 使当前访问令牌失效
+        await this.authService.logout(req.user.id);
+      } catch (error) {
+        // 记录错误但不抛出异常，确保总是能退出
+        console.error('Logout error:', error);
+      }
+    }
 
     return { success: true, message: '退出成功' };
   }
@@ -118,6 +130,28 @@ export class AuthController {
   @ApiOperation({ summary: '获取当前用户信息' })
   @ApiResponse({ status: 200, description: '获取成功' })
   async getProfile(@Req() req: any) {
-    return this.authService.getProfile(req.user.id);
+    this.logger.log(`获取用户资料，用户ID: ${req.user?.id || '未知'}`);
+
+    // 检查用户ID是否存在
+    if (!req.user || !req.user.id) {
+      this.logger.error('无法获取用户资料：请求中缺少用户ID');
+      throw new UnauthorizedException('认证信息无效，请重新登录');
+    }
+
+    try {
+      return await this.authService.getProfile(req.user.id);
+    } catch (error) {
+      this.logger.error(`获取用户资料失败: ${error.message}`, error.stack);
+
+      // 重新抛出业务相关异常，否则返回500错误
+      if (
+        error.name === 'NotFoundException' ||
+        error.name === 'UnauthorizedException'
+      ) {
+        throw error;
+      }
+
+      throw new InternalServerErrorException('获取用户资料失败，请稍后再试');
+    }
   }
 }

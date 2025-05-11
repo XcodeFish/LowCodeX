@@ -35,14 +35,16 @@ export class AuthService {
       this.configService.get('REFRESH_TOKEN_EXPIRES_IN') || 2592000; // 默认30天
   }
 
-  // 验证用户名和密码
+  /**
+   * 验证用户
+   */
   async validateUser(
     username: string,
     password: string,
   ): Promise<UserWithRelations | null> {
     this.logger.log(`正在验证用户: ${username}`);
 
-    // 查找用户
+    // 查找用户 - 注意这里返回的是包含password的完整用户对象
     const user = await this.usersService.findByUsername(username);
 
     if (!user) {
@@ -50,8 +52,11 @@ export class AuthService {
       return null;
     }
 
-    // 验证密码
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    // 验证密码 - 使用类型断言避免TypeScript错误
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      (user as any).password,
+    );
 
     if (!isPasswordValid) {
       this.logger.warn(`密码验证失败: ${username}`);
@@ -59,8 +64,18 @@ export class AuthService {
     }
 
     // 返回用户（排除密码）
-    const { password: _, ...result } = user;
-    return result as unknown as UserWithRelations;
+    const { password: _, ...result } = user as any;
+
+    // 额外检查确保password被删除
+    if ('password' in result) {
+      this.logger.warn(`警告：validateUser返回结果中仍包含password字段`);
+      delete (result as any).password;
+    }
+
+    this.logger.debug(
+      `validateUser返回字段: ${Object.keys(result).join(', ')}`,
+    );
+    return result as UserWithRelations;
   }
 
   /**
@@ -99,7 +114,7 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     this.logger.log(`尝试登录: ${loginDto.username}`);
 
-    // 查找用户
+    // 查找用户 - 包含password字段的完整用户对象
     const user = await this.usersService.findByUsername(loginDto.username);
     if (!user) {
       throw new UnauthorizedException('用户名或密码错误');
@@ -110,10 +125,10 @@ export class AuthService {
       throw new UnauthorizedException('用户已被禁用，请联系管理员');
     }
 
-    // 验证密码
+    // 验证密码 - 使用类型断言避免TypeScript错误
     const isPasswordValid = await bcrypt.compare(
       loginDto.password,
-      user.password,
+      (user as any).password,
     );
     if (!isPasswordValid) {
       throw new UnauthorizedException('用户名或密码错误');
@@ -125,8 +140,24 @@ export class AuthService {
     // 生成令牌
     const tokens = this.generateTokens(user.id, user.username, user.tenantId);
 
-    // 排除密码字段
-    const { password: _, ...userWithoutPassword } = user;
+    // 排除密码字段 - 使用类型断言避免类型检查错误
+    const { password: _, ...userWithoutPassword } = user as any;
+
+    // 额外检查确保password被删除
+    if ('password' in userWithoutPassword) {
+      this.logger.warn(`警告：login返回的user对象中仍包含password字段`);
+      delete (userWithoutPassword as any).password;
+    }
+
+    // 确保avatar字段存在
+    if (!('avatar' in userWithoutPassword) && user.avatar) {
+      this.logger.warn(`警告：login返回的user对象中缺少avatar字段，尝试恢复`);
+      (userWithoutPassword as any).avatar = user.avatar;
+    }
+
+    this.logger.debug(
+      `login返回用户字段: ${Object.keys(userWithoutPassword).join(', ')}`,
+    );
 
     // 返回登录响应
     return {
@@ -180,7 +211,29 @@ export class AuthService {
   // 获取用户个人资料
   async getProfile(userId: string): Promise<UserWithRelations> {
     this.logger.log(`获取用户个人资料: ID=${userId}`);
-    return this.usersService.findOneWithRoles(userId);
+
+    // 获取用户信息
+    const user = await this.usersService.findOneWithRoles(userId);
+
+    // 显式检查确保返回数据不含密码字段且包含头像
+    this.logger.debug(`getProfile返回字段: ${Object.keys(user).join(', ')}`);
+
+    // 额外检查确保password被删除
+    if ('password' in user) {
+      this.logger.warn(
+        `警告：getProfile返回结果中仍包含password字段，进行删除`,
+      );
+      const { password: _, ...userWithoutPassword } = user as any;
+      return userWithoutPassword;
+    }
+
+    // 确保avatar字段存在
+    if (!('avatar' in user) && user.avatar !== undefined) {
+      this.logger.warn(`警告：getProfile返回结果中缺少avatar字段，尝试恢复`);
+      (user as any).avatar = user.avatar;
+    }
+
+    return user;
   }
 
   /**

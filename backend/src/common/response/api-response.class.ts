@@ -36,11 +36,11 @@ export class ApiResponse<T = any> {
    * @param data 数据
    * @returns ApiResponse
    */
-  static success<T>(data: T = null): ApiResponse<T> {
+  static success<T = null>(data?: T): ApiResponse<T> {
     return new ApiResponse<T>(
       ApiCode.SUCCESS,
       ApiCodeMessage[ApiCode.SUCCESS],
-      data,
+      data || null,
     );
   }
 
@@ -50,11 +50,11 @@ export class ApiResponse<T = any> {
    * @param data 数据
    * @returns ApiResponse
    */
-  static successWithMessage<T>(
+  static successWithMessage<T = null>(
     message: string,
-    data: T = null,
+    data?: T,
   ): ApiResponse<T> {
-    return new ApiResponse<T>(ApiCode.SUCCESS, message, data);
+    return new ApiResponse<T>(ApiCode.SUCCESS, message, data || null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class ApiResponse<T = any> {
    * @param message 错误消息
    * @returns ApiResponse
    */
-  static error<T>(code: number, message: string): ApiResponse<T> {
+  static error<T = null>(code: number, message: string): ApiResponse<T> {
     return new ApiResponse<T>(code, message, null);
   }
 
@@ -72,7 +72,7 @@ export class ApiResponse<T = any> {
    * @param apiCode API状态码枚举
    * @returns ApiResponse
    */
-  static errorWithCode<T>(apiCode: ApiCode): ApiResponse<T> {
+  static errorWithCode<T = null>(apiCode: ApiCode): ApiResponse<T> {
     return new ApiResponse<T>(apiCode, ApiCodeMessage[apiCode], null);
   }
 
@@ -82,7 +82,7 @@ export class ApiResponse<T = any> {
    * @param message 错误消息
    * @returns ApiResponse
    */
-  static errorWithCodeAndMessage<T>(
+  static errorWithCodeAndMessage<T = null>(
     apiCode: ApiCode,
     message: string,
   ): ApiResponse<T> {
@@ -94,7 +94,7 @@ export class ApiResponse<T = any> {
    * @param message 错误消息
    * @returns ApiResponse
    */
-  static badRequest<T>(message: string): ApiResponse<T> {
+  static badRequest<T = null>(message: string): ApiResponse<T> {
     return ApiResponse.errorWithCodeAndMessage(ApiCode.BAD_REQUEST, message);
   }
 
@@ -102,7 +102,7 @@ export class ApiResponse<T = any> {
    * 未授权
    * @returns ApiResponse
    */
-  static unauthorized<T>(): ApiResponse<T> {
+  static unauthorized<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.UNAUTHORIZED);
   }
 
@@ -110,7 +110,7 @@ export class ApiResponse<T = any> {
    * 权限不足
    * @returns ApiResponse
    */
-  static forbidden<T>(): ApiResponse<T> {
+  static forbidden<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.FORBIDDEN);
   }
 
@@ -118,7 +118,7 @@ export class ApiResponse<T = any> {
    * 资源不存在
    * @returns ApiResponse
    */
-  static notFound<T>(): ApiResponse<T> {
+  static notFound<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.NOT_FOUND);
   }
 
@@ -127,7 +127,7 @@ export class ApiResponse<T = any> {
    * @param message 错误消息
    * @returns ApiResponse
    */
-  static notFoundWithMessage<T>(message: string): ApiResponse<T> {
+  static notFoundWithMessage<T = null>(message: string): ApiResponse<T> {
     return ApiResponse.errorWithCodeAndMessage(ApiCode.NOT_FOUND, message);
   }
 
@@ -136,7 +136,7 @@ export class ApiResponse<T = any> {
    * @param message 错误消息
    * @returns ApiResponse
    */
-  static conflict<T>(message: string): ApiResponse<T> {
+  static conflict<T = null>(message: string): ApiResponse<T> {
     return ApiResponse.errorWithCodeAndMessage(ApiCode.CONFLICT, message);
   }
 
@@ -144,7 +144,7 @@ export class ApiResponse<T = any> {
    * 请求过于频繁
    * @returns ApiResponse
    */
-  static tooManyRequests<T>(): ApiResponse<T> {
+  static tooManyRequests<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.TOO_MANY_REQUESTS);
   }
 
@@ -152,7 +152,7 @@ export class ApiResponse<T = any> {
    * 服务器内部错误
    * @returns ApiResponse
    */
-  static internalError<T>(): ApiResponse<T> {
+  static internalError<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.INTERNAL_ERROR);
   }
 
@@ -160,7 +160,7 @@ export class ApiResponse<T = any> {
    * 服务不可用
    * @returns ApiResponse
    */
-  static serviceUnavailable<T>(): ApiResponse<T> {
+  static serviceUnavailable<T = null>(): ApiResponse<T> {
     return ApiResponse.errorWithCode(ApiCode.SERVICE_UNAVAILABLE);
   }
 }

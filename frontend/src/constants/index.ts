@@ -10,15 +10,18 @@ export const STORAGE_KEYS = {
   REMEMBER_ME: 'rememberMe',
 };
 
-// 请求状态码
+// 导入API状态码枚举
+import { ApiCode } from './api';
+
+// 兼容旧的HTTP_STATUS常量对象（使用ApiCode枚举的值）
 export const HTTP_STATUS = {
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  SERVER_ERROR: 500,
+  OK: ApiCode.SUCCESS, // 将OK映射到SUCCESS
+  CREATED: 201, // 保留原有的CREATED
+  BAD_REQUEST: ApiCode.BAD_REQUEST,
+  UNAUTHORIZED: ApiCode.UNAUTHORIZED,
+  FORBIDDEN: ApiCode.FORBIDDEN,
+  NOT_FOUND: ApiCode.NOT_FOUND,
+  SERVER_ERROR: ApiCode.INTERNAL_ERROR, // 将SERVER_ERROR映射到INTERNAL_ERROR
 };
 
 // 分页默认参数
@@ -56,3 +59,6 @@ export const THEME_COLORS = {
   WARNING: '#faad14',
   ERROR: '#f5222d',
 };
+
+// 导出API相关常量和类型
+export * from './api';

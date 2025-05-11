@@ -64,11 +64,7 @@ import { configModules } from './config';
       useClass: GlobalExceptionFilter,
     },
 
-    // 全局拦截器
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: TransformInterceptor,
-    },
+    // 全局日志拦截器
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
@@ -86,10 +82,16 @@ import { configModules } from './config';
       useClass: JwtAuthGuard,
     },
 
-    // 全局API响应拦截器
+    // 全局API响应拦截器 - 先处理业务数据
     {
       provide: APP_INTERCEPTOR,
       useClass: ApiResponseInterceptor,
+    },
+
+    // 全局标准化拦截器 - 最终规范化响应格式
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
     },
 
     // 全局API异常过滤器

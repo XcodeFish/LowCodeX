@@ -160,6 +160,19 @@ export class UsersService {
       // 获取用户列表
       const users = await this.prisma.user.findMany({
         where,
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          password: true, // 会在mapper函数中移除
+          name: true,
+          avatar: true, // 确保包含头像
+          status: true,
+          tenantId: true,
+          createdAt: true,
+          updatedAt: true,
+          lastLoginAt: true,
+        },
         skip,
         take: limit,
         orderBy: {
@@ -216,48 +229,115 @@ export class UsersService {
   async findOneWithRoles(id: string): Promise<UserWithRelations> {
     this.logger.log(`正在查询用户ID: ${id}`);
 
-    const user = await this.prisma.user.findUnique({
-      where: { id },
-    });
-
-    if (!user) {
-      throw new NotFoundException(`未找到ID为 ${id} 的用户`);
+    // 验证ID参数
+    if (!id) {
+      this.logger.error('查询用户失败: 缺少用户ID');
+      throw new BadRequestException('用户ID不能为空');
     }
 
-    // 获取用户的角色
-    const roles = await this.prisma.$queryRaw`
-      SELECT r.*
-      FROM \`roles\` r
-      JOIN \`_userroles\` ur ON r.id = ur.B
-      WHERE ur.A = ${user.id}
-    `;
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          password: true, // 会在后面过滤掉
+          name: true,
+          avatar: true, // 确保选择avatar字段
+          status: true,
+          tenantId: true,
+          createdAt: true,
+          updatedAt: true,
+          lastLoginAt: true,
+        },
+      });
 
-    // 为角色获取权限
-    const rolesWithPermissions = await Promise.all(
-      (roles as any[]).map(async (role) => {
-        const permissions = await this.prisma.$queryRaw`
-          SELECT p.*
-          FROM \`permissions\` p
-          JOIN \`_rolepermissions\` rp ON p.id = rp.B
-          WHERE rp.A = ${role.id}
-        `;
-        return { ...role, permissions };
-      }),
-    );
+      if (!user) {
+        this.logger.warn(`未找到ID为 ${id} 的用户`);
+        throw new NotFoundException(`未找到ID为 ${id} 的用户`);
+      }
 
-    // 转换为期望的响应格式
-    return this.mapToUserWithRelations({
-      ...user,
-      roles: rolesWithPermissions,
-    } as any);
+      // 获取用户的角色
+      const roles = await this.prisma.$queryRaw`
+        SELECT r.*
+        FROM \`roles\` r
+        JOIN \`_userroles\` ur ON r.id = ur.B
+        WHERE ur.A = ${user.id}
+      `;
+
+      // 为角色获取权限
+      const rolesWithPermissions = await Promise.all(
+        (roles as any[]).map(async (role) => {
+          const permissions = await this.prisma.$queryRaw`
+            SELECT p.*
+            FROM \`permissions\` p
+            JOIN \`_rolepermissions\` rp ON p.id = rp.B
+            WHERE rp.A = ${role.id}
+          `;
+          return { ...role, permissions };
+        }),
+      );
+
+      // 转换为期望的响应格式，明确移除password字段
+      const userWithRoles = {
+        ...user,
+        roles: rolesWithPermissions,
+      };
+
+      // 显式记录移除password前的对象结构
+      this.logger.debug(
+        `用户对象转换前：${Object.keys(userWithRoles).join(', ')}`,
+      );
+
+      const result = this.mapToUserWithRelations(userWithRoles as any);
+
+      // 显式检查password是否被移除，avatar是否存在
+      this.logger.debug(`用户对象转换后：${Object.keys(result).join(', ')}`);
+      if ('password' in result) {
+        this.logger.warn(`警告：用户ID=${id}的响应中仍包含password字段`);
+        // 确保删除password字段
+        const { password, ...userWithoutPassword } = result as any;
+        return userWithoutPassword;
+      }
+
+      // 确保avatar字段存在
+      if (!('avatar' in result)) {
+        this.logger.warn(`警告：用户ID=${id}的响应中缺少avatar字段`);
+      }
+
+      return result;
+    } catch (error) {
+      // 重新抛出NotFound异常
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+
+      this.logger.error(`查询用户失败: ${error.message}`, error.stack);
+      throw new BadRequestException('查询用户信息失败，请稍后再试');
+    }
   }
 
   // 根据用户名查找用户（用于认证）
-  async findByUsername(username: string): Promise<UserWithRelations | null> {
+  async findByUsername(username: string): Promise<any> {
+    // 返回类型改为any，允许包含password字段用于认证
     this.logger.log(`正在查询用户名: ${username}`);
 
     const user = await this.prisma.user.findFirst({
       where: { username },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        password: true, // 认证需要，会在auth服务中过滤
+        name: true,
+        avatar: true, // 确保包含头像
+        status: true,
+        tenantId: true,
+        createdAt: true,
+        updatedAt: true,
+        lastLoginAt: true,
+      },
     });
 
     if (!user) {
@@ -285,11 +365,19 @@ export class UsersService {
       }),
     );
 
-    // 转换为期望的响应格式
-    return this.mapToUserWithRelations({
+    // 组合用户和角色
+    const userWithRoles = {
       ...user,
       roles: rolesWithPermissions,
-    } as any);
+    };
+
+    // 记录转换前状态
+    this.logger.debug(
+      `findByUsername转换前：${Object.keys(userWithRoles).join(', ')}`,
+    );
+
+    // 这里返回包含password的完整用户对象，由auth服务处理密码验证和过滤
+    return userWithRoles;
   }
 
   // 更新用户信息
@@ -451,20 +539,39 @@ export class UsersService {
 
   // 将Prisma用户对象映射到业务接口类型
   private mapToUserWithRelations(user: any): UserWithRelations {
+    // 为了避免类型错误，先使用any类型处理
+    const userObj = { ...user };
+
+    // 移除password字段，确保不返回给客户端
+    if (userObj.password !== undefined) {
+      delete userObj.password;
+    }
+
+    // 日志记录是否成功处理password字段
+    const passwordExistsAfterProcessing = 'password' in userObj;
+    if (passwordExistsAfterProcessing) {
+      this.logger.warn('警告：即使尝试删除后，password字段仍然存在');
+      delete userObj.password; // 再次尝试删除
+    }
+
+    // 确保avatar字段存在
+    if (user.avatar !== undefined && !('avatar' in userObj)) {
+      userObj.avatar = user.avatar;
+    }
+
     return {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      name: user.name || undefined,
-      avatar: user.avatar || undefined,
-      status: user.status,
-      tenantId: user.tenantId || undefined,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-      lastLoginAt: user.lastLoginAt,
-      roles: Array.isArray(user.roles)
-        ? user.roles.map((role) => ({
+      id: userObj.id,
+      username: userObj.username,
+      email: userObj.email,
+      name: userObj.name || undefined,
+      avatar: userObj.avatar || undefined,
+      status: userObj.status,
+      tenantId: userObj.tenantId || undefined,
+      createdAt: userObj.createdAt,
+      updatedAt: userObj.updatedAt,
+      lastLoginAt: userObj.lastLoginAt,
+      roles: Array.isArray(userObj.roles)
+        ? userObj.roles.map((role) => ({
             id: role.id,
             name: role.name,
             description: role.description || undefined,

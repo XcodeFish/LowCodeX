@@ -1,6 +1,6 @@
 import { message } from 'antd';
-import { API_BASE_URL, HTTP_STATUS, STORAGE_KEYS } from '../constants';
-import type { ApiResponse } from '../types';
+import { API_BASE_URL, HTTP_STATUS, STORAGE_KEYS, ApiCode } from '../constants';
+import type { ApiResponse } from '../constants';
 
 /**
  * 封装的请求方法
@@ -58,7 +58,7 @@ export async function request<T = any>(
     const data = await response.json();
 
     // 处理业务状态码
-    if (data.code !== HTTP_STATUS.OK) {
+    if (data.code !== ApiCode.SUCCESS) {
       message.error(data.message || '请求失败');
       throw new Error(data.message || '请求失败');
     }
