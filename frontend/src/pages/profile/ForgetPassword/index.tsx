@@ -1,10 +1,11 @@
 import React from 'react';
 import { Form, Input, Button, Card, Typography, Steps, Result } from 'antd';
-import { MailOutlined, KeyOutlined } from '@ant-design/icons';
+import {  EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useForgetPassword } from './hooks/useForgetPassword';
+import './index.scss';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const { Step } = Steps;
 
 export const ForgetPassword: React.FC = () => {
@@ -30,6 +31,7 @@ export const ForgetPassword: React.FC = () => {
           layout="vertical"
           name="forgetPassword"
           onFinish={handleSendResetEmail}
+          requiredMark={false}
         >
           <Form.Item
             name="email"
@@ -39,9 +41,10 @@ export const ForgetPassword: React.FC = () => {
             ]}
           >
             <Input
-              prefix={<MailOutlined />}
               placeholder="请输入您的注册邮箱"
               size="large"
+              className="custom-input"
+              autoComplete="off"
             />
           </Form.Item>
 
@@ -50,7 +53,7 @@ export const ForgetPassword: React.FC = () => {
               type="primary"
               htmlType="submit"
               loading={loading}
-              style={{ width: '100%' }}
+              className="form-button"
               size="large"
             >
               发送重置密码邮件
@@ -67,9 +70,10 @@ export const ForgetPassword: React.FC = () => {
           layout="vertical"
           name="verifyToken"
           onFinish={handleVerifyToken}
+          requiredMark={false}
         >
-          <div style={{ marginBottom: 24 }}>
-            我们已向 {email} 发送了重置密码邮件，请查收并输入邮件中的验证码。
+          <div className="email-notice">
+            <Text>我们已向 {email} 发送了重置密码邮件，请查收并输入邮件中的验证码。</Text>
           </div>
 
           <Form.Item
@@ -79,6 +83,8 @@ export const ForgetPassword: React.FC = () => {
             <Input
               placeholder="请输入邮件中的验证码"
               size="large"
+              className="custom-input"
+              autoComplete="off"
             />
           </Form.Item>
 
@@ -86,7 +92,7 @@ export const ForgetPassword: React.FC = () => {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ width: '100%' }}
+              className="form-button"
               size="large"
             >
               验证
@@ -103,6 +109,7 @@ export const ForgetPassword: React.FC = () => {
           layout="vertical"
           name="resetPassword"
           onFinish={handleResetPassword}
+          requiredMark={false}
         >
           <Form.Item
             name="newPassword"
@@ -112,9 +119,11 @@ export const ForgetPassword: React.FC = () => {
             ]}
           >
             <Input.Password
-              prefix={<KeyOutlined />}
               placeholder="新密码"
               size="large"
+              className="custom-input"
+              autoComplete="off"
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           </Form.Item>
 
@@ -127,9 +136,11 @@ export const ForgetPassword: React.FC = () => {
             ]}
           >
             <Input.Password
-              prefix={<KeyOutlined />}
               placeholder="确认新密码"
               size="large"
+              className="custom-input"
+              autoComplete="off"
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           </Form.Item>
 
@@ -138,7 +149,7 @@ export const ForgetPassword: React.FC = () => {
               type="primary"
               htmlType="submit"
               loading={loading}
-              style={{ width: '100%' }}
+              className="form-button"
               size="large"
             >
               重置密码
@@ -156,7 +167,7 @@ export const ForgetPassword: React.FC = () => {
           subTitle="您已成功重置密码，现在可以使用新密码登录系统。"
           extra={
             <Link to="/login">
-              <Button type="primary" size="large">
+              <Button type="primary" size="large" className="form-button">
                 返回登录
               </Button>
             </Link>
@@ -167,40 +178,38 @@ export const ForgetPassword: React.FC = () => {
   ];
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
-      background: '#f0f2f5',
-      padding: 20
-    }}>
-      <Card
-        style={{ width: 500, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-        bordered={false}
-      >
-        <div style={{ textAlign: 'center', marginBottom: 24 }}>
+    <div className="forget-password-container">
+      <Card className="forget-password-card" bordered={false}>
+        <div className="forget-password-header">
           <img
-            src="/logo.png"
+            src="/logo.svg"
             alt="LowCodeX Logo"
-            style={{ height: 64, marginBottom: 16 }}
+            className="logo"
           />
           <Title level={3}>找回密码</Title>
         </div>
 
-        <Steps
-          current={currentStep}
-          style={{ marginBottom: 32 }}
-        >
-          {steps.map(item => (
-            <Step key={item.title} title={item.title} />
-          ))}
-        </Steps>
+        <div className="step-indicator">
+          <div className="step-labels">
+            {steps.map((item, index) => (
+              <div
+                key={index}
+                className={`step-label ${currentStep === index ? 'active' : ''} ${currentStep > index ? 'completed' : ''}`}
+              >
+                <div className="step-number">{index + 1}</div>
+                <div className="step-title">{item.title}</div>
+              </div>
+            ))}
+          </div>
+          <div className="step-progress">
+            <div className="step-progress-inner" style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}></div>
+          </div>
+        </div>
 
-        <div>{steps[currentStep].content}</div>
+        <div className="step-content">{steps[currentStep].content}</div>
 
         {currentStep < 3 && (
-          <div style={{ marginTop: 24, textAlign: 'center' }}>
+          <div className="back-to-login">
             <Link to="/login">返回登录</Link>
           </div>
         )}
