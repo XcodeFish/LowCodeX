@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { usePermission } from './usePermission';
 
 /**
  * 自定义Hook: 使用本地存储
@@ -66,3 +67,5 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
 }
 
 // 可以导出更多自定义Hook
+export { usePermission }
+

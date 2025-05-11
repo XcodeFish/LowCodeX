@@ -5,3 +5,8 @@
 
 // 占位，确保文件创建成功
 export const LAYOUTS_VERSION = '1.0.0';
+
+import MainLayout from './MainLayout';
+
+export { MainLayout };
+export default MainLayout;

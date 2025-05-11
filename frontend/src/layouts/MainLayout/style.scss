@@ -1,0 +1,62 @@
+.main-layout {
+  min-height: 100vh;
+
+  .main-layout-sider {
+    .logo {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+
+      h1 {
+        margin: 0;
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .main-layout-header {
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    z-index: 1;
+
+    .trigger-button {
+      font-size: 18px;
+      margin-right: 24px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0 12px;
+
+        .username {
+          margin-left: 8px;
+          color: rgba(0, 0, 0, 0.65);
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.025);
+        }
+      }
+    }
+  }
+
+  .main-layout-content {
+    margin: 24px;
+    padding: 24px;
+    min-height: 280px;
+    border-radius: 4px;
+    overflow: auto;
+  }
+}

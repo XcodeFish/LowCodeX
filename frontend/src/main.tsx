@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import router from './router';
+import AppRouter from './router';
 import { store } from './store';
 import './styles/index.scss'
 import './index.scss'
@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConfigProvider locale={zhCN}>
-        {router}
+        <AppRouter />
       </ConfigProvider>
     </Provider>
   </React.StrictMode>,

@@ -1,3 +1,6 @@
+import * as authTypes from './auth';
+import * as userTypes from './user';
+
 // 从constants中重新导出API相关类型，保持向后兼容
 export type {
   ApiResponse,
@@ -23,3 +26,4 @@ export interface User {
 }
 
 // 可以导出更多类型
+export { authTypes, userTypes };

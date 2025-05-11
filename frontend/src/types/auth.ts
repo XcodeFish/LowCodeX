@@ -1,4 +1,4 @@
-import type { User } from './user';
+import type { UserInfo } from './user';
 // 通用响应类型
 export interface CommonResponse<T> {
   message: string;
@@ -42,7 +42,8 @@ export interface LoginResponse {
   data: {
     accessToken: string;
     expiresIn: number;
-    user: User;
+    refreshToken: string;
+    user: UserInfo;
   };
   timestamp?: string;
 }
@@ -79,7 +80,7 @@ export interface LogoutResponse {
 export interface GetUserInfoResponse {
   message: string;
   code: string | number;
-  data: User;
+  data: UserInfo;
   timestamp?: string;
 }
 

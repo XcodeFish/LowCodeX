@@ -1,0 +1,38 @@
+<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1890FF" />
+      <stop offset="100%" stop-color="#096DD9" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <feOffset dx="0" dy="1" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Logo Icon -->
+  <g transform="translate(5, 5)" filter="url(#shadow)">
+    <!-- First Block -->
+    <rect x="0" y="0" width="12" height="30" rx="2" fill="url(#logoGradient)" />
+
+    <!-- Second Block -->
+    <rect x="16" y="8" width="12" height="22" rx="2" fill="url(#logoGradient)" opacity="0.9" />
+
+    <!-- Third Block -->
+    <rect x="32" y="16" width="12" height="14" rx="2" fill="url(#logoGradient)" opacity="0.8" />
+  </g>
+
+  <!-- Text -->
+  <g transform="translate(52, 23)" fill="#0D1A26" font-family="Arial, sans-serif" font-weight="bold">
+    <text font-size="16">Low</text>
+    <text font-size="16" fill="#1890FF" x="32">Code</text>
+    <text font-size="16" x="72">X</text>
+  </g>
+</svg>

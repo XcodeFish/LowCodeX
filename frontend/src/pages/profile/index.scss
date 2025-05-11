@@ -1,0 +1,25 @@
+.profile-container{
+    padding: 24px;
+  max-width: 900px;
+  margin: 0 auto
+}
+
+.profile-avatar-section
+  {
+    text-align: center
+  }
+
+.profile-avatar
+  {
+    margin-bottom: 16px
+  }
+
+.profile-form-container
+ { flex: 1}
+
+.profile-flex-row
+{  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start
+}
