@@ -3,37 +3,25 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(120deg, #f0f5ff 0%, #e6f7ff 50%, #e6fffb 100%);
+  background: #f0f7ff;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image:
-      radial-gradient(circle at 10% 10%, rgba(49, 130, 206, 0.03) 0%, transparent 20%),
-      radial-gradient(circle at 90% 90%, rgba(49, 130, 206, 0.03) 0%, transparent 20%),
-      radial-gradient(circle at 50% 50%, rgba(49, 130, 206, 0.04) 0%, transparent 50%);
-    z-index: 0;
-  }
 }
 
 .login-card {
-  width: 380px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
-              0 30px 60px rgba(0, 0, 0, 0.05);
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
   z-index: 1;
   animation: fadeUp 0.6s ease-out;
   border: none;
+  min-height: 500px;
 
   .ant-card-body {
     padding: 0;
+    height: 100%;
   }
 
   &::after {
@@ -50,119 +38,190 @@
 .login-header {
   text-align: center;
   padding: 30px 24px 20px;
-  background: linear-gradient(180deg, rgba(240, 249, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
   position: relative;
 
   h3.ant-typography {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
-    color: #0d1a26;
+    color: #333;
     margin: 16px 0 8px;
-    letter-spacing: -0.5px;
   }
 
   .ant-typography {
-    color: #5c6b77;
+    color: #666;
     font-size: 14px;
   }
 }
 
 .login-form-container {
-  padding: 0 32px 32px;
+  padding: 0 40px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-logo {
   height: 50px;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease;
   transform-origin: center;
+}
+
+/* 自定义输入框样式 */
+.custom-input {
+  border-radius: 30px !important;
+  border: 1px solid #e0e7ff !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+  padding: 0 20px !important;
+  background-color: white !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  color: #333 !important;
+  line-height: 1.5 !important;
+  overflow: hidden !important;
 
   &:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    border-color: #1890ff !important;
+  }
+
+  &:focus {
+    border-color: #1890ff !important;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
   }
 }
 
-.ant-form-item-label > label {
-  font-weight: 500;
-  color: #5c6b77;
-  font-size: 14px;
-}
-
+/* 输入框样式 */
+.ant-input,
 .ant-input-affix-wrapper {
-  border-radius: 8px;
-  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+  border: 1px solid #e0e7ff;
   transition: all 0.3s ease;
   background: #ffffff;
-  height: 44px;
-  padding: 0 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  padding: 0 20px;
+  box-shadow: none;
+  margin-bottom: 16px;
+  width: 100%;
+  color: #333;
+  line-height: 1.5;
+  overflow: hidden;
 
   &:hover {
-    border-color: #40a9ff;
+    border-color: #1890ff;
   }
 
-  &:focus, &-focused {
+  &:focus, &.ant-input-focused, &.ant-input-affix-wrapper-focused {
     border-color: #1890ff;
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    outline: none;
   }
 
-  .ant-input {
-    background: transparent;
-    font-size: 14px;
-  }
-
-  .anticon {
-    color: #bfbfbf;
-    transition: color 0.3s;
-    font-size: 14px;
-  }
-
-  &:hover .anticon {
-    color: #8c8c8c;
+  &::placeholder {
+    color: #bbb;
+    font-size: 16px;
   }
 }
 
+/* 基础密码输入框样式 */
 .ant-input-password {
-  .ant-input {
-    height: 100%;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #1890ff;
+  }
+
+  .anticon-eye-invisible, .anticon-eye {
+    color: #c0c0c0;
   }
 }
 
+/* 自定义密码输入框样式 */
+.custom-input.ant-input-password {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 0 20px !important;
+  overflow: hidden;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+
+  .ant-input {
+    height: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #333 !important;
+    width: 100% !important;
+    line-height: 1.5 !important;
+  }
+
+  .ant-input-suffix {
+    margin: 0 !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* 修改聚焦效果 */
+.ant-input-affix-wrapper-focused,
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: #1890ff !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+  outline: none !important;
+}
+
+/* 密码输入框整体聚焦效果 */
+.custom-input.ant-input-affix-wrapper-focused {
+  border-color: #1890ff !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+/* 确保表单项之间的空间 */
 .ant-form-item {
   margin-bottom: 20px;
+  // min-height: 74px;
 
   &:last-child {
     margin-bottom: 0;
   }
 }
 
+/* 登录按钮样式 */
 .login-button {
   width: 100%;
-  height: 44px;
+  height: 50px;
   font-size: 16px;
-  font-weight: 500;
-  border-radius: 8px;
+  font-weight: normal;
+  border-radius: 30px;
   background: #1890ff;
   border: none;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-  margin-top: 8px;
+  box-shadow: none !important;
+  margin-top: 20px;
   transition: all 0.3s ease;
 
   &:hover, &:focus {
     background: #40a9ff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(24, 144, 255, 0.25);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  &.ant-btn-loading {
-    opacity: 0.8;
+    transform: none;
+    box-shadow: none !important;
   }
 }
 
+/* 记住用户名和忘记密码 */
 .login-options {
   display: flex;
   justify-content: space-between;
@@ -171,11 +230,11 @@
 }
 
 .ant-checkbox-wrapper {
-  color: #595959;
-  font-size: 13px;
+  color: #666;
+  font-size: 14px;
 
   .ant-checkbox-inner {
-    border-radius: 4px;
+    border-radius: 2px;
     border-color: #d9d9d9;
   }
 
@@ -185,6 +244,23 @@
   }
 }
 
+/* 错误提示固定高度处理 */
+.ant-form-item-explain, .ant-form-item-explain-error {
+  position: absolute;
+  font-size: 12px;
+  margin-top: 2px;
+  height: 18px;
+  overflow: hidden;
+}
+
+/* 确保登录表单整体稳定 */
+.login-form-container form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 登录错误消息固定位置 */
 .login-error {
   margin-bottom: 20px;
   padding: 10px 14px;
@@ -195,12 +271,15 @@
   color: #cf1322;
   animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
 .forgot-password {
   color: #1890ff;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -235,7 +314,7 @@
 
 .register-text {
   text-align: center;
-  color: #595959;
+  color: #666;
   font-size: 14px;
   padding: 8px 0 12px;
 
@@ -279,5 +358,61 @@
   }
   40%, 60% {
     transform: translateX(2px);
+  }
+}
+
+/* 增强输入框交互响应 */
+.ant-form-item {
+  .ant-input-affix-wrapper, .ant-input {
+    cursor: text;
+
+    &:active {
+      transform: scale(0.995);
+    }
+  }
+}
+
+/* 确保密码框与用户名框样式一致 */
+.ant-input-password.custom-input {
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  .ant-input {
+    background: transparent !important;
+    height: 48px !important;
+    padding-left: 20px !important;
+    color: #333 !important;
+    z-index: 1;
+  }
+
+  .ant-input-suffix {
+    margin-right: 15px;
+    z-index: 1;
+  }
+}
+
+/* 确保光标正常显示 */
+.ant-input-affix-wrapper .ant-input,
+.ant-input {
+  caret-color: #1890ff; /* 设置光标颜色 */
+  -webkit-text-fill-color: #333; /* 确保文本颜色正确显示 */
+  opacity: 1; /* 确保文本不透明 */
+}
+
+/* 修复密码框特殊样式 */
+.ant-input-password.custom-input {
+  .ant-input {
+    box-sizing: border-box;
+    padding-right: 40px !important; /* 为图标留出空间 */
+  }
+
+  .ant-input-suffix {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+    pointer-events: auto;
   }
 }

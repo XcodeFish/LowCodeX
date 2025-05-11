@@ -10,7 +10,7 @@ import {
   message,
   Space,
 } from 'antd';
-import { UserOutlined, LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useLogin } from './hooks/useLogin';
 import { useRememberUsername } from './hooks/useRememberUsername';
@@ -77,24 +77,26 @@ export const Login: React.FC = () => {
           >
             <Form.Item
               name="username"
-              rules={[{ required: true, message: '请输入用户名' }]}
+              rules={[{ required: true, message: '请输入用户名!' }]}
             >
               <Input
-                prefix={<UserOutlined />}
                 placeholder="请输入用户名"
-                autoComplete="username"
+                size="large"
+                className="custom-input"
+                autoComplete="off"
               />
             </Form.Item>
 
             <Form.Item
               name="password"
-              rules={[{ required: true, message: '请输入密码' }]}
+              rules={[{ required: true, message: '请输入密码!' }]}
             >
               <Input.Password
-                prefix={<LockOutlined />}
                 placeholder="请输入密码"
-                autoComplete="current-password"
-                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                size="large"
+                className="custom-input"
+                iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                autoComplete="off"
               />
             </Form.Item>
 
@@ -128,9 +130,9 @@ export const Login: React.FC = () => {
             </Form.Item>
 
             <div className="bottom-section">
-              <Divider plain>
+              {/* <Divider plain>
                 <Text type="secondary">或者</Text>
-              </Divider>
+              </Divider> */}
 
               <div className="register-text">
                 <Space align="center">
