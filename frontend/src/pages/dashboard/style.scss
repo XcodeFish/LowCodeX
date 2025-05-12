@@ -1,43 +1,233 @@
 .dashboard-container {
+  .dashboard-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #262626;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .stat-cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    .stat-card-wrapper {
+      flex: 1;
+      min-width: 200px;
+
+      @media screen and (max-width: 768px) {
+        flex: 0 0 100%;
+      }
+    }
+  }
+
+  .content-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    .content-col {
+      flex: 1;
+      min-width: 300px;
+
+      @media screen and (max-width: 992px) {
+        flex: 0 0 100%;
+      }
+    }
+  }
+
   .stat-card {
     height: 100%;
     text-align: center;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+    border: none;
+    padding: 24px;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+    }
 
     .ant-statistic-title {
-      font-size: 14px;
-      margin-bottom: 12px;
+      font-size: 15px;
+      margin-bottom: 16px;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .ant-statistic-content {
+      font-size: 32px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #1677ff, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .ant-statistic-content-prefix {
-      margin-right: 8px;
-      font-size: 20px;
+      margin-right: 12px;
+      font-size: 24px;
+      color: #1677ff;
     }
   }
 
   .table-card, .progress-card, .activity-card {
     height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    border: none;
 
-    .ant-card-head-title {
-      font-weight: 500;
+    .ant-card-head {
+      background-color: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 24px;
+
+      .ant-card-head-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    .ant-card-body {
+      padding: 20px 24px;
+    }
+
+    .ant-table-thead > tr > th {
+      background-color: #fafafa;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 12px 16px;
+    }
+
+    .ant-table-tbody > tr > td {
+      border-bottom: 1px solid #f5f5f5;
+      padding: 12px 16px;
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      background-color: #f9fafb;
     }
   }
 
   .progress-item {
     width: 100%;
+    margin-bottom: 20px;
+    padding: 4px 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     .progress-name {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: 500;
+      color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: space-between;
+
+      span:first-child {
+        font-size: 14px;
+      }
+
+      span:last-child {
+        font-size: 13px;
+        color: #1677ff;
+        font-weight: 600;
+      }
+    }
+
+    .ant-progress-text {
+      font-weight: 600;
+      color: #1677ff;
+    }
+
+    .ant-progress-bg {
+      background: linear-gradient(90deg, #1677ff, #06b6d4);
+      height: 8px !important;
+      border-radius: 4px;
+    }
+
+    .ant-progress-inner {
+      background-color: #f0f0f0;
+      border-radius: 4px;
     }
   }
 
   .activity-card {
     .ant-list-item {
-      padding: 12px 0;
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #fafafa;
+      }
     }
 
     .ant-avatar {
-      background-color: #1890ff;
+      background: linear-gradient(135deg, #1677ff, #06b6d4);
+      margin-right: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .ant-list-item-meta-title {
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 14px;
+    }
+
+    .ant-list-item-meta-description {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 13px;
+
+      .time-info {
+        margin-left: 12px;
+        color: #bfbfbf;
+
+        .anticon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  /* 为增长率添加更好看的样式 */
+  .ant-table-cell {
+    .growth-positive {
+      color: #52c41a;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+
+      .anticon {
+        margin-right: 4px;
+      }
+    }
+
+    .growth-negative {
+      color: #f5222d;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+
+      .anticon {
+        margin-right: 4px;
+      }
     }
   }
 }

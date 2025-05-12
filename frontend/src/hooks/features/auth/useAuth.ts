@@ -43,9 +43,14 @@ export const useAuth = () => {
         const { accessToken, refreshToken, user } = response.data;
 
         // 存储token
-        if (accessToken && refreshToken) {
+        if (accessToken) {
           localStorage.setItem('token', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
+
+          // 确保refreshToken存在，即使后端没有返回也要处理
+          if (refreshToken) {
+            localStorage.setItem('refreshToken', refreshToken);
+            // 静默处理，不输出日志
+          }
 
           // 处理"记住我"功能
           if (params.rememberMe) {
@@ -115,8 +120,6 @@ export const useAuth = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('rememberedUsername');
-      // 清除会话存储中的认证尝试标记
-      sessionStorage.removeItem('hasAttemptedAuth');
 
       // 更新Redux状态
       dispatch(clearUserSession());

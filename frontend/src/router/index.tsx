@@ -51,20 +51,36 @@ export const AppRouter: React.FC = () => {
   // 应用启动时获取当前用户信息
   useEffect(() => {
     const token = localStorage.getItem('token');
-    // 添加已尝试标记，防止无效token反复请求
-    const hasAttemptedAuth = sessionStorage.getItem('hasAttemptedAuth');
 
-    if (token && !hasAttemptedAuth) {
-      // 标记已经尝试过身份验证
-      sessionStorage.setItem('hasAttemptedAuth', 'true');
-      getUserInfo().catch(error => {
-        // 如果获取用户信息失败，清除token
-        console.error('获取用户信息失败:', error);
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshToken');
-      });
+    // 添加请求锁，防止重复请求
+    const fetchingUserInfo = localStorage.getItem('fetchingUserInfo') === 'true';
+
+    // 如果有token且未认证且当前未在请求用户信息，则尝试获取用户信息
+    if (token && !isAuthenticated && !fetchingUserInfo && !loading) {
+      // 设置锁标记，防止重复请求
+      localStorage.setItem('fetchingUserInfo', 'true');
+
+      getUserInfo()
+        .then(result => {
+          if (!result.success) {
+            // 如果获取失败，清除token
+            console.error('获取用户信息失败:', result.error);
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
+          }
+        })
+        .catch(error => {
+          // 如果获取用户信息失败，清除token
+          console.error('获取用户信息失败:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('refreshToken');
+        })
+        .finally(() => {
+          // 无论成功失败，都移除请求锁
+          localStorage.removeItem('fetchingUserInfo');
+        });
     }
-  }, [getUserInfo]);
+  }, [getUserInfo, isAuthenticated, loading]);
 
   // 获取当前路径
   const isLoginPage = () => {

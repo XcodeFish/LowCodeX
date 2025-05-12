@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { usePermission } from '@/hooks/usePermission';
 import { Spin } from 'antd';
@@ -29,6 +29,28 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
   const location = useLocation();
   const { loading } = useSelector((state: RootState) => state.auth);
 
+  // 防止重定向循环
+  useEffect(() => {
+    if (!isAuthenticated && !loading) {
+      // 记录重定向次数
+      const redirectCount = parseInt(sessionStorage.getItem('redirectCount') || '0', 10);
+
+      // 如果重定向次数过多，清除token，避免无限循环
+      if (redirectCount > 3) {
+        console.error('检测到重定向循环，清除认证状态');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('redirectCount');
+      } else {
+        // 记录重定向次数
+        sessionStorage.setItem('redirectCount', (redirectCount + 1).toString());
+      }
+    } else {
+      // 如果已认证，重置重定向计数
+      sessionStorage.removeItem('redirectCount');
+    }
+  }, [isAuthenticated, loading]);
+
   // 如果正在加载用户信息，显示加载状态
   if (loading) {
     return (
@@ -39,6 +61,26 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
         height: '100vh'
       }}>
         <Spin size="large" tip="加载中..." />
+      </div>
+    );
+  }
+
+  // 检测重定向循环
+  const redirectCount = parseInt(sessionStorage.getItem('redirectCount') || '0', 10);
+  if (redirectCount > 3) {
+    // 清除循环状态并显示错误信息
+    sessionStorage.removeItem('redirectCount');
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column'
+      }}>
+        <h2>认证错误</h2>
+        <p>登录状态异常，请尝试重新登录</p>
+        <a href="/login" style={{ marginTop: '16px' }}>返回登录页</a>
       </div>
     );
   }
