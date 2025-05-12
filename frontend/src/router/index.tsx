@@ -12,7 +12,7 @@ const MainLayout = lazy(() => import('../layouts/MainLayout'));
 
 // 认证页面
 const Login = lazy(() => import('../pages/login'));
-// const Register = lazy(() => import('../pages/Register'));
+const Register = lazy(() => import('../pages/register'));
 const ForgetPassword = lazy(() => import('../pages/profile/ForgetPassword'));
 
 // 用户资料页面
@@ -46,12 +46,23 @@ const LazyComponent = ({ children }: { children: React.ReactNode }) => (
 export const AppRouter: React.FC = () => {
   const { getUserInfo } = auth.useAuth();
   const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
 
   // 应用启动时获取当前用户信息
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      getUserInfo();
+    // 添加已尝试标记，防止无效token反复请求
+    const hasAttemptedAuth = sessionStorage.getItem('hasAttemptedAuth');
+
+    if (token && !hasAttemptedAuth) {
+      // 标记已经尝试过身份验证
+      sessionStorage.setItem('hasAttemptedAuth', 'true');
+      getUserInfo().catch(error => {
+        // 如果获取用户信息失败，清除token
+        console.error('获取用户信息失败:', error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+      });
     }
   }, [getUserInfo]);
 
@@ -85,11 +96,11 @@ export const AppRouter: React.FC = () => {
           </LazyComponent>
         } />
 
-        {/* <Route path="/auth/register" element={
+        <Route path="/auth/register" element={
           <LazyComponent>
             {isAuthenticated ? <Navigate to="/" /> : <Register />}
           </LazyComponent>
-        } /> */}
+        } />
 
         <Route path="/profile/forget-password" element={
           <LazyComponent>

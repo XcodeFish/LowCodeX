@@ -44,6 +44,9 @@ export function useLogin() {
         loginMessageRef.current = null;
       }
 
+      // 清除身份验证尝试标记，确保重新登录后可以正常获取用户信息
+      sessionStorage.removeItem('hasAttemptedAuth');
+
       // 显示登录成功消息
       messageUtil.success('登录成功，正在跳转...', 1);
 

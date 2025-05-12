@@ -19,7 +19,7 @@ import { UserWithRelations } from '../../users/interfaces/users.interfaces';
 // 登录响应
 export interface LoginResponse {
   accessToken: string;
-  refreshToken?: string;
+  refreshToken: string;
   user: UserWithRelations;
   expiresIn: number;
 }
@@ -27,7 +27,7 @@ export interface LoginResponse {
 // 令牌更新响应
 export interface TokenResponse {
   accessToken: string;
-  refreshToken?: string;
+  refreshToken: string;
   expiresIn: number;
 }
 

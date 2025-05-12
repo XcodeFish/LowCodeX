@@ -1,0 +1,466 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f7ff;
+  position: relative;
+  overflow: hidden;
+
+  // 隐藏原生错误提示
+  ::-webkit-validation-bubble-message {
+    display: none;
+  }
+
+  // 隐藏常见的错误提示元素
+  .error-message,
+  .error-text,
+  .register-error {
+    display: none !important;
+  }
+
+  // 隐藏不需要的错误信息提示
+  .ant-message-notice {
+    &.ant-message-error, &.ant-message-success {
+      // 只对右侧消息进行处理
+      &[style*="right"] {
+        display: none !important;
+      }
+    }
+  }
+
+  // 防止表单重渲染时输入框内容被清空的特殊处理
+  .right-error-message {
+    display: none !important;
+  }
+
+  // 全局错误提示处理
+  .ant-message {
+    // 确保消息显示在合适位置
+    &.right-side {
+      display: none !important;
+    }
+  }
+
+  // 防止在注册成功后跳转时出现的提示
+  .register-success-message {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+
+  // 定位右侧错误
+  @media screen and (min-width: 768px) {
+    // 使用位置检测隐藏右侧消息
+    [style*="left: calc(50% + 200px)"] {
+      display: none !important;
+    }
+  }
+
+  // 页面加载完成前不显示错误信息
+  &:not(.loaded) {
+    .ant-message,
+    .ant-alert,
+    [role="alert"] {
+      display: none !important;
+    }
+  }
+
+  // 添加加载标记，使错误信息控制更精确
+  &.loaded {
+    animation: none !important;
+  }
+
+  // 保持注册卡片在加载时的显示
+  .register-card {
+    transition: opacity 0.3s;
+
+    &.loading {
+      opacity: 0.8;
+    }
+  }
+
+  // 注册按钮加载态样式优化
+  .register-button {
+    position: relative;
+    transition: all 0.3s;
+
+    &:disabled {
+      opacity: 0.85;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// 隐藏输入框右侧的小尾巴
+.ant-form-item-control:before,
+.ant-form-item-control:after,
+.ant-form-item-children:before,
+.ant-form-item-children:after,
+.ant-form-item:before,
+.ant-form-item:after,
+.ant-input:before,
+.ant-input:after,
+svg[class*="-tail"],
+[class*="-tail"],
+div[class*="-tail"],
+span[class*="-tail"] {
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+// 特别针对用户名和邮箱输入框后的小尾巴
+input.ant-input + i,
+.ant-input + .anticon,
+.ant-input-affix-wrapper + i,
+.ant-input-affix-wrapper + .anticon,
+.ant-form-item-control-input + i,
+.ant-form-item-control-input + .anticon {
+  display: none !important;
+}
+
+.register-card {
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: #ffffff;
+  z-index: 1;
+  animation: fadeUp 0.6s ease-out;
+  border: none;
+  min-height: 500px;
+
+  .ant-card-body {
+    padding: 0;
+    height: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #1890ff, #36cfc9);
+  }
+}
+
+.register-header {
+  text-align: center;
+  padding: 30px 24px 20px;
+  position: relative;
+
+  h3.ant-typography {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin: 16px 0 8px;
+  }
+
+  .ant-typography {
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.register-form-container {
+  padding: 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+
+  // 移除表单中输入框外的图标尾巴
+  i.anticon:not(.ant-input-prefix *, .ant-input-suffix *),
+  span.anticon:not(.ant-input-prefix *, .ant-input-suffix *) {
+    display: none !important;
+  }
+}
+
+.register-logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+/* 自定义输入框样式 */
+.custom-input {
+  border-radius: 30px !important;
+  border: 1px solid #e0e7ff !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+  padding: 0 20px !important;
+  background-color: white !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  color: #333 !important;
+  line-height: 1.5 !important;
+  overflow: hidden !important;
+
+  &:hover {
+    border-color: #1890ff !important;
+  }
+
+  &:focus {
+    border-color: #1890ff !important;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+  }
+}
+
+/* 输入框样式 */
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 30px;
+  border: 1px solid #e0e7ff;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  padding: 0 20px;
+  box-shadow: none;
+  margin-bottom: 16px;
+  width: 100%;
+  color: #333;
+  line-height: 1.5;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #1890ff;
+  }
+
+  &:focus, &.ant-input-focused, &.ant-input-affix-wrapper-focused {
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #bbb;
+    font-size: 16px;
+  }
+}
+
+/* 基础密码输入框样式 */
+.ant-input-password {
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #1890ff;
+  }
+
+  .anticon-eye-invisible, .anticon-eye {
+    color: #c0c0c0;
+  }
+}
+
+/* 用户输入框样式 */
+.custom-input-user {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 0 20px !important;
+  overflow: hidden;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+
+   .ant-input {
+    height: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #333 !important;
+    width: 100% !important;
+    line-height: 1.5 !important;
+  }
+
+}
+
+/* 邮箱输入框样式 */
+.custom-input-mail {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 0 20px !important;
+  overflow: hidden;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+
+  .ant-input {
+    height: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #333 !important;
+    width: 100% !important;
+    line-height: 1.5 !important;
+  }
+
+}
+
+/* 自定义密码输入框样式 */
+.custom-input.ant-input-password {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 0 20px !important;
+  overflow: hidden;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+
+  .ant-input {
+    height: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #333 !important;
+    width: 100% !important;
+    line-height: 1.5 !important;
+  }
+
+  .ant-input-suffix {
+    margin: 0 !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* 图标样式 */
+.ant-input-prefix {
+  margin-right: 10px;
+  color: #bbb;
+}
+
+/* 去掉用户名和邮箱输入框右侧的小尾巴 */
+.ant-form-item-control-input-content {
+  // 移除直接子元素中的图标（不在输入框内部的）
+  > .anticon {
+    display: none !important;
+  }
+
+  // 移除输入框后的任何伪元素
+  input[type="text"]::after,
+  input::after,
+  div::after,
+  span::after {
+    display: none !important;
+  }
+
+  // 隐藏可能存在的"尾巴"元素
+  .ant-input + span,
+  .ant-input + i,
+  .ant-input + div,
+  .ant-input-affix-wrapper + span,
+  .ant-input-affix-wrapper + i {
+    display: none !important;
+  }
+}
+
+/* 注册按钮样式 */
+.register-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #1890ff, #36cfc9);
+  border: none;
+  margin-top: 16px;
+  box-shadow: 0 5px 15px rgba(24, 144, 255, 0.15);
+  transition: all 0.3s ease;
+
+  &:hover, &:focus {
+    background: linear-gradient(to right, #40a9ff, #49d6d0);
+    box-shadow: 0 5px 15px rgba(24, 144, 255, 0.25);
+  }
+
+  &:active {
+    background: linear-gradient(to right, #096dd9, #29b6b3);
+  }
+}
+
+.bottom-section {
+  margin-top: 24px;
+  text-align: center;
+
+  .ant-divider {
+    color: #bbb;
+    margin: 16px 0;
+
+    &:before, &:after {
+      border-top-color: #e0e7ff;
+    }
+  }
+}
+
+.login-text {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+
+  a {
+    color: #1890ff;
+    font-weight: 500;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 576px) {
+  .register-card {
+    width: 90%;
+    min-width: 300px;
+    margin: 0 16px;
+  }
+
+  .register-form-container {
+    padding: 0 20px 30px;
+  }
+}
+
+/* 创建淡入向上动画 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 全局样式覆盖，隐藏所有类型的消息提示 */
+:global {
+  .ant-message-notice {
+    &[style*="right"] {
+      display: none !important;
+    }
+  }
+}

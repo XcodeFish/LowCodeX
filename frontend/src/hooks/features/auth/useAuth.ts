@@ -115,6 +115,8 @@ export const useAuth = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('rememberedUsername');
+      // 清除会话存储中的认证尝试标记
+      sessionStorage.removeItem('hasAttemptedAuth');
 
       // 更新Redux状态
       dispatch(clearUserSession());
