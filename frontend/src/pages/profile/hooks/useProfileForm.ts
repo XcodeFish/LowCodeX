@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 import type { ProfileUpdateParams } from '@/types/user';
 import { userService } from '@/services/userService';
+import { message as customMessage } from '@/utils';
 
 export function useProfileForm() {
   const [form] = Form.useForm();
@@ -25,9 +26,9 @@ export function useProfileForm() {
     setLoading(true);
     try {
       await userService.updateProfile(id, values);
-      message.success('个人资料更新成功');
+      customMessage.success('个人资料更新成功');
     } catch (error: any) {
-      message.error(error?.message || '更新失败');
+      customMessage.error(error?.message || '更新失败');
     } finally {
       setLoading(false);
     }

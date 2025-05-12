@@ -1,3 +1,313 @@
+import { message as antdMessage } from 'antd';
+
+// 全局消息控制
+let activeMessages: Record<string, any> = {};
+
+// 控制全局消息数量和间隔
+antdMessage.config({
+  maxCount: 1, // 只允许显示一条消息
+  duration: 3,
+  top: 64, // 距顶部位置
+});
+
+// 定义一个全局定时器，用于确保消息一定会被关闭
+let autoHideTimer: NodeJS.Timeout | null = null;
+
+// 强制关闭所有消息
+const destroyAllMessages = () => {
+  // 关闭所有已有消息
+  antdMessage.destroy();
+  // 重置活跃消息记录
+  activeMessages = {};
+
+  // 清除可能存在的自动隐藏定时器
+  if (autoHideTimer) {
+    clearTimeout(autoHideTimer);
+    autoHideTimer = null;
+  }
+};
+
+/**
+ * 全局消息提示工具
+ */
+export const message = {
+  /**
+   * 显示成功消息
+   * @param content 消息内容
+   * @param duration 显示时长，默认3秒
+   * @returns 关闭函数
+   */
+  success(content: string, duration: number = 3): () => void {
+    // 先销毁所有现有消息
+    destroyAllMessages();
+
+    const key = `success_${Date.now()}`;
+
+    // 确保设置了duration
+    if (duration === 0) {
+      duration = 3; // 强制设置一个默认值，确保消息会自动消失
+    }
+
+    const hide = antdMessage.success({
+      content,
+      duration,
+      key,
+      style: {
+        width: 'auto',
+        maxWidth: '80vw', // 最大宽度为视口宽度的80%
+        padding: '10px 16px',
+      }
+    });
+    activeMessages[key] = hide;
+
+    // 设置安全定时器确保消息会消失（比正常时间多0.5秒）
+    const timer = setTimeout(() => {
+      if (activeMessages[key]) {
+        hide();
+        delete activeMessages[key];
+      }
+    }, (duration + 0.5) * 1000);
+
+    // 设置最长显示时间保险
+    if (autoHideTimer) clearTimeout(autoHideTimer);
+    autoHideTimer = setTimeout(() => {
+      destroyAllMessages();
+    }, 10000); // 最长10秒后强制清除所有消息
+
+    return () => {
+      clearTimeout(timer);
+      hide();
+      delete activeMessages[key];
+    };
+  },
+
+  /**
+   * 显示错误消息
+   * @param content 消息内容
+   * @param duration 显示时长，默认3秒
+   * @returns 关闭函数
+   */
+  error(content: string, duration: number = 3): () => void {
+    // 先销毁所有现有消息
+    destroyAllMessages();
+
+    const key = `error_${Date.now()}`;
+
+    // 确保设置了duration且不为0
+    if (duration <= 0) {
+      duration = 3; // 强制设置一个默认值，确保消息会自动消失
+    }
+
+    // 直接在控制台打印，方便调试
+    console.log(`显示错误消息: ${content}，设置的显示时间: ${duration}秒`);
+
+    const hide = antdMessage.error({
+      content,
+      duration,
+      key,
+      style: {
+        width: 'auto',
+        maxWidth: '80vw', // 最大宽度为视口宽度的80%
+        padding: '10px 16px',
+        whiteSpace: 'normal', // 允许文本换行
+        wordBreak: 'break-word' // 在任何可能的断字点换行
+      },
+      onClose: () => {
+        console.log(`错误消息关闭: ${content}`);
+        delete activeMessages[key];
+      }
+    });
+    activeMessages[key] = hide;
+
+    // 设置安全定时器确保消息会消失
+    const timer = setTimeout(() => {
+      console.log(`定时器触发关闭消息: ${content}`);
+      if (activeMessages[key]) {
+        hide();
+        delete activeMessages[key];
+      }
+    }, (duration + 0.5) * 1000);
+
+    // 设置最长显示时间保险
+    if (autoHideTimer) clearTimeout(autoHideTimer);
+    autoHideTimer = setTimeout(() => {
+      console.log('强制清除所有消息');
+      destroyAllMessages();
+    }, 10000); // 最长10秒后强制清除所有消息
+
+    return () => {
+      clearTimeout(timer);
+      hide();
+      delete activeMessages[key];
+    };
+  },
+
+  /**
+   * 显示警告消息
+   * @param content 消息内容
+   * @param duration 显示时长，默认3秒
+   * @returns 关闭函数
+   */
+  warning(content: string, duration: number = 3): () => void {
+    // 先销毁所有现有消息
+    destroyAllMessages();
+
+    const key = `warning_${Date.now()}`;
+
+    // 确保设置了duration且不为0
+    if (duration <= 0) {
+      duration = 3; // 强制设置一个默认值，确保消息会自动消失
+    }
+
+    const hide = antdMessage.warning({
+      content,
+      duration,
+      key,
+      style: {
+        width: 'auto',
+        maxWidth: '80vw', // 最大宽度为视口宽度的80%
+        padding: '10px 16px',
+      },
+      onClose: () => {
+        delete activeMessages[key];
+      }
+    });
+    activeMessages[key] = hide;
+
+    // 设置安全定时器确保消息会消失
+    const timer = setTimeout(() => {
+      if (activeMessages[key]) {
+        hide();
+        delete activeMessages[key];
+      }
+    }, (duration + 0.5) * 1000);
+
+    // 设置最长显示时间保险
+    if (autoHideTimer) clearTimeout(autoHideTimer);
+    autoHideTimer = setTimeout(() => {
+      destroyAllMessages();
+    }, 10000); // 最长10秒后强制清除所有消息
+
+    return () => {
+      clearTimeout(timer);
+      hide();
+      delete activeMessages[key];
+    };
+  },
+
+  /**
+   * 显示信息消息
+   * @param content 消息内容
+   * @param duration 显示时长，默认3秒
+   * @returns 关闭函数
+   */
+  info(content: string, duration: number = 3): () => void {
+    // 先销毁所有现有消息
+    destroyAllMessages();
+
+    const key = `info_${Date.now()}`;
+
+    // 确保设置了duration且不为0
+    if (duration <= 0) {
+      duration = 3; // 强制设置一个默认值，确保消息会自动消失
+    }
+
+    const hide = antdMessage.info({
+      content,
+      duration,
+      key,
+      style: {
+        width: 'auto',
+        maxWidth: '80vw', // 最大宽度为视口宽度的80%
+        padding: '10px 16px',
+      },
+      onClose: () => {
+        delete activeMessages[key];
+      }
+    });
+    activeMessages[key] = hide;
+
+    // 设置安全定时器确保消息会消失
+    const timer = setTimeout(() => {
+      if (activeMessages[key]) {
+        hide();
+        delete activeMessages[key];
+      }
+    }, (duration + 0.5) * 1000);
+
+    // 设置最长显示时间保险
+    if (autoHideTimer) clearTimeout(autoHideTimer);
+    autoHideTimer = setTimeout(() => {
+      destroyAllMessages();
+    }, 10000); // 最长10秒后强制清除所有消息
+
+    return () => {
+      clearTimeout(timer);
+      hide();
+      delete activeMessages[key];
+    };
+  },
+
+  /**
+   * 显示加载消息
+   * @param content 消息内容
+   * @param duration 显示时长，默认0秒（不自动关闭）
+   * @returns 关闭函数
+   */
+  loading(content: string, duration: number = 0): () => void {
+    // 先销毁所有现有消息
+    destroyAllMessages();
+
+    const key = `loading_${Date.now()}`;
+
+    // loading消息特殊处理：如果明确设置了duration，则使用该值；否则loading默认不自动关闭
+    const actualDuration = duration;
+
+    const hide = antdMessage.loading({
+      content,
+      duration: actualDuration,
+      key,
+      style: {
+        width: 'auto',
+        maxWidth: '80vw', // 最大宽度为视口宽度的80%
+        padding: '10px 16px',
+      },
+      onClose: () => {
+        delete activeMessages[key];
+      }
+    });
+    activeMessages[key] = hide;
+
+    // 如果设置了duration大于0，添加定时器确保消息会消失
+    let timer: NodeJS.Timeout | null = null;
+    if (duration > 0) {
+      timer = setTimeout(() => {
+        if (activeMessages[key]) {
+          hide();
+          delete activeMessages[key];
+        }
+      }, (duration + 0.5) * 1000);
+
+      // 设置最长显示时间保险
+      if (autoHideTimer) clearTimeout(autoHideTimer);
+      autoHideTimer = setTimeout(() => {
+        destroyAllMessages();
+      }, 10000); // 最长10秒后强制清除所有消息
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      hide();
+      delete activeMessages[key];
+    };
+  },
+
+  /**
+   * 销毁所有消息
+   */
+  destroy: destroyAllMessages
+};
+
 /**
  * 格式化日期
  * @param date 日期对象或时间戳

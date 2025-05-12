@@ -1,8 +1,8 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin } from 'antd';
-import { fetchCurrentUser } from '../store/slices/authSlice';
+import { auth } from '../hooks';
 import { AuthGuard } from '../components/common/AuthGuard';
 import type { AppDispatch, RootState } from '../store';
 import { protectedRoutes } from './protectedRoutes';
@@ -42,20 +42,27 @@ const LazyComponent = ({ children }: { children: React.ReactNode }) => (
   </Suspense>
 );
 
+// 主路由组件
 export const AppRouter: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const { getUserInfo } = auth.useAuth();
   const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
 
   // 应用启动时获取当前用户信息
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      dispatch(fetchCurrentUser());
+      getUserInfo();
     }
-  }, [dispatch]);
+  }, [getUserInfo]);
 
-  // 加载中状态
-  if (loading && !isAuthenticated) {
+  // 获取当前路径
+  const isLoginPage = () => {
+    // 使用window.location来检查当前是否在登录页面
+    return window.location.pathname === '/login';
+  };
+
+  // 加载中状态 - 当不在登录页面时才显示全屏loading
+  if (loading && !isAuthenticated && !isLoginPage()) {
     return (
       <div style={{
         display: 'flex',

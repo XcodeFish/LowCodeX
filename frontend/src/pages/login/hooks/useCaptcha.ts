@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { message } from 'antd';
+import { message } from '@/utils';
 import { authService } from '@/services/authService';
 
 export function useCaptcha() {

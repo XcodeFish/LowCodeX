@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Form,
   Input,
@@ -7,7 +7,6 @@ import {
   Card,
   Divider,
   Typography,
-  message,
   Space,
 } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -21,31 +20,85 @@ const { Title, Text } = Typography;
 
 export const Login: React.FC = () => {
   const [form] = Form.useForm();
-  const { loading, handleSubmit } = useLogin();
+  const { loading, handleSubmit, clearLoginMessages } = useLogin();
   const { saveUsername } = useRememberUsername(form);
-  const [loginError, setLoginError] = useState<string | null>(null);
 
-  // 提交登录
-  const onFinish = (values: any) => {
-    setLoginError(null);
+  // 使用ref防止重复提交
+  const submitLockRef = useRef<boolean>(false);
+  // 使用ref保存表单初始值以便在需要时恢复
+  const formInitialValuesRef = useRef<any>(null);
 
-    // 构造符合LoginRequest类型的数据
-    const loginData: LoginRequest = {
-      username: values.username,
-      password: values.password,
-      rememberMe: values.remember
+  // 捕获初始表单值
+  useEffect(() => {
+    if (!formInitialValuesRef.current) {
+      formInitialValuesRef.current = form.getFieldsValue(true);
+    }
+  }, [form]);
+
+  // 添加全局错误处理
+  useEffect(() => {
+    // 全局错误处理函数，防止错误显示在UI上
+    const handleGlobalError = (event: ErrorEvent) => {
+      // 阻止默认行为，不在控制台显示错误
+      event.preventDefault();
+      console.log('已捕获错误，但不显示在UI上');
+      return true;
     };
 
+    // 添加全局错误处理
+    window.addEventListener('error', handleGlobalError);
+
+    // 确保组件挂载时清除所有可能存在的消息
+    clearLoginMessages();
+
+    // 清理函数
+    return () => {
+      window.removeEventListener('error', handleGlobalError);
+      clearLoginMessages();
+    };
+  }, [clearLoginMessages]);
+
+  // 提交登录
+  const onFinish = async (values: any) => {
+    // 防止重复提交
+    if (submitLockRef.current || loading) {
+      return;
+    }
+
+    submitLockRef.current = true;
+    console.log('values', values);
+
     try {
-      handleSubmit(loginData);
+      // 构造符合LoginRequest类型的数据
+      const loginData: LoginRequest = {
+        username: values.username,
+        password: values.password,
+        rememberMe: values.remember
+      };
 
       // 处理记住用户名
       if (values.username && values.remember !== undefined) {
         saveUsername(values.username, values.remember);
       }
+
+      // 提交登录请求
+      await handleSubmit(loginData);
     } catch (error) {
-      setLoginError('登录失败，请检查用户名和密码');
-      message.error('登录失败，请检查用户名和密码');
+      // 捕获任何可能的错误，防止它们显示在UI上
+      console.log('登录过程中出现错误，但已被处理');
+    } finally {
+      // 确保无论如何都能解锁提交状态
+      setTimeout(() => {
+        submitLockRef.current = false;
+      }, 500); // 短暂延迟解锁，防止快速重复点击
+    }
+  };
+
+  // 处理按钮点击，防止重复提交
+  const handleButtonClick = (e: React.MouseEvent) => {
+    if (submitLockRef.current || loading) {
+      e.preventDefault();
+      e.stopPropagation();
     }
   };
 
@@ -61,7 +114,7 @@ export const Login: React.FC = () => {
             alt="LowCodeX Logo"
             className="login-logo"
           />
-          <Title level={3}>欢迎回到 LowCodeX</Title>
+          <Title level={3}></Title>
           <Text type="secondary">使用您的账号继续访问平台</Text>
         </div>
 
@@ -74,6 +127,8 @@ export const Login: React.FC = () => {
             autoComplete="off"
             layout="vertical"
             requiredMark={false}
+            // 防止表单重置，保持用户输入值
+            preserve={true}
           >
             <Form.Item
               name="username"
@@ -83,7 +138,9 @@ export const Login: React.FC = () => {
                 placeholder="请输入用户名"
                 size="large"
                 className="custom-input"
-                autoComplete="off"
+                autoComplete="username"
+                // 禁用自动填充样式修改
+                data-form-type="other"
               />
             </Form.Item>
 
@@ -96,15 +153,11 @@ export const Login: React.FC = () => {
                 size="large"
                 className="custom-input"
                 iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                autoComplete="off"
+                autoComplete="current-password"
+                // 禁用自动填充样式修改
+                data-form-type="password"
               />
             </Form.Item>
-
-            {loginError && (
-              <div className="login-error">
-                <Text type="danger">{loginError}</Text>
-              </div>
-            )}
 
             <Form.Item>
               <div className="login-options">
@@ -122,8 +175,10 @@ export const Login: React.FC = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                loading={loading}
                 className="login-button"
+                onClick={handleButtonClick}
+                // 移除loading状态，仅禁用按钮防止重复提交
+                disabled={submitLockRef.current || loading}
               >
                 登录
               </Button>

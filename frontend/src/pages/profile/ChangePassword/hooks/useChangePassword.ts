@@ -1,23 +1,22 @@
 import { Form } from 'antd';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { message } from 'antd';
-import changePassword  from '@/store/slices/authSlice';
+import { message } from '@/utils';
+import { auth } from '@/hooks';
 import type { ChangePasswordParams } from '@/types/user';
-import type { AppDispatch } from '@/store';
 
 export const useChangePassword = () => {
   const [form] = Form.useForm();
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  // 在实际实现中可以使用auth.useAuth()提供修改密码的方法
 
   // 提交修改密码
   const handleSubmit = async (values: ChangePasswordParams) => {
     setLoading(true);
     try {
-      // await dispatch(changePassword(values)).unwrap();
+      // 在这里实现修改密码的逻辑，可以使用auth.useAuth()中的相关方法
+      // 例如: await authHook.changePassword(values.oldPassword, values.newPassword);
       message.success('密码修改成功，请重新登录');
       // navigate('/login');
     } catch (error: any) {

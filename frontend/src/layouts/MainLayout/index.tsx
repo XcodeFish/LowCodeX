@@ -14,9 +14,9 @@ import {
   LogoutOutlined,
   TeamOutlined
 } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../store/slices/authSlice';
-import type { AppDispatch, RootState } from '../../store';
+import { useSelector } from 'react-redux';
+import { auth } from '../../hooks';
+import type { RootState } from '../../store';
 import './style.scss';
 
 const { Header, Sider, Content } = Layout;
@@ -25,7 +25,7 @@ const MainLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch<AppDispatch>();
+  const { logout } = auth.useAuth();
   const { user } = useSelector((state: RootState) => state.auth);
 
   const toggleCollapsed = () => {
@@ -36,10 +36,12 @@ const MainLayout: React.FC = () => {
     navigate(key);
   };
 
-  const handleUserMenuClick = ({ key }: { key: string }) => {
+  const handleUserMenuClick = async ({ key }: { key: string }) => {
     if (key === 'logout') {
-      dispatch(logout());
-      navigate('/login');
+      const result = await logout();
+      if (result.success) {
+        navigate('/login');
+      }
     } else {
       navigate(key);
     }

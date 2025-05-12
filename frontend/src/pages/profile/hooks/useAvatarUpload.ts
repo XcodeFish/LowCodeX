@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { message } from 'antd';
+import { message } from '@/utils';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { userService } from '@/services/userService';
 

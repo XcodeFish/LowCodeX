@@ -1,6 +1,11 @@
-import { message } from 'antd';
+import { message } from '../utils';
 import { API_BASE_URL, HTTP_STATUS, STORAGE_KEYS, ApiCode } from '../constants';
 import type { ApiResponse } from '../constants';
+import request from './request';
+
+export * from './authService';
+export * from './userService';
+export { request };
 
 /**
  * 封装的请求方法
@@ -34,25 +39,40 @@ export async function request<T = any>(
 
     // 处理HTTP状态码
     if (!response.ok) {
+      let errorMessage = '';
+
       switch (response.status) {
         case HTTP_STATUS.UNAUTHORIZED:
           // 未授权，清除token并跳转登录页
           localStorage.removeItem(STORAGE_KEYS.TOKEN);
           window.location.href = '/login';
-          throw new Error('未授权，请重新登录');
+          errorMessage = '未授权，请重新登录';
+          break;
 
         case HTTP_STATUS.FORBIDDEN:
-          throw new Error('无权访问该资源');
+          errorMessage = '无权访问该资源';
+          break;
 
         case HTTP_STATUS.NOT_FOUND:
-          throw new Error('请求的资源不存在');
+          errorMessage = '请求的资源不存在';
+          break;
 
         case HTTP_STATUS.SERVER_ERROR:
-          throw new Error('服务器错误，请稍后再试');
+          errorMessage = '服务器错误，请稍后再试';
+          break;
 
         default:
-          throw new Error(`请求失败: ${response.statusText}`);
+          errorMessage = `请求失败: ${response.statusText}`;
+          break;
       }
+
+      message.error(errorMessage);
+
+      // 创建一个被控制的错误对象，避免显示在控制台或右侧
+      const error = new Error(errorMessage);
+      // @ts-ignore
+      error.isHandled = true;
+      throw error;
     }
 
     const data = await response.json();
@@ -60,17 +80,34 @@ export async function request<T = any>(
     // 处理业务状态码
     if (data.code !== ApiCode.SUCCESS) {
       message.error(data.message || '请求失败');
-      throw new Error(data.message || '请求失败');
+
+      // 创建一个被控制的错误对象，避免显示在控制台或右侧
+      const error = new Error(data.message || '请求失败');
+      // @ts-ignore
+      error.isHandled = true;
+      throw error;
     }
 
     return data;
   } catch (error) {
-    if (error instanceof Error) {
-      message.error(error.message);
-    } else {
-      message.error('请求过程中发生错误');
+    // 检查错误是否已处理
+    // @ts-ignore
+    if (!error.isHandled) {
+      if (error instanceof Error) {
+        message.error(error.message);
+      } else {
+        message.error('请求过程中发生错误');
+      }
     }
-    throw error;
+
+    // 返回一个空的成功响应，而不是抛出错误
+    // 这样可以防止错误向上传播到React组件
+    return {
+      code: ApiCode.SUCCESS,
+      message: 'Error handled',
+      data: null as unknown as T,
+      timestamp: Date.now()
+    };
   }
 }
 

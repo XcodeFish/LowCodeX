@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePermission } from './usePermission';
+import * as features from './features';
 
 /**
  * 自定义Hook: 使用本地存储
@@ -66,6 +67,18 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
   return debouncedValue;
 }
 
-// 可以导出更多自定义Hook
-export { usePermission }
+// 导出所有hooks
+export {
+  usePermission,
+  features
+};
+
+// 为了方便使用，直接从features中导出常用hooks
+export const { auth } = features;
+
+// 默认导出所有hooks
+export default {
+  usePermission,
+  ...features
+};
 

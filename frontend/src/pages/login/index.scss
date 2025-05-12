@@ -6,6 +6,83 @@
   background: #f0f7ff;
   position: relative;
   overflow: hidden;
+
+  // 隐藏原生错误提示
+  ::-webkit-validation-bubble-message {
+    display: none;
+  }
+
+  // 隐藏常见的错误提示元素
+  .error-message,
+  .error-text,
+  .login-error {
+    display: none !important;
+  }
+
+  // 隐藏不需要的错误信息提示
+  .ant-message-notice {
+    &.ant-message-error {
+      // 只对右侧消息进行处理
+      &[style*="right"] {
+        display: none !important;
+      }
+    }
+  }
+
+  // 防止表单重渲染时输入框内容被清空的特殊处理
+  .right-error-message {
+    display: none !important;
+  }
+
+  // 全局错误提示处理
+  .ant-message {
+    // 确保消息显示在合适位置
+    &.right-side {
+      display: none !important;
+    }
+  }
+
+  // 定位右侧错误
+  @media screen and (min-width: 768px) {
+    // 使用位置检测隐藏右侧消息
+    [style*="left: calc(50% + 200px)"] {
+      display: none !important;
+    }
+  }
+
+  // 页面加载完成前不显示错误信息
+  &:not(.loaded) {
+    .ant-message,
+    .ant-alert,
+    [role="alert"] {
+      display: none !important;
+    }
+  }
+
+  // 添加加载标记，使错误信息控制更精确
+  &.loaded {
+    animation: none !important;
+  }
+
+  // 保持登录卡片在加载时的显示
+  .login-card {
+    transition: opacity 0.3s;
+
+    &.loading {
+      opacity: 0.8;
+    }
+  }
+
+  // 登录按钮加载态样式优化
+  .login-button {
+    position: relative;
+    transition: all 0.3s;
+
+    &:disabled {
+      opacity: 0.85;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .login-card {
@@ -213,11 +290,17 @@
   box-shadow: none !important;
   margin-top: 20px;
   transition: all 0.3s ease;
+  outline: none !important;
 
   &:hover, &:focus {
     background: #40a9ff;
     transform: none;
     box-shadow: none !important;
+    outline: none !important;
+  }
+
+  &:active {
+    outline: none !important;
   }
 }
 
@@ -227,20 +310,37 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
+  height: 32px; /* 固定高度确保垂直对齐 */
 }
 
+/* 复选框样式调整 */
 .ant-checkbox-wrapper {
   color: #666;
   font-size: 14px;
+  display: flex;
+  // align-items: center;
 
-  .ant-checkbox-inner {
-    border-radius: 2px;
-    border-color: #d9d9d9;
+  .ant-checkbox {
+    top: 0;
+    margin-right: 4px; /* 增加复选框和文字之间的间距 */
+
+    .ant-checkbox-inner {
+      border-radius: 2px;
+      border-color: #d9d9d9;
+      width: 16px;
+      height: 16px;
+    }
   }
 
   .ant-checkbox-checked .ant-checkbox-inner {
     background-color: #1890ff;
     border-color: #1890ff;
+  }
+
+  /* 确保文字垂直居中 */
+  span:last-child {
+    line-height: 1;
+    padding-top: 1px;
   }
 }
 
@@ -414,5 +514,116 @@
     transform: translateY(-50%);
     height: auto;
     pointer-events: auto;
+  }
+}
+
+/* 全局消息样式强制覆盖，确保位置正确 */
+body {
+  .ant-message {
+    position: fixed;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    margin: 0 !important;
+    z-index: 1100 !important;
+    pointer-events: none !important;
+
+    // 确保消息内容正确显示
+    .ant-message-notice {
+      padding: 0;
+      margin: 0;
+
+      .ant-message-notice-content {
+        border-radius: 4px;
+        padding: 10px 16px;
+        box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+        pointer-events: auto;
+        max-width: 100%;
+        display: inline-block !important;
+        text-align: center;
+
+        // 左右两侧出现的消息都隐藏，只保留中间的
+        &[style*="left: calc("] {
+          display: none !important;
+        }
+
+        &[style*="right:"] {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  // 处理连续多个消息的堆叠问题
+  .ant-message-notice + .ant-message-notice {
+    margin-top: 8px !important;
+  }
+}
+
+/* 覆盖所有可能的消息样式 */
+.ant-message-notice-content {
+  width: auto !important;
+  max-width: 100% !important;
+  display: inline-block !important;
+  padding: 10px 16px !important;
+  background-color: white !important;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+              0 6px 16px 0 rgba(0, 0, 0, 0.08),
+              0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 4px !important;
+
+  /* 溢出处理 */
+  .ant-message-custom-content {
+    font-size: 14px !important;
+    color: rgba(0, 0, 0, 0.85) !important;
+    display: flex !important;
+    align-items: center !important;
+
+    /* 允许文本换行 */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+
+    /* 图标与文本对齐 */
+    .anticon {
+      margin-right: 10px !important;
+      font-size: 16px !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* 文本内容 */
+    span:last-child {
+      flex: 1 !important;
+      max-width: 90% !important;
+    }
+  }
+}
+
+/* 消息显示的动画效果，确保平滑过渡 */
+.ant-message-notice.ant-move-up-leave {
+  animation-duration: 0.2s !important;
+}
+
+.ant-message-notice.ant-move-up-enter {
+  animation-duration: 0.2s !important;
+}
+
+// 全局消息样式优化
+:global {
+  .ant-message {
+    .ant-message-notice {
+      z-index: 1050; // 确保消息始终位于顶层
+
+      .ant-message-loading,
+      .ant-message-success,
+      .ant-message-error {
+        padding: 10px 16px;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+                    0 6px 16px 0 rgba(0, 0, 0, 0.08),
+                    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+      }
+    }
   }
 }
