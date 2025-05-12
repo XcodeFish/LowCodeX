@@ -19,7 +19,7 @@ export const ChangePassword: React.FC = () => {
     <div style={{ padding: 24, maxWidth: 500, margin: '0 auto' }}>
       <Title level={2}>修改密码</Title>
 
-      <Card bordered={false}>
+      <Card variant="borderless">
         <Form
           form={form}
           layout="vertical"

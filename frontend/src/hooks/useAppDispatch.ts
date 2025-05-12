@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import type { ThunkDispatch } from 'redux-thunk';
+import type { ThunkDispatch } from '@reduxjs/toolkit';
 import type { AnyAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 

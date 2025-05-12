@@ -45,11 +45,12 @@ export interface ModalProps extends AntModalProps {
    */
   destroyOnClose?: boolean;
   /**
-   * 对话框是否可见
+   * 对话框是否可见（已弃用，请使用open）
+   * @deprecated
    */
   visible?: boolean;
   /**
-   * 对话框是否可见（新API）
+   * 对话框是否可见
    */
   open?: boolean;
   /**
@@ -76,7 +77,7 @@ const Modal: React.FC<ModalProps> = ({
   onOk,
   onCancel,
   destroyOnClose = true,
-  visible,
+  visible, // 为了向后兼容保留
   open,
   width = 520,
   footer,
@@ -87,6 +88,9 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   // 全屏状态
   const [isFullscreen, setIsFullscreen] = useState(propFullscreen || false);
+
+  // 使用open或者visible（兼容旧版本）
+  const isOpen = open !== undefined ? open : visible;
 
   // 监听属性变化
   useEffect(() => {
@@ -150,7 +154,7 @@ const Modal: React.FC<ModalProps> = ({
       onCancel={onCancel}
       destroyOnClose={destroyOnClose}
       footer={renderFooter()}
-      visible={open || visible}
+      open={isOpen}
       {...restProps}
     >
       {showFullscreenToggle && (

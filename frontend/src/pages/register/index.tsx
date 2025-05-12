@@ -122,7 +122,7 @@ export const Register: React.FC = () => {
     <div className={`register-container ${pageLoaded ? 'loaded' : ''}`}>
       <Card
         className={`register-card ${loading ? 'loading' : ''}`}
-        bordered={false}
+        variant="borderless"
       >
         <div className="register-header">
           <img

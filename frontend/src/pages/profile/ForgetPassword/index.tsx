@@ -179,7 +179,7 @@ export const ForgetPassword: React.FC = () => {
 
   return (
     <div className="forget-password-container">
-      <Card className="forget-password-card" bordered={false}>
+      <Card className="forget-password-card" variant="borderless">
         <div className="forget-password-header">
           <img
             src="/logo.svg"

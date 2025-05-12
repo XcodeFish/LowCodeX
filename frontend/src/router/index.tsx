@@ -34,7 +34,7 @@ const LazyComponent = ({ children }: { children: React.ReactNode }) => (
         alignItems: 'center',
         height: '100vh'
       }}>
-        <Spin size="large" tip="加载中..." />
+        <Spin size="large" tip="加载中..." fullscreen />
       </div>
     }
   >
@@ -97,7 +97,7 @@ export const AppRouter: React.FC = () => {
         alignItems: 'center',
         height: '100vh'
       }}>
-        <Spin size="large" tip="加载中..." />
+        <Spin size="large" tip="加载中..." fullscreen />
       </div>
     );
   }

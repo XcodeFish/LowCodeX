@@ -96,7 +96,7 @@ const Dashboard: React.FC = () => {
 
       <div className="stat-cards-row">
         <div className="stat-card-wrapper">
-          <Card className="stat-card">
+          <Card className="stat-card" variant="outlined">
             <Statistic
               title="用户总数"
               value={4598}
@@ -105,7 +105,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </div>
         <div className="stat-card-wrapper">
-          <Card className="stat-card">
+          <Card className="stat-card" variant="outlined">
             <Statistic
               title="订单总数"
               value={1259}
@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </div>
         <div className="stat-card-wrapper">
-          <Card className="stat-card">
+          <Card className="stat-card" variant="outlined">
             <Statistic
               title="总收入"
               value={23567}
@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </div>
         <div className="stat-card-wrapper">
-          <Card className="stat-card">
+          <Card className="stat-card" variant="outlined">
             <Statistic
               title="报告总数"
               value={345}
@@ -136,13 +136,13 @@ const Dashboard: React.FC = () => {
 
       <div className="content-row">
         <div className="content-col">
-          <Card title="热门产品" className="table-card">
+          <Card title="热门产品" className="table-card" variant="outlined">
             <Table dataSource={dataSource} columns={columns} pagination={false} />
           </Card>
         </div>
 
         <div className="content-col">
-          <Card title="项目进度" className="progress-card">
+          <Card title="项目进度" className="progress-card" variant="outlined">
             {progressData.map((item, index) => (
               <div key={index} className="progress-item">
                 <div className="progress-name">
@@ -158,7 +158,7 @@ const Dashboard: React.FC = () => {
 
       <div className="content-row">
         <div className="content-col">
-          <Card title="最近活动" className="activity-card">
+          <Card title="最近活动" className="activity-card" variant="outlined">
             <List
               itemLayout="horizontal"
               dataSource={activityData}

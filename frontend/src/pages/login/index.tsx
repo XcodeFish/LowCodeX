@@ -24,7 +24,7 @@ export const Login: React.FC = () => {
     <div className="login-container">
       <Card
         className="login-card"
-        bordered={false}
+        variant="borderless"
       >
         <div className="login-header">
           <img

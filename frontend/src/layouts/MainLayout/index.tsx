@@ -111,10 +111,6 @@ const MainLayout: React.FC = () => {
     }
   ];
 
-  const dropdownMenu = (
-    <Menu onClick={handleMenuClick} className="user-dropdown-menu" items={userMenuItems} />
-  );
-
   return (
     <Layout className="main-layout">
       <Sider
@@ -158,7 +154,7 @@ const MainLayout: React.FC = () => {
                 </Badge>
               </div>
             </Tooltip>
-            <Dropdown overlay={dropdownMenu} trigger={['click']} placement="bottomRight">
+            <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} trigger={['click']} placement="bottomRight">
               <div className="user-action">
                 <Avatar size="small" className="avatar" icon={<UserOutlined />} src={user?.avatar} />
                 <div className="info">

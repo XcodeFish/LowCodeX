@@ -5,9 +5,9 @@ import {
   AutoComplete as AntAutoComplete
 } from 'antd';
 import type { InputProps as AntInputProps } from 'antd';
-import type { TextAreaProps } from 'antd/lib/input';
-import type { InputNumberProps } from 'antd/lib/input-number';
-import type { AutoCompleteProps } from 'antd/lib/auto-complete';
+import type { TextAreaProps } from 'antd/es/input';
+import type { InputNumberProps } from 'antd/es/input-number';
+import type { AutoCompleteProps } from 'antd/es/auto-complete';
 import './style.scss';
 
 const { TextArea, Password, Search } = AntInput;

@@ -32,7 +32,7 @@ export const Profile: React.FC = () => {
 
       <Tabs defaultActiveKey="info">
         <TabPane tab="基本资料" key="info">
-          <Card bordered={false}>
+          <Card variant="borderless">
             <div className="profile-flex-row">
               <div className="profile-avatar-section">
                 <Avatar
@@ -107,7 +107,7 @@ export const Profile: React.FC = () => {
         </TabPane>
 
         <TabPane tab="账号信息" key="account">
-          <Card bordered={false}>
+          <Card variant="borderless">
             <Descriptions
               title="账号详情"
               bordered
