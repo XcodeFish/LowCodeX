@@ -48,7 +48,7 @@ export const useAuth = () => {
 
           // 确保refreshToken存在，即使后端没有返回也要处理
           if (refreshToken) {
-            localStorage.setItem('refreshToken', refreshToken);
+          localStorage.setItem('refreshToken', refreshToken);
             // 静默处理，不输出日志
           }
 

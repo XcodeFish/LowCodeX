@@ -1,0 +1,14 @@
+.search-input {
+  width: 180px;
+
+  .ant-input-affix-wrapper {
+     margin-bottom: 0 !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  }
+
+  .ant-input {
+    height: 32px !important;
+    min-height: 32px !important;
+  }
+}

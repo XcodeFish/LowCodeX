@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import authReducer from './slices/authSlice';
+import modelReducer from './slices/modelSlice';
 
 // 创建Store
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    // 其他reducer将在这里添加，如模型、表单、工作流等
+    model: modelReducer,
+    // 其他reducer将在这里添加，如表单、工作流等
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

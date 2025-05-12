@@ -43,7 +43,7 @@ const MainLayout: React.FC = () => {
       if (item && 'children' in item && item.children) {
         const childMatch = item.children.find((child: MenuItem) => child?.key === pathname);
         if (childMatch) return [pathname];
-      }
+    }
     }
 
     // 检查路径前缀匹配

@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 
 // 懒加载组件
-// const ModelList = lazy(() => import('../pages/data-model/ModelList'));
-// const ModelEditor = lazy(() => import('../pages/data-model/ModelEditor'));
+const ModelList = lazy(() => import('../pages/data-model/ModelList'));
+const ModelEditor = lazy(() => import('../pages/data-model/ModelEditor'));
 // const FormDesigner = lazy(() => import('../pages/form-designer/FormDesigner'));
 // const FormList = lazy(() => import('../pages/form-designer/FormList'));
 // const WorkflowDesigner = lazy(() => import('../pages/workflow-designer/WorkflowDesigner'));
@@ -21,8 +21,34 @@ interface ProtectedRoute {
   requiredRoles: string[];
 }
 
-// 导出空的受保护路由数组，等待实际组件创建后再填充
-export const protectedRoutes: ProtectedRoute[] = [];
+// 导出受保护路由配置
+export const protectedRoutes: ProtectedRoute[] = [
+  // 数据模型路由 - 暂时屏蔽权限检查
+  {
+    path: '/models',
+    component: ModelList,
+    requiredPermissions: [], // 原为 ['model:view']
+    requiredRoles: []
+  },
+  {
+    path: '/models/create',
+    component: ModelEditor,
+    requiredPermissions: [], // 原为 ['model:create']
+    requiredRoles: []
+  },
+  {
+    path: '/models/edit/:id',
+    component: ModelEditor,
+    requiredPermissions: [], // 原为 ['model:update']
+    requiredRoles: []
+  },
+  {
+    path: '/models/view/:id',
+    component: ModelEditor,
+    requiredPermissions: [], // 原为 ['model:view']
+    requiredRoles: []
+  },
+];
 
 // 受保护路由配置
 // export const protectedRoutes = [

@@ -18,21 +18,21 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ConfigProvider locale={zhCN} theme={themeConfig}>
-        <Suspense
-          fallback={
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100vh'
-            }}>
+  <Suspense
+    fallback={
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
               <Spin size="large" tip="加载中..." fullscreen />
-            </div>
-          }
-        >
-          <AppRouter />
-        </Suspense>
-      </ConfigProvider>
+      </div>
+    }
+  >
+    <AppRouter />
+  </Suspense>
+</ConfigProvider>
     </Provider>
   );
 };

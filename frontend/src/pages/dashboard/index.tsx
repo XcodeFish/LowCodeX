@@ -150,7 +150,7 @@ const Dashboard: React.FC = () => {
                   <span>{item.percent}%</span>
                 </div>
                 <Progress percent={item.percent} showInfo={false} />
-              </div>
+                  </div>
             ))}
           </Card>
         </div>
