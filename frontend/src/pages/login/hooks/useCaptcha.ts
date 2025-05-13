@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { message } from '@/utils';
-import { authService } from '@/services/authService';
+import { message } from '../../../utils';
+import { authService } from '../../../services';
 
 export function useCaptcha() {
   const [captchaImage, setCaptchaImage] = useState<string>('');

@@ -19,7 +19,7 @@ import {
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useRegister } from './hooks/useRegister';
-import type { RegisterUserRequest } from '@/types/auth';
+import type { RegisterUserRequest } from '../../types/auth';
 import './index.scss';
 
 const { Title, Text } = Typography;

@@ -13,7 +13,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(process.cwd(), 'src'),
+      // 禁用 @ 别名，强制使用相对路径
+      // '@': path.resolve(process.cwd(), 'src'),
       // 强制所有React导入指向同一位置
       'react': path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
@@ -38,7 +39,8 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3100',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        // 不重写路径，保留/api前缀
+        // rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

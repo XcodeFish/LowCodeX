@@ -10,7 +10,8 @@ import {
   Tag,
   message,
   Modal,
-  Input
+  Input,
+  Spin
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import {
@@ -23,7 +24,7 @@ import {
   KeyOutlined,
   StarOutlined
 } from '@ant-design/icons';
-import { ModelField, Model, FieldType } from '../../types/model-types';
+import type { ModelField, Model, FieldType } from '../../types/model-types';
 import { getFieldTypeDisplayName, createEmptyField } from '../../utils/modelUtils';
 import { v4 as uuidv4 } from 'uuid';
 import FieldPropertiesPanel from './FieldPropertiesPanel';
@@ -31,7 +32,7 @@ import FieldPropertiesPanel from './FieldPropertiesPanel';
 const { Text } = Typography;
 
 interface TableEditorProps {
-  model: Model;
+  model: Model | null;
   onFieldSelect: (field: ModelField) => void;
   onModelUpdate: (model: Model) => void;
   readOnly?: boolean;
@@ -48,6 +49,15 @@ const TableEditor: React.FC<TableEditorProps> = ({
 }) => {
   // 当前选中的字段ID
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
+
+  // 如果模型不存在，显示加载或空状态
+  if (!model) {
+    return (
+      <div style={{ padding: '20px', textAlign: 'center' }}>
+        <Spin tip="初始化模型..." />
+      </div>
+    );
+  }
 
   // 添加新字段
   const handleAddField = () => {

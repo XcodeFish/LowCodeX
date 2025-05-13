@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { message } from '@/utils';
-import { authService } from '@/services/authService';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { setLoading, setError } from '@/store/slices/authSlice';
-import type { RegisterUserRequest } from '@/types/auth';
+import { message } from '../../../utils';
+import { authService } from '../../../services';
+import { useAppDispatch } from '../../../hooks';
+import { setLoading, setError } from '../../../store';
+import type { RegisterUserRequest } from '../../../types';
 
 /**
  * 注册功能的业务逻辑钩子

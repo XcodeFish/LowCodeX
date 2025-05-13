@@ -1,9 +1,9 @@
 import { Form } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { message } from '@/utils';
-import { auth } from '@/hooks';
-import type { ChangePasswordParams } from '@/types/user';
+import { message } from '../../../../utils';
+import { auth } from '../../../../hooks';
+import type { ChangePasswordParams } from '../../../../types';
 
 export const useChangePassword = () => {
   const [form] = Form.useForm();

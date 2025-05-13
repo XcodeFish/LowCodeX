@@ -7,7 +7,7 @@ import type {
   UpdateModelRequest,
   PublishModelRequest,
   ModelVersionRequest
-} from '../../types/model-types';
+} from '../../types';
 import { modelService } from '../../services/modelService';
 
 interface ModelState {

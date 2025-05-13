@@ -13,13 +13,28 @@ import {
   Typography,
   InputNumber,
   Tag,
-  message
+  message,
+  Tabs,
+  Empty,
+  Table,
+  Radio,
+  Drawer
 } from 'antd';
-import { QuestionCircleOutlined, PlusOutlined, DeleteOutlined, SyncOutlined } from '@ant-design/icons';
+import {
+  QuestionCircleOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+  SyncOutlined,
+  InfoCircleOutlined,
+  SettingOutlined,
+  SafetyOutlined,
+  BuildOutlined
+} from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import ValidationRuleEditor from './ValidationRuleEditor';
-import { FieldType, ModelField, ValidationRule } from '../../types/model-types';
-import { getFieldTypeDisplayName, updateModelField } from '../../utils/modelUtils';
+import { FieldType } from '../../types';
+import type { ModelField, ValidationRule } from '../../types';
+import { getFieldTypeDisplayName } from '../../utils/modelUtils';
 
 const { Option } = Select;
 const { TabPane } = Tabs;

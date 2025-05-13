@@ -2,9 +2,9 @@ import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { ConfigProvider, Spin } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
-import { store } from '@/store';
-import { AppRouter } from '@/router';
-import '@/styles/global.less';
+import { store } from './store';
+import { AppRouter } from './router';
+import './styles/global.less';
 
 // 定义主题配置
 const themeConfig = {

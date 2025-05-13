@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense, useState } from 'react';
+import React, { useEffect, lazy, Suspense, useState, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin } from 'antd';
@@ -48,17 +48,72 @@ const RouterInitializer: React.FC<{ children: React.ReactNode }> = ({ children }
   const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
   const [initializing, setInitializing] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const initAttemptedRef = useRef(false);
 
-  // 应用启动时获取当前用户信息
+  // 应用启动时获取当前用户信息 - 只在首次加载时执行一次
   useEffect(() => {
+    // 防止重复初始化
+    if (initAttemptedRef.current) {
+      return;
+    }
+
+    initAttemptedRef.current = true;
+
     const token = localStorage.getItem('token');
+
+    // 如果没有token，直接完成初始化
+    if (!token) {
+      setInitializing(false);
+      return;
+    }
 
     // 如果有token但未认证，尝试获取用户信息
     const initAuth = async () => {
       try {
-        if (token && !isAuthenticated && !loading) {
-          await getUserInfo();
+        // 清除可能遗留的错误计数（确保使用一致的key）
+        const storageKey = 'networkErrorCount:/v1/auth/me';
+        const connectionErrorCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
+
+        // 如果连接错误超过阈值，清除token并停止尝试
+        if (connectionErrorCount >= 3) {
+          console.error('后端服务连接失败次数过多，清除认证状态');
+          localStorage.removeItem('token');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem(storageKey);
+          setAuthError('服务器连接失败，请稍后再试');
+          setInitializing(false);
+          return;
         }
+
+        if (!isAuthenticated) {
+          try {
+            await getUserInfo();
+            // 成功获取用户信息后重置错误计数
+            localStorage.removeItem(storageKey);
+          } catch (error: any) {
+            console.error('获取用户信息失败:', error);
+            // 如果已经处于加载状态，不要继续尝试（防止重复请求）
+            if (loading) {
+              console.warn('已有请求正在进行中，跳过重复请求');
+              return;
+            }
+
+            // 只有在连接错误时增加计数（ERR_CONNECTION_REFUSED）
+            if (error.message === 'Network Error') {
+              const newCount = connectionErrorCount + 1;
+              localStorage.setItem(storageKey, newCount.toString());
+              console.warn(`服务器连接失败 (${newCount}/3)`);
+
+              if (newCount >= 3) {
+                setAuthError('服务器连接失败，请稍后再试');
+                localStorage.removeItem('token');
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error('认证初始化错误:', error);
       } finally {
         // 无论认证成功与否，都完成初始化
         setInitializing(false);
@@ -66,7 +121,7 @@ const RouterInitializer: React.FC<{ children: React.ReactNode }> = ({ children }
     };
 
     initAuth();
-  }, [getUserInfo, isAuthenticated, loading]);
+  }, []); // 空依赖数组，只在组件挂载时执行一次
 
   // 在初始化阶段显示加载中
   if (initializing) {
@@ -78,6 +133,23 @@ const RouterInitializer: React.FC<{ children: React.ReactNode }> = ({ children }
         height: '100vh'
       }}>
         <Spin size="large" tip="应用初始化中..." fullscreen />
+      </div>
+    );
+  }
+
+  // 如果有认证错误，显示错误信息
+  if (authError) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column'
+      }}>
+        <h2>连接错误</h2>
+        <p>{authError}</p>
+        <a href="/login" style={{ marginTop: '16px' }}>返回登录页</a>
       </div>
     );
   }

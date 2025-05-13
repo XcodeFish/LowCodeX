@@ -2,32 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactFlow, {
   Background,
   Controls,
-  Edge,
   MiniMap,
-  Node,
   addEdge,
   Position,
   useEdgesState,
   useNodesState,
   MarkerType,
-  Connection,
   ReactFlowProvider,
   useReactFlow,
 } from 'reactflow';
+import type { Connection, Edge, Node } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Card, Typography, Empty, Spin, Button, message, Tooltip, Space, Select } from 'antd';
 import { ZoomInOutlined, ZoomOutOutlined, CompressOutlined, ExpandOutlined, ReloadOutlined, FullscreenOutlined } from '@ant-design/icons';
-import { Model, ModelField, ModelRelation, ModelRelationType } from '../../types/model-types';
+import type { Model, ModelField, ModelRelation, ModelRelationType } from '../../types/model-types';
 import RelationshipEditor from './RelationshipEditor';
 
-const { Title, Text } = Typography;
 const { Option } = Select;
 
 interface ERDiagramEditorProps {
-  models: Model[];
-  relationships: ModelRelation[];
-  onRelationshipsChange?: (relationships: ModelRelation[]) => void;
-  currentModelId?: string;
+  model: Model | null;
+  onFieldSelect: (field: ModelField) => void;
+  onModelUpdate: (model: Model) => void;
   readOnly?: boolean;
 }
 
@@ -66,10 +62,9 @@ const nodeTypes = {
  * ER图编辑器组件
  */
 const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
-  models,
-  relationships,
-  onRelationshipsChange,
-  currentModelId,
+  model,
+  onFieldSelect,
+  onModelUpdate,
   readOnly = false,
 }) => {
   const flowWrapper = useRef<HTMLDivElement>(null);
@@ -80,53 +75,38 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
 
   // 初始化图表数据
   useEffect(() => {
-    if (models.length === 0) {
+    if (!model) {
       setLoading(false);
       return;
     }
 
     // 创建节点
     const flowNodes: Node[] = [];
-    const gridSize = Math.ceil(Math.sqrt(models.length));
+    const gridSize = Math.ceil(Math.sqrt(model.fields.length));
     const nodeWidth = 220;
     const nodeHeight = 300;
     const spacingX = 300;
     const spacingY = 350;
 
-    models.forEach((model, index) => {
+    model.fields.forEach((field, index) => {
       // 计算网格位置
       const row = Math.floor(index / gridSize);
       const col = index % gridSize;
 
-      // 如果是当前模型，放在中心位置
-      let x = col * spacingX;
-      let y = row * spacingY;
-
-      if (model.id === currentModelId) {
-        x = gridSize * spacingX / 2;
-        y = gridSize * spacingY / 2;
-      }
-
       // 创建节点
       flowNodes.push({
-        id: model.id,
+        id: field.id,
         type: 'modelNode',
-        position: { x, y },
+        position: { x: col * spacingX, y: row * spacingY },
         sourcePosition: Position.Right,
         targetPosition: Position.Left,
         data: {
-          label: model.displayName || model.name,
-          fields: model.fields.map((field) => ({
-            id: field.id,
-            name: field.name,
-            type: field.type,
-            isPrimaryKey: field.isPrimaryKey,
-            isRequired: field.isRequired,
-          })),
+          label: field.name,
+          fields: [field],
         },
         style: {
           width: nodeWidth,
-          border: model.id === currentModelId ? '2px solid #1890ff' : '1px solid #d9d9d9',
+          border: field.isPrimaryKey ? '2px solid #1890ff' : '1px solid #d9d9d9',
           borderRadius: '4px',
           background: '#fff',
         },
@@ -134,61 +114,17 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
     });
 
     // 创建边
-    const flowEdges: Edge[] = relationships.map((rel) => {
-      let label = '';
-      let type = '';
-
-      switch (rel.type) {
-        case 'oneToOne':
-          label = '1:1';
-          type = 'one-to-one';
-          break;
-        case 'oneToMany':
-          label = '1:N';
-          type = 'one-to-many';
-          break;
-        case 'manyToOne':
-          label = 'N:1';
-          type = 'many-to-one';
-          break;
-        case 'manyToMany':
-          label = 'N:N';
-          type = 'many-to-many';
-          break;
-      }
-
-      return {
-        id: rel.id,
-        source: rel.sourceModelId,
-        target: rel.targetModelId,
-        label: label,
-        type: 'default',
-        animated: false,
-        style: { stroke: '#666' },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          width: 15,
-          height: 15,
-          color: '#666',
-        },
-        data: {
-          relationType: rel.type,
-          displayName: rel.displayName,
-          sourceField: rel.sourceField,
-          targetField: rel.targetField,
-        },
-      };
-    });
+    const flowEdges: Edge[] = [];
 
     setNodes(flowNodes);
     setEdges(flowEdges);
     setLoading(false);
-  }, [models, relationships, currentModelId, setNodes, setEdges]);
+  }, [model, setNodes, setEdges]);
 
   // 处理边连接
   const onConnect = (params: Connection) => {
-    // 只读模式不允许添加连接
-    if (readOnly || !onRelationshipsChange) return;
+    // 必要的安全检查
+    if (readOnly || !model) return;
 
     // 检查是否已存在相同的连接
     const existingEdge = edges.find(
@@ -200,32 +136,35 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
       return;
     }
 
-    // 创建新的关系
-    const sourceModel = models.find((model) => model.id === params.source);
-    const targetModel = models.find((model) => model.id === params.target);
+    // 查找源字段和目标字段
+    const sourceField = model.fields.find((f) => f.id === params.source);
+    const targetField = model.fields.find((f) => f.id === params.target);
 
-    if (!sourceModel || !targetModel) {
-      message.error('无法创建关系：找不到源模型或目标模型');
+    if (!sourceField || !targetField) {
+      message.error('无法创建关系：找不到源字段或目标字段');
       return;
     }
 
-    // 默认为多对一关系
-    const newRelationship: ModelRelation = {
+    // 创建新的关系 (注意：这个关系对象会发送到API，但不会直接添加到model对象)
+    const newRelation: ModelRelation = {
       id: `rel_${Date.now()}`,
-      sourceModelId: sourceModel.id,
-      targetModelId: targetModel.id,
+      sourceModelId: model.id,
+      targetModelId: model.id,
       type: 'manyToOne',
-      name: `${sourceModel.name}_${targetModel.name}`,
-      displayName: `所属${targetModel.displayName || targetModel.name}`,
-      // 默认使用主键作为关联字段
-      sourceField: '',
-      targetField: targetModel.fields.find((f) => f.isPrimaryKey)?.name || 'id',
+      name: `${model.name}_${model.name}`,
+      displayName: `所属${model.name}`,
+      sourceField: sourceField.id,
+      targetField: targetField.id,
     };
 
-    // 更新关系
-    onRelationshipsChange([...relationships, newRelationship]);
+    // 直接通知父组件模型已更新，不修改Model类型
+    // 关系处理应在父组件或专门的关系服务中进行
+    onModelUpdate(model);
 
-    // 更新边
+    // TODO: 实际应用中会有API调用来保存关系
+    // 例如: modelService.createRelation(model.id, newRelation);
+
+    // 更新边 - 仅用于视觉显示
     setEdges((eds) =>
       addEdge(
         {
@@ -242,7 +181,7 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
           },
           data: {
             relationType: 'manyToOne',
-            displayName: newRelationship.displayName,
+            displayName: newRelation.displayName,
           },
         },
         eds
@@ -289,7 +228,7 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
   };
 
   // 当模型数据为空时显示提示
-  if (models.length === 0) {
+  if (!model) {
     return (
       <Card title="ER图编辑器" className="er-diagram-card">
         <Empty description="没有可用的数据模型" />
@@ -315,7 +254,7 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
         </Space>
       }
     >
-      <Spin spinning={loading} tip="加载中...">
+      <Spin spinning={loading}>
         <div className="er-diagram-container" ref={flowWrapper} style={{ height: 600 }}>
           <ReactFlow
             nodes={nodes}
@@ -344,7 +283,9 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
         </div>
       </Spin>
 
-      <style jsx>{`
+      {/* 使用普通style标签添加CSS */}
+      <style>
+        {`
         .model-node {
           border: 1px solid #ccc;
           border-radius: 4px;
@@ -397,7 +338,8 @@ const ERDiagramEditor: React.FC<ERDiagramEditorProps> = ({
           color: #888;
           font-size: 11px;
         }
-      `}</style>
+        `}
+      </style>
     </Card>
   );
 };

@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { userTypes } from '../../types';
+import type { UserInfo } from '../../types';
 
 // 状态接口
 interface AuthState {
-  user: userTypes.UserInfo | null;
+  user: UserInfo | null;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
@@ -22,14 +22,14 @@ const initialState: AuthState = {
 // 简化的异步action，只负责状态更新
 export const setLoginResult = createAsyncThunk(
   'auth/setLoginResult',
-  async (payload: { user: userTypes.UserInfo }) => {
+  async (payload: { user: UserInfo }) => {
     return payload;
   }
 );
 
 export const setUserInfo = createAsyncThunk(
   'auth/setUserInfo',
-  async (payload: { user: userTypes.UserInfo, permissions?: string[] }) => {
+  async (payload: { user: UserInfo, permissions?: string[] }) => {
     return payload;
   }
 );

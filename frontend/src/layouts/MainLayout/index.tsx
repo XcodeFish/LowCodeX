@@ -12,12 +12,12 @@ import {
 } from '@ant-design/icons';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useAuth } from '@/hooks/features/auth/useAuth';
+import { useAuth } from '../../hooks';
 import logo from '/logo.svg';
 import { menuItems } from './menu.js';
 import type { MenuItem } from './menu.js';
 import './style.scss';
-import type { RootState } from '@/store';
+import type { RootState } from '../../store';
 
 const { Header, Sider, Content } = Layout;
 

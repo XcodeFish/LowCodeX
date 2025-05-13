@@ -1,7 +1,7 @@
+import { message } from '../../../utils';
 import { useState } from 'react';
-import { message } from '@/utils';
+import { userService } from '../../../services';
 import type { UploadChangeParam } from 'antd/es/upload';
-import { userService } from '@/services/userService';
 
 export function useAvatarUpload() {
   const [uploadLoading, setUploadLoading] = useState(false);

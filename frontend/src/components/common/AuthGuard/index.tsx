@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { usePermission } from '@/hooks/usePermission';
+import { usePermission } from '../../../hooks';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
-import type { RootState } from '@/store';
+import type { RootState } from '../../../store';
 
 interface AuthGuardProps {
   children: React.ReactNode;

@@ -18,7 +18,8 @@ import {
   DeleteOutlined,
   QuestionCircleOutlined,
 } from '@ant-design/icons';
-import { type ValidationRule, FieldType, type ValidationRuleType } from '../../types/model-types';
+import { FieldType } from '../../types';
+import type { ValidationRule, ValidationRuleType } from '../../types';
 
 const { Text } = Typography;
 const { Option } = Select;

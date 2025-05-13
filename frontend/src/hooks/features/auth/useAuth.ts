@@ -11,8 +11,9 @@ import {
   selectLoading,
   selectError
 } from '../../../store/slices/authSlice';
-import { authTypes } from '../../../types';
+import type { LoginRequest } from '../../../types';
 import { useAppDispatch } from '../../useAppDispatch';
+import React from 'react';
 
 /**
  * 认证相关的业务逻辑钩子
@@ -27,12 +28,18 @@ export const useAuth = () => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  // 最后一次请求状态
+  const lastRequestRef = React.useRef({
+    userInfoLastAttempt: 0,
+    userInfoRequestInProgress: false
+  });
+
   /**
    * 执行登录操作
    * @param params 登录参数
    * @returns 登录结果
    */
-  const login = async (params: authTypes.LoginRequest) => {
+  const login = async (params: LoginRequest) => {
     try {
       dispatch(setLoading(true));
       dispatch(setError(null));
@@ -58,6 +65,9 @@ export const useAuth = () => {
           } else {
             localStorage.removeItem('rememberedUsername');
           }
+
+          // 重置错误计数
+          localStorage.removeItem('networkErrorCount:/v1/auth/me');
         }
 
         // 更新Redux状态
@@ -81,9 +91,35 @@ export const useAuth = () => {
    * @returns 用户信息获取结果
    */
   const getUserInfo = async () => {
+    // 防止重复请求：如果已有请求正在进行中，返回等待状态
+    if (lastRequestRef.current.userInfoRequestInProgress) {
+      console.warn('[Auth] getUserInfo: 已有请求正在进行中，跳过重复请求');
+      return { success: false, error: '请求正在进行中', pending: true };
+    }
+
+    // 防止频繁请求：如果距离上次请求不到1秒，跳过
+    const now = Date.now();
+    const timeSinceLastRequest = now - lastRequestRef.current.userInfoLastAttempt;
+    if (timeSinceLastRequest < 1000) { // 1秒内不重复请求
+      console.warn('[Auth] getUserInfo: 请求过于频繁，跳过', { timeSinceLastRequest });
+      return { success: false, error: '请求过于频繁', tooFrequent: true };
+    }
+
+    // 更新最后请求时间和状态
+    lastRequestRef.current.userInfoLastAttempt = now;
+    lastRequestRef.current.userInfoRequestInProgress = true;
+
     try {
       dispatch(setLoading(true));
       dispatch(setError(null));
+
+      // 检查是否已达到网络错误重试上限
+      const storageKey = 'networkErrorCount:/v1/auth/me';
+      const errorCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
+      if (errorCount >= 3) {
+        console.warn('[Auth] auth/me接口连接失败次数过多，暂停请求');
+        return { success: false, error: '服务器连接失败，请稍后再试' };
+      }
 
       const response = await authService.getUserInfo();
 
@@ -92,16 +128,28 @@ export const useAuth = () => {
         const permissions = user.roles || [];
 
         dispatch(setUserInfo({ user, permissions }));
+
+        // 成功获取用户信息，重置错误计数
+        localStorage.removeItem(storageKey);
+
         return { success: true, user };
       }
 
       return { success: false, error: '获取用户信息失败，返回数据格式错误' };
     } catch (error: any) {
       const errorMsg = error.response?.data?.message || '获取用户信息失败';
+
+      // 如果是网络错误，记录详细信息
+      if (error.message === 'Network Error') {
+        console.warn('[Auth] 网络连接错误:', error);
+      }
+
       dispatch(setError(errorMsg));
       return { success: false, error: errorMsg };
     } finally {
       dispatch(setLoading(false));
+      // 重置请求状态
+      lastRequestRef.current.userInfoRequestInProgress = false;
     }
   };
 

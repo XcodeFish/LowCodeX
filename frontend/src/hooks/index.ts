@@ -68,10 +68,9 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
 }
 
 // 导出所有hooks
-export {
-  usePermission,
-  features
-};
+export * from './usePermission';
+export * from './useAppDispatch';
+export * from './features/auth/useAuth';
 
 // 为了方便使用，直接从features中导出常用hooks
 export const { auth } = features;

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, type ButtonProps } from 'antd';
-import { usePermission } from '@/hooks/usePermission';
+import { Button, ButtonProps } from 'antd';
+import React, { ReactNode } from 'react';
+import { usePermission } from '../../../hooks';
 
 interface AuthButtonProps extends ButtonProps {
   requiredPermissions?: string[];

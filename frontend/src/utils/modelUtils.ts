@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-  FieldType,
+import { FieldType } from '../types';
+import type {
   ModelField,
   Model,
   ValidationRule,
   ModelRelation
-} from '../types/model-types';
+} from '../types';
 
 /**
  * 创建新的空字段

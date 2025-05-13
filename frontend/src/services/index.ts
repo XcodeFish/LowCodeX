@@ -1,11 +1,10 @@
 import { message } from '../utils';
 import { API_BASE_URL, HTTP_STATUS, STORAGE_KEYS, ApiCode } from '../constants';
 import type { ApiResponse } from '../constants';
-import request from './request';
+import requestModule from './request'; // 重命名为requestModule，避免冲突
 
 export * from './authService';
 export * from './userService';
-export { request };
 
 /**
  * 封装的请求方法

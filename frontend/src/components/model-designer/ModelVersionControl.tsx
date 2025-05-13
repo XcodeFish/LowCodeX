@@ -34,9 +34,12 @@ import {
   PlusOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import { Model, ModelVersion, ModelDiff } from '../../types/model-types';
+import type { Model, ModelVersion, ModelDiff } from '../../types/model-types';
 import ReactDiffViewer, { DiffMethod } from 'react-diff-viewer-continued';
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../store';
+import { fetchModelVersions } from '../../store/slices/modelSlice';
 
 const { Text, Title } = Typography;
 const { TabPane } = Tabs;
@@ -50,6 +53,7 @@ interface ModelVersionControlProps {
   onSaveVersion: (version: Partial<ModelVersion>) => void;
   onRestoreVersion: (versionId: string) => void;
   readOnly?: boolean;
+  modelId?: string;
 }
 
 /**
@@ -57,12 +61,15 @@ interface ModelVersionControlProps {
  */
 const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
   model,
-  versions,
+  versions = [],
   currentVersion,
   onSaveVersion,
   onRestoreVersion,
   readOnly = false,
+  modelId,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { modelVersions, loading } = useSelector((state: RootState) => state.model);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isVersionDetailVisible, setIsVersionDetailVisible] = useState(false);
   const [selectedVersion, setSelectedVersion] = useState<ModelVersion | null>(null);
@@ -75,6 +82,16 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
     oldVersion: null,
     newVersion: null,
   });
+
+  // 加载版本数据
+  useEffect(() => {
+    if (modelId) {
+      dispatch(fetchModelVersions(modelId));
+    }
+  }, [dispatch, modelId]);
+
+  // 使用从redux获取的版本数据
+  const versionsToDisplay = versions.length > 0 ? versions : modelVersions;
 
   // 打开创建版本模态框
   const showCreateVersionModal = () => {
@@ -159,14 +176,18 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
 
   // 获取版本列表
   const renderVersionList = () => {
-    if (versions.length === 0) {
+    if (loading) {
+      return <Spin tip="加载版本记录中..." />;
+    }
+
+    if (versionsToDisplay.length === 0) {
       return <Empty description="暂无版本记录" />;
     }
 
     return (
       <List
         itemLayout="horizontal"
-        dataSource={versions.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())}
+        dataSource={versionsToDisplay.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())}
         renderItem={(version, index) => (
           <List.Item
             actions={[
@@ -191,11 +212,11 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
                   </Button>
                 </Popconfirm>
               ),
-              index < versions.length - 1 && (
+              index < versionsToDisplay.length - 1 && (
                 <Button
                   key="diff"
                   type="link"
-                  onClick={() => showDiff(versions[index + 1], version)}
+                  onClick={() => showDiff(versionsToDisplay[index + 1], version)}
                   icon={<DiffOutlined />}
                 >
                   对比
@@ -235,7 +256,7 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
         <Typography.Title level={5} style={{ margin: 0 }}>
           <HistoryOutlined /> 版本记录
         </Typography.Title>
-        {!readOnly && (
+        {!readOnly && model && (
           <Button
             type="primary"
             icon={<SaveOutlined />}
@@ -261,7 +282,7 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
           form={form}
           layout="vertical"
           initialValues={{
-            name: `${model.name} v${versions.length + 1}`,
+            name: model ? `${model.name} v${versionsToDisplay.length + 1}` : '',
             description: '',
             isPublished: false,
           }}

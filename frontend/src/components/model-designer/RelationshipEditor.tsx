@@ -21,7 +21,7 @@ import {
   EditOutlined,
   LinkOutlined,
 } from '@ant-design/icons';
-import { Model, ModelRelation, ModelField, ModelRelationType } from '../../types/model-types';
+import type { Model, ModelRelation, ModelField, ModelRelationType } from '../../types/model-types';
 import { v4 as uuidv4 } from 'uuid';
 
 const { Text, Title } = Typography;

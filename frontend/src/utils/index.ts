@@ -407,3 +407,6 @@ export function throttle<T extends (...args: any[]) => any>(
     }
   };
 }
+
+// 导出utils中的所有工具
+export * from './message';

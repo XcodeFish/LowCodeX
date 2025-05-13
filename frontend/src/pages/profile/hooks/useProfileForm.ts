@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { message, Form } from 'antd';
 import { useSelector } from 'react-redux';
-import type { RootState } from '@/store';
-import type { ProfileUpdateParams } from '@/types/user';
-import { userService } from '@/services/userService';
-import { message as customMessage } from '@/utils';
+import type { RootState } from '../../../store';
+import type { ProfileUpdateParams } from '../../../types';
+import { userService } from '../../../services';
+import { message as customMessage } from '../../../utils';
 
 export function useProfileForm() {
   const [form] = Form.useForm();

@@ -1,5 +1,5 @@
-import React from 'react';
-import { usePermission } from '@/hooks/usePermission';
+import { usePermission } from '../../../hooks';
+import React, { ReactNode } from 'react';
 
 interface PermissionWrapperProps {
   requiredPermissions?: string[];

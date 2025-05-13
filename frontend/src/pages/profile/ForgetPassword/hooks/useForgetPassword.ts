@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form } from 'antd';
-import { message } from '@/utils';
-import {authService} from '@/services/authService';
+import { message } from '../../../../utils';
+import { authService } from '../../../../services';
 
 export const useForgetPassword = () => {
   const [form] = Form.useForm();

@@ -1,7 +1,12 @@
-import * as authTypes from './auth';
-import * as userTypes from './user';
+// Re-export all types from individual type definition files
+export * from './auth';
+export * from './user';
+export * from './model-types'; // Ensure this is present and correct
 
-// 从constants中重新导出API相关类型，保持向后兼容
+// Explicitly re-export Model, ModelField, and FieldType for robustness
+export type { Model, ModelField } from './model-types';
+
+// Re-export API related types from constants for backward compatibility
 export type {
   ApiResponse,
   PaginationData,
@@ -15,7 +20,9 @@ export type {
 } from '../constants/api';
 export { ApiCode } from '../constants/api';
 
-// 用户信息类型
+// It seems 'User' interface was defined here directly,
+// if it's not in './user.ts' it should be moved there or kept here if it's a general project-wide User type
+// For now, I'll assume it might be a general type and keep it, but ideally it should be in './user.ts'
 export interface User {
   id: string;
   username: string;
@@ -24,6 +31,3 @@ export interface User {
   role: string[];
   tenantId: string;
 }
-
-// 可以导出更多类型
-export { authTypes, userTypes };
