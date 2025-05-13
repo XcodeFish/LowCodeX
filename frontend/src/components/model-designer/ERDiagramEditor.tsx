@@ -13,12 +13,9 @@ import ReactFlow, {
 } from 'reactflow';
 import type { Connection, Edge, Node } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { Card, Typography, Empty, Spin, Button, message, Tooltip, Space, Select } from 'antd';
-import { ZoomInOutlined, ZoomOutOutlined, CompressOutlined, ExpandOutlined, ReloadOutlined, FullscreenOutlined } from '@ant-design/icons';
+import { Card, Empty, Spin, Button, message, Tooltip, Space, Select } from 'antd';
+import { ZoomInOutlined, ZoomOutOutlined, CompressOutlined } from '@ant-design/icons';
 import type { Model, ModelField, ModelRelation, ModelRelationType } from '../../types/model-types';
-import RelationshipEditor from './RelationshipEditor';
-
-const { Option } = Select;
 
 interface ERDiagramEditorProps {
   model: Model | null;

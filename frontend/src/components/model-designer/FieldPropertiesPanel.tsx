@@ -1,44 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Form,
   Input,
   Select,
   Switch,
-  Collapse,
   Divider,
   Space,
-  Button,
   Card,
-  Tooltip,
   Typography,
   InputNumber,
-  Tag,
-  message,
   Tabs,
   Empty,
-  Table,
-  Radio,
-  Drawer
 } from 'antd';
 import {
-  QuestionCircleOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-  SyncOutlined,
   InfoCircleOutlined,
   SettingOutlined,
   SafetyOutlined,
   BuildOutlined
 } from '@ant-design/icons';
-import { v4 as uuidv4 } from 'uuid';
 import ValidationRuleEditor from './ValidationRuleEditor';
 import { FieldType } from '../../types';
 import type { ModelField, ValidationRule } from '../../types';
-import { getFieldTypeDisplayName } from '../../utils/modelUtils';
 
 const { Option } = Select;
 const { TabPane } = Tabs;
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 interface FieldPropertiesPanelProps {
   field: ModelField | null;

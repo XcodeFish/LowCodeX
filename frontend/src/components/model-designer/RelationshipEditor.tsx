@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   Button,
   Select,
   Space,
   Popconfirm,
-  Card,
   Typography,
   Form,
   Input,
   Modal,
   message,
-  Tooltip,
-  Badge,
-  Switch,
 } from 'antd';
 import {
   PlusOutlined,
@@ -21,10 +17,7 @@ import {
   EditOutlined,
   LinkOutlined,
 } from '@ant-design/icons';
-import type { Model, ModelRelation, ModelField, ModelRelationType } from '../../types/model-types';
-import { v4 as uuidv4 } from 'uuid';
-
-const { Text, Title } = Typography;
+import type { Model, ModelRelation, ModelRelationType } from '../../types/model-types';
 const { Option } = Select;
 
 interface RelationshipEditorProps {

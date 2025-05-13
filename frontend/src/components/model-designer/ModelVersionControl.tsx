@@ -16,35 +16,27 @@ import {
   Tabs,
   Tooltip,
   Drawer,
-  Timeline,
   Empty,
-  Table,
   Spin,
-  Descriptions,
 } from 'antd';
 import {
   HistoryOutlined,
   SaveOutlined,
   RollbackOutlined,
   DiffOutlined,
-  TagOutlined,
-  CheckOutlined,
-  CloseOutlined,
   ExclamationCircleOutlined,
-  PlusOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import type { Model, ModelVersion, ModelDiff } from '../../types/model-types';
+import type { Model, ModelVersion } from '../../types/model-types';
 import ReactDiffViewer, { DiffMethod } from 'react-diff-viewer-continued';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../store';
 import { fetchModelVersions } from '../../store/slices/modelSlice';
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 const { TabPane } = Tabs;
 const { confirm } = Modal;
-const { TextArea } = Input;
 
 interface ModelVersionControlProps {
   model: Model;
@@ -167,9 +159,7 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
     if (!model) return '';
 
     // 复制模型并移除不需要比较的字段
-    const modelCopy = { ...model };
-    delete modelCopy.updatedAt;
-    delete modelCopy.updatedBy;
+    const { updatedAt, updatedBy, ...modelCopy } = { ...model };
 
     return JSON.stringify(modelCopy, null, 2);
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   Button,
@@ -9,8 +9,6 @@ import {
   Switch,
   Tag,
   message,
-  Modal,
-  Input,
   Spin
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
@@ -20,14 +18,9 @@ import {
   DeleteOutlined,
   ArrowUpOutlined,
   ArrowDownOutlined,
-  ExclamationCircleOutlined,
-  KeyOutlined,
-  StarOutlined
 } from '@ant-design/icons';
-import type { ModelField, Model, FieldType } from '../../types/model-types';
+import type { ModelField, Model } from '../../types/model-types';
 import { getFieldTypeDisplayName, createEmptyField } from '../../utils/modelUtils';
-import { v4 as uuidv4 } from 'uuid';
-import FieldPropertiesPanel from './FieldPropertiesPanel';
 
 const { Text } = Typography;
 
