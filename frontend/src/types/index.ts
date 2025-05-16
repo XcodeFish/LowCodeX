@@ -1,10 +1,40 @@
 // Re-export all types from individual type definition files
 export * from './auth';
 export * from './user';
-export * from './model-types'; // Ensure this is present and correct
+export * from './data-models';
 
-// Explicitly re-export Model, ModelField, and FieldType for robustness
-export type { Model, ModelField } from './model-types';
+
+// 数据模型类型导出
+export {
+  FieldType,
+  RelationType,
+  ValidationRuleType,
+  TableStatus,
+  BusinessRuleType,
+  type ValidationRule,
+  type EnumOption,
+  type BusinessRule,
+  type FieldAdvancedSettings,
+  type MetaField,
+  type MetaRelation,
+  type MetaTable,
+  type MetaVersion,
+  type CompleteModel,
+  type CreateMetaTableDto,
+  type CreateMetaFieldDto,
+  type CreateMetaRelationDto,
+  type CreateMetaVersionDto,
+  type ModelExportData,
+  type BackendApiResponse,
+  type PagedResponse,
+  type CreateCompleteModelRequest,
+  type CreateCompleteModelResponse,
+  type PublishModelResponse,
+  type CloneModelRequest,
+  type CloneModelResponse,
+  type ImportModelRequest,
+  type ImportModelResponse,
+} from './data-models';
 
 // Re-export API related types from constants for backward compatibility
 export type {
@@ -31,3 +61,10 @@ export interface User {
   role: string[];
   tenantId: string;
 }
+
+// DataModelApiResponse是后端API通用响应类型
+export type DataModelApiResponse<T> = {
+  success: boolean;
+  data?: T;
+  error?: string;
+};

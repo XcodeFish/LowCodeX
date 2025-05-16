@@ -1,6 +1,13 @@
 import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiCode } from '../types';
+
+// 扩展 Axios 配置类型
+declare module 'axios' {
+  export interface InternalAxiosRequestConfig {
+    onRequestComplete?: () => void;
+  }
+}
 
 // 标记错误为已处理，避免React错误边界捕获并重新渲染
 export const markErrorAsHandled = (error: any) => {
@@ -34,7 +41,7 @@ const createApiClient = () => {
   const pendingRequests = new Map();
 
   // 生成请求的唯一标识符
-  const getRequestKey = (config) => {
+  const getRequestKey = (config: InternalAxiosRequestConfig) => {
     const { method, url, params, data } = config;
     return `${method}:${url}:${JSON.stringify(params)}:${JSON.stringify(data)}`;
   };
@@ -53,7 +60,7 @@ const createApiClient = () => {
 
   // 添加请求拦截器
   apiClient.interceptors.request.use(
-    (config) => {
+    (config: InternalAxiosRequestConfig) => {
       const token = localStorage.getItem('token');
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -252,6 +259,9 @@ export default {
   },
   put: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => {
     return apiClient.put<T, any>(url, data, config);
+  },
+  patch: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => {
+    return apiClient.patch<T, any>(url, data, config);
   },
   delete: <T = any>(url: string, config?: AxiosRequestConfig) => {
     return apiClient.delete<T, any>(url, config);

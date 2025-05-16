@@ -35,7 +35,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     let message = '服务器内部错误';
     let code = 'INTERNAL_SERVER_ERROR';
-    let data = null;
+    const data = null;
 
     // 处理不同类型的异常
     if (exception instanceof HttpException) {

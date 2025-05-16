@@ -43,6 +43,61 @@ export type userroles = $Result.DefaultSelection<Prisma.$userrolesPayload>
  * 
  */
 export type system_configs = $Result.DefaultSelection<Prisma.$system_configsPayload>
+/**
+ * Model MetaTable
+ * 
+ */
+export type MetaTable = $Result.DefaultSelection<Prisma.$MetaTablePayload>
+/**
+ * Model MetaField
+ * 
+ */
+export type MetaField = $Result.DefaultSelection<Prisma.$MetaFieldPayload>
+/**
+ * Model MetaRelation
+ * 
+ */
+export type MetaRelation = $Result.DefaultSelection<Prisma.$MetaRelationPayload>
+/**
+ * Model MetaVersion
+ * 
+ */
+export type MetaVersion = $Result.DefaultSelection<Prisma.$MetaVersionPayload>
+/**
+ * Model MetaIndex
+ * 
+ */
+export type MetaIndex = $Result.DefaultSelection<Prisma.$MetaIndexPayload>
+/**
+ * Model MetaIndexField
+ * 
+ */
+export type MetaIndexField = $Result.DefaultSelection<Prisma.$MetaIndexFieldPayload>
+/**
+ * Model MetaConstraint
+ * 
+ */
+export type MetaConstraint = $Result.DefaultSelection<Prisma.$MetaConstraintPayload>
+/**
+ * Model ModelApproval
+ * 
+ */
+export type ModelApproval = $Result.DefaultSelection<Prisma.$ModelApprovalPayload>
+/**
+ * Model TestDataGeneration
+ * 
+ */
+export type TestDataGeneration = $Result.DefaultSelection<Prisma.$TestDataGenerationPayload>
+/**
+ * Model TestDataTemplate
+ * 
+ */
+export type TestDataTemplate = $Result.DefaultSelection<Prisma.$TestDataTemplatePayload>
+/**
+ * Model VisualDiagram
+ * 
+ */
+export type VisualDiagram = $Result.DefaultSelection<Prisma.$VisualDiagramPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -228,6 +283,116 @@ export class PrismaClient<
     * ```
     */
   get system_configs(): Prisma.system_configsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaTable`: Exposes CRUD operations for the **MetaTable** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaTables
+    * const metaTables = await prisma.metaTable.findMany()
+    * ```
+    */
+  get metaTable(): Prisma.MetaTableDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaField`: Exposes CRUD operations for the **MetaField** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaFields
+    * const metaFields = await prisma.metaField.findMany()
+    * ```
+    */
+  get metaField(): Prisma.MetaFieldDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaRelation`: Exposes CRUD operations for the **MetaRelation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaRelations
+    * const metaRelations = await prisma.metaRelation.findMany()
+    * ```
+    */
+  get metaRelation(): Prisma.MetaRelationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaVersion`: Exposes CRUD operations for the **MetaVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaVersions
+    * const metaVersions = await prisma.metaVersion.findMany()
+    * ```
+    */
+  get metaVersion(): Prisma.MetaVersionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaIndex`: Exposes CRUD operations for the **MetaIndex** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaIndices
+    * const metaIndices = await prisma.metaIndex.findMany()
+    * ```
+    */
+  get metaIndex(): Prisma.MetaIndexDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaIndexField`: Exposes CRUD operations for the **MetaIndexField** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaIndexFields
+    * const metaIndexFields = await prisma.metaIndexField.findMany()
+    * ```
+    */
+  get metaIndexField(): Prisma.MetaIndexFieldDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.metaConstraint`: Exposes CRUD operations for the **MetaConstraint** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetaConstraints
+    * const metaConstraints = await prisma.metaConstraint.findMany()
+    * ```
+    */
+  get metaConstraint(): Prisma.MetaConstraintDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.modelApproval`: Exposes CRUD operations for the **ModelApproval** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModelApprovals
+    * const modelApprovals = await prisma.modelApproval.findMany()
+    * ```
+    */
+  get modelApproval(): Prisma.ModelApprovalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.testDataGeneration`: Exposes CRUD operations for the **TestDataGeneration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TestDataGenerations
+    * const testDataGenerations = await prisma.testDataGeneration.findMany()
+    * ```
+    */
+  get testDataGeneration(): Prisma.TestDataGenerationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.testDataTemplate`: Exposes CRUD operations for the **TestDataTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TestDataTemplates
+    * const testDataTemplates = await prisma.testDataTemplate.findMany()
+    * ```
+    */
+  get testDataTemplate(): Prisma.TestDataTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.visualDiagram`: Exposes CRUD operations for the **VisualDiagram** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VisualDiagrams
+    * const visualDiagrams = await prisma.visualDiagram.findMany()
+    * ```
+    */
+  get visualDiagram(): Prisma.VisualDiagramDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -673,7 +838,18 @@ export namespace Prisma {
     Permission: 'Permission',
     rolepermissions: 'rolepermissions',
     userroles: 'userroles',
-    system_configs: 'system_configs'
+    system_configs: 'system_configs',
+    MetaTable: 'MetaTable',
+    MetaField: 'MetaField',
+    MetaRelation: 'MetaRelation',
+    MetaVersion: 'MetaVersion',
+    MetaIndex: 'MetaIndex',
+    MetaIndexField: 'MetaIndexField',
+    MetaConstraint: 'MetaConstraint',
+    ModelApproval: 'ModelApproval',
+    TestDataGeneration: 'TestDataGeneration',
+    TestDataTemplate: 'TestDataTemplate',
+    VisualDiagram: 'VisualDiagram'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -692,7 +868,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "role" | "permission" | "rolepermissions" | "userroles" | "system_configs"
+      modelProps: "user" | "role" | "permission" | "rolepermissions" | "userroles" | "system_configs" | "metaTable" | "metaField" | "metaRelation" | "metaVersion" | "metaIndex" | "metaIndexField" | "metaConstraint" | "modelApproval" | "testDataGeneration" | "testDataTemplate" | "visualDiagram"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1092,6 +1268,732 @@ export namespace Prisma {
           }
         }
       }
+      MetaTable: {
+        payload: Prisma.$MetaTablePayload<ExtArgs>
+        fields: Prisma.MetaTableFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaTableFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaTableFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          findFirst: {
+            args: Prisma.MetaTableFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaTableFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          findMany: {
+            args: Prisma.MetaTableFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>[]
+          }
+          create: {
+            args: Prisma.MetaTableCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          createMany: {
+            args: Prisma.MetaTableCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaTableDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          update: {
+            args: Prisma.MetaTableUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaTableDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaTableUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaTableUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaTablePayload>
+          }
+          aggregate: {
+            args: Prisma.MetaTableAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaTable>
+          }
+          groupBy: {
+            args: Prisma.MetaTableGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaTableGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaTableCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaTableCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaField: {
+        payload: Prisma.$MetaFieldPayload<ExtArgs>
+        fields: Prisma.MetaFieldFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaFieldFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaFieldFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaFieldFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaFieldFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          findMany: {
+            args: Prisma.MetaFieldFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>[]
+          }
+          create: {
+            args: Prisma.MetaFieldCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          createMany: {
+            args: Prisma.MetaFieldCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaFieldDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          update: {
+            args: Prisma.MetaFieldUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaFieldDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaFieldUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaFieldUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaFieldPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaFieldAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaField>
+          }
+          groupBy: {
+            args: Prisma.MetaFieldGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaFieldGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaFieldCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaFieldCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaRelation: {
+        payload: Prisma.$MetaRelationPayload<ExtArgs>
+        fields: Prisma.MetaRelationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaRelationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaRelationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaRelationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaRelationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          findMany: {
+            args: Prisma.MetaRelationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>[]
+          }
+          create: {
+            args: Prisma.MetaRelationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          createMany: {
+            args: Prisma.MetaRelationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaRelationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          update: {
+            args: Prisma.MetaRelationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaRelationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaRelationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaRelationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaRelationPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaRelationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaRelation>
+          }
+          groupBy: {
+            args: Prisma.MetaRelationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaRelationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaRelationCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaRelationCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaVersion: {
+        payload: Prisma.$MetaVersionPayload<ExtArgs>
+        fields: Prisma.MetaVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          findMany: {
+            args: Prisma.MetaVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>[]
+          }
+          create: {
+            args: Prisma.MetaVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          createMany: {
+            args: Prisma.MetaVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          update: {
+            args: Prisma.MetaVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaVersion>
+          }
+          groupBy: {
+            args: Prisma.MetaVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaVersionCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaIndex: {
+        payload: Prisma.$MetaIndexPayload<ExtArgs>
+        fields: Prisma.MetaIndexFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaIndexFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaIndexFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaIndexFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaIndexFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          findMany: {
+            args: Prisma.MetaIndexFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>[]
+          }
+          create: {
+            args: Prisma.MetaIndexCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          createMany: {
+            args: Prisma.MetaIndexCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaIndexDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          update: {
+            args: Prisma.MetaIndexUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaIndexDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaIndexUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaIndexUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaIndexAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaIndex>
+          }
+          groupBy: {
+            args: Prisma.MetaIndexGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaIndexGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaIndexCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaIndexCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaIndexField: {
+        payload: Prisma.$MetaIndexFieldPayload<ExtArgs>
+        fields: Prisma.MetaIndexFieldFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaIndexFieldFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaIndexFieldFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaIndexFieldFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaIndexFieldFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          findMany: {
+            args: Prisma.MetaIndexFieldFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>[]
+          }
+          create: {
+            args: Prisma.MetaIndexFieldCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          createMany: {
+            args: Prisma.MetaIndexFieldCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaIndexFieldDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          update: {
+            args: Prisma.MetaIndexFieldUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaIndexFieldDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaIndexFieldUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaIndexFieldUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaIndexFieldPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaIndexFieldAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaIndexField>
+          }
+          groupBy: {
+            args: Prisma.MetaIndexFieldGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaIndexFieldGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaIndexFieldCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaIndexFieldCountAggregateOutputType> | number
+          }
+        }
+      }
+      MetaConstraint: {
+        payload: Prisma.$MetaConstraintPayload<ExtArgs>
+        fields: Prisma.MetaConstraintFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MetaConstraintFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MetaConstraintFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          findFirst: {
+            args: Prisma.MetaConstraintFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MetaConstraintFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          findMany: {
+            args: Prisma.MetaConstraintFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>[]
+          }
+          create: {
+            args: Prisma.MetaConstraintCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          createMany: {
+            args: Prisma.MetaConstraintCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MetaConstraintDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          update: {
+            args: Prisma.MetaConstraintUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          deleteMany: {
+            args: Prisma.MetaConstraintDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MetaConstraintUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MetaConstraintUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetaConstraintPayload>
+          }
+          aggregate: {
+            args: Prisma.MetaConstraintAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetaConstraint>
+          }
+          groupBy: {
+            args: Prisma.MetaConstraintGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetaConstraintGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MetaConstraintCountArgs<ExtArgs>
+            result: $Utils.Optional<MetaConstraintCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModelApproval: {
+        payload: Prisma.$ModelApprovalPayload<ExtArgs>
+        fields: Prisma.ModelApprovalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModelApprovalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModelApprovalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          findFirst: {
+            args: Prisma.ModelApprovalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModelApprovalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          findMany: {
+            args: Prisma.ModelApprovalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>[]
+          }
+          create: {
+            args: Prisma.ModelApprovalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          createMany: {
+            args: Prisma.ModelApprovalCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModelApprovalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          update: {
+            args: Prisma.ModelApprovalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModelApprovalDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModelApprovalUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModelApprovalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModelApprovalPayload>
+          }
+          aggregate: {
+            args: Prisma.ModelApprovalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModelApproval>
+          }
+          groupBy: {
+            args: Prisma.ModelApprovalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModelApprovalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ModelApprovalCountArgs<ExtArgs>
+            result: $Utils.Optional<ModelApprovalCountAggregateOutputType> | number
+          }
+        }
+      }
+      TestDataGeneration: {
+        payload: Prisma.$TestDataGenerationPayload<ExtArgs>
+        fields: Prisma.TestDataGenerationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TestDataGenerationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TestDataGenerationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          findFirst: {
+            args: Prisma.TestDataGenerationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TestDataGenerationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          findMany: {
+            args: Prisma.TestDataGenerationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>[]
+          }
+          create: {
+            args: Prisma.TestDataGenerationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          createMany: {
+            args: Prisma.TestDataGenerationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TestDataGenerationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          update: {
+            args: Prisma.TestDataGenerationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          deleteMany: {
+            args: Prisma.TestDataGenerationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TestDataGenerationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TestDataGenerationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataGenerationPayload>
+          }
+          aggregate: {
+            args: Prisma.TestDataGenerationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTestDataGeneration>
+          }
+          groupBy: {
+            args: Prisma.TestDataGenerationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TestDataGenerationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TestDataGenerationCountArgs<ExtArgs>
+            result: $Utils.Optional<TestDataGenerationCountAggregateOutputType> | number
+          }
+        }
+      }
+      TestDataTemplate: {
+        payload: Prisma.$TestDataTemplatePayload<ExtArgs>
+        fields: Prisma.TestDataTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TestDataTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TestDataTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.TestDataTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TestDataTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.TestDataTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.TestDataTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.TestDataTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TestDataTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          update: {
+            args: Prisma.TestDataTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.TestDataTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TestDataTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TestDataTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestDataTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.TestDataTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTestDataTemplate>
+          }
+          groupBy: {
+            args: Prisma.TestDataTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TestDataTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TestDataTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<TestDataTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      VisualDiagram: {
+        payload: Prisma.$VisualDiagramPayload<ExtArgs>
+        fields: Prisma.VisualDiagramFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VisualDiagramFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VisualDiagramFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          findFirst: {
+            args: Prisma.VisualDiagramFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VisualDiagramFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          findMany: {
+            args: Prisma.VisualDiagramFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>[]
+          }
+          create: {
+            args: Prisma.VisualDiagramCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          createMany: {
+            args: Prisma.VisualDiagramCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.VisualDiagramDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          update: {
+            args: Prisma.VisualDiagramUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          deleteMany: {
+            args: Prisma.VisualDiagramDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VisualDiagramUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VisualDiagramUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VisualDiagramPayload>
+          }
+          aggregate: {
+            args: Prisma.VisualDiagramAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVisualDiagram>
+          }
+          groupBy: {
+            args: Prisma.VisualDiagramGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VisualDiagramGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VisualDiagramCountArgs<ExtArgs>
+            result: $Utils.Optional<VisualDiagramCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1182,6 +2084,17 @@ export namespace Prisma {
     rolepermissions?: rolepermissionsOmit
     userroles?: userrolesOmit
     system_configs?: system_configsOmit
+    metaTable?: MetaTableOmit
+    metaField?: MetaFieldOmit
+    metaRelation?: MetaRelationOmit
+    metaVersion?: MetaVersionOmit
+    metaIndex?: MetaIndexOmit
+    metaIndexField?: MetaIndexFieldOmit
+    metaConstraint?: MetaConstraintOmit
+    modelApproval?: ModelApprovalOmit
+    testDataGeneration?: TestDataGenerationOmit
+    testDataTemplate?: TestDataTemplateOmit
+    visualDiagram?: VisualDiagramOmit
   }
 
   /* Types for Logging */
@@ -1270,6 +2183,228 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type MetaTableCountOutputType
+   */
+
+  export type MetaTableCountOutputType = {
+    fields: number
+    relations: number
+    targetRelations: number
+    junctionRelations: number
+    versions: number
+    indexes: number
+    constraints: number
+    modelApprovals: number
+    testDataGenerations: number
+    testDataTemplates: number
+  }
+
+  export type MetaTableCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fields?: boolean | MetaTableCountOutputTypeCountFieldsArgs
+    relations?: boolean | MetaTableCountOutputTypeCountRelationsArgs
+    targetRelations?: boolean | MetaTableCountOutputTypeCountTargetRelationsArgs
+    junctionRelations?: boolean | MetaTableCountOutputTypeCountJunctionRelationsArgs
+    versions?: boolean | MetaTableCountOutputTypeCountVersionsArgs
+    indexes?: boolean | MetaTableCountOutputTypeCountIndexesArgs
+    constraints?: boolean | MetaTableCountOutputTypeCountConstraintsArgs
+    modelApprovals?: boolean | MetaTableCountOutputTypeCountModelApprovalsArgs
+    testDataGenerations?: boolean | MetaTableCountOutputTypeCountTestDataGenerationsArgs
+    testDataTemplates?: boolean | MetaTableCountOutputTypeCountTestDataTemplatesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTableCountOutputType
+     */
+    select?: MetaTableCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountFieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaFieldWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountTargetRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountJunctionRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaVersionWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountIndexesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaIndexWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountConstraintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaConstraintWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountModelApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModelApprovalWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountTestDataGenerationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestDataGenerationWhereInput
+  }
+
+  /**
+   * MetaTableCountOutputType without action
+   */
+  export type MetaTableCountOutputTypeCountTestDataTemplatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestDataTemplateWhereInput
+  }
+
+
+  /**
+   * Count Type MetaFieldCountOutputType
+   */
+
+  export type MetaFieldCountOutputType = {
+    sourceRelations: number
+    targetRelations: number
+    indexFields: number
+  }
+
+  export type MetaFieldCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sourceRelations?: boolean | MetaFieldCountOutputTypeCountSourceRelationsArgs
+    targetRelations?: boolean | MetaFieldCountOutputTypeCountTargetRelationsArgs
+    indexFields?: boolean | MetaFieldCountOutputTypeCountIndexFieldsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MetaFieldCountOutputType without action
+   */
+  export type MetaFieldCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaFieldCountOutputType
+     */
+    select?: MetaFieldCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MetaFieldCountOutputType without action
+   */
+  export type MetaFieldCountOutputTypeCountSourceRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+  }
+
+  /**
+   * MetaFieldCountOutputType without action
+   */
+  export type MetaFieldCountOutputTypeCountTargetRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+  }
+
+  /**
+   * MetaFieldCountOutputType without action
+   */
+  export type MetaFieldCountOutputTypeCountIndexFieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaIndexFieldWhereInput
+  }
+
+
+  /**
+   * Count Type MetaVersionCountOutputType
+   */
+
+  export type MetaVersionCountOutputType = {
+    modelApprovals: number
+  }
+
+  export type MetaVersionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    modelApprovals?: boolean | MetaVersionCountOutputTypeCountModelApprovalsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MetaVersionCountOutputType without action
+   */
+  export type MetaVersionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersionCountOutputType
+     */
+    select?: MetaVersionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MetaVersionCountOutputType without action
+   */
+  export type MetaVersionCountOutputTypeCountModelApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModelApprovalWhereInput
+  }
+
+
+  /**
+   * Count Type MetaIndexCountOutputType
+   */
+
+  export type MetaIndexCountOutputType = {
+    fields: number
+  }
+
+  export type MetaIndexCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fields?: boolean | MetaIndexCountOutputTypeCountFieldsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MetaIndexCountOutputType without action
+   */
+  export type MetaIndexCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexCountOutputType
+     */
+    select?: MetaIndexCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MetaIndexCountOutputType without action
+   */
+  export type MetaIndexCountOutputTypeCountFieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaIndexFieldWhereInput
+  }
 
 
   /**
@@ -6635,6 +7770,11375 @@ export namespace Prisma {
 
 
   /**
+   * Model MetaTable
+   */
+
+  export type AggregateMetaTable = {
+    _count: MetaTableCountAggregateOutputType | null
+    _min: MetaTableMinAggregateOutputType | null
+    _max: MetaTableMaxAggregateOutputType | null
+  }
+
+  export type MetaTableMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    displayName: string | null
+    description: string | null
+    isSystem: boolean | null
+    isSoftDelete: boolean | null
+    isVersioned: boolean | null
+    status: string | null
+    tenant: string | null
+    application: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedBy: string | null
+    updatedAt: Date | null
+    auditFields: boolean | null
+    apiEnabled: boolean | null
+  }
+
+  export type MetaTableMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    displayName: string | null
+    description: string | null
+    isSystem: boolean | null
+    isSoftDelete: boolean | null
+    isVersioned: boolean | null
+    status: string | null
+    tenant: string | null
+    application: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedBy: string | null
+    updatedAt: Date | null
+    auditFields: boolean | null
+    apiEnabled: boolean | null
+  }
+
+  export type MetaTableCountAggregateOutputType = {
+    id: number
+    name: number
+    displayName: number
+    description: number
+    isSystem: number
+    isSoftDelete: number
+    isVersioned: number
+    status: number
+    tenant: number
+    application: number
+    createdBy: number
+    createdAt: number
+    updatedBy: number
+    updatedAt: number
+    auditFields: number
+    apiEnabled: number
+    customOptions: number
+    _all: number
+  }
+
+
+  export type MetaTableMinAggregateInputType = {
+    id?: true
+    name?: true
+    displayName?: true
+    description?: true
+    isSystem?: true
+    isSoftDelete?: true
+    isVersioned?: true
+    status?: true
+    tenant?: true
+    application?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+    auditFields?: true
+    apiEnabled?: true
+  }
+
+  export type MetaTableMaxAggregateInputType = {
+    id?: true
+    name?: true
+    displayName?: true
+    description?: true
+    isSystem?: true
+    isSoftDelete?: true
+    isVersioned?: true
+    status?: true
+    tenant?: true
+    application?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+    auditFields?: true
+    apiEnabled?: true
+  }
+
+  export type MetaTableCountAggregateInputType = {
+    id?: true
+    name?: true
+    displayName?: true
+    description?: true
+    isSystem?: true
+    isSoftDelete?: true
+    isVersioned?: true
+    status?: true
+    tenant?: true
+    application?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+    auditFields?: true
+    apiEnabled?: true
+    customOptions?: true
+    _all?: true
+  }
+
+  export type MetaTableAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaTable to aggregate.
+     */
+    where?: MetaTableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaTables to fetch.
+     */
+    orderBy?: MetaTableOrderByWithRelationInput | MetaTableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaTableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaTables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaTables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaTables
+    **/
+    _count?: true | MetaTableCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaTableMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaTableMaxAggregateInputType
+  }
+
+  export type GetMetaTableAggregateType<T extends MetaTableAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaTable]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaTable[P]>
+      : GetScalarType<T[P], AggregateMetaTable[P]>
+  }
+
+
+
+
+  export type MetaTableGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaTableWhereInput
+    orderBy?: MetaTableOrderByWithAggregationInput | MetaTableOrderByWithAggregationInput[]
+    by: MetaTableScalarFieldEnum[] | MetaTableScalarFieldEnum
+    having?: MetaTableScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaTableCountAggregateInputType | true
+    _min?: MetaTableMinAggregateInputType
+    _max?: MetaTableMaxAggregateInputType
+  }
+
+  export type MetaTableGroupByOutputType = {
+    id: string
+    name: string
+    displayName: string
+    description: string | null
+    isSystem: boolean
+    isSoftDelete: boolean
+    isVersioned: boolean
+    status: string
+    tenant: string
+    application: string | null
+    createdBy: string
+    createdAt: Date
+    updatedBy: string | null
+    updatedAt: Date | null
+    auditFields: boolean
+    apiEnabled: boolean
+    customOptions: JsonValue | null
+    _count: MetaTableCountAggregateOutputType | null
+    _min: MetaTableMinAggregateOutputType | null
+    _max: MetaTableMaxAggregateOutputType | null
+  }
+
+  type GetMetaTableGroupByPayload<T extends MetaTableGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaTableGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaTableGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaTableGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaTableGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaTableSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    displayName?: boolean
+    description?: boolean
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: boolean
+    tenant?: boolean
+    application?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: boolean
+    fields?: boolean | MetaTable$fieldsArgs<ExtArgs>
+    relations?: boolean | MetaTable$relationsArgs<ExtArgs>
+    targetRelations?: boolean | MetaTable$targetRelationsArgs<ExtArgs>
+    junctionRelations?: boolean | MetaTable$junctionRelationsArgs<ExtArgs>
+    versions?: boolean | MetaTable$versionsArgs<ExtArgs>
+    indexes?: boolean | MetaTable$indexesArgs<ExtArgs>
+    constraints?: boolean | MetaTable$constraintsArgs<ExtArgs>
+    modelApprovals?: boolean | MetaTable$modelApprovalsArgs<ExtArgs>
+    testDataGenerations?: boolean | MetaTable$testDataGenerationsArgs<ExtArgs>
+    testDataTemplates?: boolean | MetaTable$testDataTemplatesArgs<ExtArgs>
+    _count?: boolean | MetaTableCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaTable"]>
+
+
+
+  export type MetaTableSelectScalar = {
+    id?: boolean
+    name?: boolean
+    displayName?: boolean
+    description?: boolean
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: boolean
+    tenant?: boolean
+    application?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: boolean
+  }
+
+  export type MetaTableOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "displayName" | "description" | "isSystem" | "isSoftDelete" | "isVersioned" | "status" | "tenant" | "application" | "createdBy" | "createdAt" | "updatedBy" | "updatedAt" | "auditFields" | "apiEnabled" | "customOptions", ExtArgs["result"]["metaTable"]>
+  export type MetaTableInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fields?: boolean | MetaTable$fieldsArgs<ExtArgs>
+    relations?: boolean | MetaTable$relationsArgs<ExtArgs>
+    targetRelations?: boolean | MetaTable$targetRelationsArgs<ExtArgs>
+    junctionRelations?: boolean | MetaTable$junctionRelationsArgs<ExtArgs>
+    versions?: boolean | MetaTable$versionsArgs<ExtArgs>
+    indexes?: boolean | MetaTable$indexesArgs<ExtArgs>
+    constraints?: boolean | MetaTable$constraintsArgs<ExtArgs>
+    modelApprovals?: boolean | MetaTable$modelApprovalsArgs<ExtArgs>
+    testDataGenerations?: boolean | MetaTable$testDataGenerationsArgs<ExtArgs>
+    testDataTemplates?: boolean | MetaTable$testDataTemplatesArgs<ExtArgs>
+    _count?: boolean | MetaTableCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaTablePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaTable"
+    objects: {
+      fields: Prisma.$MetaFieldPayload<ExtArgs>[]
+      relations: Prisma.$MetaRelationPayload<ExtArgs>[]
+      targetRelations: Prisma.$MetaRelationPayload<ExtArgs>[]
+      junctionRelations: Prisma.$MetaRelationPayload<ExtArgs>[]
+      versions: Prisma.$MetaVersionPayload<ExtArgs>[]
+      indexes: Prisma.$MetaIndexPayload<ExtArgs>[]
+      constraints: Prisma.$MetaConstraintPayload<ExtArgs>[]
+      modelApprovals: Prisma.$ModelApprovalPayload<ExtArgs>[]
+      testDataGenerations: Prisma.$TestDataGenerationPayload<ExtArgs>[]
+      testDataTemplates: Prisma.$TestDataTemplatePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      displayName: string
+      description: string | null
+      isSystem: boolean
+      isSoftDelete: boolean
+      isVersioned: boolean
+      status: string
+      tenant: string
+      application: string | null
+      createdBy: string
+      createdAt: Date
+      updatedBy: string | null
+      updatedAt: Date | null
+      auditFields: boolean
+      apiEnabled: boolean
+      customOptions: Prisma.JsonValue | null
+    }, ExtArgs["result"]["metaTable"]>
+    composites: {}
+  }
+
+  type MetaTableGetPayload<S extends boolean | null | undefined | MetaTableDefaultArgs> = $Result.GetResult<Prisma.$MetaTablePayload, S>
+
+  type MetaTableCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaTableFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaTableCountAggregateInputType | true
+    }
+
+  export interface MetaTableDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaTable'], meta: { name: 'MetaTable' } }
+    /**
+     * Find zero or one MetaTable that matches the filter.
+     * @param {MetaTableFindUniqueArgs} args - Arguments to find a MetaTable
+     * @example
+     * // Get one MetaTable
+     * const metaTable = await prisma.metaTable.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaTableFindUniqueArgs>(args: SelectSubset<T, MetaTableFindUniqueArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaTable that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaTableFindUniqueOrThrowArgs} args - Arguments to find a MetaTable
+     * @example
+     * // Get one MetaTable
+     * const metaTable = await prisma.metaTable.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaTableFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaTableFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaTable that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableFindFirstArgs} args - Arguments to find a MetaTable
+     * @example
+     * // Get one MetaTable
+     * const metaTable = await prisma.metaTable.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaTableFindFirstArgs>(args?: SelectSubset<T, MetaTableFindFirstArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaTable that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableFindFirstOrThrowArgs} args - Arguments to find a MetaTable
+     * @example
+     * // Get one MetaTable
+     * const metaTable = await prisma.metaTable.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaTableFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaTableFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaTables that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaTables
+     * const metaTables = await prisma.metaTable.findMany()
+     * 
+     * // Get first 10 MetaTables
+     * const metaTables = await prisma.metaTable.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaTableWithIdOnly = await prisma.metaTable.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaTableFindManyArgs>(args?: SelectSubset<T, MetaTableFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaTable.
+     * @param {MetaTableCreateArgs} args - Arguments to create a MetaTable.
+     * @example
+     * // Create one MetaTable
+     * const MetaTable = await prisma.metaTable.create({
+     *   data: {
+     *     // ... data to create a MetaTable
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaTableCreateArgs>(args: SelectSubset<T, MetaTableCreateArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaTables.
+     * @param {MetaTableCreateManyArgs} args - Arguments to create many MetaTables.
+     * @example
+     * // Create many MetaTables
+     * const metaTable = await prisma.metaTable.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaTableCreateManyArgs>(args?: SelectSubset<T, MetaTableCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaTable.
+     * @param {MetaTableDeleteArgs} args - Arguments to delete one MetaTable.
+     * @example
+     * // Delete one MetaTable
+     * const MetaTable = await prisma.metaTable.delete({
+     *   where: {
+     *     // ... filter to delete one MetaTable
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaTableDeleteArgs>(args: SelectSubset<T, MetaTableDeleteArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaTable.
+     * @param {MetaTableUpdateArgs} args - Arguments to update one MetaTable.
+     * @example
+     * // Update one MetaTable
+     * const metaTable = await prisma.metaTable.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaTableUpdateArgs>(args: SelectSubset<T, MetaTableUpdateArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaTables.
+     * @param {MetaTableDeleteManyArgs} args - Arguments to filter MetaTables to delete.
+     * @example
+     * // Delete a few MetaTables
+     * const { count } = await prisma.metaTable.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaTableDeleteManyArgs>(args?: SelectSubset<T, MetaTableDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaTables.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaTables
+     * const metaTable = await prisma.metaTable.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaTableUpdateManyArgs>(args: SelectSubset<T, MetaTableUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaTable.
+     * @param {MetaTableUpsertArgs} args - Arguments to update or create a MetaTable.
+     * @example
+     * // Update or create a MetaTable
+     * const metaTable = await prisma.metaTable.upsert({
+     *   create: {
+     *     // ... data to create a MetaTable
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaTable we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaTableUpsertArgs>(args: SelectSubset<T, MetaTableUpsertArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaTables.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableCountArgs} args - Arguments to filter MetaTables to count.
+     * @example
+     * // Count the number of MetaTables
+     * const count = await prisma.metaTable.count({
+     *   where: {
+     *     // ... the filter for the MetaTables we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaTableCountArgs>(
+      args?: Subset<T, MetaTableCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaTableCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaTable.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaTableAggregateArgs>(args: Subset<T, MetaTableAggregateArgs>): Prisma.PrismaPromise<GetMetaTableAggregateType<T>>
+
+    /**
+     * Group by MetaTable.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaTableGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaTableGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaTableGroupByArgs['orderBy'] }
+        : { orderBy?: MetaTableGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaTableGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaTableGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaTable model
+   */
+  readonly fields: MetaTableFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaTable.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaTableClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    fields<T extends MetaTable$fieldsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$fieldsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    relations<T extends MetaTable$relationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$relationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    targetRelations<T extends MetaTable$targetRelationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$targetRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    junctionRelations<T extends MetaTable$junctionRelationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$junctionRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    versions<T extends MetaTable$versionsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    indexes<T extends MetaTable$indexesArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$indexesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    constraints<T extends MetaTable$constraintsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$constraintsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    modelApprovals<T extends MetaTable$modelApprovalsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$modelApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    testDataGenerations<T extends MetaTable$testDataGenerationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$testDataGenerationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    testDataTemplates<T extends MetaTable$testDataTemplatesArgs<ExtArgs> = {}>(args?: Subset<T, MetaTable$testDataTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaTable model
+   */
+  interface MetaTableFieldRefs {
+    readonly id: FieldRef<"MetaTable", 'String'>
+    readonly name: FieldRef<"MetaTable", 'String'>
+    readonly displayName: FieldRef<"MetaTable", 'String'>
+    readonly description: FieldRef<"MetaTable", 'String'>
+    readonly isSystem: FieldRef<"MetaTable", 'Boolean'>
+    readonly isSoftDelete: FieldRef<"MetaTable", 'Boolean'>
+    readonly isVersioned: FieldRef<"MetaTable", 'Boolean'>
+    readonly status: FieldRef<"MetaTable", 'String'>
+    readonly tenant: FieldRef<"MetaTable", 'String'>
+    readonly application: FieldRef<"MetaTable", 'String'>
+    readonly createdBy: FieldRef<"MetaTable", 'String'>
+    readonly createdAt: FieldRef<"MetaTable", 'DateTime'>
+    readonly updatedBy: FieldRef<"MetaTable", 'String'>
+    readonly updatedAt: FieldRef<"MetaTable", 'DateTime'>
+    readonly auditFields: FieldRef<"MetaTable", 'Boolean'>
+    readonly apiEnabled: FieldRef<"MetaTable", 'Boolean'>
+    readonly customOptions: FieldRef<"MetaTable", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaTable findUnique
+   */
+  export type MetaTableFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaTable to fetch.
+     */
+    where: MetaTableWhereUniqueInput
+  }
+
+  /**
+   * MetaTable findUniqueOrThrow
+   */
+  export type MetaTableFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaTable to fetch.
+     */
+    where: MetaTableWhereUniqueInput
+  }
+
+  /**
+   * MetaTable findFirst
+   */
+  export type MetaTableFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaTable to fetch.
+     */
+    where?: MetaTableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaTables to fetch.
+     */
+    orderBy?: MetaTableOrderByWithRelationInput | MetaTableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaTables.
+     */
+    cursor?: MetaTableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaTables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaTables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaTables.
+     */
+    distinct?: MetaTableScalarFieldEnum | MetaTableScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable findFirstOrThrow
+   */
+  export type MetaTableFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaTable to fetch.
+     */
+    where?: MetaTableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaTables to fetch.
+     */
+    orderBy?: MetaTableOrderByWithRelationInput | MetaTableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaTables.
+     */
+    cursor?: MetaTableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaTables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaTables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaTables.
+     */
+    distinct?: MetaTableScalarFieldEnum | MetaTableScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable findMany
+   */
+  export type MetaTableFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaTables to fetch.
+     */
+    where?: MetaTableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaTables to fetch.
+     */
+    orderBy?: MetaTableOrderByWithRelationInput | MetaTableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaTables.
+     */
+    cursor?: MetaTableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaTables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaTables.
+     */
+    skip?: number
+    distinct?: MetaTableScalarFieldEnum | MetaTableScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable create
+   */
+  export type MetaTableCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaTable.
+     */
+    data: XOR<MetaTableCreateInput, MetaTableUncheckedCreateInput>
+  }
+
+  /**
+   * MetaTable createMany
+   */
+  export type MetaTableCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaTables.
+     */
+    data: MetaTableCreateManyInput | MetaTableCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaTable update
+   */
+  export type MetaTableUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaTable.
+     */
+    data: XOR<MetaTableUpdateInput, MetaTableUncheckedUpdateInput>
+    /**
+     * Choose, which MetaTable to update.
+     */
+    where: MetaTableWhereUniqueInput
+  }
+
+  /**
+   * MetaTable updateMany
+   */
+  export type MetaTableUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaTables.
+     */
+    data: XOR<MetaTableUpdateManyMutationInput, MetaTableUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaTables to update
+     */
+    where?: MetaTableWhereInput
+    /**
+     * Limit how many MetaTables to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaTable upsert
+   */
+  export type MetaTableUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaTable to update in case it exists.
+     */
+    where: MetaTableWhereUniqueInput
+    /**
+     * In case the MetaTable found by the `where` argument doesn't exist, create a new MetaTable with this data.
+     */
+    create: XOR<MetaTableCreateInput, MetaTableUncheckedCreateInput>
+    /**
+     * In case the MetaTable was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaTableUpdateInput, MetaTableUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaTable delete
+   */
+  export type MetaTableDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    /**
+     * Filter which MetaTable to delete.
+     */
+    where: MetaTableWhereUniqueInput
+  }
+
+  /**
+   * MetaTable deleteMany
+   */
+  export type MetaTableDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaTables to delete
+     */
+    where?: MetaTableWhereInput
+    /**
+     * Limit how many MetaTables to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaTable.fields
+   */
+  export type MetaTable$fieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    where?: MetaFieldWhereInput
+    orderBy?: MetaFieldOrderByWithRelationInput | MetaFieldOrderByWithRelationInput[]
+    cursor?: MetaFieldWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaFieldScalarFieldEnum | MetaFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.relations
+   */
+  export type MetaTable$relationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    cursor?: MetaRelationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.targetRelations
+   */
+  export type MetaTable$targetRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    cursor?: MetaRelationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.junctionRelations
+   */
+  export type MetaTable$junctionRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    cursor?: MetaRelationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.versions
+   */
+  export type MetaTable$versionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    where?: MetaVersionWhereInput
+    orderBy?: MetaVersionOrderByWithRelationInput | MetaVersionOrderByWithRelationInput[]
+    cursor?: MetaVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaVersionScalarFieldEnum | MetaVersionScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.indexes
+   */
+  export type MetaTable$indexesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    where?: MetaIndexWhereInput
+    orderBy?: MetaIndexOrderByWithRelationInput | MetaIndexOrderByWithRelationInput[]
+    cursor?: MetaIndexWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaIndexScalarFieldEnum | MetaIndexScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.constraints
+   */
+  export type MetaTable$constraintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    where?: MetaConstraintWhereInput
+    orderBy?: MetaConstraintOrderByWithRelationInput | MetaConstraintOrderByWithRelationInput[]
+    cursor?: MetaConstraintWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaConstraintScalarFieldEnum | MetaConstraintScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.modelApprovals
+   */
+  export type MetaTable$modelApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    where?: ModelApprovalWhereInput
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    cursor?: ModelApprovalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModelApprovalScalarFieldEnum | ModelApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.testDataGenerations
+   */
+  export type MetaTable$testDataGenerationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    where?: TestDataGenerationWhereInput
+    orderBy?: TestDataGenerationOrderByWithRelationInput | TestDataGenerationOrderByWithRelationInput[]
+    cursor?: TestDataGenerationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TestDataGenerationScalarFieldEnum | TestDataGenerationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable.testDataTemplates
+   */
+  export type MetaTable$testDataTemplatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    where?: TestDataTemplateWhereInput
+    orderBy?: TestDataTemplateOrderByWithRelationInput | TestDataTemplateOrderByWithRelationInput[]
+    cursor?: TestDataTemplateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TestDataTemplateScalarFieldEnum | TestDataTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * MetaTable without action
+   */
+  export type MetaTableDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaField
+   */
+
+  export type AggregateMetaField = {
+    _count: MetaFieldCountAggregateOutputType | null
+    _avg: MetaFieldAvgAggregateOutputType | null
+    _sum: MetaFieldSumAggregateOutputType | null
+    _min: MetaFieldMinAggregateOutputType | null
+    _max: MetaFieldMaxAggregateOutputType | null
+  }
+
+  export type MetaFieldAvgAggregateOutputType = {
+    ordinal: number | null
+  }
+
+  export type MetaFieldSumAggregateOutputType = {
+    ordinal: number | null
+  }
+
+  export type MetaFieldMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    displayName: string | null
+    description: string | null
+    type: string | null
+    isPrimaryKey: boolean | null
+    isRequired: boolean | null
+    isUnique: boolean | null
+    isSystem: boolean | null
+    isHidden: boolean | null
+    ordinal: number | null
+    defaultValue: string | null
+    isSearchable: boolean | null
+    isSortable: boolean | null
+    isFilterable: boolean | null
+    isAggregatable: boolean | null
+  }
+
+  export type MetaFieldMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    displayName: string | null
+    description: string | null
+    type: string | null
+    isPrimaryKey: boolean | null
+    isRequired: boolean | null
+    isUnique: boolean | null
+    isSystem: boolean | null
+    isHidden: boolean | null
+    ordinal: number | null
+    defaultValue: string | null
+    isSearchable: boolean | null
+    isSortable: boolean | null
+    isFilterable: boolean | null
+    isAggregatable: boolean | null
+  }
+
+  export type MetaFieldCountAggregateOutputType = {
+    id: number
+    tableId: number
+    name: number
+    displayName: number
+    description: number
+    type: number
+    isPrimaryKey: number
+    isRequired: number
+    isUnique: number
+    isSystem: number
+    isHidden: number
+    ordinal: number
+    defaultValue: number
+    validationRules: number
+    isSearchable: number
+    isSortable: number
+    isFilterable: number
+    isAggregatable: number
+    advancedSettings: number
+    _all: number
+  }
+
+
+  export type MetaFieldAvgAggregateInputType = {
+    ordinal?: true
+  }
+
+  export type MetaFieldSumAggregateInputType = {
+    ordinal?: true
+  }
+
+  export type MetaFieldMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    displayName?: true
+    description?: true
+    type?: true
+    isPrimaryKey?: true
+    isRequired?: true
+    isUnique?: true
+    isSystem?: true
+    isHidden?: true
+    ordinal?: true
+    defaultValue?: true
+    isSearchable?: true
+    isSortable?: true
+    isFilterable?: true
+    isAggregatable?: true
+  }
+
+  export type MetaFieldMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    displayName?: true
+    description?: true
+    type?: true
+    isPrimaryKey?: true
+    isRequired?: true
+    isUnique?: true
+    isSystem?: true
+    isHidden?: true
+    ordinal?: true
+    defaultValue?: true
+    isSearchable?: true
+    isSortable?: true
+    isFilterable?: true
+    isAggregatable?: true
+  }
+
+  export type MetaFieldCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    displayName?: true
+    description?: true
+    type?: true
+    isPrimaryKey?: true
+    isRequired?: true
+    isUnique?: true
+    isSystem?: true
+    isHidden?: true
+    ordinal?: true
+    defaultValue?: true
+    validationRules?: true
+    isSearchable?: true
+    isSortable?: true
+    isFilterable?: true
+    isAggregatable?: true
+    advancedSettings?: true
+    _all?: true
+  }
+
+  export type MetaFieldAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaField to aggregate.
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaFields to fetch.
+     */
+    orderBy?: MetaFieldOrderByWithRelationInput | MetaFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaFields
+    **/
+    _count?: true | MetaFieldCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MetaFieldAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MetaFieldSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaFieldMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaFieldMaxAggregateInputType
+  }
+
+  export type GetMetaFieldAggregateType<T extends MetaFieldAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaField]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaField[P]>
+      : GetScalarType<T[P], AggregateMetaField[P]>
+  }
+
+
+
+
+  export type MetaFieldGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaFieldWhereInput
+    orderBy?: MetaFieldOrderByWithAggregationInput | MetaFieldOrderByWithAggregationInput[]
+    by: MetaFieldScalarFieldEnum[] | MetaFieldScalarFieldEnum
+    having?: MetaFieldScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaFieldCountAggregateInputType | true
+    _avg?: MetaFieldAvgAggregateInputType
+    _sum?: MetaFieldSumAggregateInputType
+    _min?: MetaFieldMinAggregateInputType
+    _max?: MetaFieldMaxAggregateInputType
+  }
+
+  export type MetaFieldGroupByOutputType = {
+    id: string
+    tableId: string
+    name: string
+    displayName: string
+    description: string | null
+    type: string
+    isPrimaryKey: boolean
+    isRequired: boolean
+    isUnique: boolean
+    isSystem: boolean
+    isHidden: boolean
+    ordinal: number
+    defaultValue: string | null
+    validationRules: JsonValue | null
+    isSearchable: boolean
+    isSortable: boolean
+    isFilterable: boolean
+    isAggregatable: boolean
+    advancedSettings: JsonValue | null
+    _count: MetaFieldCountAggregateOutputType | null
+    _avg: MetaFieldAvgAggregateOutputType | null
+    _sum: MetaFieldSumAggregateOutputType | null
+    _min: MetaFieldMinAggregateOutputType | null
+    _max: MetaFieldMaxAggregateOutputType | null
+  }
+
+  type GetMetaFieldGroupByPayload<T extends MetaFieldGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaFieldGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaFieldGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaFieldGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaFieldGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaFieldSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    displayName?: boolean
+    description?: boolean
+    type?: boolean
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal?: boolean
+    defaultValue?: boolean
+    validationRules?: boolean
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    sourceRelations?: boolean | MetaField$sourceRelationsArgs<ExtArgs>
+    targetRelations?: boolean | MetaField$targetRelationsArgs<ExtArgs>
+    indexFields?: boolean | MetaField$indexFieldsArgs<ExtArgs>
+    _count?: boolean | MetaFieldCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaField"]>
+
+
+
+  export type MetaFieldSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    displayName?: boolean
+    description?: boolean
+    type?: boolean
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal?: boolean
+    defaultValue?: boolean
+    validationRules?: boolean
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: boolean
+  }
+
+  export type MetaFieldOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "name" | "displayName" | "description" | "type" | "isPrimaryKey" | "isRequired" | "isUnique" | "isSystem" | "isHidden" | "ordinal" | "defaultValue" | "validationRules" | "isSearchable" | "isSortable" | "isFilterable" | "isAggregatable" | "advancedSettings", ExtArgs["result"]["metaField"]>
+  export type MetaFieldInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    sourceRelations?: boolean | MetaField$sourceRelationsArgs<ExtArgs>
+    targetRelations?: boolean | MetaField$targetRelationsArgs<ExtArgs>
+    indexFields?: boolean | MetaField$indexFieldsArgs<ExtArgs>
+    _count?: boolean | MetaFieldCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaFieldPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaField"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+      sourceRelations: Prisma.$MetaRelationPayload<ExtArgs>[]
+      targetRelations: Prisma.$MetaRelationPayload<ExtArgs>[]
+      indexFields: Prisma.$MetaIndexFieldPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      name: string
+      displayName: string
+      description: string | null
+      type: string
+      isPrimaryKey: boolean
+      isRequired: boolean
+      isUnique: boolean
+      isSystem: boolean
+      isHidden: boolean
+      ordinal: number
+      defaultValue: string | null
+      validationRules: Prisma.JsonValue | null
+      isSearchable: boolean
+      isSortable: boolean
+      isFilterable: boolean
+      isAggregatable: boolean
+      advancedSettings: Prisma.JsonValue | null
+    }, ExtArgs["result"]["metaField"]>
+    composites: {}
+  }
+
+  type MetaFieldGetPayload<S extends boolean | null | undefined | MetaFieldDefaultArgs> = $Result.GetResult<Prisma.$MetaFieldPayload, S>
+
+  type MetaFieldCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaFieldFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaFieldCountAggregateInputType | true
+    }
+
+  export interface MetaFieldDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaField'], meta: { name: 'MetaField' } }
+    /**
+     * Find zero or one MetaField that matches the filter.
+     * @param {MetaFieldFindUniqueArgs} args - Arguments to find a MetaField
+     * @example
+     * // Get one MetaField
+     * const metaField = await prisma.metaField.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaFieldFindUniqueArgs>(args: SelectSubset<T, MetaFieldFindUniqueArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaField that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaFieldFindUniqueOrThrowArgs} args - Arguments to find a MetaField
+     * @example
+     * // Get one MetaField
+     * const metaField = await prisma.metaField.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaFieldFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaFieldFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaField that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldFindFirstArgs} args - Arguments to find a MetaField
+     * @example
+     * // Get one MetaField
+     * const metaField = await prisma.metaField.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaFieldFindFirstArgs>(args?: SelectSubset<T, MetaFieldFindFirstArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaField that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldFindFirstOrThrowArgs} args - Arguments to find a MetaField
+     * @example
+     * // Get one MetaField
+     * const metaField = await prisma.metaField.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaFieldFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaFieldFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaFields that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaFields
+     * const metaFields = await prisma.metaField.findMany()
+     * 
+     * // Get first 10 MetaFields
+     * const metaFields = await prisma.metaField.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaFieldWithIdOnly = await prisma.metaField.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaFieldFindManyArgs>(args?: SelectSubset<T, MetaFieldFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaField.
+     * @param {MetaFieldCreateArgs} args - Arguments to create a MetaField.
+     * @example
+     * // Create one MetaField
+     * const MetaField = await prisma.metaField.create({
+     *   data: {
+     *     // ... data to create a MetaField
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaFieldCreateArgs>(args: SelectSubset<T, MetaFieldCreateArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaFields.
+     * @param {MetaFieldCreateManyArgs} args - Arguments to create many MetaFields.
+     * @example
+     * // Create many MetaFields
+     * const metaField = await prisma.metaField.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaFieldCreateManyArgs>(args?: SelectSubset<T, MetaFieldCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaField.
+     * @param {MetaFieldDeleteArgs} args - Arguments to delete one MetaField.
+     * @example
+     * // Delete one MetaField
+     * const MetaField = await prisma.metaField.delete({
+     *   where: {
+     *     // ... filter to delete one MetaField
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaFieldDeleteArgs>(args: SelectSubset<T, MetaFieldDeleteArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaField.
+     * @param {MetaFieldUpdateArgs} args - Arguments to update one MetaField.
+     * @example
+     * // Update one MetaField
+     * const metaField = await prisma.metaField.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaFieldUpdateArgs>(args: SelectSubset<T, MetaFieldUpdateArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaFields.
+     * @param {MetaFieldDeleteManyArgs} args - Arguments to filter MetaFields to delete.
+     * @example
+     * // Delete a few MetaFields
+     * const { count } = await prisma.metaField.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaFieldDeleteManyArgs>(args?: SelectSubset<T, MetaFieldDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaFields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaFields
+     * const metaField = await prisma.metaField.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaFieldUpdateManyArgs>(args: SelectSubset<T, MetaFieldUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaField.
+     * @param {MetaFieldUpsertArgs} args - Arguments to update or create a MetaField.
+     * @example
+     * // Update or create a MetaField
+     * const metaField = await prisma.metaField.upsert({
+     *   create: {
+     *     // ... data to create a MetaField
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaField we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaFieldUpsertArgs>(args: SelectSubset<T, MetaFieldUpsertArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaFields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldCountArgs} args - Arguments to filter MetaFields to count.
+     * @example
+     * // Count the number of MetaFields
+     * const count = await prisma.metaField.count({
+     *   where: {
+     *     // ... the filter for the MetaFields we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaFieldCountArgs>(
+      args?: Subset<T, MetaFieldCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaFieldCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaField.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaFieldAggregateArgs>(args: Subset<T, MetaFieldAggregateArgs>): Prisma.PrismaPromise<GetMetaFieldAggregateType<T>>
+
+    /**
+     * Group by MetaField.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaFieldGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaFieldGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaFieldGroupByArgs['orderBy'] }
+        : { orderBy?: MetaFieldGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaFieldGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaFieldGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaField model
+   */
+  readonly fields: MetaFieldFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaField.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaFieldClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    sourceRelations<T extends MetaField$sourceRelationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaField$sourceRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    targetRelations<T extends MetaField$targetRelationsArgs<ExtArgs> = {}>(args?: Subset<T, MetaField$targetRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    indexFields<T extends MetaField$indexFieldsArgs<ExtArgs> = {}>(args?: Subset<T, MetaField$indexFieldsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaField model
+   */
+  interface MetaFieldFieldRefs {
+    readonly id: FieldRef<"MetaField", 'String'>
+    readonly tableId: FieldRef<"MetaField", 'String'>
+    readonly name: FieldRef<"MetaField", 'String'>
+    readonly displayName: FieldRef<"MetaField", 'String'>
+    readonly description: FieldRef<"MetaField", 'String'>
+    readonly type: FieldRef<"MetaField", 'String'>
+    readonly isPrimaryKey: FieldRef<"MetaField", 'Boolean'>
+    readonly isRequired: FieldRef<"MetaField", 'Boolean'>
+    readonly isUnique: FieldRef<"MetaField", 'Boolean'>
+    readonly isSystem: FieldRef<"MetaField", 'Boolean'>
+    readonly isHidden: FieldRef<"MetaField", 'Boolean'>
+    readonly ordinal: FieldRef<"MetaField", 'Int'>
+    readonly defaultValue: FieldRef<"MetaField", 'String'>
+    readonly validationRules: FieldRef<"MetaField", 'Json'>
+    readonly isSearchable: FieldRef<"MetaField", 'Boolean'>
+    readonly isSortable: FieldRef<"MetaField", 'Boolean'>
+    readonly isFilterable: FieldRef<"MetaField", 'Boolean'>
+    readonly isAggregatable: FieldRef<"MetaField", 'Boolean'>
+    readonly advancedSettings: FieldRef<"MetaField", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaField findUnique
+   */
+  export type MetaFieldFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaField to fetch.
+     */
+    where: MetaFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaField findUniqueOrThrow
+   */
+  export type MetaFieldFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaField to fetch.
+     */
+    where: MetaFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaField findFirst
+   */
+  export type MetaFieldFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaField to fetch.
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaFields to fetch.
+     */
+    orderBy?: MetaFieldOrderByWithRelationInput | MetaFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaFields.
+     */
+    cursor?: MetaFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaFields.
+     */
+    distinct?: MetaFieldScalarFieldEnum | MetaFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField findFirstOrThrow
+   */
+  export type MetaFieldFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaField to fetch.
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaFields to fetch.
+     */
+    orderBy?: MetaFieldOrderByWithRelationInput | MetaFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaFields.
+     */
+    cursor?: MetaFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaFields.
+     */
+    distinct?: MetaFieldScalarFieldEnum | MetaFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField findMany
+   */
+  export type MetaFieldFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaFields to fetch.
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaFields to fetch.
+     */
+    orderBy?: MetaFieldOrderByWithRelationInput | MetaFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaFields.
+     */
+    cursor?: MetaFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaFields.
+     */
+    skip?: number
+    distinct?: MetaFieldScalarFieldEnum | MetaFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField create
+   */
+  export type MetaFieldCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaField.
+     */
+    data: XOR<MetaFieldCreateInput, MetaFieldUncheckedCreateInput>
+  }
+
+  /**
+   * MetaField createMany
+   */
+  export type MetaFieldCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaFields.
+     */
+    data: MetaFieldCreateManyInput | MetaFieldCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaField update
+   */
+  export type MetaFieldUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaField.
+     */
+    data: XOR<MetaFieldUpdateInput, MetaFieldUncheckedUpdateInput>
+    /**
+     * Choose, which MetaField to update.
+     */
+    where: MetaFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaField updateMany
+   */
+  export type MetaFieldUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaFields.
+     */
+    data: XOR<MetaFieldUpdateManyMutationInput, MetaFieldUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaFields to update
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * Limit how many MetaFields to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaField upsert
+   */
+  export type MetaFieldUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaField to update in case it exists.
+     */
+    where: MetaFieldWhereUniqueInput
+    /**
+     * In case the MetaField found by the `where` argument doesn't exist, create a new MetaField with this data.
+     */
+    create: XOR<MetaFieldCreateInput, MetaFieldUncheckedCreateInput>
+    /**
+     * In case the MetaField was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaFieldUpdateInput, MetaFieldUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaField delete
+   */
+  export type MetaFieldDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+    /**
+     * Filter which MetaField to delete.
+     */
+    where: MetaFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaField deleteMany
+   */
+  export type MetaFieldDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaFields to delete
+     */
+    where?: MetaFieldWhereInput
+    /**
+     * Limit how many MetaFields to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaField.sourceRelations
+   */
+  export type MetaField$sourceRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    cursor?: MetaRelationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField.targetRelations
+   */
+  export type MetaField$targetRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    cursor?: MetaRelationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField.indexFields
+   */
+  export type MetaField$indexFieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    where?: MetaIndexFieldWhereInput
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    cursor?: MetaIndexFieldWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaIndexFieldScalarFieldEnum | MetaIndexFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaField without action
+   */
+  export type MetaFieldDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaField
+     */
+    select?: MetaFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaField
+     */
+    omit?: MetaFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaFieldInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaRelation
+   */
+
+  export type AggregateMetaRelation = {
+    _count: MetaRelationCountAggregateOutputType | null
+    _min: MetaRelationMinAggregateOutputType | null
+    _max: MetaRelationMaxAggregateOutputType | null
+  }
+
+  export type MetaRelationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    sourceTableId: string | null
+    targetTableId: string | null
+    sourceFieldId: string | null
+    targetFieldId: string | null
+    type: string | null
+    cascadeDelete: boolean | null
+    cascadeUpdate: boolean | null
+    isRequired: boolean | null
+    junctionTableId: string | null
+  }
+
+  export type MetaRelationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    sourceTableId: string | null
+    targetTableId: string | null
+    sourceFieldId: string | null
+    targetFieldId: string | null
+    type: string | null
+    cascadeDelete: boolean | null
+    cascadeUpdate: boolean | null
+    isRequired: boolean | null
+    junctionTableId: string | null
+  }
+
+  export type MetaRelationCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    sourceTableId: number
+    targetTableId: number
+    sourceFieldId: number
+    targetFieldId: number
+    type: number
+    cascadeDelete: number
+    cascadeUpdate: number
+    isRequired: number
+    junctionTableId: number
+    customOptions: number
+    _all: number
+  }
+
+
+  export type MetaRelationMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    sourceTableId?: true
+    targetTableId?: true
+    sourceFieldId?: true
+    targetFieldId?: true
+    type?: true
+    cascadeDelete?: true
+    cascadeUpdate?: true
+    isRequired?: true
+    junctionTableId?: true
+  }
+
+  export type MetaRelationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    sourceTableId?: true
+    targetTableId?: true
+    sourceFieldId?: true
+    targetFieldId?: true
+    type?: true
+    cascadeDelete?: true
+    cascadeUpdate?: true
+    isRequired?: true
+    junctionTableId?: true
+  }
+
+  export type MetaRelationCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    sourceTableId?: true
+    targetTableId?: true
+    sourceFieldId?: true
+    targetFieldId?: true
+    type?: true
+    cascadeDelete?: true
+    cascadeUpdate?: true
+    isRequired?: true
+    junctionTableId?: true
+    customOptions?: true
+    _all?: true
+  }
+
+  export type MetaRelationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaRelation to aggregate.
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaRelations to fetch.
+     */
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaRelationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaRelations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaRelations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaRelations
+    **/
+    _count?: true | MetaRelationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaRelationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaRelationMaxAggregateInputType
+  }
+
+  export type GetMetaRelationAggregateType<T extends MetaRelationAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaRelation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaRelation[P]>
+      : GetScalarType<T[P], AggregateMetaRelation[P]>
+  }
+
+
+
+
+  export type MetaRelationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaRelationWhereInput
+    orderBy?: MetaRelationOrderByWithAggregationInput | MetaRelationOrderByWithAggregationInput[]
+    by: MetaRelationScalarFieldEnum[] | MetaRelationScalarFieldEnum
+    having?: MetaRelationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaRelationCountAggregateInputType | true
+    _min?: MetaRelationMinAggregateInputType
+    _max?: MetaRelationMaxAggregateInputType
+  }
+
+  export type MetaRelationGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete: boolean
+    cascadeUpdate: boolean
+    isRequired: boolean
+    junctionTableId: string | null
+    customOptions: JsonValue | null
+    _count: MetaRelationCountAggregateOutputType | null
+    _min: MetaRelationMinAggregateOutputType | null
+    _max: MetaRelationMaxAggregateOutputType | null
+  }
+
+  type GetMetaRelationGroupByPayload<T extends MetaRelationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaRelationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaRelationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaRelationGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaRelationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaRelationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    sourceTableId?: boolean
+    targetTableId?: boolean
+    sourceFieldId?: boolean
+    targetFieldId?: boolean
+    type?: boolean
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: boolean
+    customOptions?: boolean
+    sourceTable?: boolean | MetaTableDefaultArgs<ExtArgs>
+    targetTable?: boolean | MetaTableDefaultArgs<ExtArgs>
+    sourceField?: boolean | MetaFieldDefaultArgs<ExtArgs>
+    targetField?: boolean | MetaFieldDefaultArgs<ExtArgs>
+    junctionTable?: boolean | MetaRelation$junctionTableArgs<ExtArgs>
+  }, ExtArgs["result"]["metaRelation"]>
+
+
+
+  export type MetaRelationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    sourceTableId?: boolean
+    targetTableId?: boolean
+    sourceFieldId?: boolean
+    targetFieldId?: boolean
+    type?: boolean
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: boolean
+    customOptions?: boolean
+  }
+
+  export type MetaRelationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "sourceTableId" | "targetTableId" | "sourceFieldId" | "targetFieldId" | "type" | "cascadeDelete" | "cascadeUpdate" | "isRequired" | "junctionTableId" | "customOptions", ExtArgs["result"]["metaRelation"]>
+  export type MetaRelationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sourceTable?: boolean | MetaTableDefaultArgs<ExtArgs>
+    targetTable?: boolean | MetaTableDefaultArgs<ExtArgs>
+    sourceField?: boolean | MetaFieldDefaultArgs<ExtArgs>
+    targetField?: boolean | MetaFieldDefaultArgs<ExtArgs>
+    junctionTable?: boolean | MetaRelation$junctionTableArgs<ExtArgs>
+  }
+
+  export type $MetaRelationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaRelation"
+    objects: {
+      sourceTable: Prisma.$MetaTablePayload<ExtArgs>
+      targetTable: Prisma.$MetaTablePayload<ExtArgs>
+      sourceField: Prisma.$MetaFieldPayload<ExtArgs>
+      targetField: Prisma.$MetaFieldPayload<ExtArgs>
+      junctionTable: Prisma.$MetaTablePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      sourceTableId: string
+      targetTableId: string
+      sourceFieldId: string
+      targetFieldId: string
+      type: string
+      cascadeDelete: boolean
+      cascadeUpdate: boolean
+      isRequired: boolean
+      junctionTableId: string | null
+      customOptions: Prisma.JsonValue | null
+    }, ExtArgs["result"]["metaRelation"]>
+    composites: {}
+  }
+
+  type MetaRelationGetPayload<S extends boolean | null | undefined | MetaRelationDefaultArgs> = $Result.GetResult<Prisma.$MetaRelationPayload, S>
+
+  type MetaRelationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaRelationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaRelationCountAggregateInputType | true
+    }
+
+  export interface MetaRelationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaRelation'], meta: { name: 'MetaRelation' } }
+    /**
+     * Find zero or one MetaRelation that matches the filter.
+     * @param {MetaRelationFindUniqueArgs} args - Arguments to find a MetaRelation
+     * @example
+     * // Get one MetaRelation
+     * const metaRelation = await prisma.metaRelation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaRelationFindUniqueArgs>(args: SelectSubset<T, MetaRelationFindUniqueArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaRelation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaRelationFindUniqueOrThrowArgs} args - Arguments to find a MetaRelation
+     * @example
+     * // Get one MetaRelation
+     * const metaRelation = await prisma.metaRelation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaRelationFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaRelationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaRelation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationFindFirstArgs} args - Arguments to find a MetaRelation
+     * @example
+     * // Get one MetaRelation
+     * const metaRelation = await prisma.metaRelation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaRelationFindFirstArgs>(args?: SelectSubset<T, MetaRelationFindFirstArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaRelation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationFindFirstOrThrowArgs} args - Arguments to find a MetaRelation
+     * @example
+     * // Get one MetaRelation
+     * const metaRelation = await prisma.metaRelation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaRelationFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaRelationFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaRelations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaRelations
+     * const metaRelations = await prisma.metaRelation.findMany()
+     * 
+     * // Get first 10 MetaRelations
+     * const metaRelations = await prisma.metaRelation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaRelationWithIdOnly = await prisma.metaRelation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaRelationFindManyArgs>(args?: SelectSubset<T, MetaRelationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaRelation.
+     * @param {MetaRelationCreateArgs} args - Arguments to create a MetaRelation.
+     * @example
+     * // Create one MetaRelation
+     * const MetaRelation = await prisma.metaRelation.create({
+     *   data: {
+     *     // ... data to create a MetaRelation
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaRelationCreateArgs>(args: SelectSubset<T, MetaRelationCreateArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaRelations.
+     * @param {MetaRelationCreateManyArgs} args - Arguments to create many MetaRelations.
+     * @example
+     * // Create many MetaRelations
+     * const metaRelation = await prisma.metaRelation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaRelationCreateManyArgs>(args?: SelectSubset<T, MetaRelationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaRelation.
+     * @param {MetaRelationDeleteArgs} args - Arguments to delete one MetaRelation.
+     * @example
+     * // Delete one MetaRelation
+     * const MetaRelation = await prisma.metaRelation.delete({
+     *   where: {
+     *     // ... filter to delete one MetaRelation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaRelationDeleteArgs>(args: SelectSubset<T, MetaRelationDeleteArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaRelation.
+     * @param {MetaRelationUpdateArgs} args - Arguments to update one MetaRelation.
+     * @example
+     * // Update one MetaRelation
+     * const metaRelation = await prisma.metaRelation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaRelationUpdateArgs>(args: SelectSubset<T, MetaRelationUpdateArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaRelations.
+     * @param {MetaRelationDeleteManyArgs} args - Arguments to filter MetaRelations to delete.
+     * @example
+     * // Delete a few MetaRelations
+     * const { count } = await prisma.metaRelation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaRelationDeleteManyArgs>(args?: SelectSubset<T, MetaRelationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaRelations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaRelations
+     * const metaRelation = await prisma.metaRelation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaRelationUpdateManyArgs>(args: SelectSubset<T, MetaRelationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaRelation.
+     * @param {MetaRelationUpsertArgs} args - Arguments to update or create a MetaRelation.
+     * @example
+     * // Update or create a MetaRelation
+     * const metaRelation = await prisma.metaRelation.upsert({
+     *   create: {
+     *     // ... data to create a MetaRelation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaRelation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaRelationUpsertArgs>(args: SelectSubset<T, MetaRelationUpsertArgs<ExtArgs>>): Prisma__MetaRelationClient<$Result.GetResult<Prisma.$MetaRelationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaRelations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationCountArgs} args - Arguments to filter MetaRelations to count.
+     * @example
+     * // Count the number of MetaRelations
+     * const count = await prisma.metaRelation.count({
+     *   where: {
+     *     // ... the filter for the MetaRelations we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaRelationCountArgs>(
+      args?: Subset<T, MetaRelationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaRelationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaRelation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaRelationAggregateArgs>(args: Subset<T, MetaRelationAggregateArgs>): Prisma.PrismaPromise<GetMetaRelationAggregateType<T>>
+
+    /**
+     * Group by MetaRelation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaRelationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaRelationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaRelationGroupByArgs['orderBy'] }
+        : { orderBy?: MetaRelationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaRelationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaRelationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaRelation model
+   */
+  readonly fields: MetaRelationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaRelation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaRelationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sourceTable<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    targetTable<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    sourceField<T extends MetaFieldDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaFieldDefaultArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    targetField<T extends MetaFieldDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaFieldDefaultArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    junctionTable<T extends MetaRelation$junctionTableArgs<ExtArgs> = {}>(args?: Subset<T, MetaRelation$junctionTableArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaRelation model
+   */
+  interface MetaRelationFieldRefs {
+    readonly id: FieldRef<"MetaRelation", 'String'>
+    readonly name: FieldRef<"MetaRelation", 'String'>
+    readonly description: FieldRef<"MetaRelation", 'String'>
+    readonly sourceTableId: FieldRef<"MetaRelation", 'String'>
+    readonly targetTableId: FieldRef<"MetaRelation", 'String'>
+    readonly sourceFieldId: FieldRef<"MetaRelation", 'String'>
+    readonly targetFieldId: FieldRef<"MetaRelation", 'String'>
+    readonly type: FieldRef<"MetaRelation", 'String'>
+    readonly cascadeDelete: FieldRef<"MetaRelation", 'Boolean'>
+    readonly cascadeUpdate: FieldRef<"MetaRelation", 'Boolean'>
+    readonly isRequired: FieldRef<"MetaRelation", 'Boolean'>
+    readonly junctionTableId: FieldRef<"MetaRelation", 'String'>
+    readonly customOptions: FieldRef<"MetaRelation", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaRelation findUnique
+   */
+  export type MetaRelationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaRelation to fetch.
+     */
+    where: MetaRelationWhereUniqueInput
+  }
+
+  /**
+   * MetaRelation findUniqueOrThrow
+   */
+  export type MetaRelationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaRelation to fetch.
+     */
+    where: MetaRelationWhereUniqueInput
+  }
+
+  /**
+   * MetaRelation findFirst
+   */
+  export type MetaRelationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaRelation to fetch.
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaRelations to fetch.
+     */
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaRelations.
+     */
+    cursor?: MetaRelationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaRelations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaRelations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaRelations.
+     */
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaRelation findFirstOrThrow
+   */
+  export type MetaRelationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaRelation to fetch.
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaRelations to fetch.
+     */
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaRelations.
+     */
+    cursor?: MetaRelationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaRelations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaRelations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaRelations.
+     */
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaRelation findMany
+   */
+  export type MetaRelationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaRelations to fetch.
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaRelations to fetch.
+     */
+    orderBy?: MetaRelationOrderByWithRelationInput | MetaRelationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaRelations.
+     */
+    cursor?: MetaRelationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaRelations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaRelations.
+     */
+    skip?: number
+    distinct?: MetaRelationScalarFieldEnum | MetaRelationScalarFieldEnum[]
+  }
+
+  /**
+   * MetaRelation create
+   */
+  export type MetaRelationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaRelation.
+     */
+    data: XOR<MetaRelationCreateInput, MetaRelationUncheckedCreateInput>
+  }
+
+  /**
+   * MetaRelation createMany
+   */
+  export type MetaRelationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaRelations.
+     */
+    data: MetaRelationCreateManyInput | MetaRelationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaRelation update
+   */
+  export type MetaRelationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaRelation.
+     */
+    data: XOR<MetaRelationUpdateInput, MetaRelationUncheckedUpdateInput>
+    /**
+     * Choose, which MetaRelation to update.
+     */
+    where: MetaRelationWhereUniqueInput
+  }
+
+  /**
+   * MetaRelation updateMany
+   */
+  export type MetaRelationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaRelations.
+     */
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaRelations to update
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * Limit how many MetaRelations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaRelation upsert
+   */
+  export type MetaRelationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaRelation to update in case it exists.
+     */
+    where: MetaRelationWhereUniqueInput
+    /**
+     * In case the MetaRelation found by the `where` argument doesn't exist, create a new MetaRelation with this data.
+     */
+    create: XOR<MetaRelationCreateInput, MetaRelationUncheckedCreateInput>
+    /**
+     * In case the MetaRelation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaRelationUpdateInput, MetaRelationUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaRelation delete
+   */
+  export type MetaRelationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+    /**
+     * Filter which MetaRelation to delete.
+     */
+    where: MetaRelationWhereUniqueInput
+  }
+
+  /**
+   * MetaRelation deleteMany
+   */
+  export type MetaRelationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaRelations to delete
+     */
+    where?: MetaRelationWhereInput
+    /**
+     * Limit how many MetaRelations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaRelation.junctionTable
+   */
+  export type MetaRelation$junctionTableArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaTable
+     */
+    select?: MetaTableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaTable
+     */
+    omit?: MetaTableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaTableInclude<ExtArgs> | null
+    where?: MetaTableWhereInput
+  }
+
+  /**
+   * MetaRelation without action
+   */
+  export type MetaRelationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaRelation
+     */
+    select?: MetaRelationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaRelation
+     */
+    omit?: MetaRelationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaRelationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaVersion
+   */
+
+  export type AggregateMetaVersion = {
+    _count: MetaVersionCountAggregateOutputType | null
+    _avg: MetaVersionAvgAggregateOutputType | null
+    _sum: MetaVersionSumAggregateOutputType | null
+    _min: MetaVersionMinAggregateOutputType | null
+    _max: MetaVersionMaxAggregateOutputType | null
+  }
+
+  export type MetaVersionAvgAggregateOutputType = {
+    version: number | null
+  }
+
+  export type MetaVersionSumAggregateOutputType = {
+    version: number | null
+  }
+
+  export type MetaVersionMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    version: number | null
+    name: string | null
+    description: string | null
+    isPublished: boolean | null
+    createdBy: string | null
+    createdAt: Date | null
+    comment: string | null
+  }
+
+  export type MetaVersionMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    version: number | null
+    name: string | null
+    description: string | null
+    isPublished: boolean | null
+    createdBy: string | null
+    createdAt: Date | null
+    comment: string | null
+  }
+
+  export type MetaVersionCountAggregateOutputType = {
+    id: number
+    tableId: number
+    version: number
+    name: number
+    description: number
+    snapshot: number
+    isPublished: number
+    createdBy: number
+    createdAt: number
+    comment: number
+    _all: number
+  }
+
+
+  export type MetaVersionAvgAggregateInputType = {
+    version?: true
+  }
+
+  export type MetaVersionSumAggregateInputType = {
+    version?: true
+  }
+
+  export type MetaVersionMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    version?: true
+    name?: true
+    description?: true
+    isPublished?: true
+    createdBy?: true
+    createdAt?: true
+    comment?: true
+  }
+
+  export type MetaVersionMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    version?: true
+    name?: true
+    description?: true
+    isPublished?: true
+    createdBy?: true
+    createdAt?: true
+    comment?: true
+  }
+
+  export type MetaVersionCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    version?: true
+    name?: true
+    description?: true
+    snapshot?: true
+    isPublished?: true
+    createdBy?: true
+    createdAt?: true
+    comment?: true
+    _all?: true
+  }
+
+  export type MetaVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaVersion to aggregate.
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaVersions to fetch.
+     */
+    orderBy?: MetaVersionOrderByWithRelationInput | MetaVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaVersions
+    **/
+    _count?: true | MetaVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MetaVersionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MetaVersionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaVersionMaxAggregateInputType
+  }
+
+  export type GetMetaVersionAggregateType<T extends MetaVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaVersion[P]>
+      : GetScalarType<T[P], AggregateMetaVersion[P]>
+  }
+
+
+
+
+  export type MetaVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaVersionWhereInput
+    orderBy?: MetaVersionOrderByWithAggregationInput | MetaVersionOrderByWithAggregationInput[]
+    by: MetaVersionScalarFieldEnum[] | MetaVersionScalarFieldEnum
+    having?: MetaVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaVersionCountAggregateInputType | true
+    _avg?: MetaVersionAvgAggregateInputType
+    _sum?: MetaVersionSumAggregateInputType
+    _min?: MetaVersionMinAggregateInputType
+    _max?: MetaVersionMaxAggregateInputType
+  }
+
+  export type MetaVersionGroupByOutputType = {
+    id: string
+    tableId: string
+    version: number
+    name: string
+    description: string | null
+    snapshot: JsonValue
+    isPublished: boolean
+    createdBy: string
+    createdAt: Date
+    comment: string | null
+    _count: MetaVersionCountAggregateOutputType | null
+    _avg: MetaVersionAvgAggregateOutputType | null
+    _sum: MetaVersionSumAggregateOutputType | null
+    _min: MetaVersionMinAggregateOutputType | null
+    _max: MetaVersionMaxAggregateOutputType | null
+  }
+
+  type GetMetaVersionGroupByPayload<T extends MetaVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    version?: boolean
+    name?: boolean
+    description?: boolean
+    snapshot?: boolean
+    isPublished?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    comment?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    modelApprovals?: boolean | MetaVersion$modelApprovalsArgs<ExtArgs>
+    _count?: boolean | MetaVersionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaVersion"]>
+
+
+
+  export type MetaVersionSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    version?: boolean
+    name?: boolean
+    description?: boolean
+    snapshot?: boolean
+    isPublished?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    comment?: boolean
+  }
+
+  export type MetaVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "version" | "name" | "description" | "snapshot" | "isPublished" | "createdBy" | "createdAt" | "comment", ExtArgs["result"]["metaVersion"]>
+  export type MetaVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    modelApprovals?: boolean | MetaVersion$modelApprovalsArgs<ExtArgs>
+    _count?: boolean | MetaVersionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaVersion"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+      modelApprovals: Prisma.$ModelApprovalPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      version: number
+      name: string
+      description: string | null
+      snapshot: Prisma.JsonValue
+      isPublished: boolean
+      createdBy: string
+      createdAt: Date
+      comment: string | null
+    }, ExtArgs["result"]["metaVersion"]>
+    composites: {}
+  }
+
+  type MetaVersionGetPayload<S extends boolean | null | undefined | MetaVersionDefaultArgs> = $Result.GetResult<Prisma.$MetaVersionPayload, S>
+
+  type MetaVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaVersionCountAggregateInputType | true
+    }
+
+  export interface MetaVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaVersion'], meta: { name: 'MetaVersion' } }
+    /**
+     * Find zero or one MetaVersion that matches the filter.
+     * @param {MetaVersionFindUniqueArgs} args - Arguments to find a MetaVersion
+     * @example
+     * // Get one MetaVersion
+     * const metaVersion = await prisma.metaVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaVersionFindUniqueArgs>(args: SelectSubset<T, MetaVersionFindUniqueArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaVersion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaVersionFindUniqueOrThrowArgs} args - Arguments to find a MetaVersion
+     * @example
+     * // Get one MetaVersion
+     * const metaVersion = await prisma.metaVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionFindFirstArgs} args - Arguments to find a MetaVersion
+     * @example
+     * // Get one MetaVersion
+     * const metaVersion = await prisma.metaVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaVersionFindFirstArgs>(args?: SelectSubset<T, MetaVersionFindFirstArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionFindFirstOrThrowArgs} args - Arguments to find a MetaVersion
+     * @example
+     * // Get one MetaVersion
+     * const metaVersion = await prisma.metaVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaVersions
+     * const metaVersions = await prisma.metaVersion.findMany()
+     * 
+     * // Get first 10 MetaVersions
+     * const metaVersions = await prisma.metaVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaVersionWithIdOnly = await prisma.metaVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaVersionFindManyArgs>(args?: SelectSubset<T, MetaVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaVersion.
+     * @param {MetaVersionCreateArgs} args - Arguments to create a MetaVersion.
+     * @example
+     * // Create one MetaVersion
+     * const MetaVersion = await prisma.metaVersion.create({
+     *   data: {
+     *     // ... data to create a MetaVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaVersionCreateArgs>(args: SelectSubset<T, MetaVersionCreateArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaVersions.
+     * @param {MetaVersionCreateManyArgs} args - Arguments to create many MetaVersions.
+     * @example
+     * // Create many MetaVersions
+     * const metaVersion = await prisma.metaVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaVersionCreateManyArgs>(args?: SelectSubset<T, MetaVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaVersion.
+     * @param {MetaVersionDeleteArgs} args - Arguments to delete one MetaVersion.
+     * @example
+     * // Delete one MetaVersion
+     * const MetaVersion = await prisma.metaVersion.delete({
+     *   where: {
+     *     // ... filter to delete one MetaVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaVersionDeleteArgs>(args: SelectSubset<T, MetaVersionDeleteArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaVersion.
+     * @param {MetaVersionUpdateArgs} args - Arguments to update one MetaVersion.
+     * @example
+     * // Update one MetaVersion
+     * const metaVersion = await prisma.metaVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaVersionUpdateArgs>(args: SelectSubset<T, MetaVersionUpdateArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaVersions.
+     * @param {MetaVersionDeleteManyArgs} args - Arguments to filter MetaVersions to delete.
+     * @example
+     * // Delete a few MetaVersions
+     * const { count } = await prisma.metaVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaVersionDeleteManyArgs>(args?: SelectSubset<T, MetaVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaVersions
+     * const metaVersion = await prisma.metaVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaVersionUpdateManyArgs>(args: SelectSubset<T, MetaVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaVersion.
+     * @param {MetaVersionUpsertArgs} args - Arguments to update or create a MetaVersion.
+     * @example
+     * // Update or create a MetaVersion
+     * const metaVersion = await prisma.metaVersion.upsert({
+     *   create: {
+     *     // ... data to create a MetaVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaVersionUpsertArgs>(args: SelectSubset<T, MetaVersionUpsertArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionCountArgs} args - Arguments to filter MetaVersions to count.
+     * @example
+     * // Count the number of MetaVersions
+     * const count = await prisma.metaVersion.count({
+     *   where: {
+     *     // ... the filter for the MetaVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaVersionCountArgs>(
+      args?: Subset<T, MetaVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaVersionAggregateArgs>(args: Subset<T, MetaVersionAggregateArgs>): Prisma.PrismaPromise<GetMetaVersionAggregateType<T>>
+
+    /**
+     * Group by MetaVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaVersionGroupByArgs['orderBy'] }
+        : { orderBy?: MetaVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaVersion model
+   */
+  readonly fields: MetaVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    modelApprovals<T extends MetaVersion$modelApprovalsArgs<ExtArgs> = {}>(args?: Subset<T, MetaVersion$modelApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaVersion model
+   */
+  interface MetaVersionFieldRefs {
+    readonly id: FieldRef<"MetaVersion", 'String'>
+    readonly tableId: FieldRef<"MetaVersion", 'String'>
+    readonly version: FieldRef<"MetaVersion", 'Int'>
+    readonly name: FieldRef<"MetaVersion", 'String'>
+    readonly description: FieldRef<"MetaVersion", 'String'>
+    readonly snapshot: FieldRef<"MetaVersion", 'Json'>
+    readonly isPublished: FieldRef<"MetaVersion", 'Boolean'>
+    readonly createdBy: FieldRef<"MetaVersion", 'String'>
+    readonly createdAt: FieldRef<"MetaVersion", 'DateTime'>
+    readonly comment: FieldRef<"MetaVersion", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaVersion findUnique
+   */
+  export type MetaVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaVersion to fetch.
+     */
+    where: MetaVersionWhereUniqueInput
+  }
+
+  /**
+   * MetaVersion findUniqueOrThrow
+   */
+  export type MetaVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaVersion to fetch.
+     */
+    where: MetaVersionWhereUniqueInput
+  }
+
+  /**
+   * MetaVersion findFirst
+   */
+  export type MetaVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaVersion to fetch.
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaVersions to fetch.
+     */
+    orderBy?: MetaVersionOrderByWithRelationInput | MetaVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaVersions.
+     */
+    cursor?: MetaVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaVersions.
+     */
+    distinct?: MetaVersionScalarFieldEnum | MetaVersionScalarFieldEnum[]
+  }
+
+  /**
+   * MetaVersion findFirstOrThrow
+   */
+  export type MetaVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaVersion to fetch.
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaVersions to fetch.
+     */
+    orderBy?: MetaVersionOrderByWithRelationInput | MetaVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaVersions.
+     */
+    cursor?: MetaVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaVersions.
+     */
+    distinct?: MetaVersionScalarFieldEnum | MetaVersionScalarFieldEnum[]
+  }
+
+  /**
+   * MetaVersion findMany
+   */
+  export type MetaVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaVersions to fetch.
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaVersions to fetch.
+     */
+    orderBy?: MetaVersionOrderByWithRelationInput | MetaVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaVersions.
+     */
+    cursor?: MetaVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaVersions.
+     */
+    skip?: number
+    distinct?: MetaVersionScalarFieldEnum | MetaVersionScalarFieldEnum[]
+  }
+
+  /**
+   * MetaVersion create
+   */
+  export type MetaVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaVersion.
+     */
+    data: XOR<MetaVersionCreateInput, MetaVersionUncheckedCreateInput>
+  }
+
+  /**
+   * MetaVersion createMany
+   */
+  export type MetaVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaVersions.
+     */
+    data: MetaVersionCreateManyInput | MetaVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaVersion update
+   */
+  export type MetaVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaVersion.
+     */
+    data: XOR<MetaVersionUpdateInput, MetaVersionUncheckedUpdateInput>
+    /**
+     * Choose, which MetaVersion to update.
+     */
+    where: MetaVersionWhereUniqueInput
+  }
+
+  /**
+   * MetaVersion updateMany
+   */
+  export type MetaVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaVersions.
+     */
+    data: XOR<MetaVersionUpdateManyMutationInput, MetaVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaVersions to update
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * Limit how many MetaVersions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaVersion upsert
+   */
+  export type MetaVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaVersion to update in case it exists.
+     */
+    where: MetaVersionWhereUniqueInput
+    /**
+     * In case the MetaVersion found by the `where` argument doesn't exist, create a new MetaVersion with this data.
+     */
+    create: XOR<MetaVersionCreateInput, MetaVersionUncheckedCreateInput>
+    /**
+     * In case the MetaVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaVersionUpdateInput, MetaVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaVersion delete
+   */
+  export type MetaVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+    /**
+     * Filter which MetaVersion to delete.
+     */
+    where: MetaVersionWhereUniqueInput
+  }
+
+  /**
+   * MetaVersion deleteMany
+   */
+  export type MetaVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaVersions to delete
+     */
+    where?: MetaVersionWhereInput
+    /**
+     * Limit how many MetaVersions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaVersion.modelApprovals
+   */
+  export type MetaVersion$modelApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    where?: ModelApprovalWhereInput
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    cursor?: ModelApprovalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModelApprovalScalarFieldEnum | ModelApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * MetaVersion without action
+   */
+  export type MetaVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaVersion
+     */
+    select?: MetaVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaVersion
+     */
+    omit?: MetaVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaIndex
+   */
+
+  export type AggregateMetaIndex = {
+    _count: MetaIndexCountAggregateOutputType | null
+    _min: MetaIndexMinAggregateOutputType | null
+    _max: MetaIndexMaxAggregateOutputType | null
+  }
+
+  export type MetaIndexMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    type: string | null
+    isUnique: boolean | null
+  }
+
+  export type MetaIndexMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    type: string | null
+    isUnique: boolean | null
+  }
+
+  export type MetaIndexCountAggregateOutputType = {
+    id: number
+    tableId: number
+    name: number
+    type: number
+    isUnique: number
+    _all: number
+  }
+
+
+  export type MetaIndexMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    isUnique?: true
+  }
+
+  export type MetaIndexMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    isUnique?: true
+  }
+
+  export type MetaIndexCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    isUnique?: true
+    _all?: true
+  }
+
+  export type MetaIndexAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaIndex to aggregate.
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndices to fetch.
+     */
+    orderBy?: MetaIndexOrderByWithRelationInput | MetaIndexOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaIndexWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaIndices
+    **/
+    _count?: true | MetaIndexCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaIndexMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaIndexMaxAggregateInputType
+  }
+
+  export type GetMetaIndexAggregateType<T extends MetaIndexAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaIndex]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaIndex[P]>
+      : GetScalarType<T[P], AggregateMetaIndex[P]>
+  }
+
+
+
+
+  export type MetaIndexGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaIndexWhereInput
+    orderBy?: MetaIndexOrderByWithAggregationInput | MetaIndexOrderByWithAggregationInput[]
+    by: MetaIndexScalarFieldEnum[] | MetaIndexScalarFieldEnum
+    having?: MetaIndexScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaIndexCountAggregateInputType | true
+    _min?: MetaIndexMinAggregateInputType
+    _max?: MetaIndexMaxAggregateInputType
+  }
+
+  export type MetaIndexGroupByOutputType = {
+    id: string
+    tableId: string
+    name: string
+    type: string
+    isUnique: boolean
+    _count: MetaIndexCountAggregateOutputType | null
+    _min: MetaIndexMinAggregateOutputType | null
+    _max: MetaIndexMaxAggregateOutputType | null
+  }
+
+  type GetMetaIndexGroupByPayload<T extends MetaIndexGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaIndexGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaIndexGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaIndexGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaIndexGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaIndexSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    type?: boolean
+    isUnique?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    fields?: boolean | MetaIndex$fieldsArgs<ExtArgs>
+    _count?: boolean | MetaIndexCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaIndex"]>
+
+
+
+  export type MetaIndexSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    type?: boolean
+    isUnique?: boolean
+  }
+
+  export type MetaIndexOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "name" | "type" | "isUnique", ExtArgs["result"]["metaIndex"]>
+  export type MetaIndexInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    fields?: boolean | MetaIndex$fieldsArgs<ExtArgs>
+    _count?: boolean | MetaIndexCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaIndexPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaIndex"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+      fields: Prisma.$MetaIndexFieldPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      name: string
+      type: string
+      isUnique: boolean
+    }, ExtArgs["result"]["metaIndex"]>
+    composites: {}
+  }
+
+  type MetaIndexGetPayload<S extends boolean | null | undefined | MetaIndexDefaultArgs> = $Result.GetResult<Prisma.$MetaIndexPayload, S>
+
+  type MetaIndexCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaIndexFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaIndexCountAggregateInputType | true
+    }
+
+  export interface MetaIndexDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaIndex'], meta: { name: 'MetaIndex' } }
+    /**
+     * Find zero or one MetaIndex that matches the filter.
+     * @param {MetaIndexFindUniqueArgs} args - Arguments to find a MetaIndex
+     * @example
+     * // Get one MetaIndex
+     * const metaIndex = await prisma.metaIndex.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaIndexFindUniqueArgs>(args: SelectSubset<T, MetaIndexFindUniqueArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaIndex that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaIndexFindUniqueOrThrowArgs} args - Arguments to find a MetaIndex
+     * @example
+     * // Get one MetaIndex
+     * const metaIndex = await prisma.metaIndex.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaIndexFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaIndexFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaIndex that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFindFirstArgs} args - Arguments to find a MetaIndex
+     * @example
+     * // Get one MetaIndex
+     * const metaIndex = await prisma.metaIndex.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaIndexFindFirstArgs>(args?: SelectSubset<T, MetaIndexFindFirstArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaIndex that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFindFirstOrThrowArgs} args - Arguments to find a MetaIndex
+     * @example
+     * // Get one MetaIndex
+     * const metaIndex = await prisma.metaIndex.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaIndexFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaIndexFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaIndices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaIndices
+     * const metaIndices = await prisma.metaIndex.findMany()
+     * 
+     * // Get first 10 MetaIndices
+     * const metaIndices = await prisma.metaIndex.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaIndexWithIdOnly = await prisma.metaIndex.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaIndexFindManyArgs>(args?: SelectSubset<T, MetaIndexFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaIndex.
+     * @param {MetaIndexCreateArgs} args - Arguments to create a MetaIndex.
+     * @example
+     * // Create one MetaIndex
+     * const MetaIndex = await prisma.metaIndex.create({
+     *   data: {
+     *     // ... data to create a MetaIndex
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaIndexCreateArgs>(args: SelectSubset<T, MetaIndexCreateArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaIndices.
+     * @param {MetaIndexCreateManyArgs} args - Arguments to create many MetaIndices.
+     * @example
+     * // Create many MetaIndices
+     * const metaIndex = await prisma.metaIndex.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaIndexCreateManyArgs>(args?: SelectSubset<T, MetaIndexCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaIndex.
+     * @param {MetaIndexDeleteArgs} args - Arguments to delete one MetaIndex.
+     * @example
+     * // Delete one MetaIndex
+     * const MetaIndex = await prisma.metaIndex.delete({
+     *   where: {
+     *     // ... filter to delete one MetaIndex
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaIndexDeleteArgs>(args: SelectSubset<T, MetaIndexDeleteArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaIndex.
+     * @param {MetaIndexUpdateArgs} args - Arguments to update one MetaIndex.
+     * @example
+     * // Update one MetaIndex
+     * const metaIndex = await prisma.metaIndex.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaIndexUpdateArgs>(args: SelectSubset<T, MetaIndexUpdateArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaIndices.
+     * @param {MetaIndexDeleteManyArgs} args - Arguments to filter MetaIndices to delete.
+     * @example
+     * // Delete a few MetaIndices
+     * const { count } = await prisma.metaIndex.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaIndexDeleteManyArgs>(args?: SelectSubset<T, MetaIndexDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaIndices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaIndices
+     * const metaIndex = await prisma.metaIndex.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaIndexUpdateManyArgs>(args: SelectSubset<T, MetaIndexUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaIndex.
+     * @param {MetaIndexUpsertArgs} args - Arguments to update or create a MetaIndex.
+     * @example
+     * // Update or create a MetaIndex
+     * const metaIndex = await prisma.metaIndex.upsert({
+     *   create: {
+     *     // ... data to create a MetaIndex
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaIndex we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaIndexUpsertArgs>(args: SelectSubset<T, MetaIndexUpsertArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaIndices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexCountArgs} args - Arguments to filter MetaIndices to count.
+     * @example
+     * // Count the number of MetaIndices
+     * const count = await prisma.metaIndex.count({
+     *   where: {
+     *     // ... the filter for the MetaIndices we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaIndexCountArgs>(
+      args?: Subset<T, MetaIndexCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaIndexCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaIndex.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaIndexAggregateArgs>(args: Subset<T, MetaIndexAggregateArgs>): Prisma.PrismaPromise<GetMetaIndexAggregateType<T>>
+
+    /**
+     * Group by MetaIndex.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaIndexGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaIndexGroupByArgs['orderBy'] }
+        : { orderBy?: MetaIndexGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaIndexGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaIndexGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaIndex model
+   */
+  readonly fields: MetaIndexFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaIndex.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaIndexClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fields<T extends MetaIndex$fieldsArgs<ExtArgs> = {}>(args?: Subset<T, MetaIndex$fieldsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaIndex model
+   */
+  interface MetaIndexFieldRefs {
+    readonly id: FieldRef<"MetaIndex", 'String'>
+    readonly tableId: FieldRef<"MetaIndex", 'String'>
+    readonly name: FieldRef<"MetaIndex", 'String'>
+    readonly type: FieldRef<"MetaIndex", 'String'>
+    readonly isUnique: FieldRef<"MetaIndex", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaIndex findUnique
+   */
+  export type MetaIndexFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndex to fetch.
+     */
+    where: MetaIndexWhereUniqueInput
+  }
+
+  /**
+   * MetaIndex findUniqueOrThrow
+   */
+  export type MetaIndexFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndex to fetch.
+     */
+    where: MetaIndexWhereUniqueInput
+  }
+
+  /**
+   * MetaIndex findFirst
+   */
+  export type MetaIndexFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndex to fetch.
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndices to fetch.
+     */
+    orderBy?: MetaIndexOrderByWithRelationInput | MetaIndexOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaIndices.
+     */
+    cursor?: MetaIndexWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaIndices.
+     */
+    distinct?: MetaIndexScalarFieldEnum | MetaIndexScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndex findFirstOrThrow
+   */
+  export type MetaIndexFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndex to fetch.
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndices to fetch.
+     */
+    orderBy?: MetaIndexOrderByWithRelationInput | MetaIndexOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaIndices.
+     */
+    cursor?: MetaIndexWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaIndices.
+     */
+    distinct?: MetaIndexScalarFieldEnum | MetaIndexScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndex findMany
+   */
+  export type MetaIndexFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndices to fetch.
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndices to fetch.
+     */
+    orderBy?: MetaIndexOrderByWithRelationInput | MetaIndexOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaIndices.
+     */
+    cursor?: MetaIndexWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndices.
+     */
+    skip?: number
+    distinct?: MetaIndexScalarFieldEnum | MetaIndexScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndex create
+   */
+  export type MetaIndexCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaIndex.
+     */
+    data: XOR<MetaIndexCreateInput, MetaIndexUncheckedCreateInput>
+  }
+
+  /**
+   * MetaIndex createMany
+   */
+  export type MetaIndexCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaIndices.
+     */
+    data: MetaIndexCreateManyInput | MetaIndexCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaIndex update
+   */
+  export type MetaIndexUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaIndex.
+     */
+    data: XOR<MetaIndexUpdateInput, MetaIndexUncheckedUpdateInput>
+    /**
+     * Choose, which MetaIndex to update.
+     */
+    where: MetaIndexWhereUniqueInput
+  }
+
+  /**
+   * MetaIndex updateMany
+   */
+  export type MetaIndexUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaIndices.
+     */
+    data: XOR<MetaIndexUpdateManyMutationInput, MetaIndexUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaIndices to update
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * Limit how many MetaIndices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaIndex upsert
+   */
+  export type MetaIndexUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaIndex to update in case it exists.
+     */
+    where: MetaIndexWhereUniqueInput
+    /**
+     * In case the MetaIndex found by the `where` argument doesn't exist, create a new MetaIndex with this data.
+     */
+    create: XOR<MetaIndexCreateInput, MetaIndexUncheckedCreateInput>
+    /**
+     * In case the MetaIndex was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaIndexUpdateInput, MetaIndexUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaIndex delete
+   */
+  export type MetaIndexDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+    /**
+     * Filter which MetaIndex to delete.
+     */
+    where: MetaIndexWhereUniqueInput
+  }
+
+  /**
+   * MetaIndex deleteMany
+   */
+  export type MetaIndexDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaIndices to delete
+     */
+    where?: MetaIndexWhereInput
+    /**
+     * Limit how many MetaIndices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaIndex.fields
+   */
+  export type MetaIndex$fieldsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    where?: MetaIndexFieldWhereInput
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    cursor?: MetaIndexFieldWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MetaIndexFieldScalarFieldEnum | MetaIndexFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndex without action
+   */
+  export type MetaIndexDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndex
+     */
+    select?: MetaIndexSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndex
+     */
+    omit?: MetaIndexOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaIndexField
+   */
+
+  export type AggregateMetaIndexField = {
+    _count: MetaIndexFieldCountAggregateOutputType | null
+    _avg: MetaIndexFieldAvgAggregateOutputType | null
+    _sum: MetaIndexFieldSumAggregateOutputType | null
+    _min: MetaIndexFieldMinAggregateOutputType | null
+    _max: MetaIndexFieldMaxAggregateOutputType | null
+  }
+
+  export type MetaIndexFieldAvgAggregateOutputType = {
+    ordinal: number | null
+  }
+
+  export type MetaIndexFieldSumAggregateOutputType = {
+    ordinal: number | null
+  }
+
+  export type MetaIndexFieldMinAggregateOutputType = {
+    id: string | null
+    indexId: string | null
+    fieldId: string | null
+    ordinal: number | null
+  }
+
+  export type MetaIndexFieldMaxAggregateOutputType = {
+    id: string | null
+    indexId: string | null
+    fieldId: string | null
+    ordinal: number | null
+  }
+
+  export type MetaIndexFieldCountAggregateOutputType = {
+    id: number
+    indexId: number
+    fieldId: number
+    ordinal: number
+    _all: number
+  }
+
+
+  export type MetaIndexFieldAvgAggregateInputType = {
+    ordinal?: true
+  }
+
+  export type MetaIndexFieldSumAggregateInputType = {
+    ordinal?: true
+  }
+
+  export type MetaIndexFieldMinAggregateInputType = {
+    id?: true
+    indexId?: true
+    fieldId?: true
+    ordinal?: true
+  }
+
+  export type MetaIndexFieldMaxAggregateInputType = {
+    id?: true
+    indexId?: true
+    fieldId?: true
+    ordinal?: true
+  }
+
+  export type MetaIndexFieldCountAggregateInputType = {
+    id?: true
+    indexId?: true
+    fieldId?: true
+    ordinal?: true
+    _all?: true
+  }
+
+  export type MetaIndexFieldAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaIndexField to aggregate.
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndexFields to fetch.
+     */
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaIndexFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndexFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndexFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaIndexFields
+    **/
+    _count?: true | MetaIndexFieldCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MetaIndexFieldAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MetaIndexFieldSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaIndexFieldMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaIndexFieldMaxAggregateInputType
+  }
+
+  export type GetMetaIndexFieldAggregateType<T extends MetaIndexFieldAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaIndexField]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaIndexField[P]>
+      : GetScalarType<T[P], AggregateMetaIndexField[P]>
+  }
+
+
+
+
+  export type MetaIndexFieldGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaIndexFieldWhereInput
+    orderBy?: MetaIndexFieldOrderByWithAggregationInput | MetaIndexFieldOrderByWithAggregationInput[]
+    by: MetaIndexFieldScalarFieldEnum[] | MetaIndexFieldScalarFieldEnum
+    having?: MetaIndexFieldScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaIndexFieldCountAggregateInputType | true
+    _avg?: MetaIndexFieldAvgAggregateInputType
+    _sum?: MetaIndexFieldSumAggregateInputType
+    _min?: MetaIndexFieldMinAggregateInputType
+    _max?: MetaIndexFieldMaxAggregateInputType
+  }
+
+  export type MetaIndexFieldGroupByOutputType = {
+    id: string
+    indexId: string
+    fieldId: string
+    ordinal: number
+    _count: MetaIndexFieldCountAggregateOutputType | null
+    _avg: MetaIndexFieldAvgAggregateOutputType | null
+    _sum: MetaIndexFieldSumAggregateOutputType | null
+    _min: MetaIndexFieldMinAggregateOutputType | null
+    _max: MetaIndexFieldMaxAggregateOutputType | null
+  }
+
+  type GetMetaIndexFieldGroupByPayload<T extends MetaIndexFieldGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaIndexFieldGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaIndexFieldGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaIndexFieldGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaIndexFieldGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaIndexFieldSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    indexId?: boolean
+    fieldId?: boolean
+    ordinal?: boolean
+    index?: boolean | MetaIndexDefaultArgs<ExtArgs>
+    field?: boolean | MetaFieldDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaIndexField"]>
+
+
+
+  export type MetaIndexFieldSelectScalar = {
+    id?: boolean
+    indexId?: boolean
+    fieldId?: boolean
+    ordinal?: boolean
+  }
+
+  export type MetaIndexFieldOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "indexId" | "fieldId" | "ordinal", ExtArgs["result"]["metaIndexField"]>
+  export type MetaIndexFieldInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    index?: boolean | MetaIndexDefaultArgs<ExtArgs>
+    field?: boolean | MetaFieldDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaIndexFieldPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaIndexField"
+    objects: {
+      index: Prisma.$MetaIndexPayload<ExtArgs>
+      field: Prisma.$MetaFieldPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      indexId: string
+      fieldId: string
+      ordinal: number
+    }, ExtArgs["result"]["metaIndexField"]>
+    composites: {}
+  }
+
+  type MetaIndexFieldGetPayload<S extends boolean | null | undefined | MetaIndexFieldDefaultArgs> = $Result.GetResult<Prisma.$MetaIndexFieldPayload, S>
+
+  type MetaIndexFieldCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaIndexFieldFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaIndexFieldCountAggregateInputType | true
+    }
+
+  export interface MetaIndexFieldDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaIndexField'], meta: { name: 'MetaIndexField' } }
+    /**
+     * Find zero or one MetaIndexField that matches the filter.
+     * @param {MetaIndexFieldFindUniqueArgs} args - Arguments to find a MetaIndexField
+     * @example
+     * // Get one MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaIndexFieldFindUniqueArgs>(args: SelectSubset<T, MetaIndexFieldFindUniqueArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaIndexField that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaIndexFieldFindUniqueOrThrowArgs} args - Arguments to find a MetaIndexField
+     * @example
+     * // Get one MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaIndexFieldFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaIndexFieldFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaIndexField that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldFindFirstArgs} args - Arguments to find a MetaIndexField
+     * @example
+     * // Get one MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaIndexFieldFindFirstArgs>(args?: SelectSubset<T, MetaIndexFieldFindFirstArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaIndexField that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldFindFirstOrThrowArgs} args - Arguments to find a MetaIndexField
+     * @example
+     * // Get one MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaIndexFieldFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaIndexFieldFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaIndexFields that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaIndexFields
+     * const metaIndexFields = await prisma.metaIndexField.findMany()
+     * 
+     * // Get first 10 MetaIndexFields
+     * const metaIndexFields = await prisma.metaIndexField.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaIndexFieldWithIdOnly = await prisma.metaIndexField.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaIndexFieldFindManyArgs>(args?: SelectSubset<T, MetaIndexFieldFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaIndexField.
+     * @param {MetaIndexFieldCreateArgs} args - Arguments to create a MetaIndexField.
+     * @example
+     * // Create one MetaIndexField
+     * const MetaIndexField = await prisma.metaIndexField.create({
+     *   data: {
+     *     // ... data to create a MetaIndexField
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaIndexFieldCreateArgs>(args: SelectSubset<T, MetaIndexFieldCreateArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaIndexFields.
+     * @param {MetaIndexFieldCreateManyArgs} args - Arguments to create many MetaIndexFields.
+     * @example
+     * // Create many MetaIndexFields
+     * const metaIndexField = await prisma.metaIndexField.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaIndexFieldCreateManyArgs>(args?: SelectSubset<T, MetaIndexFieldCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaIndexField.
+     * @param {MetaIndexFieldDeleteArgs} args - Arguments to delete one MetaIndexField.
+     * @example
+     * // Delete one MetaIndexField
+     * const MetaIndexField = await prisma.metaIndexField.delete({
+     *   where: {
+     *     // ... filter to delete one MetaIndexField
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaIndexFieldDeleteArgs>(args: SelectSubset<T, MetaIndexFieldDeleteArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaIndexField.
+     * @param {MetaIndexFieldUpdateArgs} args - Arguments to update one MetaIndexField.
+     * @example
+     * // Update one MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaIndexFieldUpdateArgs>(args: SelectSubset<T, MetaIndexFieldUpdateArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaIndexFields.
+     * @param {MetaIndexFieldDeleteManyArgs} args - Arguments to filter MetaIndexFields to delete.
+     * @example
+     * // Delete a few MetaIndexFields
+     * const { count } = await prisma.metaIndexField.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaIndexFieldDeleteManyArgs>(args?: SelectSubset<T, MetaIndexFieldDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaIndexFields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaIndexFields
+     * const metaIndexField = await prisma.metaIndexField.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaIndexFieldUpdateManyArgs>(args: SelectSubset<T, MetaIndexFieldUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaIndexField.
+     * @param {MetaIndexFieldUpsertArgs} args - Arguments to update or create a MetaIndexField.
+     * @example
+     * // Update or create a MetaIndexField
+     * const metaIndexField = await prisma.metaIndexField.upsert({
+     *   create: {
+     *     // ... data to create a MetaIndexField
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaIndexField we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaIndexFieldUpsertArgs>(args: SelectSubset<T, MetaIndexFieldUpsertArgs<ExtArgs>>): Prisma__MetaIndexFieldClient<$Result.GetResult<Prisma.$MetaIndexFieldPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaIndexFields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldCountArgs} args - Arguments to filter MetaIndexFields to count.
+     * @example
+     * // Count the number of MetaIndexFields
+     * const count = await prisma.metaIndexField.count({
+     *   where: {
+     *     // ... the filter for the MetaIndexFields we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaIndexFieldCountArgs>(
+      args?: Subset<T, MetaIndexFieldCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaIndexFieldCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaIndexField.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaIndexFieldAggregateArgs>(args: Subset<T, MetaIndexFieldAggregateArgs>): Prisma.PrismaPromise<GetMetaIndexFieldAggregateType<T>>
+
+    /**
+     * Group by MetaIndexField.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaIndexFieldGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaIndexFieldGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaIndexFieldGroupByArgs['orderBy'] }
+        : { orderBy?: MetaIndexFieldGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaIndexFieldGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaIndexFieldGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaIndexField model
+   */
+  readonly fields: MetaIndexFieldFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaIndexField.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaIndexFieldClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    index<T extends MetaIndexDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaIndexDefaultArgs<ExtArgs>>): Prisma__MetaIndexClient<$Result.GetResult<Prisma.$MetaIndexPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    field<T extends MetaFieldDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaFieldDefaultArgs<ExtArgs>>): Prisma__MetaFieldClient<$Result.GetResult<Prisma.$MetaFieldPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaIndexField model
+   */
+  interface MetaIndexFieldFieldRefs {
+    readonly id: FieldRef<"MetaIndexField", 'String'>
+    readonly indexId: FieldRef<"MetaIndexField", 'String'>
+    readonly fieldId: FieldRef<"MetaIndexField", 'String'>
+    readonly ordinal: FieldRef<"MetaIndexField", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaIndexField findUnique
+   */
+  export type MetaIndexFieldFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndexField to fetch.
+     */
+    where: MetaIndexFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaIndexField findUniqueOrThrow
+   */
+  export type MetaIndexFieldFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndexField to fetch.
+     */
+    where: MetaIndexFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaIndexField findFirst
+   */
+  export type MetaIndexFieldFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndexField to fetch.
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndexFields to fetch.
+     */
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaIndexFields.
+     */
+    cursor?: MetaIndexFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndexFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndexFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaIndexFields.
+     */
+    distinct?: MetaIndexFieldScalarFieldEnum | MetaIndexFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndexField findFirstOrThrow
+   */
+  export type MetaIndexFieldFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndexField to fetch.
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndexFields to fetch.
+     */
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaIndexFields.
+     */
+    cursor?: MetaIndexFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndexFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndexFields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaIndexFields.
+     */
+    distinct?: MetaIndexFieldScalarFieldEnum | MetaIndexFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndexField findMany
+   */
+  export type MetaIndexFieldFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaIndexFields to fetch.
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaIndexFields to fetch.
+     */
+    orderBy?: MetaIndexFieldOrderByWithRelationInput | MetaIndexFieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaIndexFields.
+     */
+    cursor?: MetaIndexFieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaIndexFields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaIndexFields.
+     */
+    skip?: number
+    distinct?: MetaIndexFieldScalarFieldEnum | MetaIndexFieldScalarFieldEnum[]
+  }
+
+  /**
+   * MetaIndexField create
+   */
+  export type MetaIndexFieldCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaIndexField.
+     */
+    data: XOR<MetaIndexFieldCreateInput, MetaIndexFieldUncheckedCreateInput>
+  }
+
+  /**
+   * MetaIndexField createMany
+   */
+  export type MetaIndexFieldCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaIndexFields.
+     */
+    data: MetaIndexFieldCreateManyInput | MetaIndexFieldCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaIndexField update
+   */
+  export type MetaIndexFieldUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaIndexField.
+     */
+    data: XOR<MetaIndexFieldUpdateInput, MetaIndexFieldUncheckedUpdateInput>
+    /**
+     * Choose, which MetaIndexField to update.
+     */
+    where: MetaIndexFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaIndexField updateMany
+   */
+  export type MetaIndexFieldUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaIndexFields.
+     */
+    data: XOR<MetaIndexFieldUpdateManyMutationInput, MetaIndexFieldUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaIndexFields to update
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * Limit how many MetaIndexFields to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaIndexField upsert
+   */
+  export type MetaIndexFieldUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaIndexField to update in case it exists.
+     */
+    where: MetaIndexFieldWhereUniqueInput
+    /**
+     * In case the MetaIndexField found by the `where` argument doesn't exist, create a new MetaIndexField with this data.
+     */
+    create: XOR<MetaIndexFieldCreateInput, MetaIndexFieldUncheckedCreateInput>
+    /**
+     * In case the MetaIndexField was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaIndexFieldUpdateInput, MetaIndexFieldUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaIndexField delete
+   */
+  export type MetaIndexFieldDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+    /**
+     * Filter which MetaIndexField to delete.
+     */
+    where: MetaIndexFieldWhereUniqueInput
+  }
+
+  /**
+   * MetaIndexField deleteMany
+   */
+  export type MetaIndexFieldDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaIndexFields to delete
+     */
+    where?: MetaIndexFieldWhereInput
+    /**
+     * Limit how many MetaIndexFields to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaIndexField without action
+   */
+  export type MetaIndexFieldDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaIndexField
+     */
+    select?: MetaIndexFieldSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaIndexField
+     */
+    omit?: MetaIndexFieldOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaIndexFieldInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MetaConstraint
+   */
+
+  export type AggregateMetaConstraint = {
+    _count: MetaConstraintCountAggregateOutputType | null
+    _min: MetaConstraintMinAggregateOutputType | null
+    _max: MetaConstraintMaxAggregateOutputType | null
+  }
+
+  export type MetaConstraintMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    type: string | null
+    expression: string | null
+    message: string | null
+  }
+
+  export type MetaConstraintMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    name: string | null
+    type: string | null
+    expression: string | null
+    message: string | null
+  }
+
+  export type MetaConstraintCountAggregateOutputType = {
+    id: number
+    tableId: number
+    name: number
+    type: number
+    fields: number
+    expression: number
+    message: number
+    _all: number
+  }
+
+
+  export type MetaConstraintMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    expression?: true
+    message?: true
+  }
+
+  export type MetaConstraintMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    expression?: true
+    message?: true
+  }
+
+  export type MetaConstraintCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    name?: true
+    type?: true
+    fields?: true
+    expression?: true
+    message?: true
+    _all?: true
+  }
+
+  export type MetaConstraintAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaConstraint to aggregate.
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaConstraints to fetch.
+     */
+    orderBy?: MetaConstraintOrderByWithRelationInput | MetaConstraintOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MetaConstraintWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaConstraints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaConstraints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetaConstraints
+    **/
+    _count?: true | MetaConstraintCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetaConstraintMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetaConstraintMaxAggregateInputType
+  }
+
+  export type GetMetaConstraintAggregateType<T extends MetaConstraintAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetaConstraint]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetaConstraint[P]>
+      : GetScalarType<T[P], AggregateMetaConstraint[P]>
+  }
+
+
+
+
+  export type MetaConstraintGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetaConstraintWhereInput
+    orderBy?: MetaConstraintOrderByWithAggregationInput | MetaConstraintOrderByWithAggregationInput[]
+    by: MetaConstraintScalarFieldEnum[] | MetaConstraintScalarFieldEnum
+    having?: MetaConstraintScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetaConstraintCountAggregateInputType | true
+    _min?: MetaConstraintMinAggregateInputType
+    _max?: MetaConstraintMaxAggregateInputType
+  }
+
+  export type MetaConstraintGroupByOutputType = {
+    id: string
+    tableId: string
+    name: string
+    type: string
+    fields: JsonValue
+    expression: string | null
+    message: string | null
+    _count: MetaConstraintCountAggregateOutputType | null
+    _min: MetaConstraintMinAggregateOutputType | null
+    _max: MetaConstraintMaxAggregateOutputType | null
+  }
+
+  type GetMetaConstraintGroupByPayload<T extends MetaConstraintGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MetaConstraintGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetaConstraintGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetaConstraintGroupByOutputType[P]>
+            : GetScalarType<T[P], MetaConstraintGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetaConstraintSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    type?: boolean
+    fields?: boolean
+    expression?: boolean
+    message?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["metaConstraint"]>
+
+
+
+  export type MetaConstraintSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    name?: boolean
+    type?: boolean
+    fields?: boolean
+    expression?: boolean
+    message?: boolean
+  }
+
+  export type MetaConstraintOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "name" | "type" | "fields" | "expression" | "message", ExtArgs["result"]["metaConstraint"]>
+  export type MetaConstraintInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }
+
+  export type $MetaConstraintPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MetaConstraint"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      name: string
+      type: string
+      fields: Prisma.JsonValue
+      expression: string | null
+      message: string | null
+    }, ExtArgs["result"]["metaConstraint"]>
+    composites: {}
+  }
+
+  type MetaConstraintGetPayload<S extends boolean | null | undefined | MetaConstraintDefaultArgs> = $Result.GetResult<Prisma.$MetaConstraintPayload, S>
+
+  type MetaConstraintCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetaConstraintFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetaConstraintCountAggregateInputType | true
+    }
+
+  export interface MetaConstraintDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MetaConstraint'], meta: { name: 'MetaConstraint' } }
+    /**
+     * Find zero or one MetaConstraint that matches the filter.
+     * @param {MetaConstraintFindUniqueArgs} args - Arguments to find a MetaConstraint
+     * @example
+     * // Get one MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MetaConstraintFindUniqueArgs>(args: SelectSubset<T, MetaConstraintFindUniqueArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MetaConstraint that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MetaConstraintFindUniqueOrThrowArgs} args - Arguments to find a MetaConstraint
+     * @example
+     * // Get one MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MetaConstraintFindUniqueOrThrowArgs>(args: SelectSubset<T, MetaConstraintFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaConstraint that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintFindFirstArgs} args - Arguments to find a MetaConstraint
+     * @example
+     * // Get one MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MetaConstraintFindFirstArgs>(args?: SelectSubset<T, MetaConstraintFindFirstArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MetaConstraint that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintFindFirstOrThrowArgs} args - Arguments to find a MetaConstraint
+     * @example
+     * // Get one MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MetaConstraintFindFirstOrThrowArgs>(args?: SelectSubset<T, MetaConstraintFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MetaConstraints that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetaConstraints
+     * const metaConstraints = await prisma.metaConstraint.findMany()
+     * 
+     * // Get first 10 MetaConstraints
+     * const metaConstraints = await prisma.metaConstraint.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metaConstraintWithIdOnly = await prisma.metaConstraint.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MetaConstraintFindManyArgs>(args?: SelectSubset<T, MetaConstraintFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MetaConstraint.
+     * @param {MetaConstraintCreateArgs} args - Arguments to create a MetaConstraint.
+     * @example
+     * // Create one MetaConstraint
+     * const MetaConstraint = await prisma.metaConstraint.create({
+     *   data: {
+     *     // ... data to create a MetaConstraint
+     *   }
+     * })
+     * 
+     */
+    create<T extends MetaConstraintCreateArgs>(args: SelectSubset<T, MetaConstraintCreateArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MetaConstraints.
+     * @param {MetaConstraintCreateManyArgs} args - Arguments to create many MetaConstraints.
+     * @example
+     * // Create many MetaConstraints
+     * const metaConstraint = await prisma.metaConstraint.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MetaConstraintCreateManyArgs>(args?: SelectSubset<T, MetaConstraintCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetaConstraint.
+     * @param {MetaConstraintDeleteArgs} args - Arguments to delete one MetaConstraint.
+     * @example
+     * // Delete one MetaConstraint
+     * const MetaConstraint = await prisma.metaConstraint.delete({
+     *   where: {
+     *     // ... filter to delete one MetaConstraint
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MetaConstraintDeleteArgs>(args: SelectSubset<T, MetaConstraintDeleteArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MetaConstraint.
+     * @param {MetaConstraintUpdateArgs} args - Arguments to update one MetaConstraint.
+     * @example
+     * // Update one MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MetaConstraintUpdateArgs>(args: SelectSubset<T, MetaConstraintUpdateArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MetaConstraints.
+     * @param {MetaConstraintDeleteManyArgs} args - Arguments to filter MetaConstraints to delete.
+     * @example
+     * // Delete a few MetaConstraints
+     * const { count } = await prisma.metaConstraint.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MetaConstraintDeleteManyArgs>(args?: SelectSubset<T, MetaConstraintDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetaConstraints.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetaConstraints
+     * const metaConstraint = await prisma.metaConstraint.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MetaConstraintUpdateManyArgs>(args: SelectSubset<T, MetaConstraintUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetaConstraint.
+     * @param {MetaConstraintUpsertArgs} args - Arguments to update or create a MetaConstraint.
+     * @example
+     * // Update or create a MetaConstraint
+     * const metaConstraint = await prisma.metaConstraint.upsert({
+     *   create: {
+     *     // ... data to create a MetaConstraint
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetaConstraint we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MetaConstraintUpsertArgs>(args: SelectSubset<T, MetaConstraintUpsertArgs<ExtArgs>>): Prisma__MetaConstraintClient<$Result.GetResult<Prisma.$MetaConstraintPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MetaConstraints.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintCountArgs} args - Arguments to filter MetaConstraints to count.
+     * @example
+     * // Count the number of MetaConstraints
+     * const count = await prisma.metaConstraint.count({
+     *   where: {
+     *     // ... the filter for the MetaConstraints we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetaConstraintCountArgs>(
+      args?: Subset<T, MetaConstraintCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetaConstraintCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetaConstraint.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetaConstraintAggregateArgs>(args: Subset<T, MetaConstraintAggregateArgs>): Prisma.PrismaPromise<GetMetaConstraintAggregateType<T>>
+
+    /**
+     * Group by MetaConstraint.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetaConstraintGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetaConstraintGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetaConstraintGroupByArgs['orderBy'] }
+        : { orderBy?: MetaConstraintGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetaConstraintGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetaConstraintGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MetaConstraint model
+   */
+  readonly fields: MetaConstraintFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetaConstraint.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MetaConstraintClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MetaConstraint model
+   */
+  interface MetaConstraintFieldRefs {
+    readonly id: FieldRef<"MetaConstraint", 'String'>
+    readonly tableId: FieldRef<"MetaConstraint", 'String'>
+    readonly name: FieldRef<"MetaConstraint", 'String'>
+    readonly type: FieldRef<"MetaConstraint", 'String'>
+    readonly fields: FieldRef<"MetaConstraint", 'Json'>
+    readonly expression: FieldRef<"MetaConstraint", 'String'>
+    readonly message: FieldRef<"MetaConstraint", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MetaConstraint findUnique
+   */
+  export type MetaConstraintFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaConstraint to fetch.
+     */
+    where: MetaConstraintWhereUniqueInput
+  }
+
+  /**
+   * MetaConstraint findUniqueOrThrow
+   */
+  export type MetaConstraintFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaConstraint to fetch.
+     */
+    where: MetaConstraintWhereUniqueInput
+  }
+
+  /**
+   * MetaConstraint findFirst
+   */
+  export type MetaConstraintFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaConstraint to fetch.
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaConstraints to fetch.
+     */
+    orderBy?: MetaConstraintOrderByWithRelationInput | MetaConstraintOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaConstraints.
+     */
+    cursor?: MetaConstraintWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaConstraints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaConstraints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaConstraints.
+     */
+    distinct?: MetaConstraintScalarFieldEnum | MetaConstraintScalarFieldEnum[]
+  }
+
+  /**
+   * MetaConstraint findFirstOrThrow
+   */
+  export type MetaConstraintFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaConstraint to fetch.
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaConstraints to fetch.
+     */
+    orderBy?: MetaConstraintOrderByWithRelationInput | MetaConstraintOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetaConstraints.
+     */
+    cursor?: MetaConstraintWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaConstraints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaConstraints.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetaConstraints.
+     */
+    distinct?: MetaConstraintScalarFieldEnum | MetaConstraintScalarFieldEnum[]
+  }
+
+  /**
+   * MetaConstraint findMany
+   */
+  export type MetaConstraintFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter, which MetaConstraints to fetch.
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetaConstraints to fetch.
+     */
+    orderBy?: MetaConstraintOrderByWithRelationInput | MetaConstraintOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetaConstraints.
+     */
+    cursor?: MetaConstraintWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetaConstraints from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetaConstraints.
+     */
+    skip?: number
+    distinct?: MetaConstraintScalarFieldEnum | MetaConstraintScalarFieldEnum[]
+  }
+
+  /**
+   * MetaConstraint create
+   */
+  export type MetaConstraintCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MetaConstraint.
+     */
+    data: XOR<MetaConstraintCreateInput, MetaConstraintUncheckedCreateInput>
+  }
+
+  /**
+   * MetaConstraint createMany
+   */
+  export type MetaConstraintCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MetaConstraints.
+     */
+    data: MetaConstraintCreateManyInput | MetaConstraintCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MetaConstraint update
+   */
+  export type MetaConstraintUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MetaConstraint.
+     */
+    data: XOR<MetaConstraintUpdateInput, MetaConstraintUncheckedUpdateInput>
+    /**
+     * Choose, which MetaConstraint to update.
+     */
+    where: MetaConstraintWhereUniqueInput
+  }
+
+  /**
+   * MetaConstraint updateMany
+   */
+  export type MetaConstraintUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MetaConstraints.
+     */
+    data: XOR<MetaConstraintUpdateManyMutationInput, MetaConstraintUncheckedUpdateManyInput>
+    /**
+     * Filter which MetaConstraints to update
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * Limit how many MetaConstraints to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaConstraint upsert
+   */
+  export type MetaConstraintUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MetaConstraint to update in case it exists.
+     */
+    where: MetaConstraintWhereUniqueInput
+    /**
+     * In case the MetaConstraint found by the `where` argument doesn't exist, create a new MetaConstraint with this data.
+     */
+    create: XOR<MetaConstraintCreateInput, MetaConstraintUncheckedCreateInput>
+    /**
+     * In case the MetaConstraint was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetaConstraintUpdateInput, MetaConstraintUncheckedUpdateInput>
+  }
+
+  /**
+   * MetaConstraint delete
+   */
+  export type MetaConstraintDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+    /**
+     * Filter which MetaConstraint to delete.
+     */
+    where: MetaConstraintWhereUniqueInput
+  }
+
+  /**
+   * MetaConstraint deleteMany
+   */
+  export type MetaConstraintDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MetaConstraints to delete
+     */
+    where?: MetaConstraintWhereInput
+    /**
+     * Limit how many MetaConstraints to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MetaConstraint without action
+   */
+  export type MetaConstraintDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MetaConstraint
+     */
+    select?: MetaConstraintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MetaConstraint
+     */
+    omit?: MetaConstraintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MetaConstraintInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModelApproval
+   */
+
+  export type AggregateModelApproval = {
+    _count: ModelApprovalCountAggregateOutputType | null
+    _min: ModelApprovalMinAggregateOutputType | null
+    _max: ModelApprovalMaxAggregateOutputType | null
+  }
+
+  export type ModelApprovalMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    versionId: string | null
+    description: string | null
+    attachments: string | null
+    status: string | null
+    requestedBy: string | null
+    requestedAt: Date | null
+    approvedBy: string | null
+    approvedAt: Date | null
+    comment: string | null
+  }
+
+  export type ModelApprovalMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    versionId: string | null
+    description: string | null
+    attachments: string | null
+    status: string | null
+    requestedBy: string | null
+    requestedAt: Date | null
+    approvedBy: string | null
+    approvedAt: Date | null
+    comment: string | null
+  }
+
+  export type ModelApprovalCountAggregateOutputType = {
+    id: number
+    tableId: number
+    versionId: number
+    description: number
+    attachments: number
+    status: number
+    requestedBy: number
+    requestedAt: number
+    approvedBy: number
+    approvedAt: number
+    comment: number
+    _all: number
+  }
+
+
+  export type ModelApprovalMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    versionId?: true
+    description?: true
+    attachments?: true
+    status?: true
+    requestedBy?: true
+    requestedAt?: true
+    approvedBy?: true
+    approvedAt?: true
+    comment?: true
+  }
+
+  export type ModelApprovalMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    versionId?: true
+    description?: true
+    attachments?: true
+    status?: true
+    requestedBy?: true
+    requestedAt?: true
+    approvedBy?: true
+    approvedAt?: true
+    comment?: true
+  }
+
+  export type ModelApprovalCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    versionId?: true
+    description?: true
+    attachments?: true
+    status?: true
+    requestedBy?: true
+    requestedAt?: true
+    approvedBy?: true
+    approvedAt?: true
+    comment?: true
+    _all?: true
+  }
+
+  export type ModelApprovalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModelApproval to aggregate.
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModelApprovals to fetch.
+     */
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModelApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModelApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModelApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModelApprovals
+    **/
+    _count?: true | ModelApprovalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModelApprovalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModelApprovalMaxAggregateInputType
+  }
+
+  export type GetModelApprovalAggregateType<T extends ModelApprovalAggregateArgs> = {
+        [P in keyof T & keyof AggregateModelApproval]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModelApproval[P]>
+      : GetScalarType<T[P], AggregateModelApproval[P]>
+  }
+
+
+
+
+  export type ModelApprovalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModelApprovalWhereInput
+    orderBy?: ModelApprovalOrderByWithAggregationInput | ModelApprovalOrderByWithAggregationInput[]
+    by: ModelApprovalScalarFieldEnum[] | ModelApprovalScalarFieldEnum
+    having?: ModelApprovalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModelApprovalCountAggregateInputType | true
+    _min?: ModelApprovalMinAggregateInputType
+    _max?: ModelApprovalMaxAggregateInputType
+  }
+
+  export type ModelApprovalGroupByOutputType = {
+    id: string
+    tableId: string
+    versionId: string
+    description: string
+    attachments: string | null
+    status: string
+    requestedBy: string
+    requestedAt: Date
+    approvedBy: string | null
+    approvedAt: Date | null
+    comment: string | null
+    _count: ModelApprovalCountAggregateOutputType | null
+    _min: ModelApprovalMinAggregateOutputType | null
+    _max: ModelApprovalMaxAggregateOutputType | null
+  }
+
+  type GetModelApprovalGroupByPayload<T extends ModelApprovalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModelApprovalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModelApprovalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModelApprovalGroupByOutputType[P]>
+            : GetScalarType<T[P], ModelApprovalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModelApprovalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    versionId?: boolean
+    description?: boolean
+    attachments?: boolean
+    status?: boolean
+    requestedBy?: boolean
+    requestedAt?: boolean
+    approvedBy?: boolean
+    approvedAt?: boolean
+    comment?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    version?: boolean | MetaVersionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["modelApproval"]>
+
+
+
+  export type ModelApprovalSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    versionId?: boolean
+    description?: boolean
+    attachments?: boolean
+    status?: boolean
+    requestedBy?: boolean
+    requestedAt?: boolean
+    approvedBy?: boolean
+    approvedAt?: boolean
+    comment?: boolean
+  }
+
+  export type ModelApprovalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "versionId" | "description" | "attachments" | "status" | "requestedBy" | "requestedAt" | "approvedBy" | "approvedAt" | "comment", ExtArgs["result"]["modelApproval"]>
+  export type ModelApprovalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+    version?: boolean | MetaVersionDefaultArgs<ExtArgs>
+  }
+
+  export type $ModelApprovalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModelApproval"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+      version: Prisma.$MetaVersionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      versionId: string
+      description: string
+      attachments: string | null
+      status: string
+      requestedBy: string
+      requestedAt: Date
+      approvedBy: string | null
+      approvedAt: Date | null
+      comment: string | null
+    }, ExtArgs["result"]["modelApproval"]>
+    composites: {}
+  }
+
+  type ModelApprovalGetPayload<S extends boolean | null | undefined | ModelApprovalDefaultArgs> = $Result.GetResult<Prisma.$ModelApprovalPayload, S>
+
+  type ModelApprovalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModelApprovalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModelApprovalCountAggregateInputType | true
+    }
+
+  export interface ModelApprovalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModelApproval'], meta: { name: 'ModelApproval' } }
+    /**
+     * Find zero or one ModelApproval that matches the filter.
+     * @param {ModelApprovalFindUniqueArgs} args - Arguments to find a ModelApproval
+     * @example
+     * // Get one ModelApproval
+     * const modelApproval = await prisma.modelApproval.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModelApprovalFindUniqueArgs>(args: SelectSubset<T, ModelApprovalFindUniqueArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModelApproval that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModelApprovalFindUniqueOrThrowArgs} args - Arguments to find a ModelApproval
+     * @example
+     * // Get one ModelApproval
+     * const modelApproval = await prisma.modelApproval.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModelApprovalFindUniqueOrThrowArgs>(args: SelectSubset<T, ModelApprovalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModelApproval that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalFindFirstArgs} args - Arguments to find a ModelApproval
+     * @example
+     * // Get one ModelApproval
+     * const modelApproval = await prisma.modelApproval.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModelApprovalFindFirstArgs>(args?: SelectSubset<T, ModelApprovalFindFirstArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModelApproval that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalFindFirstOrThrowArgs} args - Arguments to find a ModelApproval
+     * @example
+     * // Get one ModelApproval
+     * const modelApproval = await prisma.modelApproval.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModelApprovalFindFirstOrThrowArgs>(args?: SelectSubset<T, ModelApprovalFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModelApprovals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModelApprovals
+     * const modelApprovals = await prisma.modelApproval.findMany()
+     * 
+     * // Get first 10 ModelApprovals
+     * const modelApprovals = await prisma.modelApproval.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const modelApprovalWithIdOnly = await prisma.modelApproval.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModelApprovalFindManyArgs>(args?: SelectSubset<T, ModelApprovalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModelApproval.
+     * @param {ModelApprovalCreateArgs} args - Arguments to create a ModelApproval.
+     * @example
+     * // Create one ModelApproval
+     * const ModelApproval = await prisma.modelApproval.create({
+     *   data: {
+     *     // ... data to create a ModelApproval
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModelApprovalCreateArgs>(args: SelectSubset<T, ModelApprovalCreateArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModelApprovals.
+     * @param {ModelApprovalCreateManyArgs} args - Arguments to create many ModelApprovals.
+     * @example
+     * // Create many ModelApprovals
+     * const modelApproval = await prisma.modelApproval.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModelApprovalCreateManyArgs>(args?: SelectSubset<T, ModelApprovalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModelApproval.
+     * @param {ModelApprovalDeleteArgs} args - Arguments to delete one ModelApproval.
+     * @example
+     * // Delete one ModelApproval
+     * const ModelApproval = await prisma.modelApproval.delete({
+     *   where: {
+     *     // ... filter to delete one ModelApproval
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModelApprovalDeleteArgs>(args: SelectSubset<T, ModelApprovalDeleteArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModelApproval.
+     * @param {ModelApprovalUpdateArgs} args - Arguments to update one ModelApproval.
+     * @example
+     * // Update one ModelApproval
+     * const modelApproval = await prisma.modelApproval.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModelApprovalUpdateArgs>(args: SelectSubset<T, ModelApprovalUpdateArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModelApprovals.
+     * @param {ModelApprovalDeleteManyArgs} args - Arguments to filter ModelApprovals to delete.
+     * @example
+     * // Delete a few ModelApprovals
+     * const { count } = await prisma.modelApproval.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModelApprovalDeleteManyArgs>(args?: SelectSubset<T, ModelApprovalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModelApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModelApprovals
+     * const modelApproval = await prisma.modelApproval.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModelApprovalUpdateManyArgs>(args: SelectSubset<T, ModelApprovalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModelApproval.
+     * @param {ModelApprovalUpsertArgs} args - Arguments to update or create a ModelApproval.
+     * @example
+     * // Update or create a ModelApproval
+     * const modelApproval = await prisma.modelApproval.upsert({
+     *   create: {
+     *     // ... data to create a ModelApproval
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModelApproval we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModelApprovalUpsertArgs>(args: SelectSubset<T, ModelApprovalUpsertArgs<ExtArgs>>): Prisma__ModelApprovalClient<$Result.GetResult<Prisma.$ModelApprovalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ModelApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalCountArgs} args - Arguments to filter ModelApprovals to count.
+     * @example
+     * // Count the number of ModelApprovals
+     * const count = await prisma.modelApproval.count({
+     *   where: {
+     *     // ... the filter for the ModelApprovals we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModelApprovalCountArgs>(
+      args?: Subset<T, ModelApprovalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModelApprovalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModelApproval.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModelApprovalAggregateArgs>(args: Subset<T, ModelApprovalAggregateArgs>): Prisma.PrismaPromise<GetModelApprovalAggregateType<T>>
+
+    /**
+     * Group by ModelApproval.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModelApprovalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModelApprovalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModelApprovalGroupByArgs['orderBy'] }
+        : { orderBy?: ModelApprovalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModelApprovalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModelApprovalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModelApproval model
+   */
+  readonly fields: ModelApprovalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModelApproval.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModelApprovalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    version<T extends MetaVersionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaVersionDefaultArgs<ExtArgs>>): Prisma__MetaVersionClient<$Result.GetResult<Prisma.$MetaVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModelApproval model
+   */
+  interface ModelApprovalFieldRefs {
+    readonly id: FieldRef<"ModelApproval", 'String'>
+    readonly tableId: FieldRef<"ModelApproval", 'String'>
+    readonly versionId: FieldRef<"ModelApproval", 'String'>
+    readonly description: FieldRef<"ModelApproval", 'String'>
+    readonly attachments: FieldRef<"ModelApproval", 'String'>
+    readonly status: FieldRef<"ModelApproval", 'String'>
+    readonly requestedBy: FieldRef<"ModelApproval", 'String'>
+    readonly requestedAt: FieldRef<"ModelApproval", 'DateTime'>
+    readonly approvedBy: FieldRef<"ModelApproval", 'String'>
+    readonly approvedAt: FieldRef<"ModelApproval", 'DateTime'>
+    readonly comment: FieldRef<"ModelApproval", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModelApproval findUnique
+   */
+  export type ModelApprovalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which ModelApproval to fetch.
+     */
+    where: ModelApprovalWhereUniqueInput
+  }
+
+  /**
+   * ModelApproval findUniqueOrThrow
+   */
+  export type ModelApprovalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which ModelApproval to fetch.
+     */
+    where: ModelApprovalWhereUniqueInput
+  }
+
+  /**
+   * ModelApproval findFirst
+   */
+  export type ModelApprovalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which ModelApproval to fetch.
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModelApprovals to fetch.
+     */
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModelApprovals.
+     */
+    cursor?: ModelApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModelApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModelApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModelApprovals.
+     */
+    distinct?: ModelApprovalScalarFieldEnum | ModelApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * ModelApproval findFirstOrThrow
+   */
+  export type ModelApprovalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which ModelApproval to fetch.
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModelApprovals to fetch.
+     */
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModelApprovals.
+     */
+    cursor?: ModelApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModelApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModelApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModelApprovals.
+     */
+    distinct?: ModelApprovalScalarFieldEnum | ModelApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * ModelApproval findMany
+   */
+  export type ModelApprovalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which ModelApprovals to fetch.
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModelApprovals to fetch.
+     */
+    orderBy?: ModelApprovalOrderByWithRelationInput | ModelApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModelApprovals.
+     */
+    cursor?: ModelApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModelApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModelApprovals.
+     */
+    skip?: number
+    distinct?: ModelApprovalScalarFieldEnum | ModelApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * ModelApproval create
+   */
+  export type ModelApprovalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModelApproval.
+     */
+    data: XOR<ModelApprovalCreateInput, ModelApprovalUncheckedCreateInput>
+  }
+
+  /**
+   * ModelApproval createMany
+   */
+  export type ModelApprovalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModelApprovals.
+     */
+    data: ModelApprovalCreateManyInput | ModelApprovalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ModelApproval update
+   */
+  export type ModelApprovalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModelApproval.
+     */
+    data: XOR<ModelApprovalUpdateInput, ModelApprovalUncheckedUpdateInput>
+    /**
+     * Choose, which ModelApproval to update.
+     */
+    where: ModelApprovalWhereUniqueInput
+  }
+
+  /**
+   * ModelApproval updateMany
+   */
+  export type ModelApprovalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModelApprovals.
+     */
+    data: XOR<ModelApprovalUpdateManyMutationInput, ModelApprovalUncheckedUpdateManyInput>
+    /**
+     * Filter which ModelApprovals to update
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * Limit how many ModelApprovals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModelApproval upsert
+   */
+  export type ModelApprovalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModelApproval to update in case it exists.
+     */
+    where: ModelApprovalWhereUniqueInput
+    /**
+     * In case the ModelApproval found by the `where` argument doesn't exist, create a new ModelApproval with this data.
+     */
+    create: XOR<ModelApprovalCreateInput, ModelApprovalUncheckedCreateInput>
+    /**
+     * In case the ModelApproval was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModelApprovalUpdateInput, ModelApprovalUncheckedUpdateInput>
+  }
+
+  /**
+   * ModelApproval delete
+   */
+  export type ModelApprovalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+    /**
+     * Filter which ModelApproval to delete.
+     */
+    where: ModelApprovalWhereUniqueInput
+  }
+
+  /**
+   * ModelApproval deleteMany
+   */
+  export type ModelApprovalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModelApprovals to delete
+     */
+    where?: ModelApprovalWhereInput
+    /**
+     * Limit how many ModelApprovals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModelApproval without action
+   */
+  export type ModelApprovalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelApproval
+     */
+    select?: ModelApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelApproval
+     */
+    omit?: ModelApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelApprovalInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TestDataGeneration
+   */
+
+  export type AggregateTestDataGeneration = {
+    _count: TestDataGenerationCountAggregateOutputType | null
+    _avg: TestDataGenerationAvgAggregateOutputType | null
+    _sum: TestDataGenerationSumAggregateOutputType | null
+    _min: TestDataGenerationMinAggregateOutputType | null
+    _max: TestDataGenerationMaxAggregateOutputType | null
+  }
+
+  export type TestDataGenerationAvgAggregateOutputType = {
+    count: number | null
+    relationDepth: number | null
+  }
+
+  export type TestDataGenerationSumAggregateOutputType = {
+    count: number | null
+    relationDepth: number | null
+  }
+
+  export type TestDataGenerationMinAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    count: number | null
+    includeRelations: boolean | null
+    relationDepth: number | null
+    createdBy: string | null
+    createdAt: Date | null
+  }
+
+  export type TestDataGenerationMaxAggregateOutputType = {
+    id: string | null
+    tableId: string | null
+    count: number | null
+    includeRelations: boolean | null
+    relationDepth: number | null
+    createdBy: string | null
+    createdAt: Date | null
+  }
+
+  export type TestDataGenerationCountAggregateOutputType = {
+    id: number
+    tableId: number
+    count: number
+    includeRelations: number
+    relationDepth: number
+    options: number
+    createdBy: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TestDataGenerationAvgAggregateInputType = {
+    count?: true
+    relationDepth?: true
+  }
+
+  export type TestDataGenerationSumAggregateInputType = {
+    count?: true
+    relationDepth?: true
+  }
+
+  export type TestDataGenerationMinAggregateInputType = {
+    id?: true
+    tableId?: true
+    count?: true
+    includeRelations?: true
+    relationDepth?: true
+    createdBy?: true
+    createdAt?: true
+  }
+
+  export type TestDataGenerationMaxAggregateInputType = {
+    id?: true
+    tableId?: true
+    count?: true
+    includeRelations?: true
+    relationDepth?: true
+    createdBy?: true
+    createdAt?: true
+  }
+
+  export type TestDataGenerationCountAggregateInputType = {
+    id?: true
+    tableId?: true
+    count?: true
+    includeRelations?: true
+    relationDepth?: true
+    options?: true
+    createdBy?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TestDataGenerationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestDataGeneration to aggregate.
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataGenerations to fetch.
+     */
+    orderBy?: TestDataGenerationOrderByWithRelationInput | TestDataGenerationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TestDataGenerationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataGenerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataGenerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TestDataGenerations
+    **/
+    _count?: true | TestDataGenerationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TestDataGenerationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TestDataGenerationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TestDataGenerationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TestDataGenerationMaxAggregateInputType
+  }
+
+  export type GetTestDataGenerationAggregateType<T extends TestDataGenerationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTestDataGeneration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTestDataGeneration[P]>
+      : GetScalarType<T[P], AggregateTestDataGeneration[P]>
+  }
+
+
+
+
+  export type TestDataGenerationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestDataGenerationWhereInput
+    orderBy?: TestDataGenerationOrderByWithAggregationInput | TestDataGenerationOrderByWithAggregationInput[]
+    by: TestDataGenerationScalarFieldEnum[] | TestDataGenerationScalarFieldEnum
+    having?: TestDataGenerationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TestDataGenerationCountAggregateInputType | true
+    _avg?: TestDataGenerationAvgAggregateInputType
+    _sum?: TestDataGenerationSumAggregateInputType
+    _min?: TestDataGenerationMinAggregateInputType
+    _max?: TestDataGenerationMaxAggregateInputType
+  }
+
+  export type TestDataGenerationGroupByOutputType = {
+    id: string
+    tableId: string
+    count: number
+    includeRelations: boolean
+    relationDepth: number
+    options: JsonValue | null
+    createdBy: string
+    createdAt: Date
+    _count: TestDataGenerationCountAggregateOutputType | null
+    _avg: TestDataGenerationAvgAggregateOutputType | null
+    _sum: TestDataGenerationSumAggregateOutputType | null
+    _min: TestDataGenerationMinAggregateOutputType | null
+    _max: TestDataGenerationMaxAggregateOutputType | null
+  }
+
+  type GetTestDataGenerationGroupByPayload<T extends TestDataGenerationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TestDataGenerationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TestDataGenerationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TestDataGenerationGroupByOutputType[P]>
+            : GetScalarType<T[P], TestDataGenerationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TestDataGenerationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableId?: boolean
+    count?: boolean
+    includeRelations?: boolean
+    relationDepth?: boolean
+    options?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["testDataGeneration"]>
+
+
+
+  export type TestDataGenerationSelectScalar = {
+    id?: boolean
+    tableId?: boolean
+    count?: boolean
+    includeRelations?: boolean
+    relationDepth?: boolean
+    options?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+  }
+
+  export type TestDataGenerationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableId" | "count" | "includeRelations" | "relationDepth" | "options" | "createdBy" | "createdAt", ExtArgs["result"]["testDataGeneration"]>
+  export type TestDataGenerationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }
+
+  export type $TestDataGenerationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TestDataGeneration"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tableId: string
+      count: number
+      includeRelations: boolean
+      relationDepth: number
+      options: Prisma.JsonValue | null
+      createdBy: string
+      createdAt: Date
+    }, ExtArgs["result"]["testDataGeneration"]>
+    composites: {}
+  }
+
+  type TestDataGenerationGetPayload<S extends boolean | null | undefined | TestDataGenerationDefaultArgs> = $Result.GetResult<Prisma.$TestDataGenerationPayload, S>
+
+  type TestDataGenerationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TestDataGenerationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TestDataGenerationCountAggregateInputType | true
+    }
+
+  export interface TestDataGenerationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TestDataGeneration'], meta: { name: 'TestDataGeneration' } }
+    /**
+     * Find zero or one TestDataGeneration that matches the filter.
+     * @param {TestDataGenerationFindUniqueArgs} args - Arguments to find a TestDataGeneration
+     * @example
+     * // Get one TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TestDataGenerationFindUniqueArgs>(args: SelectSubset<T, TestDataGenerationFindUniqueArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TestDataGeneration that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TestDataGenerationFindUniqueOrThrowArgs} args - Arguments to find a TestDataGeneration
+     * @example
+     * // Get one TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TestDataGenerationFindUniqueOrThrowArgs>(args: SelectSubset<T, TestDataGenerationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TestDataGeneration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationFindFirstArgs} args - Arguments to find a TestDataGeneration
+     * @example
+     * // Get one TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TestDataGenerationFindFirstArgs>(args?: SelectSubset<T, TestDataGenerationFindFirstArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TestDataGeneration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationFindFirstOrThrowArgs} args - Arguments to find a TestDataGeneration
+     * @example
+     * // Get one TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TestDataGenerationFindFirstOrThrowArgs>(args?: SelectSubset<T, TestDataGenerationFindFirstOrThrowArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TestDataGenerations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TestDataGenerations
+     * const testDataGenerations = await prisma.testDataGeneration.findMany()
+     * 
+     * // Get first 10 TestDataGenerations
+     * const testDataGenerations = await prisma.testDataGeneration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const testDataGenerationWithIdOnly = await prisma.testDataGeneration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TestDataGenerationFindManyArgs>(args?: SelectSubset<T, TestDataGenerationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TestDataGeneration.
+     * @param {TestDataGenerationCreateArgs} args - Arguments to create a TestDataGeneration.
+     * @example
+     * // Create one TestDataGeneration
+     * const TestDataGeneration = await prisma.testDataGeneration.create({
+     *   data: {
+     *     // ... data to create a TestDataGeneration
+     *   }
+     * })
+     * 
+     */
+    create<T extends TestDataGenerationCreateArgs>(args: SelectSubset<T, TestDataGenerationCreateArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TestDataGenerations.
+     * @param {TestDataGenerationCreateManyArgs} args - Arguments to create many TestDataGenerations.
+     * @example
+     * // Create many TestDataGenerations
+     * const testDataGeneration = await prisma.testDataGeneration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TestDataGenerationCreateManyArgs>(args?: SelectSubset<T, TestDataGenerationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a TestDataGeneration.
+     * @param {TestDataGenerationDeleteArgs} args - Arguments to delete one TestDataGeneration.
+     * @example
+     * // Delete one TestDataGeneration
+     * const TestDataGeneration = await prisma.testDataGeneration.delete({
+     *   where: {
+     *     // ... filter to delete one TestDataGeneration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TestDataGenerationDeleteArgs>(args: SelectSubset<T, TestDataGenerationDeleteArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TestDataGeneration.
+     * @param {TestDataGenerationUpdateArgs} args - Arguments to update one TestDataGeneration.
+     * @example
+     * // Update one TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TestDataGenerationUpdateArgs>(args: SelectSubset<T, TestDataGenerationUpdateArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TestDataGenerations.
+     * @param {TestDataGenerationDeleteManyArgs} args - Arguments to filter TestDataGenerations to delete.
+     * @example
+     * // Delete a few TestDataGenerations
+     * const { count } = await prisma.testDataGeneration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TestDataGenerationDeleteManyArgs>(args?: SelectSubset<T, TestDataGenerationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TestDataGenerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TestDataGenerations
+     * const testDataGeneration = await prisma.testDataGeneration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TestDataGenerationUpdateManyArgs>(args: SelectSubset<T, TestDataGenerationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TestDataGeneration.
+     * @param {TestDataGenerationUpsertArgs} args - Arguments to update or create a TestDataGeneration.
+     * @example
+     * // Update or create a TestDataGeneration
+     * const testDataGeneration = await prisma.testDataGeneration.upsert({
+     *   create: {
+     *     // ... data to create a TestDataGeneration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TestDataGeneration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TestDataGenerationUpsertArgs>(args: SelectSubset<T, TestDataGenerationUpsertArgs<ExtArgs>>): Prisma__TestDataGenerationClient<$Result.GetResult<Prisma.$TestDataGenerationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TestDataGenerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationCountArgs} args - Arguments to filter TestDataGenerations to count.
+     * @example
+     * // Count the number of TestDataGenerations
+     * const count = await prisma.testDataGeneration.count({
+     *   where: {
+     *     // ... the filter for the TestDataGenerations we want to count
+     *   }
+     * })
+    **/
+    count<T extends TestDataGenerationCountArgs>(
+      args?: Subset<T, TestDataGenerationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TestDataGenerationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TestDataGeneration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TestDataGenerationAggregateArgs>(args: Subset<T, TestDataGenerationAggregateArgs>): Prisma.PrismaPromise<GetTestDataGenerationAggregateType<T>>
+
+    /**
+     * Group by TestDataGeneration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataGenerationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TestDataGenerationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TestDataGenerationGroupByArgs['orderBy'] }
+        : { orderBy?: TestDataGenerationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TestDataGenerationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestDataGenerationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TestDataGeneration model
+   */
+  readonly fields: TestDataGenerationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TestDataGeneration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TestDataGenerationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TestDataGeneration model
+   */
+  interface TestDataGenerationFieldRefs {
+    readonly id: FieldRef<"TestDataGeneration", 'String'>
+    readonly tableId: FieldRef<"TestDataGeneration", 'String'>
+    readonly count: FieldRef<"TestDataGeneration", 'Int'>
+    readonly includeRelations: FieldRef<"TestDataGeneration", 'Boolean'>
+    readonly relationDepth: FieldRef<"TestDataGeneration", 'Int'>
+    readonly options: FieldRef<"TestDataGeneration", 'Json'>
+    readonly createdBy: FieldRef<"TestDataGeneration", 'String'>
+    readonly createdAt: FieldRef<"TestDataGeneration", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TestDataGeneration findUnique
+   */
+  export type TestDataGenerationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataGeneration to fetch.
+     */
+    where: TestDataGenerationWhereUniqueInput
+  }
+
+  /**
+   * TestDataGeneration findUniqueOrThrow
+   */
+  export type TestDataGenerationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataGeneration to fetch.
+     */
+    where: TestDataGenerationWhereUniqueInput
+  }
+
+  /**
+   * TestDataGeneration findFirst
+   */
+  export type TestDataGenerationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataGeneration to fetch.
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataGenerations to fetch.
+     */
+    orderBy?: TestDataGenerationOrderByWithRelationInput | TestDataGenerationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestDataGenerations.
+     */
+    cursor?: TestDataGenerationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataGenerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataGenerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestDataGenerations.
+     */
+    distinct?: TestDataGenerationScalarFieldEnum | TestDataGenerationScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataGeneration findFirstOrThrow
+   */
+  export type TestDataGenerationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataGeneration to fetch.
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataGenerations to fetch.
+     */
+    orderBy?: TestDataGenerationOrderByWithRelationInput | TestDataGenerationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestDataGenerations.
+     */
+    cursor?: TestDataGenerationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataGenerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataGenerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestDataGenerations.
+     */
+    distinct?: TestDataGenerationScalarFieldEnum | TestDataGenerationScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataGeneration findMany
+   */
+  export type TestDataGenerationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataGenerations to fetch.
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataGenerations to fetch.
+     */
+    orderBy?: TestDataGenerationOrderByWithRelationInput | TestDataGenerationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TestDataGenerations.
+     */
+    cursor?: TestDataGenerationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataGenerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataGenerations.
+     */
+    skip?: number
+    distinct?: TestDataGenerationScalarFieldEnum | TestDataGenerationScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataGeneration create
+   */
+  export type TestDataGenerationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TestDataGeneration.
+     */
+    data: XOR<TestDataGenerationCreateInput, TestDataGenerationUncheckedCreateInput>
+  }
+
+  /**
+   * TestDataGeneration createMany
+   */
+  export type TestDataGenerationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TestDataGenerations.
+     */
+    data: TestDataGenerationCreateManyInput | TestDataGenerationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TestDataGeneration update
+   */
+  export type TestDataGenerationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TestDataGeneration.
+     */
+    data: XOR<TestDataGenerationUpdateInput, TestDataGenerationUncheckedUpdateInput>
+    /**
+     * Choose, which TestDataGeneration to update.
+     */
+    where: TestDataGenerationWhereUniqueInput
+  }
+
+  /**
+   * TestDataGeneration updateMany
+   */
+  export type TestDataGenerationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TestDataGenerations.
+     */
+    data: XOR<TestDataGenerationUpdateManyMutationInput, TestDataGenerationUncheckedUpdateManyInput>
+    /**
+     * Filter which TestDataGenerations to update
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * Limit how many TestDataGenerations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TestDataGeneration upsert
+   */
+  export type TestDataGenerationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TestDataGeneration to update in case it exists.
+     */
+    where: TestDataGenerationWhereUniqueInput
+    /**
+     * In case the TestDataGeneration found by the `where` argument doesn't exist, create a new TestDataGeneration with this data.
+     */
+    create: XOR<TestDataGenerationCreateInput, TestDataGenerationUncheckedCreateInput>
+    /**
+     * In case the TestDataGeneration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TestDataGenerationUpdateInput, TestDataGenerationUncheckedUpdateInput>
+  }
+
+  /**
+   * TestDataGeneration delete
+   */
+  export type TestDataGenerationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+    /**
+     * Filter which TestDataGeneration to delete.
+     */
+    where: TestDataGenerationWhereUniqueInput
+  }
+
+  /**
+   * TestDataGeneration deleteMany
+   */
+  export type TestDataGenerationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestDataGenerations to delete
+     */
+    where?: TestDataGenerationWhereInput
+    /**
+     * Limit how many TestDataGenerations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TestDataGeneration without action
+   */
+  export type TestDataGenerationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataGeneration
+     */
+    select?: TestDataGenerationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataGeneration
+     */
+    omit?: TestDataGenerationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataGenerationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TestDataTemplate
+   */
+
+  export type AggregateTestDataTemplate = {
+    _count: TestDataTemplateCountAggregateOutputType | null
+    _min: TestDataTemplateMinAggregateOutputType | null
+    _max: TestDataTemplateMaxAggregateOutputType | null
+  }
+
+  export type TestDataTemplateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    tableId: string | null
+    description: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TestDataTemplateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    tableId: string | null
+    description: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TestDataTemplateCountAggregateOutputType = {
+    id: number
+    name: number
+    tableId: number
+    description: number
+    fieldOverrides: number
+    createdBy: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TestDataTemplateMinAggregateInputType = {
+    id?: true
+    name?: true
+    tableId?: true
+    description?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TestDataTemplateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    tableId?: true
+    description?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TestDataTemplateCountAggregateInputType = {
+    id?: true
+    name?: true
+    tableId?: true
+    description?: true
+    fieldOverrides?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TestDataTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestDataTemplate to aggregate.
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataTemplates to fetch.
+     */
+    orderBy?: TestDataTemplateOrderByWithRelationInput | TestDataTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TestDataTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TestDataTemplates
+    **/
+    _count?: true | TestDataTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TestDataTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TestDataTemplateMaxAggregateInputType
+  }
+
+  export type GetTestDataTemplateAggregateType<T extends TestDataTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateTestDataTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTestDataTemplate[P]>
+      : GetScalarType<T[P], AggregateTestDataTemplate[P]>
+  }
+
+
+
+
+  export type TestDataTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestDataTemplateWhereInput
+    orderBy?: TestDataTemplateOrderByWithAggregationInput | TestDataTemplateOrderByWithAggregationInput[]
+    by: TestDataTemplateScalarFieldEnum[] | TestDataTemplateScalarFieldEnum
+    having?: TestDataTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TestDataTemplateCountAggregateInputType | true
+    _min?: TestDataTemplateMinAggregateInputType
+    _max?: TestDataTemplateMaxAggregateInputType
+  }
+
+  export type TestDataTemplateGroupByOutputType = {
+    id: string
+    name: string
+    tableId: string
+    description: string | null
+    fieldOverrides: JsonValue
+    createdBy: string
+    createdAt: Date
+    updatedAt: Date | null
+    _count: TestDataTemplateCountAggregateOutputType | null
+    _min: TestDataTemplateMinAggregateOutputType | null
+    _max: TestDataTemplateMaxAggregateOutputType | null
+  }
+
+  type GetTestDataTemplateGroupByPayload<T extends TestDataTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TestDataTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TestDataTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TestDataTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], TestDataTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TestDataTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    tableId?: boolean
+    description?: boolean
+    fieldOverrides?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["testDataTemplate"]>
+
+
+
+  export type TestDataTemplateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    tableId?: boolean
+    description?: boolean
+    fieldOverrides?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TestDataTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "tableId" | "description" | "fieldOverrides" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["testDataTemplate"]>
+  export type TestDataTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    table?: boolean | MetaTableDefaultArgs<ExtArgs>
+  }
+
+  export type $TestDataTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TestDataTemplate"
+    objects: {
+      table: Prisma.$MetaTablePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      tableId: string
+      description: string | null
+      fieldOverrides: Prisma.JsonValue
+      createdBy: string
+      createdAt: Date
+      updatedAt: Date | null
+    }, ExtArgs["result"]["testDataTemplate"]>
+    composites: {}
+  }
+
+  type TestDataTemplateGetPayload<S extends boolean | null | undefined | TestDataTemplateDefaultArgs> = $Result.GetResult<Prisma.$TestDataTemplatePayload, S>
+
+  type TestDataTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TestDataTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TestDataTemplateCountAggregateInputType | true
+    }
+
+  export interface TestDataTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TestDataTemplate'], meta: { name: 'TestDataTemplate' } }
+    /**
+     * Find zero or one TestDataTemplate that matches the filter.
+     * @param {TestDataTemplateFindUniqueArgs} args - Arguments to find a TestDataTemplate
+     * @example
+     * // Get one TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TestDataTemplateFindUniqueArgs>(args: SelectSubset<T, TestDataTemplateFindUniqueArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TestDataTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TestDataTemplateFindUniqueOrThrowArgs} args - Arguments to find a TestDataTemplate
+     * @example
+     * // Get one TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TestDataTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, TestDataTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TestDataTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateFindFirstArgs} args - Arguments to find a TestDataTemplate
+     * @example
+     * // Get one TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TestDataTemplateFindFirstArgs>(args?: SelectSubset<T, TestDataTemplateFindFirstArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TestDataTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateFindFirstOrThrowArgs} args - Arguments to find a TestDataTemplate
+     * @example
+     * // Get one TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TestDataTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, TestDataTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TestDataTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TestDataTemplates
+     * const testDataTemplates = await prisma.testDataTemplate.findMany()
+     * 
+     * // Get first 10 TestDataTemplates
+     * const testDataTemplates = await prisma.testDataTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const testDataTemplateWithIdOnly = await prisma.testDataTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TestDataTemplateFindManyArgs>(args?: SelectSubset<T, TestDataTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TestDataTemplate.
+     * @param {TestDataTemplateCreateArgs} args - Arguments to create a TestDataTemplate.
+     * @example
+     * // Create one TestDataTemplate
+     * const TestDataTemplate = await prisma.testDataTemplate.create({
+     *   data: {
+     *     // ... data to create a TestDataTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends TestDataTemplateCreateArgs>(args: SelectSubset<T, TestDataTemplateCreateArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TestDataTemplates.
+     * @param {TestDataTemplateCreateManyArgs} args - Arguments to create many TestDataTemplates.
+     * @example
+     * // Create many TestDataTemplates
+     * const testDataTemplate = await prisma.testDataTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TestDataTemplateCreateManyArgs>(args?: SelectSubset<T, TestDataTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a TestDataTemplate.
+     * @param {TestDataTemplateDeleteArgs} args - Arguments to delete one TestDataTemplate.
+     * @example
+     * // Delete one TestDataTemplate
+     * const TestDataTemplate = await prisma.testDataTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one TestDataTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TestDataTemplateDeleteArgs>(args: SelectSubset<T, TestDataTemplateDeleteArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TestDataTemplate.
+     * @param {TestDataTemplateUpdateArgs} args - Arguments to update one TestDataTemplate.
+     * @example
+     * // Update one TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TestDataTemplateUpdateArgs>(args: SelectSubset<T, TestDataTemplateUpdateArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TestDataTemplates.
+     * @param {TestDataTemplateDeleteManyArgs} args - Arguments to filter TestDataTemplates to delete.
+     * @example
+     * // Delete a few TestDataTemplates
+     * const { count } = await prisma.testDataTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TestDataTemplateDeleteManyArgs>(args?: SelectSubset<T, TestDataTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TestDataTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TestDataTemplates
+     * const testDataTemplate = await prisma.testDataTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TestDataTemplateUpdateManyArgs>(args: SelectSubset<T, TestDataTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TestDataTemplate.
+     * @param {TestDataTemplateUpsertArgs} args - Arguments to update or create a TestDataTemplate.
+     * @example
+     * // Update or create a TestDataTemplate
+     * const testDataTemplate = await prisma.testDataTemplate.upsert({
+     *   create: {
+     *     // ... data to create a TestDataTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TestDataTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TestDataTemplateUpsertArgs>(args: SelectSubset<T, TestDataTemplateUpsertArgs<ExtArgs>>): Prisma__TestDataTemplateClient<$Result.GetResult<Prisma.$TestDataTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TestDataTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateCountArgs} args - Arguments to filter TestDataTemplates to count.
+     * @example
+     * // Count the number of TestDataTemplates
+     * const count = await prisma.testDataTemplate.count({
+     *   where: {
+     *     // ... the filter for the TestDataTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends TestDataTemplateCountArgs>(
+      args?: Subset<T, TestDataTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TestDataTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TestDataTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TestDataTemplateAggregateArgs>(args: Subset<T, TestDataTemplateAggregateArgs>): Prisma.PrismaPromise<GetTestDataTemplateAggregateType<T>>
+
+    /**
+     * Group by TestDataTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestDataTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TestDataTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TestDataTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: TestDataTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TestDataTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestDataTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TestDataTemplate model
+   */
+  readonly fields: TestDataTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TestDataTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TestDataTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    table<T extends MetaTableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaTableDefaultArgs<ExtArgs>>): Prisma__MetaTableClient<$Result.GetResult<Prisma.$MetaTablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TestDataTemplate model
+   */
+  interface TestDataTemplateFieldRefs {
+    readonly id: FieldRef<"TestDataTemplate", 'String'>
+    readonly name: FieldRef<"TestDataTemplate", 'String'>
+    readonly tableId: FieldRef<"TestDataTemplate", 'String'>
+    readonly description: FieldRef<"TestDataTemplate", 'String'>
+    readonly fieldOverrides: FieldRef<"TestDataTemplate", 'Json'>
+    readonly createdBy: FieldRef<"TestDataTemplate", 'String'>
+    readonly createdAt: FieldRef<"TestDataTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"TestDataTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TestDataTemplate findUnique
+   */
+  export type TestDataTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataTemplate to fetch.
+     */
+    where: TestDataTemplateWhereUniqueInput
+  }
+
+  /**
+   * TestDataTemplate findUniqueOrThrow
+   */
+  export type TestDataTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataTemplate to fetch.
+     */
+    where: TestDataTemplateWhereUniqueInput
+  }
+
+  /**
+   * TestDataTemplate findFirst
+   */
+  export type TestDataTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataTemplate to fetch.
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataTemplates to fetch.
+     */
+    orderBy?: TestDataTemplateOrderByWithRelationInput | TestDataTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestDataTemplates.
+     */
+    cursor?: TestDataTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestDataTemplates.
+     */
+    distinct?: TestDataTemplateScalarFieldEnum | TestDataTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataTemplate findFirstOrThrow
+   */
+  export type TestDataTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataTemplate to fetch.
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataTemplates to fetch.
+     */
+    orderBy?: TestDataTemplateOrderByWithRelationInput | TestDataTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestDataTemplates.
+     */
+    cursor?: TestDataTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestDataTemplates.
+     */
+    distinct?: TestDataTemplateScalarFieldEnum | TestDataTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataTemplate findMany
+   */
+  export type TestDataTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TestDataTemplates to fetch.
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestDataTemplates to fetch.
+     */
+    orderBy?: TestDataTemplateOrderByWithRelationInput | TestDataTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TestDataTemplates.
+     */
+    cursor?: TestDataTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestDataTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestDataTemplates.
+     */
+    skip?: number
+    distinct?: TestDataTemplateScalarFieldEnum | TestDataTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TestDataTemplate create
+   */
+  export type TestDataTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TestDataTemplate.
+     */
+    data: XOR<TestDataTemplateCreateInput, TestDataTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * TestDataTemplate createMany
+   */
+  export type TestDataTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TestDataTemplates.
+     */
+    data: TestDataTemplateCreateManyInput | TestDataTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TestDataTemplate update
+   */
+  export type TestDataTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TestDataTemplate.
+     */
+    data: XOR<TestDataTemplateUpdateInput, TestDataTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which TestDataTemplate to update.
+     */
+    where: TestDataTemplateWhereUniqueInput
+  }
+
+  /**
+   * TestDataTemplate updateMany
+   */
+  export type TestDataTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TestDataTemplates.
+     */
+    data: XOR<TestDataTemplateUpdateManyMutationInput, TestDataTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which TestDataTemplates to update
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * Limit how many TestDataTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TestDataTemplate upsert
+   */
+  export type TestDataTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TestDataTemplate to update in case it exists.
+     */
+    where: TestDataTemplateWhereUniqueInput
+    /**
+     * In case the TestDataTemplate found by the `where` argument doesn't exist, create a new TestDataTemplate with this data.
+     */
+    create: XOR<TestDataTemplateCreateInput, TestDataTemplateUncheckedCreateInput>
+    /**
+     * In case the TestDataTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TestDataTemplateUpdateInput, TestDataTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * TestDataTemplate delete
+   */
+  export type TestDataTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which TestDataTemplate to delete.
+     */
+    where: TestDataTemplateWhereUniqueInput
+  }
+
+  /**
+   * TestDataTemplate deleteMany
+   */
+  export type TestDataTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestDataTemplates to delete
+     */
+    where?: TestDataTemplateWhereInput
+    /**
+     * Limit how many TestDataTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TestDataTemplate without action
+   */
+  export type TestDataTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestDataTemplate
+     */
+    select?: TestDataTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TestDataTemplate
+     */
+    omit?: TestDataTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TestDataTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VisualDiagram
+   */
+
+  export type AggregateVisualDiagram = {
+    _count: VisualDiagramCountAggregateOutputType | null
+    _min: VisualDiagramMinAggregateOutputType | null
+    _max: VisualDiagramMaxAggregateOutputType | null
+  }
+
+  export type VisualDiagramMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type VisualDiagramMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type VisualDiagramCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    tableIds: number
+    elements: number
+    connections: number
+    settings: number
+    createdBy: number
+    createdAt: number
+    updatedBy: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type VisualDiagramMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type VisualDiagramMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type VisualDiagramCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    tableIds?: true
+    elements?: true
+    connections?: true
+    settings?: true
+    createdBy?: true
+    createdAt?: true
+    updatedBy?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type VisualDiagramAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VisualDiagram to aggregate.
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VisualDiagrams to fetch.
+     */
+    orderBy?: VisualDiagramOrderByWithRelationInput | VisualDiagramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VisualDiagramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VisualDiagrams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VisualDiagrams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VisualDiagrams
+    **/
+    _count?: true | VisualDiagramCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VisualDiagramMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VisualDiagramMaxAggregateInputType
+  }
+
+  export type GetVisualDiagramAggregateType<T extends VisualDiagramAggregateArgs> = {
+        [P in keyof T & keyof AggregateVisualDiagram]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVisualDiagram[P]>
+      : GetScalarType<T[P], AggregateVisualDiagram[P]>
+  }
+
+
+
+
+  export type VisualDiagramGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VisualDiagramWhereInput
+    orderBy?: VisualDiagramOrderByWithAggregationInput | VisualDiagramOrderByWithAggregationInput[]
+    by: VisualDiagramScalarFieldEnum[] | VisualDiagramScalarFieldEnum
+    having?: VisualDiagramScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VisualDiagramCountAggregateInputType | true
+    _min?: VisualDiagramMinAggregateInputType
+    _max?: VisualDiagramMaxAggregateInputType
+  }
+
+  export type VisualDiagramGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    tableIds: JsonValue
+    elements: JsonValue
+    connections: JsonValue
+    settings: JsonValue | null
+    createdBy: string
+    createdAt: Date
+    updatedBy: string | null
+    updatedAt: Date | null
+    _count: VisualDiagramCountAggregateOutputType | null
+    _min: VisualDiagramMinAggregateOutputType | null
+    _max: VisualDiagramMaxAggregateOutputType | null
+  }
+
+  type GetVisualDiagramGroupByPayload<T extends VisualDiagramGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VisualDiagramGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VisualDiagramGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VisualDiagramGroupByOutputType[P]>
+            : GetScalarType<T[P], VisualDiagramGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VisualDiagramSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tableIds?: boolean
+    elements?: boolean
+    connections?: boolean
+    settings?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["visualDiagram"]>
+
+
+
+  export type VisualDiagramSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tableIds?: boolean
+    elements?: boolean
+    connections?: boolean
+    settings?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+  }
+
+  export type VisualDiagramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "tableIds" | "elements" | "connections" | "settings" | "createdBy" | "createdAt" | "updatedBy" | "updatedAt", ExtArgs["result"]["visualDiagram"]>
+
+  export type $VisualDiagramPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VisualDiagram"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      tableIds: Prisma.JsonValue
+      elements: Prisma.JsonValue
+      connections: Prisma.JsonValue
+      settings: Prisma.JsonValue | null
+      createdBy: string
+      createdAt: Date
+      updatedBy: string | null
+      updatedAt: Date | null
+    }, ExtArgs["result"]["visualDiagram"]>
+    composites: {}
+  }
+
+  type VisualDiagramGetPayload<S extends boolean | null | undefined | VisualDiagramDefaultArgs> = $Result.GetResult<Prisma.$VisualDiagramPayload, S>
+
+  type VisualDiagramCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VisualDiagramFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VisualDiagramCountAggregateInputType | true
+    }
+
+  export interface VisualDiagramDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VisualDiagram'], meta: { name: 'VisualDiagram' } }
+    /**
+     * Find zero or one VisualDiagram that matches the filter.
+     * @param {VisualDiagramFindUniqueArgs} args - Arguments to find a VisualDiagram
+     * @example
+     * // Get one VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VisualDiagramFindUniqueArgs>(args: SelectSubset<T, VisualDiagramFindUniqueArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VisualDiagram that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VisualDiagramFindUniqueOrThrowArgs} args - Arguments to find a VisualDiagram
+     * @example
+     * // Get one VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VisualDiagramFindUniqueOrThrowArgs>(args: SelectSubset<T, VisualDiagramFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VisualDiagram that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramFindFirstArgs} args - Arguments to find a VisualDiagram
+     * @example
+     * // Get one VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VisualDiagramFindFirstArgs>(args?: SelectSubset<T, VisualDiagramFindFirstArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VisualDiagram that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramFindFirstOrThrowArgs} args - Arguments to find a VisualDiagram
+     * @example
+     * // Get one VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VisualDiagramFindFirstOrThrowArgs>(args?: SelectSubset<T, VisualDiagramFindFirstOrThrowArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VisualDiagrams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VisualDiagrams
+     * const visualDiagrams = await prisma.visualDiagram.findMany()
+     * 
+     * // Get first 10 VisualDiagrams
+     * const visualDiagrams = await prisma.visualDiagram.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const visualDiagramWithIdOnly = await prisma.visualDiagram.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VisualDiagramFindManyArgs>(args?: SelectSubset<T, VisualDiagramFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VisualDiagram.
+     * @param {VisualDiagramCreateArgs} args - Arguments to create a VisualDiagram.
+     * @example
+     * // Create one VisualDiagram
+     * const VisualDiagram = await prisma.visualDiagram.create({
+     *   data: {
+     *     // ... data to create a VisualDiagram
+     *   }
+     * })
+     * 
+     */
+    create<T extends VisualDiagramCreateArgs>(args: SelectSubset<T, VisualDiagramCreateArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VisualDiagrams.
+     * @param {VisualDiagramCreateManyArgs} args - Arguments to create many VisualDiagrams.
+     * @example
+     * // Create many VisualDiagrams
+     * const visualDiagram = await prisma.visualDiagram.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VisualDiagramCreateManyArgs>(args?: SelectSubset<T, VisualDiagramCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a VisualDiagram.
+     * @param {VisualDiagramDeleteArgs} args - Arguments to delete one VisualDiagram.
+     * @example
+     * // Delete one VisualDiagram
+     * const VisualDiagram = await prisma.visualDiagram.delete({
+     *   where: {
+     *     // ... filter to delete one VisualDiagram
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VisualDiagramDeleteArgs>(args: SelectSubset<T, VisualDiagramDeleteArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VisualDiagram.
+     * @param {VisualDiagramUpdateArgs} args - Arguments to update one VisualDiagram.
+     * @example
+     * // Update one VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VisualDiagramUpdateArgs>(args: SelectSubset<T, VisualDiagramUpdateArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VisualDiagrams.
+     * @param {VisualDiagramDeleteManyArgs} args - Arguments to filter VisualDiagrams to delete.
+     * @example
+     * // Delete a few VisualDiagrams
+     * const { count } = await prisma.visualDiagram.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VisualDiagramDeleteManyArgs>(args?: SelectSubset<T, VisualDiagramDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VisualDiagrams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VisualDiagrams
+     * const visualDiagram = await prisma.visualDiagram.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VisualDiagramUpdateManyArgs>(args: SelectSubset<T, VisualDiagramUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one VisualDiagram.
+     * @param {VisualDiagramUpsertArgs} args - Arguments to update or create a VisualDiagram.
+     * @example
+     * // Update or create a VisualDiagram
+     * const visualDiagram = await prisma.visualDiagram.upsert({
+     *   create: {
+     *     // ... data to create a VisualDiagram
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VisualDiagram we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VisualDiagramUpsertArgs>(args: SelectSubset<T, VisualDiagramUpsertArgs<ExtArgs>>): Prisma__VisualDiagramClient<$Result.GetResult<Prisma.$VisualDiagramPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VisualDiagrams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramCountArgs} args - Arguments to filter VisualDiagrams to count.
+     * @example
+     * // Count the number of VisualDiagrams
+     * const count = await prisma.visualDiagram.count({
+     *   where: {
+     *     // ... the filter for the VisualDiagrams we want to count
+     *   }
+     * })
+    **/
+    count<T extends VisualDiagramCountArgs>(
+      args?: Subset<T, VisualDiagramCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VisualDiagramCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VisualDiagram.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VisualDiagramAggregateArgs>(args: Subset<T, VisualDiagramAggregateArgs>): Prisma.PrismaPromise<GetVisualDiagramAggregateType<T>>
+
+    /**
+     * Group by VisualDiagram.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VisualDiagramGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VisualDiagramGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VisualDiagramGroupByArgs['orderBy'] }
+        : { orderBy?: VisualDiagramGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VisualDiagramGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVisualDiagramGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VisualDiagram model
+   */
+  readonly fields: VisualDiagramFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VisualDiagram.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VisualDiagramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VisualDiagram model
+   */
+  interface VisualDiagramFieldRefs {
+    readonly id: FieldRef<"VisualDiagram", 'String'>
+    readonly name: FieldRef<"VisualDiagram", 'String'>
+    readonly description: FieldRef<"VisualDiagram", 'String'>
+    readonly tableIds: FieldRef<"VisualDiagram", 'Json'>
+    readonly elements: FieldRef<"VisualDiagram", 'Json'>
+    readonly connections: FieldRef<"VisualDiagram", 'Json'>
+    readonly settings: FieldRef<"VisualDiagram", 'Json'>
+    readonly createdBy: FieldRef<"VisualDiagram", 'String'>
+    readonly createdAt: FieldRef<"VisualDiagram", 'DateTime'>
+    readonly updatedBy: FieldRef<"VisualDiagram", 'String'>
+    readonly updatedAt: FieldRef<"VisualDiagram", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VisualDiagram findUnique
+   */
+  export type VisualDiagramFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter, which VisualDiagram to fetch.
+     */
+    where: VisualDiagramWhereUniqueInput
+  }
+
+  /**
+   * VisualDiagram findUniqueOrThrow
+   */
+  export type VisualDiagramFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter, which VisualDiagram to fetch.
+     */
+    where: VisualDiagramWhereUniqueInput
+  }
+
+  /**
+   * VisualDiagram findFirst
+   */
+  export type VisualDiagramFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter, which VisualDiagram to fetch.
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VisualDiagrams to fetch.
+     */
+    orderBy?: VisualDiagramOrderByWithRelationInput | VisualDiagramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VisualDiagrams.
+     */
+    cursor?: VisualDiagramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VisualDiagrams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VisualDiagrams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VisualDiagrams.
+     */
+    distinct?: VisualDiagramScalarFieldEnum | VisualDiagramScalarFieldEnum[]
+  }
+
+  /**
+   * VisualDiagram findFirstOrThrow
+   */
+  export type VisualDiagramFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter, which VisualDiagram to fetch.
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VisualDiagrams to fetch.
+     */
+    orderBy?: VisualDiagramOrderByWithRelationInput | VisualDiagramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VisualDiagrams.
+     */
+    cursor?: VisualDiagramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VisualDiagrams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VisualDiagrams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VisualDiagrams.
+     */
+    distinct?: VisualDiagramScalarFieldEnum | VisualDiagramScalarFieldEnum[]
+  }
+
+  /**
+   * VisualDiagram findMany
+   */
+  export type VisualDiagramFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter, which VisualDiagrams to fetch.
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VisualDiagrams to fetch.
+     */
+    orderBy?: VisualDiagramOrderByWithRelationInput | VisualDiagramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VisualDiagrams.
+     */
+    cursor?: VisualDiagramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VisualDiagrams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VisualDiagrams.
+     */
+    skip?: number
+    distinct?: VisualDiagramScalarFieldEnum | VisualDiagramScalarFieldEnum[]
+  }
+
+  /**
+   * VisualDiagram create
+   */
+  export type VisualDiagramCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VisualDiagram.
+     */
+    data: XOR<VisualDiagramCreateInput, VisualDiagramUncheckedCreateInput>
+  }
+
+  /**
+   * VisualDiagram createMany
+   */
+  export type VisualDiagramCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VisualDiagrams.
+     */
+    data: VisualDiagramCreateManyInput | VisualDiagramCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VisualDiagram update
+   */
+  export type VisualDiagramUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VisualDiagram.
+     */
+    data: XOR<VisualDiagramUpdateInput, VisualDiagramUncheckedUpdateInput>
+    /**
+     * Choose, which VisualDiagram to update.
+     */
+    where: VisualDiagramWhereUniqueInput
+  }
+
+  /**
+   * VisualDiagram updateMany
+   */
+  export type VisualDiagramUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VisualDiagrams.
+     */
+    data: XOR<VisualDiagramUpdateManyMutationInput, VisualDiagramUncheckedUpdateManyInput>
+    /**
+     * Filter which VisualDiagrams to update
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * Limit how many VisualDiagrams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VisualDiagram upsert
+   */
+  export type VisualDiagramUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VisualDiagram to update in case it exists.
+     */
+    where: VisualDiagramWhereUniqueInput
+    /**
+     * In case the VisualDiagram found by the `where` argument doesn't exist, create a new VisualDiagram with this data.
+     */
+    create: XOR<VisualDiagramCreateInput, VisualDiagramUncheckedCreateInput>
+    /**
+     * In case the VisualDiagram was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VisualDiagramUpdateInput, VisualDiagramUncheckedUpdateInput>
+  }
+
+  /**
+   * VisualDiagram delete
+   */
+  export type VisualDiagramDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+    /**
+     * Filter which VisualDiagram to delete.
+     */
+    where: VisualDiagramWhereUniqueInput
+  }
+
+  /**
+   * VisualDiagram deleteMany
+   */
+  export type VisualDiagramDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VisualDiagrams to delete
+     */
+    where?: VisualDiagramWhereInput
+    /**
+     * Limit how many VisualDiagrams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VisualDiagram without action
+   */
+  export type VisualDiagramDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VisualDiagram
+     */
+    select?: VisualDiagramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VisualDiagram
+     */
+    omit?: VisualDiagramOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6720,12 +19224,206 @@ export namespace Prisma {
   export type System_configsScalarFieldEnum = (typeof System_configsScalarFieldEnum)[keyof typeof System_configsScalarFieldEnum]
 
 
+  export const MetaTableScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    displayName: 'displayName',
+    description: 'description',
+    isSystem: 'isSystem',
+    isSoftDelete: 'isSoftDelete',
+    isVersioned: 'isVersioned',
+    status: 'status',
+    tenant: 'tenant',
+    application: 'application',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedBy: 'updatedBy',
+    updatedAt: 'updatedAt',
+    auditFields: 'auditFields',
+    apiEnabled: 'apiEnabled',
+    customOptions: 'customOptions'
+  };
+
+  export type MetaTableScalarFieldEnum = (typeof MetaTableScalarFieldEnum)[keyof typeof MetaTableScalarFieldEnum]
+
+
+  export const MetaFieldScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    displayName: 'displayName',
+    description: 'description',
+    type: 'type',
+    isPrimaryKey: 'isPrimaryKey',
+    isRequired: 'isRequired',
+    isUnique: 'isUnique',
+    isSystem: 'isSystem',
+    isHidden: 'isHidden',
+    ordinal: 'ordinal',
+    defaultValue: 'defaultValue',
+    validationRules: 'validationRules',
+    isSearchable: 'isSearchable',
+    isSortable: 'isSortable',
+    isFilterable: 'isFilterable',
+    isAggregatable: 'isAggregatable',
+    advancedSettings: 'advancedSettings'
+  };
+
+  export type MetaFieldScalarFieldEnum = (typeof MetaFieldScalarFieldEnum)[keyof typeof MetaFieldScalarFieldEnum]
+
+
+  export const MetaRelationScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    sourceTableId: 'sourceTableId',
+    targetTableId: 'targetTableId',
+    sourceFieldId: 'sourceFieldId',
+    targetFieldId: 'targetFieldId',
+    type: 'type',
+    cascadeDelete: 'cascadeDelete',
+    cascadeUpdate: 'cascadeUpdate',
+    isRequired: 'isRequired',
+    junctionTableId: 'junctionTableId',
+    customOptions: 'customOptions'
+  };
+
+  export type MetaRelationScalarFieldEnum = (typeof MetaRelationScalarFieldEnum)[keyof typeof MetaRelationScalarFieldEnum]
+
+
+  export const MetaVersionScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    version: 'version',
+    name: 'name',
+    description: 'description',
+    snapshot: 'snapshot',
+    isPublished: 'isPublished',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    comment: 'comment'
+  };
+
+  export type MetaVersionScalarFieldEnum = (typeof MetaVersionScalarFieldEnum)[keyof typeof MetaVersionScalarFieldEnum]
+
+
+  export const MetaIndexScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    type: 'type',
+    isUnique: 'isUnique'
+  };
+
+  export type MetaIndexScalarFieldEnum = (typeof MetaIndexScalarFieldEnum)[keyof typeof MetaIndexScalarFieldEnum]
+
+
+  export const MetaIndexFieldScalarFieldEnum: {
+    id: 'id',
+    indexId: 'indexId',
+    fieldId: 'fieldId',
+    ordinal: 'ordinal'
+  };
+
+  export type MetaIndexFieldScalarFieldEnum = (typeof MetaIndexFieldScalarFieldEnum)[keyof typeof MetaIndexFieldScalarFieldEnum]
+
+
+  export const MetaConstraintScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    type: 'type',
+    fields: 'fields',
+    expression: 'expression',
+    message: 'message'
+  };
+
+  export type MetaConstraintScalarFieldEnum = (typeof MetaConstraintScalarFieldEnum)[keyof typeof MetaConstraintScalarFieldEnum]
+
+
+  export const ModelApprovalScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    versionId: 'versionId',
+    description: 'description',
+    attachments: 'attachments',
+    status: 'status',
+    requestedBy: 'requestedBy',
+    requestedAt: 'requestedAt',
+    approvedBy: 'approvedBy',
+    approvedAt: 'approvedAt',
+    comment: 'comment'
+  };
+
+  export type ModelApprovalScalarFieldEnum = (typeof ModelApprovalScalarFieldEnum)[keyof typeof ModelApprovalScalarFieldEnum]
+
+
+  export const TestDataGenerationScalarFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    count: 'count',
+    includeRelations: 'includeRelations',
+    relationDepth: 'relationDepth',
+    options: 'options',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt'
+  };
+
+  export type TestDataGenerationScalarFieldEnum = (typeof TestDataGenerationScalarFieldEnum)[keyof typeof TestDataGenerationScalarFieldEnum]
+
+
+  export const TestDataTemplateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    tableId: 'tableId',
+    description: 'description',
+    fieldOverrides: 'fieldOverrides',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TestDataTemplateScalarFieldEnum = (typeof TestDataTemplateScalarFieldEnum)[keyof typeof TestDataTemplateScalarFieldEnum]
+
+
+  export const VisualDiagramScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    tableIds: 'tableIds',
+    elements: 'elements',
+    connections: 'connections',
+    settings: 'settings',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedBy: 'updatedBy',
+    updatedAt: 'updatedAt'
+  };
+
+  export type VisualDiagramScalarFieldEnum = (typeof VisualDiagramScalarFieldEnum)[keyof typeof VisualDiagramScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const NullsOrder: {
@@ -6798,6 +19496,155 @@ export namespace Prisma {
   export type system_configsOrderByRelevanceFieldEnum = (typeof system_configsOrderByRelevanceFieldEnum)[keyof typeof system_configsOrderByRelevanceFieldEnum]
 
 
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const MetaTableOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    displayName: 'displayName',
+    description: 'description',
+    status: 'status',
+    tenant: 'tenant',
+    application: 'application',
+    createdBy: 'createdBy',
+    updatedBy: 'updatedBy'
+  };
+
+  export type MetaTableOrderByRelevanceFieldEnum = (typeof MetaTableOrderByRelevanceFieldEnum)[keyof typeof MetaTableOrderByRelevanceFieldEnum]
+
+
+  export const MetaFieldOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    displayName: 'displayName',
+    description: 'description',
+    type: 'type',
+    defaultValue: 'defaultValue'
+  };
+
+  export type MetaFieldOrderByRelevanceFieldEnum = (typeof MetaFieldOrderByRelevanceFieldEnum)[keyof typeof MetaFieldOrderByRelevanceFieldEnum]
+
+
+  export const MetaRelationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    sourceTableId: 'sourceTableId',
+    targetTableId: 'targetTableId',
+    sourceFieldId: 'sourceFieldId',
+    targetFieldId: 'targetFieldId',
+    type: 'type',
+    junctionTableId: 'junctionTableId'
+  };
+
+  export type MetaRelationOrderByRelevanceFieldEnum = (typeof MetaRelationOrderByRelevanceFieldEnum)[keyof typeof MetaRelationOrderByRelevanceFieldEnum]
+
+
+  export const MetaVersionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    description: 'description',
+    createdBy: 'createdBy',
+    comment: 'comment'
+  };
+
+  export type MetaVersionOrderByRelevanceFieldEnum = (typeof MetaVersionOrderByRelevanceFieldEnum)[keyof typeof MetaVersionOrderByRelevanceFieldEnum]
+
+
+  export const MetaIndexOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    type: 'type'
+  };
+
+  export type MetaIndexOrderByRelevanceFieldEnum = (typeof MetaIndexOrderByRelevanceFieldEnum)[keyof typeof MetaIndexOrderByRelevanceFieldEnum]
+
+
+  export const MetaIndexFieldOrderByRelevanceFieldEnum: {
+    id: 'id',
+    indexId: 'indexId',
+    fieldId: 'fieldId'
+  };
+
+  export type MetaIndexFieldOrderByRelevanceFieldEnum = (typeof MetaIndexFieldOrderByRelevanceFieldEnum)[keyof typeof MetaIndexFieldOrderByRelevanceFieldEnum]
+
+
+  export const MetaConstraintOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    name: 'name',
+    type: 'type',
+    expression: 'expression',
+    message: 'message'
+  };
+
+  export type MetaConstraintOrderByRelevanceFieldEnum = (typeof MetaConstraintOrderByRelevanceFieldEnum)[keyof typeof MetaConstraintOrderByRelevanceFieldEnum]
+
+
+  export const ModelApprovalOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    versionId: 'versionId',
+    description: 'description',
+    attachments: 'attachments',
+    status: 'status',
+    requestedBy: 'requestedBy',
+    approvedBy: 'approvedBy',
+    comment: 'comment'
+  };
+
+  export type ModelApprovalOrderByRelevanceFieldEnum = (typeof ModelApprovalOrderByRelevanceFieldEnum)[keyof typeof ModelApprovalOrderByRelevanceFieldEnum]
+
+
+  export const TestDataGenerationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tableId: 'tableId',
+    createdBy: 'createdBy'
+  };
+
+  export type TestDataGenerationOrderByRelevanceFieldEnum = (typeof TestDataGenerationOrderByRelevanceFieldEnum)[keyof typeof TestDataGenerationOrderByRelevanceFieldEnum]
+
+
+  export const TestDataTemplateOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    tableId: 'tableId',
+    description: 'description',
+    createdBy: 'createdBy'
+  };
+
+  export type TestDataTemplateOrderByRelevanceFieldEnum = (typeof TestDataTemplateOrderByRelevanceFieldEnum)[keyof typeof TestDataTemplateOrderByRelevanceFieldEnum]
+
+
+  export const VisualDiagramOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    createdBy: 'createdBy',
+    updatedBy: 'updatedBy'
+  };
+
+  export type VisualDiagramOrderByRelevanceFieldEnum = (typeof VisualDiagramOrderByRelevanceFieldEnum)[keyof typeof VisualDiagramOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -6825,9 +19672,30 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -7182,6 +20050,980 @@ export namespace Prisma {
     group?: StringWithAggregatesFilter<"system_configs"> | string
     createdAt?: DateTimeWithAggregatesFilter<"system_configs"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"system_configs"> | Date | string
+  }
+
+  export type MetaTableWhereInput = {
+    AND?: MetaTableWhereInput | MetaTableWhereInput[]
+    OR?: MetaTableWhereInput[]
+    NOT?: MetaTableWhereInput | MetaTableWhereInput[]
+    id?: StringFilter<"MetaTable"> | string
+    name?: StringFilter<"MetaTable"> | string
+    displayName?: StringFilter<"MetaTable"> | string
+    description?: StringNullableFilter<"MetaTable"> | string | null
+    isSystem?: BoolFilter<"MetaTable"> | boolean
+    isSoftDelete?: BoolFilter<"MetaTable"> | boolean
+    isVersioned?: BoolFilter<"MetaTable"> | boolean
+    status?: StringFilter<"MetaTable"> | string
+    tenant?: StringFilter<"MetaTable"> | string
+    application?: StringNullableFilter<"MetaTable"> | string | null
+    createdBy?: StringFilter<"MetaTable"> | string
+    createdAt?: DateTimeFilter<"MetaTable"> | Date | string
+    updatedBy?: StringNullableFilter<"MetaTable"> | string | null
+    updatedAt?: DateTimeNullableFilter<"MetaTable"> | Date | string | null
+    auditFields?: BoolFilter<"MetaTable"> | boolean
+    apiEnabled?: BoolFilter<"MetaTable"> | boolean
+    customOptions?: JsonNullableFilter<"MetaTable">
+    fields?: MetaFieldListRelationFilter
+    relations?: MetaRelationListRelationFilter
+    targetRelations?: MetaRelationListRelationFilter
+    junctionRelations?: MetaRelationListRelationFilter
+    versions?: MetaVersionListRelationFilter
+    indexes?: MetaIndexListRelationFilter
+    constraints?: MetaConstraintListRelationFilter
+    modelApprovals?: ModelApprovalListRelationFilter
+    testDataGenerations?: TestDataGenerationListRelationFilter
+    testDataTemplates?: TestDataTemplateListRelationFilter
+  }
+
+  export type MetaTableOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isSystem?: SortOrder
+    isSoftDelete?: SortOrder
+    isVersioned?: SortOrder
+    status?: SortOrder
+    tenant?: SortOrder
+    application?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    auditFields?: SortOrder
+    apiEnabled?: SortOrder
+    customOptions?: SortOrderInput | SortOrder
+    fields?: MetaFieldOrderByRelationAggregateInput
+    relations?: MetaRelationOrderByRelationAggregateInput
+    targetRelations?: MetaRelationOrderByRelationAggregateInput
+    junctionRelations?: MetaRelationOrderByRelationAggregateInput
+    versions?: MetaVersionOrderByRelationAggregateInput
+    indexes?: MetaIndexOrderByRelationAggregateInput
+    constraints?: MetaConstraintOrderByRelationAggregateInput
+    modelApprovals?: ModelApprovalOrderByRelationAggregateInput
+    testDataGenerations?: TestDataGenerationOrderByRelationAggregateInput
+    testDataTemplates?: TestDataTemplateOrderByRelationAggregateInput
+    _relevance?: MetaTableOrderByRelevanceInput
+  }
+
+  export type MetaTableWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name_tenant_application?: MetaTableNameTenantApplicationCompoundUniqueInput
+    AND?: MetaTableWhereInput | MetaTableWhereInput[]
+    OR?: MetaTableWhereInput[]
+    NOT?: MetaTableWhereInput | MetaTableWhereInput[]
+    name?: StringFilter<"MetaTable"> | string
+    displayName?: StringFilter<"MetaTable"> | string
+    description?: StringNullableFilter<"MetaTable"> | string | null
+    isSystem?: BoolFilter<"MetaTable"> | boolean
+    isSoftDelete?: BoolFilter<"MetaTable"> | boolean
+    isVersioned?: BoolFilter<"MetaTable"> | boolean
+    status?: StringFilter<"MetaTable"> | string
+    tenant?: StringFilter<"MetaTable"> | string
+    application?: StringNullableFilter<"MetaTable"> | string | null
+    createdBy?: StringFilter<"MetaTable"> | string
+    createdAt?: DateTimeFilter<"MetaTable"> | Date | string
+    updatedBy?: StringNullableFilter<"MetaTable"> | string | null
+    updatedAt?: DateTimeNullableFilter<"MetaTable"> | Date | string | null
+    auditFields?: BoolFilter<"MetaTable"> | boolean
+    apiEnabled?: BoolFilter<"MetaTable"> | boolean
+    customOptions?: JsonNullableFilter<"MetaTable">
+    fields?: MetaFieldListRelationFilter
+    relations?: MetaRelationListRelationFilter
+    targetRelations?: MetaRelationListRelationFilter
+    junctionRelations?: MetaRelationListRelationFilter
+    versions?: MetaVersionListRelationFilter
+    indexes?: MetaIndexListRelationFilter
+    constraints?: MetaConstraintListRelationFilter
+    modelApprovals?: ModelApprovalListRelationFilter
+    testDataGenerations?: TestDataGenerationListRelationFilter
+    testDataTemplates?: TestDataTemplateListRelationFilter
+  }, "id" | "name_tenant_application">
+
+  export type MetaTableOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isSystem?: SortOrder
+    isSoftDelete?: SortOrder
+    isVersioned?: SortOrder
+    status?: SortOrder
+    tenant?: SortOrder
+    application?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    auditFields?: SortOrder
+    apiEnabled?: SortOrder
+    customOptions?: SortOrderInput | SortOrder
+    _count?: MetaTableCountOrderByAggregateInput
+    _max?: MetaTableMaxOrderByAggregateInput
+    _min?: MetaTableMinOrderByAggregateInput
+  }
+
+  export type MetaTableScalarWhereWithAggregatesInput = {
+    AND?: MetaTableScalarWhereWithAggregatesInput | MetaTableScalarWhereWithAggregatesInput[]
+    OR?: MetaTableScalarWhereWithAggregatesInput[]
+    NOT?: MetaTableScalarWhereWithAggregatesInput | MetaTableScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaTable"> | string
+    name?: StringWithAggregatesFilter<"MetaTable"> | string
+    displayName?: StringWithAggregatesFilter<"MetaTable"> | string
+    description?: StringNullableWithAggregatesFilter<"MetaTable"> | string | null
+    isSystem?: BoolWithAggregatesFilter<"MetaTable"> | boolean
+    isSoftDelete?: BoolWithAggregatesFilter<"MetaTable"> | boolean
+    isVersioned?: BoolWithAggregatesFilter<"MetaTable"> | boolean
+    status?: StringWithAggregatesFilter<"MetaTable"> | string
+    tenant?: StringWithAggregatesFilter<"MetaTable"> | string
+    application?: StringNullableWithAggregatesFilter<"MetaTable"> | string | null
+    createdBy?: StringWithAggregatesFilter<"MetaTable"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MetaTable"> | Date | string
+    updatedBy?: StringNullableWithAggregatesFilter<"MetaTable"> | string | null
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"MetaTable"> | Date | string | null
+    auditFields?: BoolWithAggregatesFilter<"MetaTable"> | boolean
+    apiEnabled?: BoolWithAggregatesFilter<"MetaTable"> | boolean
+    customOptions?: JsonNullableWithAggregatesFilter<"MetaTable">
+  }
+
+  export type MetaFieldWhereInput = {
+    AND?: MetaFieldWhereInput | MetaFieldWhereInput[]
+    OR?: MetaFieldWhereInput[]
+    NOT?: MetaFieldWhereInput | MetaFieldWhereInput[]
+    id?: StringFilter<"MetaField"> | string
+    tableId?: StringFilter<"MetaField"> | string
+    name?: StringFilter<"MetaField"> | string
+    displayName?: StringFilter<"MetaField"> | string
+    description?: StringNullableFilter<"MetaField"> | string | null
+    type?: StringFilter<"MetaField"> | string
+    isPrimaryKey?: BoolFilter<"MetaField"> | boolean
+    isRequired?: BoolFilter<"MetaField"> | boolean
+    isUnique?: BoolFilter<"MetaField"> | boolean
+    isSystem?: BoolFilter<"MetaField"> | boolean
+    isHidden?: BoolFilter<"MetaField"> | boolean
+    ordinal?: IntFilter<"MetaField"> | number
+    defaultValue?: StringNullableFilter<"MetaField"> | string | null
+    validationRules?: JsonNullableFilter<"MetaField">
+    isSearchable?: BoolFilter<"MetaField"> | boolean
+    isSortable?: BoolFilter<"MetaField"> | boolean
+    isFilterable?: BoolFilter<"MetaField"> | boolean
+    isAggregatable?: BoolFilter<"MetaField"> | boolean
+    advancedSettings?: JsonNullableFilter<"MetaField">
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    sourceRelations?: MetaRelationListRelationFilter
+    targetRelations?: MetaRelationListRelationFilter
+    indexFields?: MetaIndexFieldListRelationFilter
+  }
+
+  export type MetaFieldOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isPrimaryKey?: SortOrder
+    isRequired?: SortOrder
+    isUnique?: SortOrder
+    isSystem?: SortOrder
+    isHidden?: SortOrder
+    ordinal?: SortOrder
+    defaultValue?: SortOrderInput | SortOrder
+    validationRules?: SortOrderInput | SortOrder
+    isSearchable?: SortOrder
+    isSortable?: SortOrder
+    isFilterable?: SortOrder
+    isAggregatable?: SortOrder
+    advancedSettings?: SortOrderInput | SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    sourceRelations?: MetaRelationOrderByRelationAggregateInput
+    targetRelations?: MetaRelationOrderByRelationAggregateInput
+    indexFields?: MetaIndexFieldOrderByRelationAggregateInput
+    _relevance?: MetaFieldOrderByRelevanceInput
+  }
+
+  export type MetaFieldWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tableId_name?: MetaFieldTableIdNameCompoundUniqueInput
+    AND?: MetaFieldWhereInput | MetaFieldWhereInput[]
+    OR?: MetaFieldWhereInput[]
+    NOT?: MetaFieldWhereInput | MetaFieldWhereInput[]
+    tableId?: StringFilter<"MetaField"> | string
+    name?: StringFilter<"MetaField"> | string
+    displayName?: StringFilter<"MetaField"> | string
+    description?: StringNullableFilter<"MetaField"> | string | null
+    type?: StringFilter<"MetaField"> | string
+    isPrimaryKey?: BoolFilter<"MetaField"> | boolean
+    isRequired?: BoolFilter<"MetaField"> | boolean
+    isUnique?: BoolFilter<"MetaField"> | boolean
+    isSystem?: BoolFilter<"MetaField"> | boolean
+    isHidden?: BoolFilter<"MetaField"> | boolean
+    ordinal?: IntFilter<"MetaField"> | number
+    defaultValue?: StringNullableFilter<"MetaField"> | string | null
+    validationRules?: JsonNullableFilter<"MetaField">
+    isSearchable?: BoolFilter<"MetaField"> | boolean
+    isSortable?: BoolFilter<"MetaField"> | boolean
+    isFilterable?: BoolFilter<"MetaField"> | boolean
+    isAggregatable?: BoolFilter<"MetaField"> | boolean
+    advancedSettings?: JsonNullableFilter<"MetaField">
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    sourceRelations?: MetaRelationListRelationFilter
+    targetRelations?: MetaRelationListRelationFilter
+    indexFields?: MetaIndexFieldListRelationFilter
+  }, "id" | "tableId_name">
+
+  export type MetaFieldOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isPrimaryKey?: SortOrder
+    isRequired?: SortOrder
+    isUnique?: SortOrder
+    isSystem?: SortOrder
+    isHidden?: SortOrder
+    ordinal?: SortOrder
+    defaultValue?: SortOrderInput | SortOrder
+    validationRules?: SortOrderInput | SortOrder
+    isSearchable?: SortOrder
+    isSortable?: SortOrder
+    isFilterable?: SortOrder
+    isAggregatable?: SortOrder
+    advancedSettings?: SortOrderInput | SortOrder
+    _count?: MetaFieldCountOrderByAggregateInput
+    _avg?: MetaFieldAvgOrderByAggregateInput
+    _max?: MetaFieldMaxOrderByAggregateInput
+    _min?: MetaFieldMinOrderByAggregateInput
+    _sum?: MetaFieldSumOrderByAggregateInput
+  }
+
+  export type MetaFieldScalarWhereWithAggregatesInput = {
+    AND?: MetaFieldScalarWhereWithAggregatesInput | MetaFieldScalarWhereWithAggregatesInput[]
+    OR?: MetaFieldScalarWhereWithAggregatesInput[]
+    NOT?: MetaFieldScalarWhereWithAggregatesInput | MetaFieldScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaField"> | string
+    tableId?: StringWithAggregatesFilter<"MetaField"> | string
+    name?: StringWithAggregatesFilter<"MetaField"> | string
+    displayName?: StringWithAggregatesFilter<"MetaField"> | string
+    description?: StringNullableWithAggregatesFilter<"MetaField"> | string | null
+    type?: StringWithAggregatesFilter<"MetaField"> | string
+    isPrimaryKey?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isRequired?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isUnique?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isSystem?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isHidden?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    ordinal?: IntWithAggregatesFilter<"MetaField"> | number
+    defaultValue?: StringNullableWithAggregatesFilter<"MetaField"> | string | null
+    validationRules?: JsonNullableWithAggregatesFilter<"MetaField">
+    isSearchable?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isSortable?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isFilterable?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    isAggregatable?: BoolWithAggregatesFilter<"MetaField"> | boolean
+    advancedSettings?: JsonNullableWithAggregatesFilter<"MetaField">
+  }
+
+  export type MetaRelationWhereInput = {
+    AND?: MetaRelationWhereInput | MetaRelationWhereInput[]
+    OR?: MetaRelationWhereInput[]
+    NOT?: MetaRelationWhereInput | MetaRelationWhereInput[]
+    id?: StringFilter<"MetaRelation"> | string
+    name?: StringFilter<"MetaRelation"> | string
+    description?: StringNullableFilter<"MetaRelation"> | string | null
+    sourceTableId?: StringFilter<"MetaRelation"> | string
+    targetTableId?: StringFilter<"MetaRelation"> | string
+    sourceFieldId?: StringFilter<"MetaRelation"> | string
+    targetFieldId?: StringFilter<"MetaRelation"> | string
+    type?: StringFilter<"MetaRelation"> | string
+    cascadeDelete?: BoolFilter<"MetaRelation"> | boolean
+    cascadeUpdate?: BoolFilter<"MetaRelation"> | boolean
+    isRequired?: BoolFilter<"MetaRelation"> | boolean
+    junctionTableId?: StringNullableFilter<"MetaRelation"> | string | null
+    customOptions?: JsonNullableFilter<"MetaRelation">
+    sourceTable?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    targetTable?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    sourceField?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+    targetField?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+    junctionTable?: XOR<MetaTableNullableScalarRelationFilter, MetaTableWhereInput> | null
+  }
+
+  export type MetaRelationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sourceTableId?: SortOrder
+    targetTableId?: SortOrder
+    sourceFieldId?: SortOrder
+    targetFieldId?: SortOrder
+    type?: SortOrder
+    cascadeDelete?: SortOrder
+    cascadeUpdate?: SortOrder
+    isRequired?: SortOrder
+    junctionTableId?: SortOrderInput | SortOrder
+    customOptions?: SortOrderInput | SortOrder
+    sourceTable?: MetaTableOrderByWithRelationInput
+    targetTable?: MetaTableOrderByWithRelationInput
+    sourceField?: MetaFieldOrderByWithRelationInput
+    targetField?: MetaFieldOrderByWithRelationInput
+    junctionTable?: MetaTableOrderByWithRelationInput
+    _relevance?: MetaRelationOrderByRelevanceInput
+  }
+
+  export type MetaRelationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MetaRelationWhereInput | MetaRelationWhereInput[]
+    OR?: MetaRelationWhereInput[]
+    NOT?: MetaRelationWhereInput | MetaRelationWhereInput[]
+    name?: StringFilter<"MetaRelation"> | string
+    description?: StringNullableFilter<"MetaRelation"> | string | null
+    sourceTableId?: StringFilter<"MetaRelation"> | string
+    targetTableId?: StringFilter<"MetaRelation"> | string
+    sourceFieldId?: StringFilter<"MetaRelation"> | string
+    targetFieldId?: StringFilter<"MetaRelation"> | string
+    type?: StringFilter<"MetaRelation"> | string
+    cascadeDelete?: BoolFilter<"MetaRelation"> | boolean
+    cascadeUpdate?: BoolFilter<"MetaRelation"> | boolean
+    isRequired?: BoolFilter<"MetaRelation"> | boolean
+    junctionTableId?: StringNullableFilter<"MetaRelation"> | string | null
+    customOptions?: JsonNullableFilter<"MetaRelation">
+    sourceTable?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    targetTable?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    sourceField?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+    targetField?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+    junctionTable?: XOR<MetaTableNullableScalarRelationFilter, MetaTableWhereInput> | null
+  }, "id">
+
+  export type MetaRelationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sourceTableId?: SortOrder
+    targetTableId?: SortOrder
+    sourceFieldId?: SortOrder
+    targetFieldId?: SortOrder
+    type?: SortOrder
+    cascadeDelete?: SortOrder
+    cascadeUpdate?: SortOrder
+    isRequired?: SortOrder
+    junctionTableId?: SortOrderInput | SortOrder
+    customOptions?: SortOrderInput | SortOrder
+    _count?: MetaRelationCountOrderByAggregateInput
+    _max?: MetaRelationMaxOrderByAggregateInput
+    _min?: MetaRelationMinOrderByAggregateInput
+  }
+
+  export type MetaRelationScalarWhereWithAggregatesInput = {
+    AND?: MetaRelationScalarWhereWithAggregatesInput | MetaRelationScalarWhereWithAggregatesInput[]
+    OR?: MetaRelationScalarWhereWithAggregatesInput[]
+    NOT?: MetaRelationScalarWhereWithAggregatesInput | MetaRelationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaRelation"> | string
+    name?: StringWithAggregatesFilter<"MetaRelation"> | string
+    description?: StringNullableWithAggregatesFilter<"MetaRelation"> | string | null
+    sourceTableId?: StringWithAggregatesFilter<"MetaRelation"> | string
+    targetTableId?: StringWithAggregatesFilter<"MetaRelation"> | string
+    sourceFieldId?: StringWithAggregatesFilter<"MetaRelation"> | string
+    targetFieldId?: StringWithAggregatesFilter<"MetaRelation"> | string
+    type?: StringWithAggregatesFilter<"MetaRelation"> | string
+    cascadeDelete?: BoolWithAggregatesFilter<"MetaRelation"> | boolean
+    cascadeUpdate?: BoolWithAggregatesFilter<"MetaRelation"> | boolean
+    isRequired?: BoolWithAggregatesFilter<"MetaRelation"> | boolean
+    junctionTableId?: StringNullableWithAggregatesFilter<"MetaRelation"> | string | null
+    customOptions?: JsonNullableWithAggregatesFilter<"MetaRelation">
+  }
+
+  export type MetaVersionWhereInput = {
+    AND?: MetaVersionWhereInput | MetaVersionWhereInput[]
+    OR?: MetaVersionWhereInput[]
+    NOT?: MetaVersionWhereInput | MetaVersionWhereInput[]
+    id?: StringFilter<"MetaVersion"> | string
+    tableId?: StringFilter<"MetaVersion"> | string
+    version?: IntFilter<"MetaVersion"> | number
+    name?: StringFilter<"MetaVersion"> | string
+    description?: StringNullableFilter<"MetaVersion"> | string | null
+    snapshot?: JsonFilter<"MetaVersion">
+    isPublished?: BoolFilter<"MetaVersion"> | boolean
+    createdBy?: StringFilter<"MetaVersion"> | string
+    createdAt?: DateTimeFilter<"MetaVersion"> | Date | string
+    comment?: StringNullableFilter<"MetaVersion"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    modelApprovals?: ModelApprovalListRelationFilter
+  }
+
+  export type MetaVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    snapshot?: SortOrder
+    isPublished?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    modelApprovals?: ModelApprovalOrderByRelationAggregateInput
+    _relevance?: MetaVersionOrderByRelevanceInput
+  }
+
+  export type MetaVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tableId_version?: MetaVersionTableIdVersionCompoundUniqueInput
+    AND?: MetaVersionWhereInput | MetaVersionWhereInput[]
+    OR?: MetaVersionWhereInput[]
+    NOT?: MetaVersionWhereInput | MetaVersionWhereInput[]
+    tableId?: StringFilter<"MetaVersion"> | string
+    version?: IntFilter<"MetaVersion"> | number
+    name?: StringFilter<"MetaVersion"> | string
+    description?: StringNullableFilter<"MetaVersion"> | string | null
+    snapshot?: JsonFilter<"MetaVersion">
+    isPublished?: BoolFilter<"MetaVersion"> | boolean
+    createdBy?: StringFilter<"MetaVersion"> | string
+    createdAt?: DateTimeFilter<"MetaVersion"> | Date | string
+    comment?: StringNullableFilter<"MetaVersion"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    modelApprovals?: ModelApprovalListRelationFilter
+  }, "id" | "tableId_version">
+
+  export type MetaVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    snapshot?: SortOrder
+    isPublished?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    _count?: MetaVersionCountOrderByAggregateInput
+    _avg?: MetaVersionAvgOrderByAggregateInput
+    _max?: MetaVersionMaxOrderByAggregateInput
+    _min?: MetaVersionMinOrderByAggregateInput
+    _sum?: MetaVersionSumOrderByAggregateInput
+  }
+
+  export type MetaVersionScalarWhereWithAggregatesInput = {
+    AND?: MetaVersionScalarWhereWithAggregatesInput | MetaVersionScalarWhereWithAggregatesInput[]
+    OR?: MetaVersionScalarWhereWithAggregatesInput[]
+    NOT?: MetaVersionScalarWhereWithAggregatesInput | MetaVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaVersion"> | string
+    tableId?: StringWithAggregatesFilter<"MetaVersion"> | string
+    version?: IntWithAggregatesFilter<"MetaVersion"> | number
+    name?: StringWithAggregatesFilter<"MetaVersion"> | string
+    description?: StringNullableWithAggregatesFilter<"MetaVersion"> | string | null
+    snapshot?: JsonWithAggregatesFilter<"MetaVersion">
+    isPublished?: BoolWithAggregatesFilter<"MetaVersion"> | boolean
+    createdBy?: StringWithAggregatesFilter<"MetaVersion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MetaVersion"> | Date | string
+    comment?: StringNullableWithAggregatesFilter<"MetaVersion"> | string | null
+  }
+
+  export type MetaIndexWhereInput = {
+    AND?: MetaIndexWhereInput | MetaIndexWhereInput[]
+    OR?: MetaIndexWhereInput[]
+    NOT?: MetaIndexWhereInput | MetaIndexWhereInput[]
+    id?: StringFilter<"MetaIndex"> | string
+    tableId?: StringFilter<"MetaIndex"> | string
+    name?: StringFilter<"MetaIndex"> | string
+    type?: StringFilter<"MetaIndex"> | string
+    isUnique?: BoolFilter<"MetaIndex"> | boolean
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    fields?: MetaIndexFieldListRelationFilter
+  }
+
+  export type MetaIndexOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isUnique?: SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    fields?: MetaIndexFieldOrderByRelationAggregateInput
+    _relevance?: MetaIndexOrderByRelevanceInput
+  }
+
+  export type MetaIndexWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MetaIndexWhereInput | MetaIndexWhereInput[]
+    OR?: MetaIndexWhereInput[]
+    NOT?: MetaIndexWhereInput | MetaIndexWhereInput[]
+    tableId?: StringFilter<"MetaIndex"> | string
+    name?: StringFilter<"MetaIndex"> | string
+    type?: StringFilter<"MetaIndex"> | string
+    isUnique?: BoolFilter<"MetaIndex"> | boolean
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    fields?: MetaIndexFieldListRelationFilter
+  }, "id">
+
+  export type MetaIndexOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isUnique?: SortOrder
+    _count?: MetaIndexCountOrderByAggregateInput
+    _max?: MetaIndexMaxOrderByAggregateInput
+    _min?: MetaIndexMinOrderByAggregateInput
+  }
+
+  export type MetaIndexScalarWhereWithAggregatesInput = {
+    AND?: MetaIndexScalarWhereWithAggregatesInput | MetaIndexScalarWhereWithAggregatesInput[]
+    OR?: MetaIndexScalarWhereWithAggregatesInput[]
+    NOT?: MetaIndexScalarWhereWithAggregatesInput | MetaIndexScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaIndex"> | string
+    tableId?: StringWithAggregatesFilter<"MetaIndex"> | string
+    name?: StringWithAggregatesFilter<"MetaIndex"> | string
+    type?: StringWithAggregatesFilter<"MetaIndex"> | string
+    isUnique?: BoolWithAggregatesFilter<"MetaIndex"> | boolean
+  }
+
+  export type MetaIndexFieldWhereInput = {
+    AND?: MetaIndexFieldWhereInput | MetaIndexFieldWhereInput[]
+    OR?: MetaIndexFieldWhereInput[]
+    NOT?: MetaIndexFieldWhereInput | MetaIndexFieldWhereInput[]
+    id?: StringFilter<"MetaIndexField"> | string
+    indexId?: StringFilter<"MetaIndexField"> | string
+    fieldId?: StringFilter<"MetaIndexField"> | string
+    ordinal?: IntFilter<"MetaIndexField"> | number
+    index?: XOR<MetaIndexScalarRelationFilter, MetaIndexWhereInput>
+    field?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+  }
+
+  export type MetaIndexFieldOrderByWithRelationInput = {
+    id?: SortOrder
+    indexId?: SortOrder
+    fieldId?: SortOrder
+    ordinal?: SortOrder
+    index?: MetaIndexOrderByWithRelationInput
+    field?: MetaFieldOrderByWithRelationInput
+    _relevance?: MetaIndexFieldOrderByRelevanceInput
+  }
+
+  export type MetaIndexFieldWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MetaIndexFieldWhereInput | MetaIndexFieldWhereInput[]
+    OR?: MetaIndexFieldWhereInput[]
+    NOT?: MetaIndexFieldWhereInput | MetaIndexFieldWhereInput[]
+    indexId?: StringFilter<"MetaIndexField"> | string
+    fieldId?: StringFilter<"MetaIndexField"> | string
+    ordinal?: IntFilter<"MetaIndexField"> | number
+    index?: XOR<MetaIndexScalarRelationFilter, MetaIndexWhereInput>
+    field?: XOR<MetaFieldScalarRelationFilter, MetaFieldWhereInput>
+  }, "id">
+
+  export type MetaIndexFieldOrderByWithAggregationInput = {
+    id?: SortOrder
+    indexId?: SortOrder
+    fieldId?: SortOrder
+    ordinal?: SortOrder
+    _count?: MetaIndexFieldCountOrderByAggregateInput
+    _avg?: MetaIndexFieldAvgOrderByAggregateInput
+    _max?: MetaIndexFieldMaxOrderByAggregateInput
+    _min?: MetaIndexFieldMinOrderByAggregateInput
+    _sum?: MetaIndexFieldSumOrderByAggregateInput
+  }
+
+  export type MetaIndexFieldScalarWhereWithAggregatesInput = {
+    AND?: MetaIndexFieldScalarWhereWithAggregatesInput | MetaIndexFieldScalarWhereWithAggregatesInput[]
+    OR?: MetaIndexFieldScalarWhereWithAggregatesInput[]
+    NOT?: MetaIndexFieldScalarWhereWithAggregatesInput | MetaIndexFieldScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaIndexField"> | string
+    indexId?: StringWithAggregatesFilter<"MetaIndexField"> | string
+    fieldId?: StringWithAggregatesFilter<"MetaIndexField"> | string
+    ordinal?: IntWithAggregatesFilter<"MetaIndexField"> | number
+  }
+
+  export type MetaConstraintWhereInput = {
+    AND?: MetaConstraintWhereInput | MetaConstraintWhereInput[]
+    OR?: MetaConstraintWhereInput[]
+    NOT?: MetaConstraintWhereInput | MetaConstraintWhereInput[]
+    id?: StringFilter<"MetaConstraint"> | string
+    tableId?: StringFilter<"MetaConstraint"> | string
+    name?: StringFilter<"MetaConstraint"> | string
+    type?: StringFilter<"MetaConstraint"> | string
+    fields?: JsonFilter<"MetaConstraint">
+    expression?: StringNullableFilter<"MetaConstraint"> | string | null
+    message?: StringNullableFilter<"MetaConstraint"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }
+
+  export type MetaConstraintOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    fields?: SortOrder
+    expression?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    _relevance?: MetaConstraintOrderByRelevanceInput
+  }
+
+  export type MetaConstraintWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MetaConstraintWhereInput | MetaConstraintWhereInput[]
+    OR?: MetaConstraintWhereInput[]
+    NOT?: MetaConstraintWhereInput | MetaConstraintWhereInput[]
+    tableId?: StringFilter<"MetaConstraint"> | string
+    name?: StringFilter<"MetaConstraint"> | string
+    type?: StringFilter<"MetaConstraint"> | string
+    fields?: JsonFilter<"MetaConstraint">
+    expression?: StringNullableFilter<"MetaConstraint"> | string | null
+    message?: StringNullableFilter<"MetaConstraint"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }, "id">
+
+  export type MetaConstraintOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    fields?: SortOrder
+    expression?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    _count?: MetaConstraintCountOrderByAggregateInput
+    _max?: MetaConstraintMaxOrderByAggregateInput
+    _min?: MetaConstraintMinOrderByAggregateInput
+  }
+
+  export type MetaConstraintScalarWhereWithAggregatesInput = {
+    AND?: MetaConstraintScalarWhereWithAggregatesInput | MetaConstraintScalarWhereWithAggregatesInput[]
+    OR?: MetaConstraintScalarWhereWithAggregatesInput[]
+    NOT?: MetaConstraintScalarWhereWithAggregatesInput | MetaConstraintScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MetaConstraint"> | string
+    tableId?: StringWithAggregatesFilter<"MetaConstraint"> | string
+    name?: StringWithAggregatesFilter<"MetaConstraint"> | string
+    type?: StringWithAggregatesFilter<"MetaConstraint"> | string
+    fields?: JsonWithAggregatesFilter<"MetaConstraint">
+    expression?: StringNullableWithAggregatesFilter<"MetaConstraint"> | string | null
+    message?: StringNullableWithAggregatesFilter<"MetaConstraint"> | string | null
+  }
+
+  export type ModelApprovalWhereInput = {
+    AND?: ModelApprovalWhereInput | ModelApprovalWhereInput[]
+    OR?: ModelApprovalWhereInput[]
+    NOT?: ModelApprovalWhereInput | ModelApprovalWhereInput[]
+    id?: StringFilter<"ModelApproval"> | string
+    tableId?: StringFilter<"ModelApproval"> | string
+    versionId?: StringFilter<"ModelApproval"> | string
+    description?: StringFilter<"ModelApproval"> | string
+    attachments?: StringNullableFilter<"ModelApproval"> | string | null
+    status?: StringFilter<"ModelApproval"> | string
+    requestedBy?: StringFilter<"ModelApproval"> | string
+    requestedAt?: DateTimeFilter<"ModelApproval"> | Date | string
+    approvedBy?: StringNullableFilter<"ModelApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"ModelApproval"> | Date | string | null
+    comment?: StringNullableFilter<"ModelApproval"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    version?: XOR<MetaVersionScalarRelationFilter, MetaVersionWhereInput>
+  }
+
+  export type ModelApprovalOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    versionId?: SortOrder
+    description?: SortOrder
+    attachments?: SortOrderInput | SortOrder
+    status?: SortOrder
+    requestedBy?: SortOrder
+    requestedAt?: SortOrder
+    approvedBy?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    comment?: SortOrderInput | SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    version?: MetaVersionOrderByWithRelationInput
+    _relevance?: ModelApprovalOrderByRelevanceInput
+  }
+
+  export type ModelApprovalWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ModelApprovalWhereInput | ModelApprovalWhereInput[]
+    OR?: ModelApprovalWhereInput[]
+    NOT?: ModelApprovalWhereInput | ModelApprovalWhereInput[]
+    tableId?: StringFilter<"ModelApproval"> | string
+    versionId?: StringFilter<"ModelApproval"> | string
+    description?: StringFilter<"ModelApproval"> | string
+    attachments?: StringNullableFilter<"ModelApproval"> | string | null
+    status?: StringFilter<"ModelApproval"> | string
+    requestedBy?: StringFilter<"ModelApproval"> | string
+    requestedAt?: DateTimeFilter<"ModelApproval"> | Date | string
+    approvedBy?: StringNullableFilter<"ModelApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"ModelApproval"> | Date | string | null
+    comment?: StringNullableFilter<"ModelApproval"> | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+    version?: XOR<MetaVersionScalarRelationFilter, MetaVersionWhereInput>
+  }, "id">
+
+  export type ModelApprovalOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    versionId?: SortOrder
+    description?: SortOrder
+    attachments?: SortOrderInput | SortOrder
+    status?: SortOrder
+    requestedBy?: SortOrder
+    requestedAt?: SortOrder
+    approvedBy?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    comment?: SortOrderInput | SortOrder
+    _count?: ModelApprovalCountOrderByAggregateInput
+    _max?: ModelApprovalMaxOrderByAggregateInput
+    _min?: ModelApprovalMinOrderByAggregateInput
+  }
+
+  export type ModelApprovalScalarWhereWithAggregatesInput = {
+    AND?: ModelApprovalScalarWhereWithAggregatesInput | ModelApprovalScalarWhereWithAggregatesInput[]
+    OR?: ModelApprovalScalarWhereWithAggregatesInput[]
+    NOT?: ModelApprovalScalarWhereWithAggregatesInput | ModelApprovalScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModelApproval"> | string
+    tableId?: StringWithAggregatesFilter<"ModelApproval"> | string
+    versionId?: StringWithAggregatesFilter<"ModelApproval"> | string
+    description?: StringWithAggregatesFilter<"ModelApproval"> | string
+    attachments?: StringNullableWithAggregatesFilter<"ModelApproval"> | string | null
+    status?: StringWithAggregatesFilter<"ModelApproval"> | string
+    requestedBy?: StringWithAggregatesFilter<"ModelApproval"> | string
+    requestedAt?: DateTimeWithAggregatesFilter<"ModelApproval"> | Date | string
+    approvedBy?: StringNullableWithAggregatesFilter<"ModelApproval"> | string | null
+    approvedAt?: DateTimeNullableWithAggregatesFilter<"ModelApproval"> | Date | string | null
+    comment?: StringNullableWithAggregatesFilter<"ModelApproval"> | string | null
+  }
+
+  export type TestDataGenerationWhereInput = {
+    AND?: TestDataGenerationWhereInput | TestDataGenerationWhereInput[]
+    OR?: TestDataGenerationWhereInput[]
+    NOT?: TestDataGenerationWhereInput | TestDataGenerationWhereInput[]
+    id?: StringFilter<"TestDataGeneration"> | string
+    tableId?: StringFilter<"TestDataGeneration"> | string
+    count?: IntFilter<"TestDataGeneration"> | number
+    includeRelations?: BoolFilter<"TestDataGeneration"> | boolean
+    relationDepth?: IntFilter<"TestDataGeneration"> | number
+    options?: JsonNullableFilter<"TestDataGeneration">
+    createdBy?: StringFilter<"TestDataGeneration"> | string
+    createdAt?: DateTimeFilter<"TestDataGeneration"> | Date | string
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }
+
+  export type TestDataGenerationOrderByWithRelationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    count?: SortOrder
+    includeRelations?: SortOrder
+    relationDepth?: SortOrder
+    options?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    _relevance?: TestDataGenerationOrderByRelevanceInput
+  }
+
+  export type TestDataGenerationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TestDataGenerationWhereInput | TestDataGenerationWhereInput[]
+    OR?: TestDataGenerationWhereInput[]
+    NOT?: TestDataGenerationWhereInput | TestDataGenerationWhereInput[]
+    tableId?: StringFilter<"TestDataGeneration"> | string
+    count?: IntFilter<"TestDataGeneration"> | number
+    includeRelations?: BoolFilter<"TestDataGeneration"> | boolean
+    relationDepth?: IntFilter<"TestDataGeneration"> | number
+    options?: JsonNullableFilter<"TestDataGeneration">
+    createdBy?: StringFilter<"TestDataGeneration"> | string
+    createdAt?: DateTimeFilter<"TestDataGeneration"> | Date | string
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }, "id">
+
+  export type TestDataGenerationOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    count?: SortOrder
+    includeRelations?: SortOrder
+    relationDepth?: SortOrder
+    options?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    _count?: TestDataGenerationCountOrderByAggregateInput
+    _avg?: TestDataGenerationAvgOrderByAggregateInput
+    _max?: TestDataGenerationMaxOrderByAggregateInput
+    _min?: TestDataGenerationMinOrderByAggregateInput
+    _sum?: TestDataGenerationSumOrderByAggregateInput
+  }
+
+  export type TestDataGenerationScalarWhereWithAggregatesInput = {
+    AND?: TestDataGenerationScalarWhereWithAggregatesInput | TestDataGenerationScalarWhereWithAggregatesInput[]
+    OR?: TestDataGenerationScalarWhereWithAggregatesInput[]
+    NOT?: TestDataGenerationScalarWhereWithAggregatesInput | TestDataGenerationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TestDataGeneration"> | string
+    tableId?: StringWithAggregatesFilter<"TestDataGeneration"> | string
+    count?: IntWithAggregatesFilter<"TestDataGeneration"> | number
+    includeRelations?: BoolWithAggregatesFilter<"TestDataGeneration"> | boolean
+    relationDepth?: IntWithAggregatesFilter<"TestDataGeneration"> | number
+    options?: JsonNullableWithAggregatesFilter<"TestDataGeneration">
+    createdBy?: StringWithAggregatesFilter<"TestDataGeneration"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TestDataGeneration"> | Date | string
+  }
+
+  export type TestDataTemplateWhereInput = {
+    AND?: TestDataTemplateWhereInput | TestDataTemplateWhereInput[]
+    OR?: TestDataTemplateWhereInput[]
+    NOT?: TestDataTemplateWhereInput | TestDataTemplateWhereInput[]
+    id?: StringFilter<"TestDataTemplate"> | string
+    name?: StringFilter<"TestDataTemplate"> | string
+    tableId?: StringFilter<"TestDataTemplate"> | string
+    description?: StringNullableFilter<"TestDataTemplate"> | string | null
+    fieldOverrides?: JsonFilter<"TestDataTemplate">
+    createdBy?: StringFilter<"TestDataTemplate"> | string
+    createdAt?: DateTimeFilter<"TestDataTemplate"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"TestDataTemplate"> | Date | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }
+
+  export type TestDataTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tableId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    fieldOverrides?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    table?: MetaTableOrderByWithRelationInput
+    _relevance?: TestDataTemplateOrderByRelevanceInput
+  }
+
+  export type TestDataTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TestDataTemplateWhereInput | TestDataTemplateWhereInput[]
+    OR?: TestDataTemplateWhereInput[]
+    NOT?: TestDataTemplateWhereInput | TestDataTemplateWhereInput[]
+    name?: StringFilter<"TestDataTemplate"> | string
+    tableId?: StringFilter<"TestDataTemplate"> | string
+    description?: StringNullableFilter<"TestDataTemplate"> | string | null
+    fieldOverrides?: JsonFilter<"TestDataTemplate">
+    createdBy?: StringFilter<"TestDataTemplate"> | string
+    createdAt?: DateTimeFilter<"TestDataTemplate"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"TestDataTemplate"> | Date | string | null
+    table?: XOR<MetaTableScalarRelationFilter, MetaTableWhereInput>
+  }, "id">
+
+  export type TestDataTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tableId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    fieldOverrides?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    _count?: TestDataTemplateCountOrderByAggregateInput
+    _max?: TestDataTemplateMaxOrderByAggregateInput
+    _min?: TestDataTemplateMinOrderByAggregateInput
+  }
+
+  export type TestDataTemplateScalarWhereWithAggregatesInput = {
+    AND?: TestDataTemplateScalarWhereWithAggregatesInput | TestDataTemplateScalarWhereWithAggregatesInput[]
+    OR?: TestDataTemplateScalarWhereWithAggregatesInput[]
+    NOT?: TestDataTemplateScalarWhereWithAggregatesInput | TestDataTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TestDataTemplate"> | string
+    name?: StringWithAggregatesFilter<"TestDataTemplate"> | string
+    tableId?: StringWithAggregatesFilter<"TestDataTemplate"> | string
+    description?: StringNullableWithAggregatesFilter<"TestDataTemplate"> | string | null
+    fieldOverrides?: JsonWithAggregatesFilter<"TestDataTemplate">
+    createdBy?: StringWithAggregatesFilter<"TestDataTemplate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TestDataTemplate"> | Date | string
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"TestDataTemplate"> | Date | string | null
+  }
+
+  export type VisualDiagramWhereInput = {
+    AND?: VisualDiagramWhereInput | VisualDiagramWhereInput[]
+    OR?: VisualDiagramWhereInput[]
+    NOT?: VisualDiagramWhereInput | VisualDiagramWhereInput[]
+    id?: StringFilter<"VisualDiagram"> | string
+    name?: StringFilter<"VisualDiagram"> | string
+    description?: StringNullableFilter<"VisualDiagram"> | string | null
+    tableIds?: JsonFilter<"VisualDiagram">
+    elements?: JsonFilter<"VisualDiagram">
+    connections?: JsonFilter<"VisualDiagram">
+    settings?: JsonNullableFilter<"VisualDiagram">
+    createdBy?: StringFilter<"VisualDiagram"> | string
+    createdAt?: DateTimeFilter<"VisualDiagram"> | Date | string
+    updatedBy?: StringNullableFilter<"VisualDiagram"> | string | null
+    updatedAt?: DateTimeNullableFilter<"VisualDiagram"> | Date | string | null
+  }
+
+  export type VisualDiagramOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tableIds?: SortOrder
+    elements?: SortOrder
+    connections?: SortOrder
+    settings?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    _relevance?: VisualDiagramOrderByRelevanceInput
+  }
+
+  export type VisualDiagramWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: VisualDiagramWhereInput | VisualDiagramWhereInput[]
+    OR?: VisualDiagramWhereInput[]
+    NOT?: VisualDiagramWhereInput | VisualDiagramWhereInput[]
+    name?: StringFilter<"VisualDiagram"> | string
+    description?: StringNullableFilter<"VisualDiagram"> | string | null
+    tableIds?: JsonFilter<"VisualDiagram">
+    elements?: JsonFilter<"VisualDiagram">
+    connections?: JsonFilter<"VisualDiagram">
+    settings?: JsonNullableFilter<"VisualDiagram">
+    createdBy?: StringFilter<"VisualDiagram"> | string
+    createdAt?: DateTimeFilter<"VisualDiagram"> | Date | string
+    updatedBy?: StringNullableFilter<"VisualDiagram"> | string | null
+    updatedAt?: DateTimeNullableFilter<"VisualDiagram"> | Date | string | null
+  }, "id">
+
+  export type VisualDiagramOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tableIds?: SortOrder
+    elements?: SortOrder
+    connections?: SortOrder
+    settings?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    _count?: VisualDiagramCountOrderByAggregateInput
+    _max?: VisualDiagramMaxOrderByAggregateInput
+    _min?: VisualDiagramMinOrderByAggregateInput
+  }
+
+  export type VisualDiagramScalarWhereWithAggregatesInput = {
+    AND?: VisualDiagramScalarWhereWithAggregatesInput | VisualDiagramScalarWhereWithAggregatesInput[]
+    OR?: VisualDiagramScalarWhereWithAggregatesInput[]
+    NOT?: VisualDiagramScalarWhereWithAggregatesInput | VisualDiagramScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VisualDiagram"> | string
+    name?: StringWithAggregatesFilter<"VisualDiagram"> | string
+    description?: StringNullableWithAggregatesFilter<"VisualDiagram"> | string | null
+    tableIds?: JsonWithAggregatesFilter<"VisualDiagram">
+    elements?: JsonWithAggregatesFilter<"VisualDiagram">
+    connections?: JsonWithAggregatesFilter<"VisualDiagram">
+    settings?: JsonNullableWithAggregatesFilter<"VisualDiagram">
+    createdBy?: StringWithAggregatesFilter<"VisualDiagram"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"VisualDiagram"> | Date | string
+    updatedBy?: StringNullableWithAggregatesFilter<"VisualDiagram"> | string | null
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"VisualDiagram"> | Date | string | null
   }
 
   export type UserCreateInput = {
@@ -7562,6 +21404,1073 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MetaTableCreateInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableCreateManyInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaTableUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaTableUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaFieldCreateInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table: MetaTableCreateNestedOneWithoutFieldsInput
+    sourceRelations?: MetaRelationCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldUncheckedCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table?: MetaTableUpdateOneRequiredWithoutFieldsNestedInput
+    sourceRelations?: MetaRelationUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUncheckedUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldCreateManyInput = {
+    id?: string
+    tableId: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaFieldUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaFieldUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable: MetaTableCreateNestedOneWithoutRelationsInput
+    targetTable: MetaTableCreateNestedOneWithoutTargetRelationsInput
+    sourceField: MetaFieldCreateNestedOneWithoutSourceRelationsInput
+    targetField: MetaFieldCreateNestedOneWithoutTargetRelationsInput
+    junctionTable?: MetaTableCreateNestedOneWithoutJunctionRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable?: MetaTableUpdateOneRequiredWithoutRelationsNestedInput
+    targetTable?: MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput
+    sourceField?: MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput
+    targetField?: MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput
+    junctionTable?: MetaTableUpdateOneWithoutJunctionRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaVersionCreateInput = {
+    id?: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+    table: MetaTableCreateNestedOneWithoutVersionsInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutVersionInput
+  }
+
+  export type MetaVersionUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutVersionInput
+  }
+
+  export type MetaVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    table?: MetaTableUpdateOneRequiredWithoutVersionsNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutVersionNestedInput
+  }
+
+  export type MetaVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutVersionNestedInput
+  }
+
+  export type MetaVersionCreateManyInput = {
+    id?: string
+    tableId: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+  }
+
+  export type MetaVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaIndexCreateInput = {
+    id?: string
+    name: string
+    type?: string
+    isUnique?: boolean
+    table: MetaTableCreateNestedOneWithoutIndexesInput
+    fields?: MetaIndexFieldCreateNestedManyWithoutIndexInput
+  }
+
+  export type MetaIndexUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    name: string
+    type?: string
+    isUnique?: boolean
+    fields?: MetaIndexFieldUncheckedCreateNestedManyWithoutIndexInput
+  }
+
+  export type MetaIndexUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    table?: MetaTableUpdateOneRequiredWithoutIndexesNestedInput
+    fields?: MetaIndexFieldUpdateManyWithoutIndexNestedInput
+  }
+
+  export type MetaIndexUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    fields?: MetaIndexFieldUncheckedUpdateManyWithoutIndexNestedInput
+  }
+
+  export type MetaIndexCreateManyInput = {
+    id?: string
+    tableId: string
+    name: string
+    type?: string
+    isUnique?: boolean
+  }
+
+  export type MetaIndexUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MetaIndexUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MetaIndexFieldCreateInput = {
+    id?: string
+    ordinal: number
+    index: MetaIndexCreateNestedOneWithoutFieldsInput
+    field: MetaFieldCreateNestedOneWithoutIndexFieldsInput
+  }
+
+  export type MetaIndexFieldUncheckedCreateInput = {
+    id?: string
+    indexId: string
+    fieldId: string
+    ordinal: number
+  }
+
+  export type MetaIndexFieldUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+    index?: MetaIndexUpdateOneRequiredWithoutFieldsNestedInput
+    field?: MetaFieldUpdateOneRequiredWithoutIndexFieldsNestedInput
+  }
+
+  export type MetaIndexFieldUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indexId?: StringFieldUpdateOperationsInput | string
+    fieldId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetaIndexFieldCreateManyInput = {
+    id?: string
+    indexId: string
+    fieldId: string
+    ordinal: number
+  }
+
+  export type MetaIndexFieldUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetaIndexFieldUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indexId?: StringFieldUpdateOperationsInput | string
+    fieldId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetaConstraintCreateInput = {
+    id?: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+    table: MetaTableCreateNestedOneWithoutConstraintsInput
+  }
+
+  export type MetaConstraintUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+  }
+
+  export type MetaConstraintUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    table?: MetaTableUpdateOneRequiredWithoutConstraintsNestedInput
+  }
+
+  export type MetaConstraintUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaConstraintCreateManyInput = {
+    id?: string
+    tableId: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+  }
+
+  export type MetaConstraintUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaConstraintUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalCreateInput = {
+    id?: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+    table: MetaTableCreateNestedOneWithoutModelApprovalsInput
+    version: MetaVersionCreateNestedOneWithoutModelApprovalsInput
+  }
+
+  export type ModelApprovalUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    versionId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type ModelApprovalUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    table?: MetaTableUpdateOneRequiredWithoutModelApprovalsNestedInput
+    version?: MetaVersionUpdateOneRequiredWithoutModelApprovalsNestedInput
+  }
+
+  export type ModelApprovalUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    versionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalCreateManyInput = {
+    id?: string
+    tableId: string
+    versionId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type ModelApprovalUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    versionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TestDataGenerationCreateInput = {
+    id?: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    table: MetaTableCreateNestedOneWithoutTestDataGenerationsInput
+  }
+
+  export type TestDataGenerationUncheckedCreateInput = {
+    id?: string
+    tableId: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+  }
+
+  export type TestDataGenerationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    table?: MetaTableUpdateOneRequiredWithoutTestDataGenerationsNestedInput
+  }
+
+  export type TestDataGenerationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataGenerationCreateManyInput = {
+    id?: string
+    tableId: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+  }
+
+  export type TestDataGenerationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataGenerationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataTemplateCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    table: MetaTableCreateNestedOneWithoutTestDataTemplatesInput
+  }
+
+  export type TestDataTemplateUncheckedCreateInput = {
+    id?: string
+    name: string
+    tableId: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type TestDataTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    table?: MetaTableUpdateOneRequiredWithoutTestDataTemplatesNestedInput
+  }
+
+  export type TestDataTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TestDataTemplateCreateManyInput = {
+    id?: string
+    name: string
+    tableId: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type TestDataTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TestDataTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VisualDiagramCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tableIds: JsonNullValueInput | InputJsonValue
+    elements: JsonNullValueInput | InputJsonValue
+    connections: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type VisualDiagramUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tableIds: JsonNullValueInput | InputJsonValue
+    elements: JsonNullValueInput | InputJsonValue
+    connections: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type VisualDiagramUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tableIds?: JsonNullValueInput | InputJsonValue
+    elements?: JsonNullValueInput | InputJsonValue
+    connections?: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VisualDiagramUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tableIds?: JsonNullValueInput | InputJsonValue
+    elements?: JsonNullValueInput | InputJsonValue
+    connections?: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VisualDiagramCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tableIds: JsonNullValueInput | InputJsonValue
+    elements: JsonNullValueInput | InputJsonValue
+    connections: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type VisualDiagramUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tableIds?: JsonNullValueInput | InputJsonValue
+    elements?: JsonNullValueInput | InputJsonValue
+    connections?: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VisualDiagramUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tableIds?: JsonNullValueInput | InputJsonValue
+    elements?: JsonNullValueInput | InputJsonValue
+    connections?: JsonNullValueInput | InputJsonValue
+    settings?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -7903,6 +22812,776 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type MetaFieldListRelationFilter = {
+    every?: MetaFieldWhereInput
+    some?: MetaFieldWhereInput
+    none?: MetaFieldWhereInput
+  }
+
+  export type MetaRelationListRelationFilter = {
+    every?: MetaRelationWhereInput
+    some?: MetaRelationWhereInput
+    none?: MetaRelationWhereInput
+  }
+
+  export type MetaVersionListRelationFilter = {
+    every?: MetaVersionWhereInput
+    some?: MetaVersionWhereInput
+    none?: MetaVersionWhereInput
+  }
+
+  export type MetaIndexListRelationFilter = {
+    every?: MetaIndexWhereInput
+    some?: MetaIndexWhereInput
+    none?: MetaIndexWhereInput
+  }
+
+  export type MetaConstraintListRelationFilter = {
+    every?: MetaConstraintWhereInput
+    some?: MetaConstraintWhereInput
+    none?: MetaConstraintWhereInput
+  }
+
+  export type ModelApprovalListRelationFilter = {
+    every?: ModelApprovalWhereInput
+    some?: ModelApprovalWhereInput
+    none?: ModelApprovalWhereInput
+  }
+
+  export type TestDataGenerationListRelationFilter = {
+    every?: TestDataGenerationWhereInput
+    some?: TestDataGenerationWhereInput
+    none?: TestDataGenerationWhereInput
+  }
+
+  export type TestDataTemplateListRelationFilter = {
+    every?: TestDataTemplateWhereInput
+    some?: TestDataTemplateWhereInput
+    none?: TestDataTemplateWhereInput
+  }
+
+  export type MetaFieldOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaRelationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaIndexOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaConstraintOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModelApprovalOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TestDataGenerationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TestDataTemplateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaTableOrderByRelevanceInput = {
+    fields: MetaTableOrderByRelevanceFieldEnum | MetaTableOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaTableNameTenantApplicationCompoundUniqueInput = {
+    name: string
+    tenant: string
+    application: string
+  }
+
+  export type MetaTableCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    isSystem?: SortOrder
+    isSoftDelete?: SortOrder
+    isVersioned?: SortOrder
+    status?: SortOrder
+    tenant?: SortOrder
+    application?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    auditFields?: SortOrder
+    apiEnabled?: SortOrder
+    customOptions?: SortOrder
+  }
+
+  export type MetaTableMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    isSystem?: SortOrder
+    isSoftDelete?: SortOrder
+    isVersioned?: SortOrder
+    status?: SortOrder
+    tenant?: SortOrder
+    application?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    auditFields?: SortOrder
+    apiEnabled?: SortOrder
+  }
+
+  export type MetaTableMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    isSystem?: SortOrder
+    isSoftDelete?: SortOrder
+    isVersioned?: SortOrder
+    status?: SortOrder
+    tenant?: SortOrder
+    application?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    auditFields?: SortOrder
+    apiEnabled?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type MetaTableScalarRelationFilter = {
+    is?: MetaTableWhereInput
+    isNot?: MetaTableWhereInput
+  }
+
+  export type MetaIndexFieldListRelationFilter = {
+    every?: MetaIndexFieldWhereInput
+    some?: MetaIndexFieldWhereInput
+    none?: MetaIndexFieldWhereInput
+  }
+
+  export type MetaIndexFieldOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MetaFieldOrderByRelevanceInput = {
+    fields: MetaFieldOrderByRelevanceFieldEnum | MetaFieldOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaFieldTableIdNameCompoundUniqueInput = {
+    tableId: string
+    name: string
+  }
+
+  export type MetaFieldCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    isPrimaryKey?: SortOrder
+    isRequired?: SortOrder
+    isUnique?: SortOrder
+    isSystem?: SortOrder
+    isHidden?: SortOrder
+    ordinal?: SortOrder
+    defaultValue?: SortOrder
+    validationRules?: SortOrder
+    isSearchable?: SortOrder
+    isSortable?: SortOrder
+    isFilterable?: SortOrder
+    isAggregatable?: SortOrder
+    advancedSettings?: SortOrder
+  }
+
+  export type MetaFieldAvgOrderByAggregateInput = {
+    ordinal?: SortOrder
+  }
+
+  export type MetaFieldMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    isPrimaryKey?: SortOrder
+    isRequired?: SortOrder
+    isUnique?: SortOrder
+    isSystem?: SortOrder
+    isHidden?: SortOrder
+    ordinal?: SortOrder
+    defaultValue?: SortOrder
+    isSearchable?: SortOrder
+    isSortable?: SortOrder
+    isFilterable?: SortOrder
+    isAggregatable?: SortOrder
+  }
+
+  export type MetaFieldMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    isPrimaryKey?: SortOrder
+    isRequired?: SortOrder
+    isUnique?: SortOrder
+    isSystem?: SortOrder
+    isHidden?: SortOrder
+    ordinal?: SortOrder
+    defaultValue?: SortOrder
+    isSearchable?: SortOrder
+    isSortable?: SortOrder
+    isFilterable?: SortOrder
+    isAggregatable?: SortOrder
+  }
+
+  export type MetaFieldSumOrderByAggregateInput = {
+    ordinal?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type MetaFieldScalarRelationFilter = {
+    is?: MetaFieldWhereInput
+    isNot?: MetaFieldWhereInput
+  }
+
+  export type MetaTableNullableScalarRelationFilter = {
+    is?: MetaTableWhereInput | null
+    isNot?: MetaTableWhereInput | null
+  }
+
+  export type MetaRelationOrderByRelevanceInput = {
+    fields: MetaRelationOrderByRelevanceFieldEnum | MetaRelationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaRelationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    sourceTableId?: SortOrder
+    targetTableId?: SortOrder
+    sourceFieldId?: SortOrder
+    targetFieldId?: SortOrder
+    type?: SortOrder
+    cascadeDelete?: SortOrder
+    cascadeUpdate?: SortOrder
+    isRequired?: SortOrder
+    junctionTableId?: SortOrder
+    customOptions?: SortOrder
+  }
+
+  export type MetaRelationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    sourceTableId?: SortOrder
+    targetTableId?: SortOrder
+    sourceFieldId?: SortOrder
+    targetFieldId?: SortOrder
+    type?: SortOrder
+    cascadeDelete?: SortOrder
+    cascadeUpdate?: SortOrder
+    isRequired?: SortOrder
+    junctionTableId?: SortOrder
+  }
+
+  export type MetaRelationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    sourceTableId?: SortOrder
+    targetTableId?: SortOrder
+    sourceFieldId?: SortOrder
+    targetFieldId?: SortOrder
+    type?: SortOrder
+    cascadeDelete?: SortOrder
+    cascadeUpdate?: SortOrder
+    isRequired?: SortOrder
+    junctionTableId?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type MetaVersionOrderByRelevanceInput = {
+    fields: MetaVersionOrderByRelevanceFieldEnum | MetaVersionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaVersionTableIdVersionCompoundUniqueInput = {
+    tableId: string
+    version: number
+  }
+
+  export type MetaVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    snapshot?: SortOrder
+    isPublished?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type MetaVersionAvgOrderByAggregateInput = {
+    version?: SortOrder
+  }
+
+  export type MetaVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    isPublished?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type MetaVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    isPublished?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type MetaVersionSumOrderByAggregateInput = {
+    version?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type MetaIndexOrderByRelevanceInput = {
+    fields: MetaIndexOrderByRelevanceFieldEnum | MetaIndexOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaIndexCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isUnique?: SortOrder
+  }
+
+  export type MetaIndexMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isUnique?: SortOrder
+  }
+
+  export type MetaIndexMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    isUnique?: SortOrder
+  }
+
+  export type MetaIndexScalarRelationFilter = {
+    is?: MetaIndexWhereInput
+    isNot?: MetaIndexWhereInput
+  }
+
+  export type MetaIndexFieldOrderByRelevanceInput = {
+    fields: MetaIndexFieldOrderByRelevanceFieldEnum | MetaIndexFieldOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaIndexFieldCountOrderByAggregateInput = {
+    id?: SortOrder
+    indexId?: SortOrder
+    fieldId?: SortOrder
+    ordinal?: SortOrder
+  }
+
+  export type MetaIndexFieldAvgOrderByAggregateInput = {
+    ordinal?: SortOrder
+  }
+
+  export type MetaIndexFieldMaxOrderByAggregateInput = {
+    id?: SortOrder
+    indexId?: SortOrder
+    fieldId?: SortOrder
+    ordinal?: SortOrder
+  }
+
+  export type MetaIndexFieldMinOrderByAggregateInput = {
+    id?: SortOrder
+    indexId?: SortOrder
+    fieldId?: SortOrder
+    ordinal?: SortOrder
+  }
+
+  export type MetaIndexFieldSumOrderByAggregateInput = {
+    ordinal?: SortOrder
+  }
+
+  export type MetaConstraintOrderByRelevanceInput = {
+    fields: MetaConstraintOrderByRelevanceFieldEnum | MetaConstraintOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MetaConstraintCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    fields?: SortOrder
+    expression?: SortOrder
+    message?: SortOrder
+  }
+
+  export type MetaConstraintMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    expression?: SortOrder
+    message?: SortOrder
+  }
+
+  export type MetaConstraintMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    expression?: SortOrder
+    message?: SortOrder
+  }
+
+  export type MetaVersionScalarRelationFilter = {
+    is?: MetaVersionWhereInput
+    isNot?: MetaVersionWhereInput
+  }
+
+  export type ModelApprovalOrderByRelevanceInput = {
+    fields: ModelApprovalOrderByRelevanceFieldEnum | ModelApprovalOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ModelApprovalCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    versionId?: SortOrder
+    description?: SortOrder
+    attachments?: SortOrder
+    status?: SortOrder
+    requestedBy?: SortOrder
+    requestedAt?: SortOrder
+    approvedBy?: SortOrder
+    approvedAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type ModelApprovalMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    versionId?: SortOrder
+    description?: SortOrder
+    attachments?: SortOrder
+    status?: SortOrder
+    requestedBy?: SortOrder
+    requestedAt?: SortOrder
+    approvedBy?: SortOrder
+    approvedAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type ModelApprovalMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    versionId?: SortOrder
+    description?: SortOrder
+    attachments?: SortOrder
+    status?: SortOrder
+    requestedBy?: SortOrder
+    requestedAt?: SortOrder
+    approvedBy?: SortOrder
+    approvedAt?: SortOrder
+    comment?: SortOrder
+  }
+
+  export type TestDataGenerationOrderByRelevanceInput = {
+    fields: TestDataGenerationOrderByRelevanceFieldEnum | TestDataGenerationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type TestDataGenerationCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    count?: SortOrder
+    includeRelations?: SortOrder
+    relationDepth?: SortOrder
+    options?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestDataGenerationAvgOrderByAggregateInput = {
+    count?: SortOrder
+    relationDepth?: SortOrder
+  }
+
+  export type TestDataGenerationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    count?: SortOrder
+    includeRelations?: SortOrder
+    relationDepth?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestDataGenerationMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableId?: SortOrder
+    count?: SortOrder
+    includeRelations?: SortOrder
+    relationDepth?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestDataGenerationSumOrderByAggregateInput = {
+    count?: SortOrder
+    relationDepth?: SortOrder
+  }
+
+  export type TestDataTemplateOrderByRelevanceInput = {
+    fields: TestDataTemplateOrderByRelevanceFieldEnum | TestDataTemplateOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type TestDataTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tableId?: SortOrder
+    description?: SortOrder
+    fieldOverrides?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TestDataTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tableId?: SortOrder
+    description?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TestDataTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tableId?: SortOrder
+    description?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VisualDiagramOrderByRelevanceInput = {
+    fields: VisualDiagramOrderByRelevanceFieldEnum | VisualDiagramOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type VisualDiagramCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    tableIds?: SortOrder
+    elements?: SortOrder
+    connections?: SortOrder
+    settings?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VisualDiagramMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VisualDiagramMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
@@ -7922,6 +23601,856 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type MetaFieldCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput> | MetaFieldCreateWithoutTableInput[] | MetaFieldUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTableInput | MetaFieldCreateOrConnectWithoutTableInput[]
+    createMany?: MetaFieldCreateManyTableInputEnvelope
+    connect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+  }
+
+  export type MetaRelationCreateNestedManyWithoutSourceTableInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput> | MetaRelationCreateWithoutSourceTableInput[] | MetaRelationUncheckedCreateWithoutSourceTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceTableInput | MetaRelationCreateOrConnectWithoutSourceTableInput[]
+    createMany?: MetaRelationCreateManySourceTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationCreateNestedManyWithoutTargetTableInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput> | MetaRelationCreateWithoutTargetTableInput[] | MetaRelationUncheckedCreateWithoutTargetTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetTableInput | MetaRelationCreateOrConnectWithoutTargetTableInput[]
+    createMany?: MetaRelationCreateManyTargetTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationCreateNestedManyWithoutJunctionTableInput = {
+    create?: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput> | MetaRelationCreateWithoutJunctionTableInput[] | MetaRelationUncheckedCreateWithoutJunctionTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutJunctionTableInput | MetaRelationCreateOrConnectWithoutJunctionTableInput[]
+    createMany?: MetaRelationCreateManyJunctionTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaVersionCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput> | MetaVersionCreateWithoutTableInput[] | MetaVersionUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutTableInput | MetaVersionCreateOrConnectWithoutTableInput[]
+    createMany?: MetaVersionCreateManyTableInputEnvelope
+    connect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+  }
+
+  export type MetaIndexCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput> | MetaIndexCreateWithoutTableInput[] | MetaIndexUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutTableInput | MetaIndexCreateOrConnectWithoutTableInput[]
+    createMany?: MetaIndexCreateManyTableInputEnvelope
+    connect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+  }
+
+  export type MetaConstraintCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput> | MetaConstraintCreateWithoutTableInput[] | MetaConstraintUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaConstraintCreateOrConnectWithoutTableInput | MetaConstraintCreateOrConnectWithoutTableInput[]
+    createMany?: MetaConstraintCreateManyTableInputEnvelope
+    connect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+  }
+
+  export type ModelApprovalCreateNestedManyWithoutTableInput = {
+    create?: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput> | ModelApprovalCreateWithoutTableInput[] | ModelApprovalUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutTableInput | ModelApprovalCreateOrConnectWithoutTableInput[]
+    createMany?: ModelApprovalCreateManyTableInputEnvelope
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+  }
+
+  export type TestDataGenerationCreateNestedManyWithoutTableInput = {
+    create?: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput> | TestDataGenerationCreateWithoutTableInput[] | TestDataGenerationUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataGenerationCreateOrConnectWithoutTableInput | TestDataGenerationCreateOrConnectWithoutTableInput[]
+    createMany?: TestDataGenerationCreateManyTableInputEnvelope
+    connect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+  }
+
+  export type TestDataTemplateCreateNestedManyWithoutTableInput = {
+    create?: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput> | TestDataTemplateCreateWithoutTableInput[] | TestDataTemplateUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataTemplateCreateOrConnectWithoutTableInput | TestDataTemplateCreateOrConnectWithoutTableInput[]
+    createMany?: TestDataTemplateCreateManyTableInputEnvelope
+    connect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+  }
+
+  export type MetaFieldUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput> | MetaFieldCreateWithoutTableInput[] | MetaFieldUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTableInput | MetaFieldCreateOrConnectWithoutTableInput[]
+    createMany?: MetaFieldCreateManyTableInputEnvelope
+    connect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+  }
+
+  export type MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput> | MetaRelationCreateWithoutSourceTableInput[] | MetaRelationUncheckedCreateWithoutSourceTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceTableInput | MetaRelationCreateOrConnectWithoutSourceTableInput[]
+    createMany?: MetaRelationCreateManySourceTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput> | MetaRelationCreateWithoutTargetTableInput[] | MetaRelationUncheckedCreateWithoutTargetTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetTableInput | MetaRelationCreateOrConnectWithoutTargetTableInput[]
+    createMany?: MetaRelationCreateManyTargetTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput = {
+    create?: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput> | MetaRelationCreateWithoutJunctionTableInput[] | MetaRelationUncheckedCreateWithoutJunctionTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutJunctionTableInput | MetaRelationCreateOrConnectWithoutJunctionTableInput[]
+    createMany?: MetaRelationCreateManyJunctionTableInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaVersionUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput> | MetaVersionCreateWithoutTableInput[] | MetaVersionUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutTableInput | MetaVersionCreateOrConnectWithoutTableInput[]
+    createMany?: MetaVersionCreateManyTableInputEnvelope
+    connect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+  }
+
+  export type MetaIndexUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput> | MetaIndexCreateWithoutTableInput[] | MetaIndexUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutTableInput | MetaIndexCreateOrConnectWithoutTableInput[]
+    createMany?: MetaIndexCreateManyTableInputEnvelope
+    connect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+  }
+
+  export type MetaConstraintUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput> | MetaConstraintCreateWithoutTableInput[] | MetaConstraintUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaConstraintCreateOrConnectWithoutTableInput | MetaConstraintCreateOrConnectWithoutTableInput[]
+    createMany?: MetaConstraintCreateManyTableInputEnvelope
+    connect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+  }
+
+  export type ModelApprovalUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput> | ModelApprovalCreateWithoutTableInput[] | ModelApprovalUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutTableInput | ModelApprovalCreateOrConnectWithoutTableInput[]
+    createMany?: ModelApprovalCreateManyTableInputEnvelope
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+  }
+
+  export type TestDataGenerationUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput> | TestDataGenerationCreateWithoutTableInput[] | TestDataGenerationUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataGenerationCreateOrConnectWithoutTableInput | TestDataGenerationCreateOrConnectWithoutTableInput[]
+    createMany?: TestDataGenerationCreateManyTableInputEnvelope
+    connect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+  }
+
+  export type TestDataTemplateUncheckedCreateNestedManyWithoutTableInput = {
+    create?: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput> | TestDataTemplateCreateWithoutTableInput[] | TestDataTemplateUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataTemplateCreateOrConnectWithoutTableInput | TestDataTemplateCreateOrConnectWithoutTableInput[]
+    createMany?: TestDataTemplateCreateManyTableInputEnvelope
+    connect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+  }
+
+  export type MetaFieldUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput> | MetaFieldCreateWithoutTableInput[] | MetaFieldUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTableInput | MetaFieldCreateOrConnectWithoutTableInput[]
+    upsert?: MetaFieldUpsertWithWhereUniqueWithoutTableInput | MetaFieldUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaFieldCreateManyTableInputEnvelope
+    set?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    disconnect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    delete?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    connect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    update?: MetaFieldUpdateWithWhereUniqueWithoutTableInput | MetaFieldUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaFieldUpdateManyWithWhereWithoutTableInput | MetaFieldUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaFieldScalarWhereInput | MetaFieldScalarWhereInput[]
+  }
+
+  export type MetaRelationUpdateManyWithoutSourceTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput> | MetaRelationCreateWithoutSourceTableInput[] | MetaRelationUncheckedCreateWithoutSourceTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceTableInput | MetaRelationCreateOrConnectWithoutSourceTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutSourceTableInput | MetaRelationUpsertWithWhereUniqueWithoutSourceTableInput[]
+    createMany?: MetaRelationCreateManySourceTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutSourceTableInput | MetaRelationUpdateWithWhereUniqueWithoutSourceTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutSourceTableInput | MetaRelationUpdateManyWithWhereWithoutSourceTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUpdateManyWithoutTargetTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput> | MetaRelationCreateWithoutTargetTableInput[] | MetaRelationUncheckedCreateWithoutTargetTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetTableInput | MetaRelationCreateOrConnectWithoutTargetTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutTargetTableInput | MetaRelationUpsertWithWhereUniqueWithoutTargetTableInput[]
+    createMany?: MetaRelationCreateManyTargetTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutTargetTableInput | MetaRelationUpdateWithWhereUniqueWithoutTargetTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutTargetTableInput | MetaRelationUpdateManyWithWhereWithoutTargetTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUpdateManyWithoutJunctionTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput> | MetaRelationCreateWithoutJunctionTableInput[] | MetaRelationUncheckedCreateWithoutJunctionTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutJunctionTableInput | MetaRelationCreateOrConnectWithoutJunctionTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutJunctionTableInput | MetaRelationUpsertWithWhereUniqueWithoutJunctionTableInput[]
+    createMany?: MetaRelationCreateManyJunctionTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutJunctionTableInput | MetaRelationUpdateWithWhereUniqueWithoutJunctionTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutJunctionTableInput | MetaRelationUpdateManyWithWhereWithoutJunctionTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaVersionUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput> | MetaVersionCreateWithoutTableInput[] | MetaVersionUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutTableInput | MetaVersionCreateOrConnectWithoutTableInput[]
+    upsert?: MetaVersionUpsertWithWhereUniqueWithoutTableInput | MetaVersionUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaVersionCreateManyTableInputEnvelope
+    set?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    disconnect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    delete?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    connect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    update?: MetaVersionUpdateWithWhereUniqueWithoutTableInput | MetaVersionUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaVersionUpdateManyWithWhereWithoutTableInput | MetaVersionUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaVersionScalarWhereInput | MetaVersionScalarWhereInput[]
+  }
+
+  export type MetaIndexUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput> | MetaIndexCreateWithoutTableInput[] | MetaIndexUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutTableInput | MetaIndexCreateOrConnectWithoutTableInput[]
+    upsert?: MetaIndexUpsertWithWhereUniqueWithoutTableInput | MetaIndexUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaIndexCreateManyTableInputEnvelope
+    set?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    disconnect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    delete?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    connect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    update?: MetaIndexUpdateWithWhereUniqueWithoutTableInput | MetaIndexUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaIndexUpdateManyWithWhereWithoutTableInput | MetaIndexUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaIndexScalarWhereInput | MetaIndexScalarWhereInput[]
+  }
+
+  export type MetaConstraintUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput> | MetaConstraintCreateWithoutTableInput[] | MetaConstraintUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaConstraintCreateOrConnectWithoutTableInput | MetaConstraintCreateOrConnectWithoutTableInput[]
+    upsert?: MetaConstraintUpsertWithWhereUniqueWithoutTableInput | MetaConstraintUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaConstraintCreateManyTableInputEnvelope
+    set?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    disconnect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    delete?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    connect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    update?: MetaConstraintUpdateWithWhereUniqueWithoutTableInput | MetaConstraintUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaConstraintUpdateManyWithWhereWithoutTableInput | MetaConstraintUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaConstraintScalarWhereInput | MetaConstraintScalarWhereInput[]
+  }
+
+  export type ModelApprovalUpdateManyWithoutTableNestedInput = {
+    create?: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput> | ModelApprovalCreateWithoutTableInput[] | ModelApprovalUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutTableInput | ModelApprovalCreateOrConnectWithoutTableInput[]
+    upsert?: ModelApprovalUpsertWithWhereUniqueWithoutTableInput | ModelApprovalUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: ModelApprovalCreateManyTableInputEnvelope
+    set?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    disconnect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    delete?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    update?: ModelApprovalUpdateWithWhereUniqueWithoutTableInput | ModelApprovalUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: ModelApprovalUpdateManyWithWhereWithoutTableInput | ModelApprovalUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+  }
+
+  export type TestDataGenerationUpdateManyWithoutTableNestedInput = {
+    create?: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput> | TestDataGenerationCreateWithoutTableInput[] | TestDataGenerationUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataGenerationCreateOrConnectWithoutTableInput | TestDataGenerationCreateOrConnectWithoutTableInput[]
+    upsert?: TestDataGenerationUpsertWithWhereUniqueWithoutTableInput | TestDataGenerationUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: TestDataGenerationCreateManyTableInputEnvelope
+    set?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    disconnect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    delete?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    connect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    update?: TestDataGenerationUpdateWithWhereUniqueWithoutTableInput | TestDataGenerationUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: TestDataGenerationUpdateManyWithWhereWithoutTableInput | TestDataGenerationUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: TestDataGenerationScalarWhereInput | TestDataGenerationScalarWhereInput[]
+  }
+
+  export type TestDataTemplateUpdateManyWithoutTableNestedInput = {
+    create?: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput> | TestDataTemplateCreateWithoutTableInput[] | TestDataTemplateUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataTemplateCreateOrConnectWithoutTableInput | TestDataTemplateCreateOrConnectWithoutTableInput[]
+    upsert?: TestDataTemplateUpsertWithWhereUniqueWithoutTableInput | TestDataTemplateUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: TestDataTemplateCreateManyTableInputEnvelope
+    set?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    disconnect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    delete?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    connect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    update?: TestDataTemplateUpdateWithWhereUniqueWithoutTableInput | TestDataTemplateUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: TestDataTemplateUpdateManyWithWhereWithoutTableInput | TestDataTemplateUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: TestDataTemplateScalarWhereInput | TestDataTemplateScalarWhereInput[]
+  }
+
+  export type MetaFieldUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput> | MetaFieldCreateWithoutTableInput[] | MetaFieldUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTableInput | MetaFieldCreateOrConnectWithoutTableInput[]
+    upsert?: MetaFieldUpsertWithWhereUniqueWithoutTableInput | MetaFieldUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaFieldCreateManyTableInputEnvelope
+    set?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    disconnect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    delete?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    connect?: MetaFieldWhereUniqueInput | MetaFieldWhereUniqueInput[]
+    update?: MetaFieldUpdateWithWhereUniqueWithoutTableInput | MetaFieldUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaFieldUpdateManyWithWhereWithoutTableInput | MetaFieldUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaFieldScalarWhereInput | MetaFieldScalarWhereInput[]
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput> | MetaRelationCreateWithoutSourceTableInput[] | MetaRelationUncheckedCreateWithoutSourceTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceTableInput | MetaRelationCreateOrConnectWithoutSourceTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutSourceTableInput | MetaRelationUpsertWithWhereUniqueWithoutSourceTableInput[]
+    createMany?: MetaRelationCreateManySourceTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutSourceTableInput | MetaRelationUpdateWithWhereUniqueWithoutSourceTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutSourceTableInput | MetaRelationUpdateManyWithWhereWithoutSourceTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput> | MetaRelationCreateWithoutTargetTableInput[] | MetaRelationUncheckedCreateWithoutTargetTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetTableInput | MetaRelationCreateOrConnectWithoutTargetTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutTargetTableInput | MetaRelationUpsertWithWhereUniqueWithoutTargetTableInput[]
+    createMany?: MetaRelationCreateManyTargetTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutTargetTableInput | MetaRelationUpdateWithWhereUniqueWithoutTargetTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutTargetTableInput | MetaRelationUpdateManyWithWhereWithoutTargetTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput> | MetaRelationCreateWithoutJunctionTableInput[] | MetaRelationUncheckedCreateWithoutJunctionTableInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutJunctionTableInput | MetaRelationCreateOrConnectWithoutJunctionTableInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutJunctionTableInput | MetaRelationUpsertWithWhereUniqueWithoutJunctionTableInput[]
+    createMany?: MetaRelationCreateManyJunctionTableInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutJunctionTableInput | MetaRelationUpdateWithWhereUniqueWithoutJunctionTableInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutJunctionTableInput | MetaRelationUpdateManyWithWhereWithoutJunctionTableInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaVersionUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput> | MetaVersionCreateWithoutTableInput[] | MetaVersionUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutTableInput | MetaVersionCreateOrConnectWithoutTableInput[]
+    upsert?: MetaVersionUpsertWithWhereUniqueWithoutTableInput | MetaVersionUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaVersionCreateManyTableInputEnvelope
+    set?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    disconnect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    delete?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    connect?: MetaVersionWhereUniqueInput | MetaVersionWhereUniqueInput[]
+    update?: MetaVersionUpdateWithWhereUniqueWithoutTableInput | MetaVersionUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaVersionUpdateManyWithWhereWithoutTableInput | MetaVersionUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaVersionScalarWhereInput | MetaVersionScalarWhereInput[]
+  }
+
+  export type MetaIndexUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput> | MetaIndexCreateWithoutTableInput[] | MetaIndexUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutTableInput | MetaIndexCreateOrConnectWithoutTableInput[]
+    upsert?: MetaIndexUpsertWithWhereUniqueWithoutTableInput | MetaIndexUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaIndexCreateManyTableInputEnvelope
+    set?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    disconnect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    delete?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    connect?: MetaIndexWhereUniqueInput | MetaIndexWhereUniqueInput[]
+    update?: MetaIndexUpdateWithWhereUniqueWithoutTableInput | MetaIndexUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaIndexUpdateManyWithWhereWithoutTableInput | MetaIndexUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaIndexScalarWhereInput | MetaIndexScalarWhereInput[]
+  }
+
+  export type MetaConstraintUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput> | MetaConstraintCreateWithoutTableInput[] | MetaConstraintUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: MetaConstraintCreateOrConnectWithoutTableInput | MetaConstraintCreateOrConnectWithoutTableInput[]
+    upsert?: MetaConstraintUpsertWithWhereUniqueWithoutTableInput | MetaConstraintUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: MetaConstraintCreateManyTableInputEnvelope
+    set?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    disconnect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    delete?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    connect?: MetaConstraintWhereUniqueInput | MetaConstraintWhereUniqueInput[]
+    update?: MetaConstraintUpdateWithWhereUniqueWithoutTableInput | MetaConstraintUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: MetaConstraintUpdateManyWithWhereWithoutTableInput | MetaConstraintUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: MetaConstraintScalarWhereInput | MetaConstraintScalarWhereInput[]
+  }
+
+  export type ModelApprovalUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput> | ModelApprovalCreateWithoutTableInput[] | ModelApprovalUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutTableInput | ModelApprovalCreateOrConnectWithoutTableInput[]
+    upsert?: ModelApprovalUpsertWithWhereUniqueWithoutTableInput | ModelApprovalUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: ModelApprovalCreateManyTableInputEnvelope
+    set?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    disconnect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    delete?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    update?: ModelApprovalUpdateWithWhereUniqueWithoutTableInput | ModelApprovalUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: ModelApprovalUpdateManyWithWhereWithoutTableInput | ModelApprovalUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+  }
+
+  export type TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput> | TestDataGenerationCreateWithoutTableInput[] | TestDataGenerationUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataGenerationCreateOrConnectWithoutTableInput | TestDataGenerationCreateOrConnectWithoutTableInput[]
+    upsert?: TestDataGenerationUpsertWithWhereUniqueWithoutTableInput | TestDataGenerationUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: TestDataGenerationCreateManyTableInputEnvelope
+    set?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    disconnect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    delete?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    connect?: TestDataGenerationWhereUniqueInput | TestDataGenerationWhereUniqueInput[]
+    update?: TestDataGenerationUpdateWithWhereUniqueWithoutTableInput | TestDataGenerationUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: TestDataGenerationUpdateManyWithWhereWithoutTableInput | TestDataGenerationUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: TestDataGenerationScalarWhereInput | TestDataGenerationScalarWhereInput[]
+  }
+
+  export type TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput = {
+    create?: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput> | TestDataTemplateCreateWithoutTableInput[] | TestDataTemplateUncheckedCreateWithoutTableInput[]
+    connectOrCreate?: TestDataTemplateCreateOrConnectWithoutTableInput | TestDataTemplateCreateOrConnectWithoutTableInput[]
+    upsert?: TestDataTemplateUpsertWithWhereUniqueWithoutTableInput | TestDataTemplateUpsertWithWhereUniqueWithoutTableInput[]
+    createMany?: TestDataTemplateCreateManyTableInputEnvelope
+    set?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    disconnect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    delete?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    connect?: TestDataTemplateWhereUniqueInput | TestDataTemplateWhereUniqueInput[]
+    update?: TestDataTemplateUpdateWithWhereUniqueWithoutTableInput | TestDataTemplateUpdateWithWhereUniqueWithoutTableInput[]
+    updateMany?: TestDataTemplateUpdateManyWithWhereWithoutTableInput | TestDataTemplateUpdateManyWithWhereWithoutTableInput[]
+    deleteMany?: TestDataTemplateScalarWhereInput | TestDataTemplateScalarWhereInput[]
+  }
+
+  export type MetaTableCreateNestedOneWithoutFieldsInput = {
+    create?: XOR<MetaTableCreateWithoutFieldsInput, MetaTableUncheckedCreateWithoutFieldsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutFieldsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaRelationCreateNestedManyWithoutSourceFieldInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput> | MetaRelationCreateWithoutSourceFieldInput[] | MetaRelationUncheckedCreateWithoutSourceFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceFieldInput | MetaRelationCreateOrConnectWithoutSourceFieldInput[]
+    createMany?: MetaRelationCreateManySourceFieldInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationCreateNestedManyWithoutTargetFieldInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput> | MetaRelationCreateWithoutTargetFieldInput[] | MetaRelationUncheckedCreateWithoutTargetFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetFieldInput | MetaRelationCreateOrConnectWithoutTargetFieldInput[]
+    createMany?: MetaRelationCreateManyTargetFieldInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaIndexFieldCreateNestedManyWithoutFieldInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput> | MetaIndexFieldCreateWithoutFieldInput[] | MetaIndexFieldUncheckedCreateWithoutFieldInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutFieldInput | MetaIndexFieldCreateOrConnectWithoutFieldInput[]
+    createMany?: MetaIndexFieldCreateManyFieldInputEnvelope
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+  }
+
+  export type MetaRelationUncheckedCreateNestedManyWithoutSourceFieldInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput> | MetaRelationCreateWithoutSourceFieldInput[] | MetaRelationUncheckedCreateWithoutSourceFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceFieldInput | MetaRelationCreateOrConnectWithoutSourceFieldInput[]
+    createMany?: MetaRelationCreateManySourceFieldInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaRelationUncheckedCreateNestedManyWithoutTargetFieldInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput> | MetaRelationCreateWithoutTargetFieldInput[] | MetaRelationUncheckedCreateWithoutTargetFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetFieldInput | MetaRelationCreateOrConnectWithoutTargetFieldInput[]
+    createMany?: MetaRelationCreateManyTargetFieldInputEnvelope
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+  }
+
+  export type MetaIndexFieldUncheckedCreateNestedManyWithoutFieldInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput> | MetaIndexFieldCreateWithoutFieldInput[] | MetaIndexFieldUncheckedCreateWithoutFieldInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutFieldInput | MetaIndexFieldCreateOrConnectWithoutFieldInput[]
+    createMany?: MetaIndexFieldCreateManyFieldInputEnvelope
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutFieldsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutFieldsInput, MetaTableUncheckedCreateWithoutFieldsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutFieldsInput
+    upsert?: MetaTableUpsertWithoutFieldsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutFieldsInput, MetaTableUpdateWithoutFieldsInput>, MetaTableUncheckedUpdateWithoutFieldsInput>
+  }
+
+  export type MetaRelationUpdateManyWithoutSourceFieldNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput> | MetaRelationCreateWithoutSourceFieldInput[] | MetaRelationUncheckedCreateWithoutSourceFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceFieldInput | MetaRelationCreateOrConnectWithoutSourceFieldInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutSourceFieldInput | MetaRelationUpsertWithWhereUniqueWithoutSourceFieldInput[]
+    createMany?: MetaRelationCreateManySourceFieldInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutSourceFieldInput | MetaRelationUpdateWithWhereUniqueWithoutSourceFieldInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutSourceFieldInput | MetaRelationUpdateManyWithWhereWithoutSourceFieldInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUpdateManyWithoutTargetFieldNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput> | MetaRelationCreateWithoutTargetFieldInput[] | MetaRelationUncheckedCreateWithoutTargetFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetFieldInput | MetaRelationCreateOrConnectWithoutTargetFieldInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutTargetFieldInput | MetaRelationUpsertWithWhereUniqueWithoutTargetFieldInput[]
+    createMany?: MetaRelationCreateManyTargetFieldInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutTargetFieldInput | MetaRelationUpdateWithWhereUniqueWithoutTargetFieldInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutTargetFieldInput | MetaRelationUpdateManyWithWhereWithoutTargetFieldInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaIndexFieldUpdateManyWithoutFieldNestedInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput> | MetaIndexFieldCreateWithoutFieldInput[] | MetaIndexFieldUncheckedCreateWithoutFieldInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutFieldInput | MetaIndexFieldCreateOrConnectWithoutFieldInput[]
+    upsert?: MetaIndexFieldUpsertWithWhereUniqueWithoutFieldInput | MetaIndexFieldUpsertWithWhereUniqueWithoutFieldInput[]
+    createMany?: MetaIndexFieldCreateManyFieldInputEnvelope
+    set?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    disconnect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    delete?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    update?: MetaIndexFieldUpdateWithWhereUniqueWithoutFieldInput | MetaIndexFieldUpdateWithWhereUniqueWithoutFieldInput[]
+    updateMany?: MetaIndexFieldUpdateManyWithWhereWithoutFieldInput | MetaIndexFieldUpdateManyWithWhereWithoutFieldInput[]
+    deleteMany?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutSourceFieldNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput> | MetaRelationCreateWithoutSourceFieldInput[] | MetaRelationUncheckedCreateWithoutSourceFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutSourceFieldInput | MetaRelationCreateOrConnectWithoutSourceFieldInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutSourceFieldInput | MetaRelationUpsertWithWhereUniqueWithoutSourceFieldInput[]
+    createMany?: MetaRelationCreateManySourceFieldInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutSourceFieldInput | MetaRelationUpdateWithWhereUniqueWithoutSourceFieldInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutSourceFieldInput | MetaRelationUpdateManyWithWhereWithoutSourceFieldInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutTargetFieldNestedInput = {
+    create?: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput> | MetaRelationCreateWithoutTargetFieldInput[] | MetaRelationUncheckedCreateWithoutTargetFieldInput[]
+    connectOrCreate?: MetaRelationCreateOrConnectWithoutTargetFieldInput | MetaRelationCreateOrConnectWithoutTargetFieldInput[]
+    upsert?: MetaRelationUpsertWithWhereUniqueWithoutTargetFieldInput | MetaRelationUpsertWithWhereUniqueWithoutTargetFieldInput[]
+    createMany?: MetaRelationCreateManyTargetFieldInputEnvelope
+    set?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    disconnect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    delete?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    connect?: MetaRelationWhereUniqueInput | MetaRelationWhereUniqueInput[]
+    update?: MetaRelationUpdateWithWhereUniqueWithoutTargetFieldInput | MetaRelationUpdateWithWhereUniqueWithoutTargetFieldInput[]
+    updateMany?: MetaRelationUpdateManyWithWhereWithoutTargetFieldInput | MetaRelationUpdateManyWithWhereWithoutTargetFieldInput[]
+    deleteMany?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+  }
+
+  export type MetaIndexFieldUncheckedUpdateManyWithoutFieldNestedInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput> | MetaIndexFieldCreateWithoutFieldInput[] | MetaIndexFieldUncheckedCreateWithoutFieldInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutFieldInput | MetaIndexFieldCreateOrConnectWithoutFieldInput[]
+    upsert?: MetaIndexFieldUpsertWithWhereUniqueWithoutFieldInput | MetaIndexFieldUpsertWithWhereUniqueWithoutFieldInput[]
+    createMany?: MetaIndexFieldCreateManyFieldInputEnvelope
+    set?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    disconnect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    delete?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    update?: MetaIndexFieldUpdateWithWhereUniqueWithoutFieldInput | MetaIndexFieldUpdateWithWhereUniqueWithoutFieldInput[]
+    updateMany?: MetaIndexFieldUpdateManyWithWhereWithoutFieldInput | MetaIndexFieldUpdateManyWithWhereWithoutFieldInput[]
+    deleteMany?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+  }
+
+  export type MetaTableCreateNestedOneWithoutRelationsInput = {
+    create?: XOR<MetaTableCreateWithoutRelationsInput, MetaTableUncheckedCreateWithoutRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutRelationsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaTableCreateNestedOneWithoutTargetRelationsInput = {
+    create?: XOR<MetaTableCreateWithoutTargetRelationsInput, MetaTableUncheckedCreateWithoutTargetRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTargetRelationsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaFieldCreateNestedOneWithoutSourceRelationsInput = {
+    create?: XOR<MetaFieldCreateWithoutSourceRelationsInput, MetaFieldUncheckedCreateWithoutSourceRelationsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutSourceRelationsInput
+    connect?: MetaFieldWhereUniqueInput
+  }
+
+  export type MetaFieldCreateNestedOneWithoutTargetRelationsInput = {
+    create?: XOR<MetaFieldCreateWithoutTargetRelationsInput, MetaFieldUncheckedCreateWithoutTargetRelationsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTargetRelationsInput
+    connect?: MetaFieldWhereUniqueInput
+  }
+
+  export type MetaTableCreateNestedOneWithoutJunctionRelationsInput = {
+    create?: XOR<MetaTableCreateWithoutJunctionRelationsInput, MetaTableUncheckedCreateWithoutJunctionRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutJunctionRelationsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutRelationsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutRelationsInput, MetaTableUncheckedCreateWithoutRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutRelationsInput
+    upsert?: MetaTableUpsertWithoutRelationsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutRelationsInput, MetaTableUpdateWithoutRelationsInput>, MetaTableUncheckedUpdateWithoutRelationsInput>
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutTargetRelationsInput, MetaTableUncheckedCreateWithoutTargetRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTargetRelationsInput
+    upsert?: MetaTableUpsertWithoutTargetRelationsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutTargetRelationsInput, MetaTableUpdateWithoutTargetRelationsInput>, MetaTableUncheckedUpdateWithoutTargetRelationsInput>
+  }
+
+  export type MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput = {
+    create?: XOR<MetaFieldCreateWithoutSourceRelationsInput, MetaFieldUncheckedCreateWithoutSourceRelationsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutSourceRelationsInput
+    upsert?: MetaFieldUpsertWithoutSourceRelationsInput
+    connect?: MetaFieldWhereUniqueInput
+    update?: XOR<XOR<MetaFieldUpdateToOneWithWhereWithoutSourceRelationsInput, MetaFieldUpdateWithoutSourceRelationsInput>, MetaFieldUncheckedUpdateWithoutSourceRelationsInput>
+  }
+
+  export type MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput = {
+    create?: XOR<MetaFieldCreateWithoutTargetRelationsInput, MetaFieldUncheckedCreateWithoutTargetRelationsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutTargetRelationsInput
+    upsert?: MetaFieldUpsertWithoutTargetRelationsInput
+    connect?: MetaFieldWhereUniqueInput
+    update?: XOR<XOR<MetaFieldUpdateToOneWithWhereWithoutTargetRelationsInput, MetaFieldUpdateWithoutTargetRelationsInput>, MetaFieldUncheckedUpdateWithoutTargetRelationsInput>
+  }
+
+  export type MetaTableUpdateOneWithoutJunctionRelationsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutJunctionRelationsInput, MetaTableUncheckedCreateWithoutJunctionRelationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutJunctionRelationsInput
+    upsert?: MetaTableUpsertWithoutJunctionRelationsInput
+    disconnect?: MetaTableWhereInput | boolean
+    delete?: MetaTableWhereInput | boolean
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutJunctionRelationsInput, MetaTableUpdateWithoutJunctionRelationsInput>, MetaTableUncheckedUpdateWithoutJunctionRelationsInput>
+  }
+
+  export type MetaTableCreateNestedOneWithoutVersionsInput = {
+    create?: XOR<MetaTableCreateWithoutVersionsInput, MetaTableUncheckedCreateWithoutVersionsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutVersionsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type ModelApprovalCreateNestedManyWithoutVersionInput = {
+    create?: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput> | ModelApprovalCreateWithoutVersionInput[] | ModelApprovalUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutVersionInput | ModelApprovalCreateOrConnectWithoutVersionInput[]
+    createMany?: ModelApprovalCreateManyVersionInputEnvelope
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+  }
+
+  export type ModelApprovalUncheckedCreateNestedManyWithoutVersionInput = {
+    create?: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput> | ModelApprovalCreateWithoutVersionInput[] | ModelApprovalUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutVersionInput | ModelApprovalCreateOrConnectWithoutVersionInput[]
+    createMany?: ModelApprovalCreateManyVersionInputEnvelope
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutVersionsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutVersionsInput, MetaTableUncheckedCreateWithoutVersionsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutVersionsInput
+    upsert?: MetaTableUpsertWithoutVersionsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutVersionsInput, MetaTableUpdateWithoutVersionsInput>, MetaTableUncheckedUpdateWithoutVersionsInput>
+  }
+
+  export type ModelApprovalUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput> | ModelApprovalCreateWithoutVersionInput[] | ModelApprovalUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutVersionInput | ModelApprovalCreateOrConnectWithoutVersionInput[]
+    upsert?: ModelApprovalUpsertWithWhereUniqueWithoutVersionInput | ModelApprovalUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: ModelApprovalCreateManyVersionInputEnvelope
+    set?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    disconnect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    delete?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    update?: ModelApprovalUpdateWithWhereUniqueWithoutVersionInput | ModelApprovalUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: ModelApprovalUpdateManyWithWhereWithoutVersionInput | ModelApprovalUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+  }
+
+  export type ModelApprovalUncheckedUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput> | ModelApprovalCreateWithoutVersionInput[] | ModelApprovalUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: ModelApprovalCreateOrConnectWithoutVersionInput | ModelApprovalCreateOrConnectWithoutVersionInput[]
+    upsert?: ModelApprovalUpsertWithWhereUniqueWithoutVersionInput | ModelApprovalUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: ModelApprovalCreateManyVersionInputEnvelope
+    set?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    disconnect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    delete?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    connect?: ModelApprovalWhereUniqueInput | ModelApprovalWhereUniqueInput[]
+    update?: ModelApprovalUpdateWithWhereUniqueWithoutVersionInput | ModelApprovalUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: ModelApprovalUpdateManyWithWhereWithoutVersionInput | ModelApprovalUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+  }
+
+  export type MetaTableCreateNestedOneWithoutIndexesInput = {
+    create?: XOR<MetaTableCreateWithoutIndexesInput, MetaTableUncheckedCreateWithoutIndexesInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutIndexesInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaIndexFieldCreateNestedManyWithoutIndexInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput> | MetaIndexFieldCreateWithoutIndexInput[] | MetaIndexFieldUncheckedCreateWithoutIndexInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutIndexInput | MetaIndexFieldCreateOrConnectWithoutIndexInput[]
+    createMany?: MetaIndexFieldCreateManyIndexInputEnvelope
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+  }
+
+  export type MetaIndexFieldUncheckedCreateNestedManyWithoutIndexInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput> | MetaIndexFieldCreateWithoutIndexInput[] | MetaIndexFieldUncheckedCreateWithoutIndexInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutIndexInput | MetaIndexFieldCreateOrConnectWithoutIndexInput[]
+    createMany?: MetaIndexFieldCreateManyIndexInputEnvelope
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutIndexesNestedInput = {
+    create?: XOR<MetaTableCreateWithoutIndexesInput, MetaTableUncheckedCreateWithoutIndexesInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutIndexesInput
+    upsert?: MetaTableUpsertWithoutIndexesInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutIndexesInput, MetaTableUpdateWithoutIndexesInput>, MetaTableUncheckedUpdateWithoutIndexesInput>
+  }
+
+  export type MetaIndexFieldUpdateManyWithoutIndexNestedInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput> | MetaIndexFieldCreateWithoutIndexInput[] | MetaIndexFieldUncheckedCreateWithoutIndexInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutIndexInput | MetaIndexFieldCreateOrConnectWithoutIndexInput[]
+    upsert?: MetaIndexFieldUpsertWithWhereUniqueWithoutIndexInput | MetaIndexFieldUpsertWithWhereUniqueWithoutIndexInput[]
+    createMany?: MetaIndexFieldCreateManyIndexInputEnvelope
+    set?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    disconnect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    delete?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    update?: MetaIndexFieldUpdateWithWhereUniqueWithoutIndexInput | MetaIndexFieldUpdateWithWhereUniqueWithoutIndexInput[]
+    updateMany?: MetaIndexFieldUpdateManyWithWhereWithoutIndexInput | MetaIndexFieldUpdateManyWithWhereWithoutIndexInput[]
+    deleteMany?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+  }
+
+  export type MetaIndexFieldUncheckedUpdateManyWithoutIndexNestedInput = {
+    create?: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput> | MetaIndexFieldCreateWithoutIndexInput[] | MetaIndexFieldUncheckedCreateWithoutIndexInput[]
+    connectOrCreate?: MetaIndexFieldCreateOrConnectWithoutIndexInput | MetaIndexFieldCreateOrConnectWithoutIndexInput[]
+    upsert?: MetaIndexFieldUpsertWithWhereUniqueWithoutIndexInput | MetaIndexFieldUpsertWithWhereUniqueWithoutIndexInput[]
+    createMany?: MetaIndexFieldCreateManyIndexInputEnvelope
+    set?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    disconnect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    delete?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    connect?: MetaIndexFieldWhereUniqueInput | MetaIndexFieldWhereUniqueInput[]
+    update?: MetaIndexFieldUpdateWithWhereUniqueWithoutIndexInput | MetaIndexFieldUpdateWithWhereUniqueWithoutIndexInput[]
+    updateMany?: MetaIndexFieldUpdateManyWithWhereWithoutIndexInput | MetaIndexFieldUpdateManyWithWhereWithoutIndexInput[]
+    deleteMany?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+  }
+
+  export type MetaIndexCreateNestedOneWithoutFieldsInput = {
+    create?: XOR<MetaIndexCreateWithoutFieldsInput, MetaIndexUncheckedCreateWithoutFieldsInput>
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutFieldsInput
+    connect?: MetaIndexWhereUniqueInput
+  }
+
+  export type MetaFieldCreateNestedOneWithoutIndexFieldsInput = {
+    create?: XOR<MetaFieldCreateWithoutIndexFieldsInput, MetaFieldUncheckedCreateWithoutIndexFieldsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutIndexFieldsInput
+    connect?: MetaFieldWhereUniqueInput
+  }
+
+  export type MetaIndexUpdateOneRequiredWithoutFieldsNestedInput = {
+    create?: XOR<MetaIndexCreateWithoutFieldsInput, MetaIndexUncheckedCreateWithoutFieldsInput>
+    connectOrCreate?: MetaIndexCreateOrConnectWithoutFieldsInput
+    upsert?: MetaIndexUpsertWithoutFieldsInput
+    connect?: MetaIndexWhereUniqueInput
+    update?: XOR<XOR<MetaIndexUpdateToOneWithWhereWithoutFieldsInput, MetaIndexUpdateWithoutFieldsInput>, MetaIndexUncheckedUpdateWithoutFieldsInput>
+  }
+
+  export type MetaFieldUpdateOneRequiredWithoutIndexFieldsNestedInput = {
+    create?: XOR<MetaFieldCreateWithoutIndexFieldsInput, MetaFieldUncheckedCreateWithoutIndexFieldsInput>
+    connectOrCreate?: MetaFieldCreateOrConnectWithoutIndexFieldsInput
+    upsert?: MetaFieldUpsertWithoutIndexFieldsInput
+    connect?: MetaFieldWhereUniqueInput
+    update?: XOR<XOR<MetaFieldUpdateToOneWithWhereWithoutIndexFieldsInput, MetaFieldUpdateWithoutIndexFieldsInput>, MetaFieldUncheckedUpdateWithoutIndexFieldsInput>
+  }
+
+  export type MetaTableCreateNestedOneWithoutConstraintsInput = {
+    create?: XOR<MetaTableCreateWithoutConstraintsInput, MetaTableUncheckedCreateWithoutConstraintsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutConstraintsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutConstraintsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutConstraintsInput, MetaTableUncheckedCreateWithoutConstraintsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutConstraintsInput
+    upsert?: MetaTableUpsertWithoutConstraintsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutConstraintsInput, MetaTableUpdateWithoutConstraintsInput>, MetaTableUncheckedUpdateWithoutConstraintsInput>
+  }
+
+  export type MetaTableCreateNestedOneWithoutModelApprovalsInput = {
+    create?: XOR<MetaTableCreateWithoutModelApprovalsInput, MetaTableUncheckedCreateWithoutModelApprovalsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutModelApprovalsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaVersionCreateNestedOneWithoutModelApprovalsInput = {
+    create?: XOR<MetaVersionCreateWithoutModelApprovalsInput, MetaVersionUncheckedCreateWithoutModelApprovalsInput>
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutModelApprovalsInput
+    connect?: MetaVersionWhereUniqueInput
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutModelApprovalsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutModelApprovalsInput, MetaTableUncheckedCreateWithoutModelApprovalsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutModelApprovalsInput
+    upsert?: MetaTableUpsertWithoutModelApprovalsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutModelApprovalsInput, MetaTableUpdateWithoutModelApprovalsInput>, MetaTableUncheckedUpdateWithoutModelApprovalsInput>
+  }
+
+  export type MetaVersionUpdateOneRequiredWithoutModelApprovalsNestedInput = {
+    create?: XOR<MetaVersionCreateWithoutModelApprovalsInput, MetaVersionUncheckedCreateWithoutModelApprovalsInput>
+    connectOrCreate?: MetaVersionCreateOrConnectWithoutModelApprovalsInput
+    upsert?: MetaVersionUpsertWithoutModelApprovalsInput
+    connect?: MetaVersionWhereUniqueInput
+    update?: XOR<XOR<MetaVersionUpdateToOneWithWhereWithoutModelApprovalsInput, MetaVersionUpdateWithoutModelApprovalsInput>, MetaVersionUncheckedUpdateWithoutModelApprovalsInput>
+  }
+
+  export type MetaTableCreateNestedOneWithoutTestDataGenerationsInput = {
+    create?: XOR<MetaTableCreateWithoutTestDataGenerationsInput, MetaTableUncheckedCreateWithoutTestDataGenerationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTestDataGenerationsInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutTestDataGenerationsNestedInput = {
+    create?: XOR<MetaTableCreateWithoutTestDataGenerationsInput, MetaTableUncheckedCreateWithoutTestDataGenerationsInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTestDataGenerationsInput
+    upsert?: MetaTableUpsertWithoutTestDataGenerationsInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutTestDataGenerationsInput, MetaTableUpdateWithoutTestDataGenerationsInput>, MetaTableUncheckedUpdateWithoutTestDataGenerationsInput>
+  }
+
+  export type MetaTableCreateNestedOneWithoutTestDataTemplatesInput = {
+    create?: XOR<MetaTableCreateWithoutTestDataTemplatesInput, MetaTableUncheckedCreateWithoutTestDataTemplatesInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTestDataTemplatesInput
+    connect?: MetaTableWhereUniqueInput
+  }
+
+  export type MetaTableUpdateOneRequiredWithoutTestDataTemplatesNestedInput = {
+    create?: XOR<MetaTableCreateWithoutTestDataTemplatesInput, MetaTableUncheckedCreateWithoutTestDataTemplatesInput>
+    connectOrCreate?: MetaTableCreateOrConnectWithoutTestDataTemplatesInput
+    upsert?: MetaTableUpsertWithoutTestDataTemplatesInput
+    connect?: MetaTableWhereUniqueInput
+    update?: XOR<XOR<MetaTableUpdateToOneWithWhereWithoutTestDataTemplatesInput, MetaTableUpdateWithoutTestDataTemplatesInput>, MetaTableUncheckedUpdateWithoutTestDataTemplatesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8073,6 +24602,3492 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type MetaFieldCreateWithoutTableInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldUncheckedCreateWithoutTableInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldUncheckedCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldCreateOrConnectWithoutTableInput = {
+    where: MetaFieldWhereUniqueInput
+    create: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaFieldCreateManyTableInputEnvelope = {
+    data: MetaFieldCreateManyTableInput | MetaFieldCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaRelationCreateWithoutSourceTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    targetTable: MetaTableCreateNestedOneWithoutTargetRelationsInput
+    sourceField: MetaFieldCreateNestedOneWithoutSourceRelationsInput
+    targetField: MetaFieldCreateNestedOneWithoutTargetRelationsInput
+    junctionTable?: MetaTableCreateNestedOneWithoutJunctionRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateWithoutSourceTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateOrConnectWithoutSourceTableInput = {
+    where: MetaRelationWhereUniqueInput
+    create: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput>
+  }
+
+  export type MetaRelationCreateManySourceTableInputEnvelope = {
+    data: MetaRelationCreateManySourceTableInput | MetaRelationCreateManySourceTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaRelationCreateWithoutTargetTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable: MetaTableCreateNestedOneWithoutRelationsInput
+    sourceField: MetaFieldCreateNestedOneWithoutSourceRelationsInput
+    targetField: MetaFieldCreateNestedOneWithoutTargetRelationsInput
+    junctionTable?: MetaTableCreateNestedOneWithoutJunctionRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateWithoutTargetTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateOrConnectWithoutTargetTableInput = {
+    where: MetaRelationWhereUniqueInput
+    create: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput>
+  }
+
+  export type MetaRelationCreateManyTargetTableInputEnvelope = {
+    data: MetaRelationCreateManyTargetTableInput | MetaRelationCreateManyTargetTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaRelationCreateWithoutJunctionTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable: MetaTableCreateNestedOneWithoutRelationsInput
+    targetTable: MetaTableCreateNestedOneWithoutTargetRelationsInput
+    sourceField: MetaFieldCreateNestedOneWithoutSourceRelationsInput
+    targetField: MetaFieldCreateNestedOneWithoutTargetRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateWithoutJunctionTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateOrConnectWithoutJunctionTableInput = {
+    where: MetaRelationWhereUniqueInput
+    create: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput>
+  }
+
+  export type MetaRelationCreateManyJunctionTableInputEnvelope = {
+    data: MetaRelationCreateManyJunctionTableInput | MetaRelationCreateManyJunctionTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaVersionCreateWithoutTableInput = {
+    id?: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutVersionInput
+  }
+
+  export type MetaVersionUncheckedCreateWithoutTableInput = {
+    id?: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutVersionInput
+  }
+
+  export type MetaVersionCreateOrConnectWithoutTableInput = {
+    where: MetaVersionWhereUniqueInput
+    create: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaVersionCreateManyTableInputEnvelope = {
+    data: MetaVersionCreateManyTableInput | MetaVersionCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaIndexCreateWithoutTableInput = {
+    id?: string
+    name: string
+    type?: string
+    isUnique?: boolean
+    fields?: MetaIndexFieldCreateNestedManyWithoutIndexInput
+  }
+
+  export type MetaIndexUncheckedCreateWithoutTableInput = {
+    id?: string
+    name: string
+    type?: string
+    isUnique?: boolean
+    fields?: MetaIndexFieldUncheckedCreateNestedManyWithoutIndexInput
+  }
+
+  export type MetaIndexCreateOrConnectWithoutTableInput = {
+    where: MetaIndexWhereUniqueInput
+    create: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaIndexCreateManyTableInputEnvelope = {
+    data: MetaIndexCreateManyTableInput | MetaIndexCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaConstraintCreateWithoutTableInput = {
+    id?: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+  }
+
+  export type MetaConstraintUncheckedCreateWithoutTableInput = {
+    id?: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+  }
+
+  export type MetaConstraintCreateOrConnectWithoutTableInput = {
+    where: MetaConstraintWhereUniqueInput
+    create: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaConstraintCreateManyTableInputEnvelope = {
+    data: MetaConstraintCreateManyTableInput | MetaConstraintCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ModelApprovalCreateWithoutTableInput = {
+    id?: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+    version: MetaVersionCreateNestedOneWithoutModelApprovalsInput
+  }
+
+  export type ModelApprovalUncheckedCreateWithoutTableInput = {
+    id?: string
+    versionId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type ModelApprovalCreateOrConnectWithoutTableInput = {
+    where: ModelApprovalWhereUniqueInput
+    create: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput>
+  }
+
+  export type ModelApprovalCreateManyTableInputEnvelope = {
+    data: ModelApprovalCreateManyTableInput | ModelApprovalCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TestDataGenerationCreateWithoutTableInput = {
+    id?: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+  }
+
+  export type TestDataGenerationUncheckedCreateWithoutTableInput = {
+    id?: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+  }
+
+  export type TestDataGenerationCreateOrConnectWithoutTableInput = {
+    where: TestDataGenerationWhereUniqueInput
+    create: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput>
+  }
+
+  export type TestDataGenerationCreateManyTableInputEnvelope = {
+    data: TestDataGenerationCreateManyTableInput | TestDataGenerationCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TestDataTemplateCreateWithoutTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type TestDataTemplateUncheckedCreateWithoutTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type TestDataTemplateCreateOrConnectWithoutTableInput = {
+    where: TestDataTemplateWhereUniqueInput
+    create: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput>
+  }
+
+  export type TestDataTemplateCreateManyTableInputEnvelope = {
+    data: TestDataTemplateCreateManyTableInput | TestDataTemplateCreateManyTableInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaFieldUpsertWithWhereUniqueWithoutTableInput = {
+    where: MetaFieldWhereUniqueInput
+    update: XOR<MetaFieldUpdateWithoutTableInput, MetaFieldUncheckedUpdateWithoutTableInput>
+    create: XOR<MetaFieldCreateWithoutTableInput, MetaFieldUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaFieldUpdateWithWhereUniqueWithoutTableInput = {
+    where: MetaFieldWhereUniqueInput
+    data: XOR<MetaFieldUpdateWithoutTableInput, MetaFieldUncheckedUpdateWithoutTableInput>
+  }
+
+  export type MetaFieldUpdateManyWithWhereWithoutTableInput = {
+    where: MetaFieldScalarWhereInput
+    data: XOR<MetaFieldUpdateManyMutationInput, MetaFieldUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type MetaFieldScalarWhereInput = {
+    AND?: MetaFieldScalarWhereInput | MetaFieldScalarWhereInput[]
+    OR?: MetaFieldScalarWhereInput[]
+    NOT?: MetaFieldScalarWhereInput | MetaFieldScalarWhereInput[]
+    id?: StringFilter<"MetaField"> | string
+    tableId?: StringFilter<"MetaField"> | string
+    name?: StringFilter<"MetaField"> | string
+    displayName?: StringFilter<"MetaField"> | string
+    description?: StringNullableFilter<"MetaField"> | string | null
+    type?: StringFilter<"MetaField"> | string
+    isPrimaryKey?: BoolFilter<"MetaField"> | boolean
+    isRequired?: BoolFilter<"MetaField"> | boolean
+    isUnique?: BoolFilter<"MetaField"> | boolean
+    isSystem?: BoolFilter<"MetaField"> | boolean
+    isHidden?: BoolFilter<"MetaField"> | boolean
+    ordinal?: IntFilter<"MetaField"> | number
+    defaultValue?: StringNullableFilter<"MetaField"> | string | null
+    validationRules?: JsonNullableFilter<"MetaField">
+    isSearchable?: BoolFilter<"MetaField"> | boolean
+    isSortable?: BoolFilter<"MetaField"> | boolean
+    isFilterable?: BoolFilter<"MetaField"> | boolean
+    isAggregatable?: BoolFilter<"MetaField"> | boolean
+    advancedSettings?: JsonNullableFilter<"MetaField">
+  }
+
+  export type MetaRelationUpsertWithWhereUniqueWithoutSourceTableInput = {
+    where: MetaRelationWhereUniqueInput
+    update: XOR<MetaRelationUpdateWithoutSourceTableInput, MetaRelationUncheckedUpdateWithoutSourceTableInput>
+    create: XOR<MetaRelationCreateWithoutSourceTableInput, MetaRelationUncheckedCreateWithoutSourceTableInput>
+  }
+
+  export type MetaRelationUpdateWithWhereUniqueWithoutSourceTableInput = {
+    where: MetaRelationWhereUniqueInput
+    data: XOR<MetaRelationUpdateWithoutSourceTableInput, MetaRelationUncheckedUpdateWithoutSourceTableInput>
+  }
+
+  export type MetaRelationUpdateManyWithWhereWithoutSourceTableInput = {
+    where: MetaRelationScalarWhereInput
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyWithoutSourceTableInput>
+  }
+
+  export type MetaRelationScalarWhereInput = {
+    AND?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+    OR?: MetaRelationScalarWhereInput[]
+    NOT?: MetaRelationScalarWhereInput | MetaRelationScalarWhereInput[]
+    id?: StringFilter<"MetaRelation"> | string
+    name?: StringFilter<"MetaRelation"> | string
+    description?: StringNullableFilter<"MetaRelation"> | string | null
+    sourceTableId?: StringFilter<"MetaRelation"> | string
+    targetTableId?: StringFilter<"MetaRelation"> | string
+    sourceFieldId?: StringFilter<"MetaRelation"> | string
+    targetFieldId?: StringFilter<"MetaRelation"> | string
+    type?: StringFilter<"MetaRelation"> | string
+    cascadeDelete?: BoolFilter<"MetaRelation"> | boolean
+    cascadeUpdate?: BoolFilter<"MetaRelation"> | boolean
+    isRequired?: BoolFilter<"MetaRelation"> | boolean
+    junctionTableId?: StringNullableFilter<"MetaRelation"> | string | null
+    customOptions?: JsonNullableFilter<"MetaRelation">
+  }
+
+  export type MetaRelationUpsertWithWhereUniqueWithoutTargetTableInput = {
+    where: MetaRelationWhereUniqueInput
+    update: XOR<MetaRelationUpdateWithoutTargetTableInput, MetaRelationUncheckedUpdateWithoutTargetTableInput>
+    create: XOR<MetaRelationCreateWithoutTargetTableInput, MetaRelationUncheckedCreateWithoutTargetTableInput>
+  }
+
+  export type MetaRelationUpdateWithWhereUniqueWithoutTargetTableInput = {
+    where: MetaRelationWhereUniqueInput
+    data: XOR<MetaRelationUpdateWithoutTargetTableInput, MetaRelationUncheckedUpdateWithoutTargetTableInput>
+  }
+
+  export type MetaRelationUpdateManyWithWhereWithoutTargetTableInput = {
+    where: MetaRelationScalarWhereInput
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyWithoutTargetTableInput>
+  }
+
+  export type MetaRelationUpsertWithWhereUniqueWithoutJunctionTableInput = {
+    where: MetaRelationWhereUniqueInput
+    update: XOR<MetaRelationUpdateWithoutJunctionTableInput, MetaRelationUncheckedUpdateWithoutJunctionTableInput>
+    create: XOR<MetaRelationCreateWithoutJunctionTableInput, MetaRelationUncheckedCreateWithoutJunctionTableInput>
+  }
+
+  export type MetaRelationUpdateWithWhereUniqueWithoutJunctionTableInput = {
+    where: MetaRelationWhereUniqueInput
+    data: XOR<MetaRelationUpdateWithoutJunctionTableInput, MetaRelationUncheckedUpdateWithoutJunctionTableInput>
+  }
+
+  export type MetaRelationUpdateManyWithWhereWithoutJunctionTableInput = {
+    where: MetaRelationScalarWhereInput
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyWithoutJunctionTableInput>
+  }
+
+  export type MetaVersionUpsertWithWhereUniqueWithoutTableInput = {
+    where: MetaVersionWhereUniqueInput
+    update: XOR<MetaVersionUpdateWithoutTableInput, MetaVersionUncheckedUpdateWithoutTableInput>
+    create: XOR<MetaVersionCreateWithoutTableInput, MetaVersionUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaVersionUpdateWithWhereUniqueWithoutTableInput = {
+    where: MetaVersionWhereUniqueInput
+    data: XOR<MetaVersionUpdateWithoutTableInput, MetaVersionUncheckedUpdateWithoutTableInput>
+  }
+
+  export type MetaVersionUpdateManyWithWhereWithoutTableInput = {
+    where: MetaVersionScalarWhereInput
+    data: XOR<MetaVersionUpdateManyMutationInput, MetaVersionUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type MetaVersionScalarWhereInput = {
+    AND?: MetaVersionScalarWhereInput | MetaVersionScalarWhereInput[]
+    OR?: MetaVersionScalarWhereInput[]
+    NOT?: MetaVersionScalarWhereInput | MetaVersionScalarWhereInput[]
+    id?: StringFilter<"MetaVersion"> | string
+    tableId?: StringFilter<"MetaVersion"> | string
+    version?: IntFilter<"MetaVersion"> | number
+    name?: StringFilter<"MetaVersion"> | string
+    description?: StringNullableFilter<"MetaVersion"> | string | null
+    snapshot?: JsonFilter<"MetaVersion">
+    isPublished?: BoolFilter<"MetaVersion"> | boolean
+    createdBy?: StringFilter<"MetaVersion"> | string
+    createdAt?: DateTimeFilter<"MetaVersion"> | Date | string
+    comment?: StringNullableFilter<"MetaVersion"> | string | null
+  }
+
+  export type MetaIndexUpsertWithWhereUniqueWithoutTableInput = {
+    where: MetaIndexWhereUniqueInput
+    update: XOR<MetaIndexUpdateWithoutTableInput, MetaIndexUncheckedUpdateWithoutTableInput>
+    create: XOR<MetaIndexCreateWithoutTableInput, MetaIndexUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaIndexUpdateWithWhereUniqueWithoutTableInput = {
+    where: MetaIndexWhereUniqueInput
+    data: XOR<MetaIndexUpdateWithoutTableInput, MetaIndexUncheckedUpdateWithoutTableInput>
+  }
+
+  export type MetaIndexUpdateManyWithWhereWithoutTableInput = {
+    where: MetaIndexScalarWhereInput
+    data: XOR<MetaIndexUpdateManyMutationInput, MetaIndexUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type MetaIndexScalarWhereInput = {
+    AND?: MetaIndexScalarWhereInput | MetaIndexScalarWhereInput[]
+    OR?: MetaIndexScalarWhereInput[]
+    NOT?: MetaIndexScalarWhereInput | MetaIndexScalarWhereInput[]
+    id?: StringFilter<"MetaIndex"> | string
+    tableId?: StringFilter<"MetaIndex"> | string
+    name?: StringFilter<"MetaIndex"> | string
+    type?: StringFilter<"MetaIndex"> | string
+    isUnique?: BoolFilter<"MetaIndex"> | boolean
+  }
+
+  export type MetaConstraintUpsertWithWhereUniqueWithoutTableInput = {
+    where: MetaConstraintWhereUniqueInput
+    update: XOR<MetaConstraintUpdateWithoutTableInput, MetaConstraintUncheckedUpdateWithoutTableInput>
+    create: XOR<MetaConstraintCreateWithoutTableInput, MetaConstraintUncheckedCreateWithoutTableInput>
+  }
+
+  export type MetaConstraintUpdateWithWhereUniqueWithoutTableInput = {
+    where: MetaConstraintWhereUniqueInput
+    data: XOR<MetaConstraintUpdateWithoutTableInput, MetaConstraintUncheckedUpdateWithoutTableInput>
+  }
+
+  export type MetaConstraintUpdateManyWithWhereWithoutTableInput = {
+    where: MetaConstraintScalarWhereInput
+    data: XOR<MetaConstraintUpdateManyMutationInput, MetaConstraintUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type MetaConstraintScalarWhereInput = {
+    AND?: MetaConstraintScalarWhereInput | MetaConstraintScalarWhereInput[]
+    OR?: MetaConstraintScalarWhereInput[]
+    NOT?: MetaConstraintScalarWhereInput | MetaConstraintScalarWhereInput[]
+    id?: StringFilter<"MetaConstraint"> | string
+    tableId?: StringFilter<"MetaConstraint"> | string
+    name?: StringFilter<"MetaConstraint"> | string
+    type?: StringFilter<"MetaConstraint"> | string
+    fields?: JsonFilter<"MetaConstraint">
+    expression?: StringNullableFilter<"MetaConstraint"> | string | null
+    message?: StringNullableFilter<"MetaConstraint"> | string | null
+  }
+
+  export type ModelApprovalUpsertWithWhereUniqueWithoutTableInput = {
+    where: ModelApprovalWhereUniqueInput
+    update: XOR<ModelApprovalUpdateWithoutTableInput, ModelApprovalUncheckedUpdateWithoutTableInput>
+    create: XOR<ModelApprovalCreateWithoutTableInput, ModelApprovalUncheckedCreateWithoutTableInput>
+  }
+
+  export type ModelApprovalUpdateWithWhereUniqueWithoutTableInput = {
+    where: ModelApprovalWhereUniqueInput
+    data: XOR<ModelApprovalUpdateWithoutTableInput, ModelApprovalUncheckedUpdateWithoutTableInput>
+  }
+
+  export type ModelApprovalUpdateManyWithWhereWithoutTableInput = {
+    where: ModelApprovalScalarWhereInput
+    data: XOR<ModelApprovalUpdateManyMutationInput, ModelApprovalUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type ModelApprovalScalarWhereInput = {
+    AND?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+    OR?: ModelApprovalScalarWhereInput[]
+    NOT?: ModelApprovalScalarWhereInput | ModelApprovalScalarWhereInput[]
+    id?: StringFilter<"ModelApproval"> | string
+    tableId?: StringFilter<"ModelApproval"> | string
+    versionId?: StringFilter<"ModelApproval"> | string
+    description?: StringFilter<"ModelApproval"> | string
+    attachments?: StringNullableFilter<"ModelApproval"> | string | null
+    status?: StringFilter<"ModelApproval"> | string
+    requestedBy?: StringFilter<"ModelApproval"> | string
+    requestedAt?: DateTimeFilter<"ModelApproval"> | Date | string
+    approvedBy?: StringNullableFilter<"ModelApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"ModelApproval"> | Date | string | null
+    comment?: StringNullableFilter<"ModelApproval"> | string | null
+  }
+
+  export type TestDataGenerationUpsertWithWhereUniqueWithoutTableInput = {
+    where: TestDataGenerationWhereUniqueInput
+    update: XOR<TestDataGenerationUpdateWithoutTableInput, TestDataGenerationUncheckedUpdateWithoutTableInput>
+    create: XOR<TestDataGenerationCreateWithoutTableInput, TestDataGenerationUncheckedCreateWithoutTableInput>
+  }
+
+  export type TestDataGenerationUpdateWithWhereUniqueWithoutTableInput = {
+    where: TestDataGenerationWhereUniqueInput
+    data: XOR<TestDataGenerationUpdateWithoutTableInput, TestDataGenerationUncheckedUpdateWithoutTableInput>
+  }
+
+  export type TestDataGenerationUpdateManyWithWhereWithoutTableInput = {
+    where: TestDataGenerationScalarWhereInput
+    data: XOR<TestDataGenerationUpdateManyMutationInput, TestDataGenerationUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type TestDataGenerationScalarWhereInput = {
+    AND?: TestDataGenerationScalarWhereInput | TestDataGenerationScalarWhereInput[]
+    OR?: TestDataGenerationScalarWhereInput[]
+    NOT?: TestDataGenerationScalarWhereInput | TestDataGenerationScalarWhereInput[]
+    id?: StringFilter<"TestDataGeneration"> | string
+    tableId?: StringFilter<"TestDataGeneration"> | string
+    count?: IntFilter<"TestDataGeneration"> | number
+    includeRelations?: BoolFilter<"TestDataGeneration"> | boolean
+    relationDepth?: IntFilter<"TestDataGeneration"> | number
+    options?: JsonNullableFilter<"TestDataGeneration">
+    createdBy?: StringFilter<"TestDataGeneration"> | string
+    createdAt?: DateTimeFilter<"TestDataGeneration"> | Date | string
+  }
+
+  export type TestDataTemplateUpsertWithWhereUniqueWithoutTableInput = {
+    where: TestDataTemplateWhereUniqueInput
+    update: XOR<TestDataTemplateUpdateWithoutTableInput, TestDataTemplateUncheckedUpdateWithoutTableInput>
+    create: XOR<TestDataTemplateCreateWithoutTableInput, TestDataTemplateUncheckedCreateWithoutTableInput>
+  }
+
+  export type TestDataTemplateUpdateWithWhereUniqueWithoutTableInput = {
+    where: TestDataTemplateWhereUniqueInput
+    data: XOR<TestDataTemplateUpdateWithoutTableInput, TestDataTemplateUncheckedUpdateWithoutTableInput>
+  }
+
+  export type TestDataTemplateUpdateManyWithWhereWithoutTableInput = {
+    where: TestDataTemplateScalarWhereInput
+    data: XOR<TestDataTemplateUpdateManyMutationInput, TestDataTemplateUncheckedUpdateManyWithoutTableInput>
+  }
+
+  export type TestDataTemplateScalarWhereInput = {
+    AND?: TestDataTemplateScalarWhereInput | TestDataTemplateScalarWhereInput[]
+    OR?: TestDataTemplateScalarWhereInput[]
+    NOT?: TestDataTemplateScalarWhereInput | TestDataTemplateScalarWhereInput[]
+    id?: StringFilter<"TestDataTemplate"> | string
+    name?: StringFilter<"TestDataTemplate"> | string
+    tableId?: StringFilter<"TestDataTemplate"> | string
+    description?: StringNullableFilter<"TestDataTemplate"> | string | null
+    fieldOverrides?: JsonFilter<"TestDataTemplate">
+    createdBy?: StringFilter<"TestDataTemplate"> | string
+    createdAt?: DateTimeFilter<"TestDataTemplate"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"TestDataTemplate"> | Date | string | null
+  }
+
+  export type MetaTableCreateWithoutFieldsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutFieldsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutFieldsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutFieldsInput, MetaTableUncheckedCreateWithoutFieldsInput>
+  }
+
+  export type MetaRelationCreateWithoutSourceFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable: MetaTableCreateNestedOneWithoutRelationsInput
+    targetTable: MetaTableCreateNestedOneWithoutTargetRelationsInput
+    targetField: MetaFieldCreateNestedOneWithoutTargetRelationsInput
+    junctionTable?: MetaTableCreateNestedOneWithoutJunctionRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateWithoutSourceFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateOrConnectWithoutSourceFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    create: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput>
+  }
+
+  export type MetaRelationCreateManySourceFieldInputEnvelope = {
+    data: MetaRelationCreateManySourceFieldInput | MetaRelationCreateManySourceFieldInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaRelationCreateWithoutTargetFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable: MetaTableCreateNestedOneWithoutRelationsInput
+    targetTable: MetaTableCreateNestedOneWithoutTargetRelationsInput
+    sourceField: MetaFieldCreateNestedOneWithoutSourceRelationsInput
+    junctionTable?: MetaTableCreateNestedOneWithoutJunctionRelationsInput
+  }
+
+  export type MetaRelationUncheckedCreateWithoutTargetFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateOrConnectWithoutTargetFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    create: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput>
+  }
+
+  export type MetaRelationCreateManyTargetFieldInputEnvelope = {
+    data: MetaRelationCreateManyTargetFieldInput | MetaRelationCreateManyTargetFieldInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaIndexFieldCreateWithoutFieldInput = {
+    id?: string
+    ordinal: number
+    index: MetaIndexCreateNestedOneWithoutFieldsInput
+  }
+
+  export type MetaIndexFieldUncheckedCreateWithoutFieldInput = {
+    id?: string
+    indexId: string
+    ordinal: number
+  }
+
+  export type MetaIndexFieldCreateOrConnectWithoutFieldInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    create: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput>
+  }
+
+  export type MetaIndexFieldCreateManyFieldInputEnvelope = {
+    data: MetaIndexFieldCreateManyFieldInput | MetaIndexFieldCreateManyFieldInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaTableUpsertWithoutFieldsInput = {
+    update: XOR<MetaTableUpdateWithoutFieldsInput, MetaTableUncheckedUpdateWithoutFieldsInput>
+    create: XOR<MetaTableCreateWithoutFieldsInput, MetaTableUncheckedCreateWithoutFieldsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutFieldsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutFieldsInput, MetaTableUncheckedUpdateWithoutFieldsInput>
+  }
+
+  export type MetaTableUpdateWithoutFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaRelationUpsertWithWhereUniqueWithoutSourceFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    update: XOR<MetaRelationUpdateWithoutSourceFieldInput, MetaRelationUncheckedUpdateWithoutSourceFieldInput>
+    create: XOR<MetaRelationCreateWithoutSourceFieldInput, MetaRelationUncheckedCreateWithoutSourceFieldInput>
+  }
+
+  export type MetaRelationUpdateWithWhereUniqueWithoutSourceFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    data: XOR<MetaRelationUpdateWithoutSourceFieldInput, MetaRelationUncheckedUpdateWithoutSourceFieldInput>
+  }
+
+  export type MetaRelationUpdateManyWithWhereWithoutSourceFieldInput = {
+    where: MetaRelationScalarWhereInput
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyWithoutSourceFieldInput>
+  }
+
+  export type MetaRelationUpsertWithWhereUniqueWithoutTargetFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    update: XOR<MetaRelationUpdateWithoutTargetFieldInput, MetaRelationUncheckedUpdateWithoutTargetFieldInput>
+    create: XOR<MetaRelationCreateWithoutTargetFieldInput, MetaRelationUncheckedCreateWithoutTargetFieldInput>
+  }
+
+  export type MetaRelationUpdateWithWhereUniqueWithoutTargetFieldInput = {
+    where: MetaRelationWhereUniqueInput
+    data: XOR<MetaRelationUpdateWithoutTargetFieldInput, MetaRelationUncheckedUpdateWithoutTargetFieldInput>
+  }
+
+  export type MetaRelationUpdateManyWithWhereWithoutTargetFieldInput = {
+    where: MetaRelationScalarWhereInput
+    data: XOR<MetaRelationUpdateManyMutationInput, MetaRelationUncheckedUpdateManyWithoutTargetFieldInput>
+  }
+
+  export type MetaIndexFieldUpsertWithWhereUniqueWithoutFieldInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    update: XOR<MetaIndexFieldUpdateWithoutFieldInput, MetaIndexFieldUncheckedUpdateWithoutFieldInput>
+    create: XOR<MetaIndexFieldCreateWithoutFieldInput, MetaIndexFieldUncheckedCreateWithoutFieldInput>
+  }
+
+  export type MetaIndexFieldUpdateWithWhereUniqueWithoutFieldInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    data: XOR<MetaIndexFieldUpdateWithoutFieldInput, MetaIndexFieldUncheckedUpdateWithoutFieldInput>
+  }
+
+  export type MetaIndexFieldUpdateManyWithWhereWithoutFieldInput = {
+    where: MetaIndexFieldScalarWhereInput
+    data: XOR<MetaIndexFieldUpdateManyMutationInput, MetaIndexFieldUncheckedUpdateManyWithoutFieldInput>
+  }
+
+  export type MetaIndexFieldScalarWhereInput = {
+    AND?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+    OR?: MetaIndexFieldScalarWhereInput[]
+    NOT?: MetaIndexFieldScalarWhereInput | MetaIndexFieldScalarWhereInput[]
+    id?: StringFilter<"MetaIndexField"> | string
+    indexId?: StringFilter<"MetaIndexField"> | string
+    fieldId?: StringFilter<"MetaIndexField"> | string
+    ordinal?: IntFilter<"MetaIndexField"> | number
+  }
+
+  export type MetaTableCreateWithoutRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutRelationsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutRelationsInput, MetaTableUncheckedCreateWithoutRelationsInput>
+  }
+
+  export type MetaTableCreateWithoutTargetRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutTargetRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutTargetRelationsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutTargetRelationsInput, MetaTableUncheckedCreateWithoutTargetRelationsInput>
+  }
+
+  export type MetaFieldCreateWithoutSourceRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table: MetaTableCreateNestedOneWithoutFieldsInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldUncheckedCreateWithoutSourceRelationsInput = {
+    id?: string
+    tableId: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetFieldInput
+    indexFields?: MetaIndexFieldUncheckedCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldCreateOrConnectWithoutSourceRelationsInput = {
+    where: MetaFieldWhereUniqueInput
+    create: XOR<MetaFieldCreateWithoutSourceRelationsInput, MetaFieldUncheckedCreateWithoutSourceRelationsInput>
+  }
+
+  export type MetaFieldCreateWithoutTargetRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table: MetaTableCreateNestedOneWithoutFieldsInput
+    sourceRelations?: MetaRelationCreateNestedManyWithoutSourceFieldInput
+    indexFields?: MetaIndexFieldCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldUncheckedCreateWithoutTargetRelationsInput = {
+    id?: string
+    tableId: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedCreateNestedManyWithoutSourceFieldInput
+    indexFields?: MetaIndexFieldUncheckedCreateNestedManyWithoutFieldInput
+  }
+
+  export type MetaFieldCreateOrConnectWithoutTargetRelationsInput = {
+    where: MetaFieldWhereUniqueInput
+    create: XOR<MetaFieldCreateWithoutTargetRelationsInput, MetaFieldUncheckedCreateWithoutTargetRelationsInput>
+  }
+
+  export type MetaTableCreateWithoutJunctionRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutJunctionRelationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutJunctionRelationsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutJunctionRelationsInput, MetaTableUncheckedCreateWithoutJunctionRelationsInput>
+  }
+
+  export type MetaTableUpsertWithoutRelationsInput = {
+    update: XOR<MetaTableUpdateWithoutRelationsInput, MetaTableUncheckedUpdateWithoutRelationsInput>
+    create: XOR<MetaTableCreateWithoutRelationsInput, MetaTableUncheckedCreateWithoutRelationsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutRelationsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutRelationsInput, MetaTableUncheckedUpdateWithoutRelationsInput>
+  }
+
+  export type MetaTableUpdateWithoutRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUpsertWithoutTargetRelationsInput = {
+    update: XOR<MetaTableUpdateWithoutTargetRelationsInput, MetaTableUncheckedUpdateWithoutTargetRelationsInput>
+    create: XOR<MetaTableCreateWithoutTargetRelationsInput, MetaTableUncheckedCreateWithoutTargetRelationsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutTargetRelationsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutTargetRelationsInput, MetaTableUncheckedUpdateWithoutTargetRelationsInput>
+  }
+
+  export type MetaTableUpdateWithoutTargetRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutTargetRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaFieldUpsertWithoutSourceRelationsInput = {
+    update: XOR<MetaFieldUpdateWithoutSourceRelationsInput, MetaFieldUncheckedUpdateWithoutSourceRelationsInput>
+    create: XOR<MetaFieldCreateWithoutSourceRelationsInput, MetaFieldUncheckedCreateWithoutSourceRelationsInput>
+    where?: MetaFieldWhereInput
+  }
+
+  export type MetaFieldUpdateToOneWithWhereWithoutSourceRelationsInput = {
+    where?: MetaFieldWhereInput
+    data: XOR<MetaFieldUpdateWithoutSourceRelationsInput, MetaFieldUncheckedUpdateWithoutSourceRelationsInput>
+  }
+
+  export type MetaFieldUpdateWithoutSourceRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table?: MetaTableUpdateOneRequiredWithoutFieldsNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateWithoutSourceRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUncheckedUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUpsertWithoutTargetRelationsInput = {
+    update: XOR<MetaFieldUpdateWithoutTargetRelationsInput, MetaFieldUncheckedUpdateWithoutTargetRelationsInput>
+    create: XOR<MetaFieldCreateWithoutTargetRelationsInput, MetaFieldUncheckedCreateWithoutTargetRelationsInput>
+    where?: MetaFieldWhereInput
+  }
+
+  export type MetaFieldUpdateToOneWithWhereWithoutTargetRelationsInput = {
+    where?: MetaFieldWhereInput
+    data: XOR<MetaFieldUpdateWithoutTargetRelationsInput, MetaFieldUncheckedUpdateWithoutTargetRelationsInput>
+  }
+
+  export type MetaFieldUpdateWithoutTargetRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table?: MetaTableUpdateOneRequiredWithoutFieldsNestedInput
+    sourceRelations?: MetaRelationUpdateManyWithoutSourceFieldNestedInput
+    indexFields?: MetaIndexFieldUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateWithoutTargetRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedUpdateManyWithoutSourceFieldNestedInput
+    indexFields?: MetaIndexFieldUncheckedUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaTableUpsertWithoutJunctionRelationsInput = {
+    update: XOR<MetaTableUpdateWithoutJunctionRelationsInput, MetaTableUncheckedUpdateWithoutJunctionRelationsInput>
+    create: XOR<MetaTableCreateWithoutJunctionRelationsInput, MetaTableUncheckedCreateWithoutJunctionRelationsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutJunctionRelationsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutJunctionRelationsInput, MetaTableUncheckedUpdateWithoutJunctionRelationsInput>
+  }
+
+  export type MetaTableUpdateWithoutJunctionRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutJunctionRelationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableCreateWithoutVersionsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutVersionsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutVersionsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutVersionsInput, MetaTableUncheckedCreateWithoutVersionsInput>
+  }
+
+  export type ModelApprovalCreateWithoutVersionInput = {
+    id?: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+    table: MetaTableCreateNestedOneWithoutModelApprovalsInput
+  }
+
+  export type ModelApprovalUncheckedCreateWithoutVersionInput = {
+    id?: string
+    tableId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type ModelApprovalCreateOrConnectWithoutVersionInput = {
+    where: ModelApprovalWhereUniqueInput
+    create: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput>
+  }
+
+  export type ModelApprovalCreateManyVersionInputEnvelope = {
+    data: ModelApprovalCreateManyVersionInput | ModelApprovalCreateManyVersionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaTableUpsertWithoutVersionsInput = {
+    update: XOR<MetaTableUpdateWithoutVersionsInput, MetaTableUncheckedUpdateWithoutVersionsInput>
+    create: XOR<MetaTableCreateWithoutVersionsInput, MetaTableUncheckedCreateWithoutVersionsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutVersionsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutVersionsInput, MetaTableUncheckedUpdateWithoutVersionsInput>
+  }
+
+  export type MetaTableUpdateWithoutVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type ModelApprovalUpsertWithWhereUniqueWithoutVersionInput = {
+    where: ModelApprovalWhereUniqueInput
+    update: XOR<ModelApprovalUpdateWithoutVersionInput, ModelApprovalUncheckedUpdateWithoutVersionInput>
+    create: XOR<ModelApprovalCreateWithoutVersionInput, ModelApprovalUncheckedCreateWithoutVersionInput>
+  }
+
+  export type ModelApprovalUpdateWithWhereUniqueWithoutVersionInput = {
+    where: ModelApprovalWhereUniqueInput
+    data: XOR<ModelApprovalUpdateWithoutVersionInput, ModelApprovalUncheckedUpdateWithoutVersionInput>
+  }
+
+  export type ModelApprovalUpdateManyWithWhereWithoutVersionInput = {
+    where: ModelApprovalScalarWhereInput
+    data: XOR<ModelApprovalUpdateManyMutationInput, ModelApprovalUncheckedUpdateManyWithoutVersionInput>
+  }
+
+  export type MetaTableCreateWithoutIndexesInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutIndexesInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutIndexesInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutIndexesInput, MetaTableUncheckedCreateWithoutIndexesInput>
+  }
+
+  export type MetaIndexFieldCreateWithoutIndexInput = {
+    id?: string
+    ordinal: number
+    field: MetaFieldCreateNestedOneWithoutIndexFieldsInput
+  }
+
+  export type MetaIndexFieldUncheckedCreateWithoutIndexInput = {
+    id?: string
+    fieldId: string
+    ordinal: number
+  }
+
+  export type MetaIndexFieldCreateOrConnectWithoutIndexInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    create: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput>
+  }
+
+  export type MetaIndexFieldCreateManyIndexInputEnvelope = {
+    data: MetaIndexFieldCreateManyIndexInput | MetaIndexFieldCreateManyIndexInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MetaTableUpsertWithoutIndexesInput = {
+    update: XOR<MetaTableUpdateWithoutIndexesInput, MetaTableUncheckedUpdateWithoutIndexesInput>
+    create: XOR<MetaTableCreateWithoutIndexesInput, MetaTableUncheckedCreateWithoutIndexesInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutIndexesInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutIndexesInput, MetaTableUncheckedUpdateWithoutIndexesInput>
+  }
+
+  export type MetaTableUpdateWithoutIndexesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutIndexesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaIndexFieldUpsertWithWhereUniqueWithoutIndexInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    update: XOR<MetaIndexFieldUpdateWithoutIndexInput, MetaIndexFieldUncheckedUpdateWithoutIndexInput>
+    create: XOR<MetaIndexFieldCreateWithoutIndexInput, MetaIndexFieldUncheckedCreateWithoutIndexInput>
+  }
+
+  export type MetaIndexFieldUpdateWithWhereUniqueWithoutIndexInput = {
+    where: MetaIndexFieldWhereUniqueInput
+    data: XOR<MetaIndexFieldUpdateWithoutIndexInput, MetaIndexFieldUncheckedUpdateWithoutIndexInput>
+  }
+
+  export type MetaIndexFieldUpdateManyWithWhereWithoutIndexInput = {
+    where: MetaIndexFieldScalarWhereInput
+    data: XOR<MetaIndexFieldUpdateManyMutationInput, MetaIndexFieldUncheckedUpdateManyWithoutIndexInput>
+  }
+
+  export type MetaIndexCreateWithoutFieldsInput = {
+    id?: string
+    name: string
+    type?: string
+    isUnique?: boolean
+    table: MetaTableCreateNestedOneWithoutIndexesInput
+  }
+
+  export type MetaIndexUncheckedCreateWithoutFieldsInput = {
+    id?: string
+    tableId: string
+    name: string
+    type?: string
+    isUnique?: boolean
+  }
+
+  export type MetaIndexCreateOrConnectWithoutFieldsInput = {
+    where: MetaIndexWhereUniqueInput
+    create: XOR<MetaIndexCreateWithoutFieldsInput, MetaIndexUncheckedCreateWithoutFieldsInput>
+  }
+
+  export type MetaFieldCreateWithoutIndexFieldsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table: MetaTableCreateNestedOneWithoutFieldsInput
+    sourceRelations?: MetaRelationCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetFieldInput
+  }
+
+  export type MetaFieldUncheckedCreateWithoutIndexFieldsInput = {
+    id?: string
+    tableId: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedCreateNestedManyWithoutSourceFieldInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetFieldInput
+  }
+
+  export type MetaFieldCreateOrConnectWithoutIndexFieldsInput = {
+    where: MetaFieldWhereUniqueInput
+    create: XOR<MetaFieldCreateWithoutIndexFieldsInput, MetaFieldUncheckedCreateWithoutIndexFieldsInput>
+  }
+
+  export type MetaIndexUpsertWithoutFieldsInput = {
+    update: XOR<MetaIndexUpdateWithoutFieldsInput, MetaIndexUncheckedUpdateWithoutFieldsInput>
+    create: XOR<MetaIndexCreateWithoutFieldsInput, MetaIndexUncheckedCreateWithoutFieldsInput>
+    where?: MetaIndexWhereInput
+  }
+
+  export type MetaIndexUpdateToOneWithWhereWithoutFieldsInput = {
+    where?: MetaIndexWhereInput
+    data: XOR<MetaIndexUpdateWithoutFieldsInput, MetaIndexUncheckedUpdateWithoutFieldsInput>
+  }
+
+  export type MetaIndexUpdateWithoutFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    table?: MetaTableUpdateOneRequiredWithoutIndexesNestedInput
+  }
+
+  export type MetaIndexUncheckedUpdateWithoutFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MetaFieldUpsertWithoutIndexFieldsInput = {
+    update: XOR<MetaFieldUpdateWithoutIndexFieldsInput, MetaFieldUncheckedUpdateWithoutIndexFieldsInput>
+    create: XOR<MetaFieldCreateWithoutIndexFieldsInput, MetaFieldUncheckedCreateWithoutIndexFieldsInput>
+    where?: MetaFieldWhereInput
+  }
+
+  export type MetaFieldUpdateToOneWithWhereWithoutIndexFieldsInput = {
+    where?: MetaFieldWhereInput
+    data: XOR<MetaFieldUpdateWithoutIndexFieldsInput, MetaFieldUncheckedUpdateWithoutIndexFieldsInput>
+  }
+
+  export type MetaFieldUpdateWithoutIndexFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    table?: MetaTableUpdateOneRequiredWithoutFieldsNestedInput
+    sourceRelations?: MetaRelationUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateWithoutIndexFieldsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetFieldNestedInput
+  }
+
+  export type MetaTableCreateWithoutConstraintsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutConstraintsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutConstraintsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutConstraintsInput, MetaTableUncheckedCreateWithoutConstraintsInput>
+  }
+
+  export type MetaTableUpsertWithoutConstraintsInput = {
+    update: XOR<MetaTableUpdateWithoutConstraintsInput, MetaTableUncheckedUpdateWithoutConstraintsInput>
+    create: XOR<MetaTableCreateWithoutConstraintsInput, MetaTableUncheckedCreateWithoutConstraintsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutConstraintsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutConstraintsInput, MetaTableUncheckedUpdateWithoutConstraintsInput>
+  }
+
+  export type MetaTableUpdateWithoutConstraintsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutConstraintsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableCreateWithoutModelApprovalsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutModelApprovalsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutModelApprovalsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutModelApprovalsInput, MetaTableUncheckedCreateWithoutModelApprovalsInput>
+  }
+
+  export type MetaVersionCreateWithoutModelApprovalsInput = {
+    id?: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+    table: MetaTableCreateNestedOneWithoutVersionsInput
+  }
+
+  export type MetaVersionUncheckedCreateWithoutModelApprovalsInput = {
+    id?: string
+    tableId: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+  }
+
+  export type MetaVersionCreateOrConnectWithoutModelApprovalsInput = {
+    where: MetaVersionWhereUniqueInput
+    create: XOR<MetaVersionCreateWithoutModelApprovalsInput, MetaVersionUncheckedCreateWithoutModelApprovalsInput>
+  }
+
+  export type MetaTableUpsertWithoutModelApprovalsInput = {
+    update: XOR<MetaTableUpdateWithoutModelApprovalsInput, MetaTableUncheckedUpdateWithoutModelApprovalsInput>
+    create: XOR<MetaTableCreateWithoutModelApprovalsInput, MetaTableUncheckedCreateWithoutModelApprovalsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutModelApprovalsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutModelApprovalsInput, MetaTableUncheckedUpdateWithoutModelApprovalsInput>
+  }
+
+  export type MetaTableUpdateWithoutModelApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutModelApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaVersionUpsertWithoutModelApprovalsInput = {
+    update: XOR<MetaVersionUpdateWithoutModelApprovalsInput, MetaVersionUncheckedUpdateWithoutModelApprovalsInput>
+    create: XOR<MetaVersionCreateWithoutModelApprovalsInput, MetaVersionUncheckedCreateWithoutModelApprovalsInput>
+    where?: MetaVersionWhereInput
+  }
+
+  export type MetaVersionUpdateToOneWithWhereWithoutModelApprovalsInput = {
+    where?: MetaVersionWhereInput
+    data: XOR<MetaVersionUpdateWithoutModelApprovalsInput, MetaVersionUncheckedUpdateWithoutModelApprovalsInput>
+  }
+
+  export type MetaVersionUpdateWithoutModelApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    table?: MetaTableUpdateOneRequiredWithoutVersionsNestedInput
+  }
+
+  export type MetaVersionUncheckedUpdateWithoutModelApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaTableCreateWithoutTestDataGenerationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutTestDataGenerationsInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataTemplates?: TestDataTemplateUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutTestDataGenerationsInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutTestDataGenerationsInput, MetaTableUncheckedCreateWithoutTestDataGenerationsInput>
+  }
+
+  export type MetaTableUpsertWithoutTestDataGenerationsInput = {
+    update: XOR<MetaTableUpdateWithoutTestDataGenerationsInput, MetaTableUncheckedUpdateWithoutTestDataGenerationsInput>
+    create: XOR<MetaTableCreateWithoutTestDataGenerationsInput, MetaTableUncheckedCreateWithoutTestDataGenerationsInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutTestDataGenerationsInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutTestDataGenerationsInput, MetaTableUncheckedUpdateWithoutTestDataGenerationsInput>
+  }
+
+  export type MetaTableUpdateWithoutTestDataGenerationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutTestDataGenerationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataTemplates?: TestDataTemplateUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableCreateWithoutTestDataTemplatesInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldCreateNestedManyWithoutTableInput
+    relations?: MetaRelationCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableUncheckedCreateWithoutTestDataTemplatesInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    isSystem?: boolean
+    isSoftDelete?: boolean
+    isVersioned?: boolean
+    status?: string
+    tenant: string
+    application?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedBy?: string | null
+    updatedAt?: Date | string | null
+    auditFields?: boolean
+    apiEnabled?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedCreateNestedManyWithoutTableInput
+    relations?: MetaRelationUncheckedCreateNestedManyWithoutSourceTableInput
+    targetRelations?: MetaRelationUncheckedCreateNestedManyWithoutTargetTableInput
+    junctionRelations?: MetaRelationUncheckedCreateNestedManyWithoutJunctionTableInput
+    versions?: MetaVersionUncheckedCreateNestedManyWithoutTableInput
+    indexes?: MetaIndexUncheckedCreateNestedManyWithoutTableInput
+    constraints?: MetaConstraintUncheckedCreateNestedManyWithoutTableInput
+    modelApprovals?: ModelApprovalUncheckedCreateNestedManyWithoutTableInput
+    testDataGenerations?: TestDataGenerationUncheckedCreateNestedManyWithoutTableInput
+  }
+
+  export type MetaTableCreateOrConnectWithoutTestDataTemplatesInput = {
+    where: MetaTableWhereUniqueInput
+    create: XOR<MetaTableCreateWithoutTestDataTemplatesInput, MetaTableUncheckedCreateWithoutTestDataTemplatesInput>
+  }
+
+  export type MetaTableUpsertWithoutTestDataTemplatesInput = {
+    update: XOR<MetaTableUpdateWithoutTestDataTemplatesInput, MetaTableUncheckedUpdateWithoutTestDataTemplatesInput>
+    create: XOR<MetaTableCreateWithoutTestDataTemplatesInput, MetaTableUncheckedCreateWithoutTestDataTemplatesInput>
+    where?: MetaTableWhereInput
+  }
+
+  export type MetaTableUpdateToOneWithWhereWithoutTestDataTemplatesInput = {
+    where?: MetaTableWhereInput
+    data: XOR<MetaTableUpdateWithoutTestDataTemplatesInput, MetaTableUncheckedUpdateWithoutTestDataTemplatesInput>
+  }
+
+  export type MetaTableUpdateWithoutTestDataTemplatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaTableUncheckedUpdateWithoutTestDataTemplatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isSoftDelete?: BoolFieldUpdateOperationsInput | boolean
+    isVersioned?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    tenant?: StringFieldUpdateOperationsInput | string
+    application?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    auditFields?: BoolFieldUpdateOperationsInput | boolean
+    apiEnabled?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    fields?: MetaFieldUncheckedUpdateManyWithoutTableNestedInput
+    relations?: MetaRelationUncheckedUpdateManyWithoutSourceTableNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetTableNestedInput
+    junctionRelations?: MetaRelationUncheckedUpdateManyWithoutJunctionTableNestedInput
+    versions?: MetaVersionUncheckedUpdateManyWithoutTableNestedInput
+    indexes?: MetaIndexUncheckedUpdateManyWithoutTableNestedInput
+    constraints?: MetaConstraintUncheckedUpdateManyWithoutTableNestedInput
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutTableNestedInput
+    testDataGenerations?: TestDataGenerationUncheckedUpdateManyWithoutTableNestedInput
+  }
+
+  export type MetaFieldCreateManyTableInput = {
+    id?: string
+    name: string
+    displayName: string
+    description?: string | null
+    type: string
+    isPrimaryKey?: boolean
+    isRequired?: boolean
+    isUnique?: boolean
+    isSystem?: boolean
+    isHidden?: boolean
+    ordinal: number
+    defaultValue?: string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: boolean
+    isSortable?: boolean
+    isFilterable?: boolean
+    isAggregatable?: boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateManySourceTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateManyTargetTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateManyJunctionTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaVersionCreateManyTableInput = {
+    id?: string
+    version: number
+    name: string
+    description?: string | null
+    snapshot: JsonNullValueInput | InputJsonValue
+    isPublished?: boolean
+    createdBy: string
+    createdAt?: Date | string
+    comment?: string | null
+  }
+
+  export type MetaIndexCreateManyTableInput = {
+    id?: string
+    name: string
+    type?: string
+    isUnique?: boolean
+  }
+
+  export type MetaConstraintCreateManyTableInput = {
+    id?: string
+    name: string
+    type: string
+    fields: JsonNullValueInput | InputJsonValue
+    expression?: string | null
+    message?: string | null
+  }
+
+  export type ModelApprovalCreateManyTableInput = {
+    id?: string
+    versionId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type TestDataGenerationCreateManyTableInput = {
+    id?: string
+    count: number
+    includeRelations?: boolean
+    relationDepth?: number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+  }
+
+  export type TestDataTemplateCreateManyTableInput = {
+    id?: string
+    name: string
+    description?: string | null
+    fieldOverrides: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type MetaFieldUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+    sourceRelations?: MetaRelationUncheckedUpdateManyWithoutSourceFieldNestedInput
+    targetRelations?: MetaRelationUncheckedUpdateManyWithoutTargetFieldNestedInput
+    indexFields?: MetaIndexFieldUncheckedUpdateManyWithoutFieldNestedInput
+  }
+
+  export type MetaFieldUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isPrimaryKey?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    ordinal?: IntFieldUpdateOperationsInput | number
+    defaultValue?: NullableStringFieldUpdateOperationsInput | string | null
+    validationRules?: NullableJsonNullValueInput | InputJsonValue
+    isSearchable?: BoolFieldUpdateOperationsInput | boolean
+    isSortable?: BoolFieldUpdateOperationsInput | boolean
+    isFilterable?: BoolFieldUpdateOperationsInput | boolean
+    isAggregatable?: BoolFieldUpdateOperationsInput | boolean
+    advancedSettings?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateWithoutSourceTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    targetTable?: MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput
+    sourceField?: MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput
+    targetField?: MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput
+    junctionTable?: MetaTableUpdateOneWithoutJunctionRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateWithoutSourceTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutSourceTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateWithoutTargetTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable?: MetaTableUpdateOneRequiredWithoutRelationsNestedInput
+    sourceField?: MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput
+    targetField?: MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput
+    junctionTable?: MetaTableUpdateOneWithoutJunctionRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateWithoutTargetTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutTargetTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateWithoutJunctionTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable?: MetaTableUpdateOneRequiredWithoutRelationsNestedInput
+    targetTable?: MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput
+    sourceField?: MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput
+    targetField?: MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateWithoutJunctionTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutJunctionTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaVersionUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    modelApprovals?: ModelApprovalUpdateManyWithoutVersionNestedInput
+  }
+
+  export type MetaVersionUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    modelApprovals?: ModelApprovalUncheckedUpdateManyWithoutVersionNestedInput
+  }
+
+  export type MetaVersionUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshot?: JsonNullValueInput | InputJsonValue
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaIndexUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    fields?: MetaIndexFieldUpdateManyWithoutIndexNestedInput
+  }
+
+  export type MetaIndexUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+    fields?: MetaIndexFieldUncheckedUpdateManyWithoutIndexNestedInput
+  }
+
+  export type MetaIndexUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    isUnique?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MetaConstraintUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaConstraintUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaConstraintUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    fields?: JsonNullValueInput | InputJsonValue
+    expression?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: MetaVersionUpdateOneRequiredWithoutModelApprovalsNestedInput
+  }
+
+  export type ModelApprovalUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TestDataGenerationUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataGenerationUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataGenerationUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    includeRelations?: BoolFieldUpdateOperationsInput | boolean
+    relationDepth?: IntFieldUpdateOperationsInput | number
+    options?: NullableJsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestDataTemplateUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TestDataTemplateUncheckedUpdateWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TestDataTemplateUncheckedUpdateManyWithoutTableInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    fieldOverrides?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type MetaRelationCreateManySourceFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    targetFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationCreateManyTargetFieldInput = {
+    id?: string
+    name: string
+    description?: string | null
+    sourceTableId: string
+    targetTableId: string
+    sourceFieldId: string
+    type: string
+    cascadeDelete?: boolean
+    cascadeUpdate?: boolean
+    isRequired?: boolean
+    junctionTableId?: string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaIndexFieldCreateManyFieldInput = {
+    id?: string
+    indexId: string
+    ordinal: number
+  }
+
+  export type MetaRelationUpdateWithoutSourceFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable?: MetaTableUpdateOneRequiredWithoutRelationsNestedInput
+    targetTable?: MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput
+    targetField?: MetaFieldUpdateOneRequiredWithoutTargetRelationsNestedInput
+    junctionTable?: MetaTableUpdateOneWithoutJunctionRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateWithoutSourceFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutSourceFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    targetFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUpdateWithoutTargetFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+    sourceTable?: MetaTableUpdateOneRequiredWithoutRelationsNestedInput
+    targetTable?: MetaTableUpdateOneRequiredWithoutTargetRelationsNestedInput
+    sourceField?: MetaFieldUpdateOneRequiredWithoutSourceRelationsNestedInput
+    junctionTable?: MetaTableUpdateOneWithoutJunctionRelationsNestedInput
+  }
+
+  export type MetaRelationUncheckedUpdateWithoutTargetFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaRelationUncheckedUpdateManyWithoutTargetFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceTableId?: StringFieldUpdateOperationsInput | string
+    targetTableId?: StringFieldUpdateOperationsInput | string
+    sourceFieldId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    cascadeDelete?: BoolFieldUpdateOperationsInput | boolean
+    cascadeUpdate?: BoolFieldUpdateOperationsInput | boolean
+    isRequired?: BoolFieldUpdateOperationsInput | boolean
+    junctionTableId?: NullableStringFieldUpdateOperationsInput | string | null
+    customOptions?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MetaIndexFieldUpdateWithoutFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+    index?: MetaIndexUpdateOneRequiredWithoutFieldsNestedInput
+  }
+
+  export type MetaIndexFieldUncheckedUpdateWithoutFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indexId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetaIndexFieldUncheckedUpdateManyWithoutFieldInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indexId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ModelApprovalCreateManyVersionInput = {
+    id?: string
+    tableId: string
+    description: string
+    attachments?: string | null
+    status?: string
+    requestedBy: string
+    requestedAt?: Date | string
+    approvedBy?: string | null
+    approvedAt?: Date | string | null
+    comment?: string | null
+  }
+
+  export type ModelApprovalUpdateWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    table?: MetaTableUpdateOneRequiredWithoutModelApprovalsNestedInput
+  }
+
+  export type ModelApprovalUncheckedUpdateWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ModelApprovalUncheckedUpdateManyWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tableId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attachments?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    requestedBy?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MetaIndexFieldCreateManyIndexInput = {
+    id?: string
+    fieldId: string
+    ordinal: number
+  }
+
+  export type MetaIndexFieldUpdateWithoutIndexInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+    field?: MetaFieldUpdateOneRequiredWithoutIndexFieldsNestedInput
+  }
+
+  export type MetaIndexFieldUncheckedUpdateWithoutIndexInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fieldId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetaIndexFieldUncheckedUpdateManyWithoutIndexInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fieldId?: StringFieldUpdateOperationsInput | string
+    ordinal?: IntFieldUpdateOperationsInput | number
   }
 
 

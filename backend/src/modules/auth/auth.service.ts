@@ -53,10 +53,7 @@ export class AuthService {
     }
 
     // 验证密码 - 使用类型断言避免TypeScript错误
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      (user as any).password,
-    );
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       this.logger.warn(`密码验证失败: ${username}`);
@@ -64,12 +61,12 @@ export class AuthService {
     }
 
     // 返回用户（排除密码）
-    const { password: _, ...result } = user as any;
+    const { password: _, ...result } = user;
 
     // 额外检查确保password被删除
     if ('password' in result) {
       this.logger.warn(`警告：validateUser返回结果中仍包含password字段`);
-      delete (result as any).password;
+      delete result.password;
     }
 
     this.logger.debug(
@@ -128,7 +125,7 @@ export class AuthService {
     // 验证密码 - 使用类型断言避免TypeScript错误
     const isPasswordValid = await bcrypt.compare(
       loginDto.password,
-      (user as any).password,
+      user.password,
     );
     if (!isPasswordValid) {
       throw new UnauthorizedException('用户名或密码错误');
@@ -141,18 +138,18 @@ export class AuthService {
     const tokens = this.generateTokens(user.id, user.username, user.tenantId);
 
     // 排除密码字段 - 使用类型断言避免类型检查错误
-    const { password: _, ...userWithoutPassword } = user as any;
+    const { password: _, ...userWithoutPassword } = user;
 
     // 额外检查确保password被删除
     if ('password' in userWithoutPassword) {
       this.logger.warn(`警告：login返回的user对象中仍包含password字段`);
-      delete (userWithoutPassword as any).password;
+      delete userWithoutPassword.password;
     }
 
     // 确保avatar字段存在
     if (!('avatar' in userWithoutPassword) && user.avatar) {
       this.logger.warn(`警告：login返回的user对象中缺少avatar字段，尝试恢复`);
-      (userWithoutPassword as any).avatar = user.avatar;
+      userWithoutPassword.avatar = user.avatar;
     }
 
     this.logger.debug(
@@ -174,7 +171,7 @@ export class AuthService {
       // 验证刷新令牌
       const payload = this.jwtService.verify(refreshTokenDto.refreshToken, {
         secret: process.env.JWT_REFRESH_SECRET,
-      }) as JwtPayload;
+      });
 
       // 查找用户
       const user = await this.usersService.findOneWithRoles(payload.sub);

@@ -29,6 +29,9 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 // 系统模块
 import { SystemModule } from './modules/system/system.module';
 
+// 数据模型模块
+import { DataModelsModule } from './modules/data-models/data-models.module';
+
 // 配置模块
 import { configModules } from './config';
 
@@ -49,6 +52,8 @@ import { configModules } from './config';
     AuthModule,
     // 系统模块
     SystemModule,
+    // 数据模型模块
+    DataModelsModule,
   ],
   controllers: [AppController],
   providers: [

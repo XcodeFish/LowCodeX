@@ -174,9 +174,164 @@ exports.Prisma.System_configsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MetaTableScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  displayName: 'displayName',
+  description: 'description',
+  isSystem: 'isSystem',
+  isSoftDelete: 'isSoftDelete',
+  isVersioned: 'isVersioned',
+  status: 'status',
+  tenant: 'tenant',
+  application: 'application',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedBy: 'updatedBy',
+  updatedAt: 'updatedAt',
+  auditFields: 'auditFields',
+  apiEnabled: 'apiEnabled',
+  customOptions: 'customOptions'
+};
+
+exports.Prisma.MetaFieldScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  displayName: 'displayName',
+  description: 'description',
+  type: 'type',
+  isPrimaryKey: 'isPrimaryKey',
+  isRequired: 'isRequired',
+  isUnique: 'isUnique',
+  isSystem: 'isSystem',
+  isHidden: 'isHidden',
+  ordinal: 'ordinal',
+  defaultValue: 'defaultValue',
+  validationRules: 'validationRules',
+  isSearchable: 'isSearchable',
+  isSortable: 'isSortable',
+  isFilterable: 'isFilterable',
+  isAggregatable: 'isAggregatable',
+  advancedSettings: 'advancedSettings'
+};
+
+exports.Prisma.MetaRelationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  sourceTableId: 'sourceTableId',
+  targetTableId: 'targetTableId',
+  sourceFieldId: 'sourceFieldId',
+  targetFieldId: 'targetFieldId',
+  type: 'type',
+  cascadeDelete: 'cascadeDelete',
+  cascadeUpdate: 'cascadeUpdate',
+  isRequired: 'isRequired',
+  junctionTableId: 'junctionTableId',
+  customOptions: 'customOptions'
+};
+
+exports.Prisma.MetaVersionScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  version: 'version',
+  name: 'name',
+  description: 'description',
+  snapshot: 'snapshot',
+  isPublished: 'isPublished',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  comment: 'comment'
+};
+
+exports.Prisma.MetaIndexScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  type: 'type',
+  isUnique: 'isUnique'
+};
+
+exports.Prisma.MetaIndexFieldScalarFieldEnum = {
+  id: 'id',
+  indexId: 'indexId',
+  fieldId: 'fieldId',
+  ordinal: 'ordinal'
+};
+
+exports.Prisma.MetaConstraintScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  type: 'type',
+  fields: 'fields',
+  expression: 'expression',
+  message: 'message'
+};
+
+exports.Prisma.ModelApprovalScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  versionId: 'versionId',
+  description: 'description',
+  attachments: 'attachments',
+  status: 'status',
+  requestedBy: 'requestedBy',
+  requestedAt: 'requestedAt',
+  approvedBy: 'approvedBy',
+  approvedAt: 'approvedAt',
+  comment: 'comment'
+};
+
+exports.Prisma.TestDataGenerationScalarFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  count: 'count',
+  includeRelations: 'includeRelations',
+  relationDepth: 'relationDepth',
+  options: 'options',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TestDataTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tableId: 'tableId',
+  description: 'description',
+  fieldOverrides: 'fieldOverrides',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VisualDiagramScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  tableIds: 'tableIds',
+  elements: 'elements',
+  connections: 'connections',
+  settings: 'settings',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedBy: 'updatedBy',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -228,6 +383,116 @@ exports.Prisma.system_configsOrderByRelevanceFieldEnum = {
   group: 'group'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.MetaTableOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  displayName: 'displayName',
+  description: 'description',
+  status: 'status',
+  tenant: 'tenant',
+  application: 'application',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+};
+
+exports.Prisma.MetaFieldOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  displayName: 'displayName',
+  description: 'description',
+  type: 'type',
+  defaultValue: 'defaultValue'
+};
+
+exports.Prisma.MetaRelationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  sourceTableId: 'sourceTableId',
+  targetTableId: 'targetTableId',
+  sourceFieldId: 'sourceFieldId',
+  targetFieldId: 'targetFieldId',
+  type: 'type',
+  junctionTableId: 'junctionTableId'
+};
+
+exports.Prisma.MetaVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  description: 'description',
+  createdBy: 'createdBy',
+  comment: 'comment'
+};
+
+exports.Prisma.MetaIndexOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  type: 'type'
+};
+
+exports.Prisma.MetaIndexFieldOrderByRelevanceFieldEnum = {
+  id: 'id',
+  indexId: 'indexId',
+  fieldId: 'fieldId'
+};
+
+exports.Prisma.MetaConstraintOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  name: 'name',
+  type: 'type',
+  expression: 'expression',
+  message: 'message'
+};
+
+exports.Prisma.ModelApprovalOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  versionId: 'versionId',
+  description: 'description',
+  attachments: 'attachments',
+  status: 'status',
+  requestedBy: 'requestedBy',
+  approvedBy: 'approvedBy',
+  comment: 'comment'
+};
+
+exports.Prisma.TestDataGenerationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tableId: 'tableId',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.TestDataTemplateOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tableId: 'tableId',
+  description: 'description',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.VisualDiagramOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -235,7 +500,18 @@ exports.Prisma.ModelName = {
   Permission: 'Permission',
   rolepermissions: 'rolepermissions',
   userroles: 'userroles',
-  system_configs: 'system_configs'
+  system_configs: 'system_configs',
+  MetaTable: 'MetaTable',
+  MetaField: 'MetaField',
+  MetaRelation: 'MetaRelation',
+  MetaVersion: 'MetaVersion',
+  MetaIndex: 'MetaIndex',
+  MetaIndexField: 'MetaIndexField',
+  MetaConstraint: 'MetaConstraint',
+  ModelApproval: 'ModelApproval',
+  TestDataGeneration: 'TestDataGeneration',
+  TestDataTemplate: 'TestDataTemplate',
+  VisualDiagram: 'VisualDiagram'
 };
 
 /**

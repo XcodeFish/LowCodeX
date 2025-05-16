@@ -75,3 +75,239 @@ model system_configs {
   createdAt   DateTime @db.DateTime(0)
   updatedAt   DateTime @db.DateTime(0)
 }
+
+// 元表定义
+model MetaTable {
+  id            String        @id @default(uuid())
+  name          String
+  displayName   String
+  description   String?       @db.Text
+  isSystem      Boolean       @default(false)
+  isSoftDelete  Boolean       @default(true)
+  isVersioned   Boolean       @default(false)
+  status        String        @default("draft")
+  tenant        String
+  application   String?
+  createdBy     String
+  createdAt     DateTime      @default(now())
+  updatedBy     String?
+  updatedAt     DateTime?     @updatedAt
+  auditFields   Boolean       @default(true)
+  apiEnabled    Boolean       @default(true)
+  customOptions Json?
+
+  // 关联关系
+  fields        MetaField[]
+  relations     MetaRelation[] @relation("SourceTables")
+  targetRelations MetaRelation[] @relation("TargetTables")
+  junctionRelations MetaRelation[] @relation("JunctionTables")
+  versions      MetaVersion[]
+  indexes       MetaIndex[]
+  constraints   MetaConstraint[]
+  modelApprovals ModelApproval[]
+  testDataGenerations TestDataGeneration[]
+  testDataTemplates TestDataTemplate[]
+
+  @@unique([name, tenant, application])
+  @@map("meta_tables")
+}
+
+// 元字段定义
+model MetaField {
+  id            String    @id @default(uuid())
+  tableId       String
+  name          String
+  displayName   String
+  description   String?   @db.Text
+  type          String
+  isPrimaryKey  Boolean   @default(false)
+  isRequired    Boolean   @default(false)
+  isUnique      Boolean   @default(false)
+  isSystem      Boolean   @default(false)
+  isHidden      Boolean   @default(false)
+  ordinal       Int
+  defaultValue  String?
+  validationRules Json?
+  isSearchable  Boolean   @default(false)
+  isSortable    Boolean   @default(false)
+  isFilterable  Boolean   @default(false)
+  isAggregatable Boolean  @default(false)
+  advancedSettings Json?
+
+  // 关联关系
+  table         MetaTable  @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  sourceRelations MetaRelation[] @relation("SourceFields")
+  targetRelations MetaRelation[] @relation("TargetFields")
+  indexFields   MetaIndexField[]
+
+  @@unique([tableId, name])
+  @@map("meta_fields")
+}
+
+// 元关系定义
+model MetaRelation {
+  id            String    @id @default(uuid())
+  name          String
+  description   String?   @db.Text
+  sourceTableId String
+  targetTableId String
+  sourceFieldId String
+  targetFieldId String
+  type          String
+  cascadeDelete Boolean   @default(false)
+  cascadeUpdate Boolean   @default(false)
+  isRequired    Boolean   @default(false)
+  junctionTableId String?
+  customOptions Json?
+
+  // 关联关系
+  sourceTable   MetaTable @relation("SourceTables", fields: [sourceTableId], references: [id])
+  targetTable   MetaTable @relation("TargetTables", fields: [targetTableId], references: [id])
+  sourceField   MetaField @relation("SourceFields", fields: [sourceFieldId], references: [id])
+  targetField   MetaField @relation("TargetFields", fields: [targetFieldId], references: [id])
+  junctionTable MetaTable? @relation("JunctionTables", fields: [junctionTableId], references: [id])
+
+  @@map("meta_relations")
+}
+
+// 元版本定义
+model MetaVersion {
+  id           String    @id @default(uuid())
+  tableId      String
+  version      Int
+  name         String
+  description   String?  @db.Text
+  snapshot      Json
+  isPublished   Boolean  @default(false)
+  createdBy     String
+  createdAt     DateTime @default(now())
+  comment       String?  @db.Text
+
+  // 关联关系
+  table        MetaTable @relation(fields: [tableId], references: [id])
+  modelApprovals ModelApproval[]
+
+  @@unique([tableId, version])
+  @@map("meta_versions")
+}
+
+// 元索引定义
+model MetaIndex {
+  id           String @id @default(uuid())
+  tableId      String
+  name         String
+  type         String @default("btree")
+  isUnique     Boolean @default(false)
+
+  // 关联关系
+  table        MetaTable @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  fields       MetaIndexField[]
+
+  @@map("meta_indexes")
+}
+
+// 元索引字段关联
+model MetaIndexField {
+  id           String @id @default(uuid())
+  indexId      String
+  fieldId      String
+  ordinal       Int
+
+  // 关联关系
+  index        MetaIndex @relation(fields: [indexId], references: [id], onDelete: Cascade)
+  field        MetaField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  @@map("meta_index_fields")
+}
+
+// 元约束定义
+model MetaConstraint {
+  id           String @id @default(uuid())
+  tableId      String
+  name         String
+  type         String
+  fields       Json     // 字段ID数组
+  expression   String?
+  message      String?
+
+  //  关联关系
+  table        MetaTable @relation(fields: [tableId], references: [id], onDelete: Cascade)
+
+  @@map("meta_constraints")
+}
+
+
+// 模型发布审批
+model ModelApproval {
+  id            String        @id @default(uuid())
+  tableId       String
+  versionId     String
+  description   String        @db.Text
+  attachments   String?       @db.Text
+  status        String        @default("pending")
+  requestedBy   String
+  requestedAt   DateTime      @default(now())
+  approvedBy    String?
+  approvedAt    DateTime?
+  comment       String?       @db.Text
+
+  // 关联关系
+  table         MetaTable     @relation(fields: [tableId], references: [id])
+  version       MetaVersion   @relation(fields: [versionId], references: [id])
+
+  @@map("model_approvals")
+}
+
+// 测试数据生成记录
+model TestDataGeneration {
+  id              String      @id @default(uuid())
+  tableId         String
+  count           Int
+  includeRelations Boolean    @default(false)
+  relationDepth   Int         @default(0)
+  options         Json?
+  createdBy       String
+  createdAt       DateTime    @default(now())
+
+  // 关联关系
+  table           MetaTable   @relation(fields: [tableId], references: [id])
+
+  @@map("test_data_generations")
+}
+
+// 测试数据模板
+model TestDataTemplate {
+  id              String      @id @default(uuid())
+  name            String
+  tableId         String
+  description     String?     @db.Text
+  fieldOverrides  Json
+  createdBy       String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime?   @updatedAt
+
+  // 关联关系
+  table           MetaTable   @relation(fields: [tableId], references: [id])
+
+  @@map("test_data_templates")
+}
+
+// 可视化图表
+model VisualDiagram {
+  id            String      @id @default(uuid())
+  name          String
+  description   String?     @db.Text
+  tableIds      Json        // 数组
+  elements      Json        // 数组
+  connections   Json        // 数组
+  settings      Json?
+  createdBy     String
+  createdAt     DateTime    @default(now())
+  updatedBy     String?
+  updatedAt     DateTime?   @updatedAt
+
+  @@map("visual_diagrams")
+}
+
+// npx prisma generate
+

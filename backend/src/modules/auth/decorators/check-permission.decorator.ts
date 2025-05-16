@@ -33,3 +33,26 @@ export const RequirePermission = (permission: ResourcePermission) =>
   CheckAbility((ability) =>
     ability.can(permission.action, permission.subject, permission.conditions),
   );
+
+/**
+ * 多权限检查装饰器
+ * 用于检查多个权限，所有权限都必须满足才能通过校验
+ * @param permissions 权限参数对象数组
+ */
+export const CheckPermissions = (permissions: ResourcePermission[]) =>
+  CheckAbility((ability) =>
+    permissions.every((permission) =>
+      ability.can(permission.action, permission.subject, permission.conditions),
+    ),
+  );
+
+/**
+ * 单一权限检查装饰器(字符串形式)
+ * 用于支持字符串格式的权限声明，向后兼容
+ * @param permissionString 权限字符串，格式为"action:subject"
+ */
+export const CheckPermission = (permissionString: string) =>
+  CheckAbility((ability) => {
+    const [action, subject] = permissionString.split(':');
+    return ability.can(action as Action, subject);
+  });

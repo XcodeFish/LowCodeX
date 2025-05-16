@@ -1,395 +1,1021 @@
-import axios from 'axios';
 import type {
-  Model,
-  ModelRelation,
-  ModelVersion,
-  CreateModelRequest,
-  UpdateModelRequest,
+  CreateMetaTableDto,
+  UpdateMetaTableDto,
+  CreateMetaFieldDto,
+  UpdateMetaFieldDto,
+  MetaField,
+  CreateMetaRelationDto,
+  UpdateMetaRelationDto,
+  MetaRelation,
+  CreateMetaVersionDto,
+  UpdateMetaVersionDto,
+  MetaVersion,
+  ApiResponse,
+  CompleteModel,
+  ModelExportData,
   ModelResponse,
   ModelsResponse,
   ModelRelationsResponse,
   ModelVersionsResponse,
-  PublishModelRequest,
-  ModelVersionRequest,
-  ModelVersionDiffRequest,
   ModelVersionDiffResponse,
-  ModelDiff
-} from '../types';
-import { v4 as uuidv4 } from 'uuid';
+  CreateCompleteModelResponse,
+  PublishModelResponse,
+  CloneModelResponse,
+  ImportModelResponse,
+  ImpactAnalysisRequest,
+  ImpactAnalysisResponse,
+  VisualDiagramSaveDto,
+  VisualDiagramResponse,
+  VisualDiagramsResponse,
+  TestDataGenerateRequest,
+  TestDataPreviewResponse,
+  SaveTestDataTemplateRequest,
+  TestDataTemplateResponse,
+  TestDataTemplatesResponse,
+  CreateModelApprovalDto,
+  ApproveModelDto,
+  ModelApprovalResponse,
+  ModelApprovalsResponse,
+  ModelApprovalHistoryResponse
+} from '../types/data-models';
+import request, { markErrorAsHandled } from './request';
 
-const API_URL = '/api/data-models';
-
-// 添加模拟数据，当后端API不可用时使用
-const mockData = {
-  models: [] as Model[],
-  relations: [] as ModelRelation[],
-  versions: [] as ModelVersion[]
-};
-
-// 添加请求拦截，如果后端不可用，使用本地数据
-axios.interceptors.response.use(
-  response => response,
-  error => {
-    console.warn('API请求失败，使用本地数据', error);
-    // 返回一个新的Promise，避免程序崩溃
-    return Promise.reject(error);
-  }
-);
+const API_URL = '/api/v1/data-models';
 
 /**
  * 数据模型服务
  * 提供与数据模型相关的API接口调用
  */
 export const modelService = {
+  // ===== 元数据表 =====
+
   /**
-   * 获取所有数据模型
+   * 获取所有元数据表
    */
-  async getModels(params?: { applicationId?: string, isPublished?: boolean }): Promise<ModelsResponse> {
+  async getMetaTables(params?: { tenant?: string, applicationId?: string }): Promise<ModelsResponse> {
     try {
-      const response = await axios.get(API_URL, { params });
-      return {
-        success: true,
-        data: response.data.data,
-        total: response.data.total
-      };
+      const response = await request.get(`${API_URL}/tables`, { params });
+      return response;
     } catch (error: any) {
-      console.log('获取模型失败，使用本地数据');
+      markErrorAsHandled(error);
       return {
-        success: true,
-        data: mockData.models,
-        total: mockData.models.length
+        success: false,
+        error: error.response?.data?.message || '获取元数据表失败'
       };
     }
   },
 
   /**
-   * 获取单个数据模型
+   * 获取单个元数据表详情
    */
-  async getModelById(id: string): Promise<ModelResponse> {
+  async getMetaTable(id: string): Promise<ModelResponse> {
     try {
-      const response = await axios.get(`${API_URL}/${id}`);
+      const response = await request.get(`${API_URL}/tables/${id}`);
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取元数据表详情失败'
+      };
+    }
+  },
+
+  /**
+   * 创建元数据表
+   */
+  async createMetaTable(tableDto: CreateMetaTableDto): Promise<ModelResponse> {
+    try {
+      const response = await request.post(`${API_URL}/tables`, tableDto);
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '创建元数据表失败'
+      };
+    }
+  },
+
+  /**
+   * 更新元数据表
+   */
+  async updateMetaTable(id: string, tableDto: UpdateMetaTableDto): Promise<ModelResponse> {
+    try {
+      const response = await request.patch(`${API_URL}/tables/${id}`, tableDto);
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '更新元数据表失败'
+      };
+    }
+  },
+
+  /**
+   * 删除元数据表
+   */
+  async deleteMetaTable(id: string): Promise<ApiResponse<any>> {
+    try {
+      const response = await request.delete(`${API_URL}/tables/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '删除元数据表失败'
+      };
+    }
+  },
+
+  // ===== 元数据字段 =====
+
+  /**
+   * 获取元数据字段列表
+   */
+  async getMetaFields(tableId?: string): Promise<ApiResponse<MetaField[]>> {
+    try {
+      const params = tableId ? { tableId } : undefined;
+      const response = await request.get(`${API_URL}/fields`, { params });
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      const model = mockData.models.find(m => m.id === id);
-      if (model) {
-        return {
-          success: true,
-          data: model
-        };
-      }
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: '模型不存在'
+        error: error.response?.data?.message || '获取元数据字段失败'
       };
     }
   },
 
   /**
-   * 创建数据模型
+   * 获取单个元数据字段
    */
-  async createModel(model: CreateModelRequest): Promise<ModelResponse> {
+  async getMetaField(id: string): Promise<ApiResponse<MetaField>> {
     try {
-      const response = await axios.post(API_URL, model);
+      const response = await request.get(`${API_URL}/fields/${id}`);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      // 使用本地数据模拟创建
-      const newModel: Model = {
-        id: uuidv4(),
-        name: model.name,
-        displayName: model.displayName,
-        description: model.description || '',
-        fields: model.fields || [],
-        tenantId: model.tenantId || 'default-tenant',
-        applicationId: model.applicationId,
-        version: 1,
-        isPublished: false,
-        createdBy: 'local-user',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-      mockData.models.push(newModel);
+      markErrorAsHandled(error);
       return {
-        success: true,
-        data: newModel
+        success: false,
+        error: error.response?.data?.message || '获取元数据字段详情失败'
       };
     }
   },
 
   /**
-   * 更新数据模型
+   * 创建元数据字段
    */
-  async updateModel(id: string, model: UpdateModelRequest): Promise<ModelResponse> {
+  async createMetaField(fieldDto: CreateMetaFieldDto): Promise<ApiResponse<MetaField>> {
     try {
-      const response = await axios.put(`${API_URL}/${id}`, model);
+      const response = await request.post(`${API_URL}/fields`, fieldDto);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      // 使用本地数据模拟更新
-      const index = mockData.models.findIndex(m => m.id === id);
-      if (index !== -1) {
-        const updatedModel = {
-          ...mockData.models[index],
-          ...model,
-          updatedAt: new Date().toISOString()
-        };
-        mockData.models[index] = updatedModel;
-        return {
-          success: true,
-          data: updatedModel
-        };
-      }
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: '模型不存在'
+        error: error.response?.data?.message || '创建元数据字段失败'
       };
     }
   },
 
   /**
-   * 删除数据模型
+   * 更新元数据字段
    */
-  async deleteModel(id: string): Promise<{ success: boolean; error?: string }> {
+  async updateMetaField(id: string, fieldDto: UpdateMetaFieldDto): Promise<ApiResponse<MetaField>> {
     try {
-      await axios.delete(`${API_URL}/${id}`);
-      return {
-        success: true
-      };
-    } catch (error: any) {
-      // 使用本地数据模拟删除
-      const index = mockData.models.findIndex(m => m.id === id);
-      if (index !== -1) {
-        mockData.models.splice(index, 1);
-        return {
-          success: true
-        };
-      }
-      return {
-        success: false,
-        error: '模型不存在'
-      };
-    }
-  },
-
-  /**
-   * 发布数据模型版本
-   */
-  async publishModel(request: PublishModelRequest): Promise<ModelResponse> {
-    try {
-      const response = await axios.post(`${API_URL}/${request.id}/publish`, { comment: request.comment });
+      const response = await request.patch(`${API_URL}/fields/${id}`, fieldDto);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      // 使用本地数据模拟发布
-      const model = mockData.models.find(m => m.id === request.id);
-      if (model) {
-        model.isPublished = true;
-        model.updatedAt = new Date().toISOString();
-        return {
-          success: true,
-          data: model
-        };
-      }
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: '模型不存在'
+        error: error.response?.data?.message || '更新元数据字段失败'
       };
     }
   },
 
   /**
-   * 获取模型关系
+   * 删除元数据字段
    */
-  async getModelRelations(modelId: string): Promise<ModelRelationsResponse> {
+  async deleteMetaField(id: string): Promise<ApiResponse<any>> {
     try {
-      const response = await axios.get(`${API_URL}/${modelId}/relations`);
+      const response = await request.delete(`${API_URL}/fields/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '删除元数据字段失败'
+      };
+    }
+  },
+
+  /**
+   * 获取所有字段类型
+   */
+  async getFieldTypes(): Promise<ApiResponse<string[]>> {
+    try {
+      const response = await request.get(`${API_URL}/fields/types/all`);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      // 使用本地数据模拟关系
-      const relations = mockData.relations.filter(r => r.sourceModelId === modelId || r.targetModelId === modelId);
-      return {
-        success: true,
-        data: relations
-      };
-    }
-  },
-
-  /**
-   * 创建模型关系
-   */
-  async createRelation(modelId: string, relation: Partial<ModelRelation>): Promise<ModelRelationsResponse> {
-    try {
-      const response = await axios.post(`${API_URL}/${modelId}/relations`, relation);
-      return {
-        success: true,
-        data: [response.data]
-      };
-    } catch (error: any) {
-      // 使用本地数据模拟创建关系
-      const newRelation: ModelRelation = {
-        id: uuidv4(),
-        name: relation.name || `relation_${Date.now()}`,
-        sourceModelId: modelId,
-        targetModelId: relation.targetModelId || modelId,
-        type: relation.type || 'manyToOne',
-        sourceField: relation.sourceField || '',
-        targetField: relation.targetField || '',
-        junctionTable: relation.junctionTable,
-        isRequired: relation.isRequired || false,
-        displayName: relation.displayName || '',
-        description: relation.description || '',
-        cascadeDelete: relation.cascadeDelete || false
-      };
-      mockData.relations.push(newRelation);
-      return {
-        success: true,
-        data: [newRelation]
-      };
-    }
-  },
-
-  /**
-   * 更新模型关系
-   */
-  async updateRelation(modelId: string, relationId: string, relation: Partial<ModelRelation>): Promise<ModelRelationsResponse> {
-    try {
-      const response = await axios.put(`${API_URL}/${modelId}/relations/${relationId}`, relation);
-      return {
-        success: true,
-        data: [response.data]
-      };
-    } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '更新模型关系失败'
+        error: error.response?.data?.message || '获取字段类型失败'
       };
     }
   },
 
+  // ===== 元数据关系 =====
+
   /**
-   * 删除模型关系
+   * 获取元数据关系列表
    */
-  async deleteRelation(modelId: string, relationId: string): Promise<{ success: boolean; error?: string }> {
+  async getMetaRelations(sourceTableId?: string, targetTableId?: string): Promise<ModelRelationsResponse> {
     try {
-      await axios.delete(`${API_URL}/${modelId}/relations/${relationId}`);
-      return {
-        success: true
-      };
+      const params: any = {};
+      if (sourceTableId) params.sourceTableId = sourceTableId;
+      if (targetTableId) params.targetTableId = targetTableId;
+
+      const response = await request.get(`${API_URL}/relations`, { params });
+      return response;
     } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '删除模型关系失败'
+        error: error.response?.data?.message || '获取元数据关系失败'
       };
     }
   },
 
   /**
-   * 获取模型版本历史
+   * 获取单个元数据关系
    */
-  async getModelVersions(modelId: string): Promise<ModelVersionsResponse> {
+  async getMetaRelation(id: string): Promise<ApiResponse<MetaRelation>> {
     try {
-      const response = await axios.get(`${API_URL}/${modelId}/versions`);
+      const response = await request.get(`${API_URL}/relations/${id}`);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
-      // 使用本地数据模拟版本
-      const versions = mockData.versions.filter(v => v.modelId === modelId);
+      markErrorAsHandled(error);
       return {
-        success: true,
-        data: versions
+        success: false,
+        error: error.response?.data?.message || '获取元数据关系详情失败'
       };
     }
   },
 
   /**
-   * 获取指定版本的模型
+   * 创建元数据关系
    */
-  async getModelVersion(modelId: string, version: number): Promise<ModelResponse> {
+  async createMetaRelation(relationDto: CreateMetaRelationDto): Promise<ApiResponse<MetaRelation>> {
     try {
-      const response = await axios.get(`${API_URL}/${modelId}/versions/${version}`);
+      const response = await request.post(`${API_URL}/relations`, relationDto);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '获取模型版本失败'
+        error: error.response?.data?.message || '创建元数据关系失败'
       };
     }
   },
 
   /**
-   * 比较两个版本的差异
+   * 更新元数据关系
    */
-  async compareVersions(request: ModelVersionDiffRequest): Promise<ModelVersionDiffResponse> {
+  async updateMetaRelation(id: string, relationDto: UpdateMetaRelationDto): Promise<ApiResponse<MetaRelation>> {
     try {
-      const response = await axios.get(
-        `${API_URL}/${request.modelId}/versions/diff`,
-        { params: { sourceVersion: request.sourceVersion, targetVersion: request.targetVersion } }
-      );
+      const response = await request.patch(`${API_URL}/relations/${id}`, relationDto);
       return {
         success: true,
         data: response.data
       };
     } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '比较版本差异失败'
+        error: error.response?.data?.message || '更新元数据关系失败'
       };
     }
   },
 
   /**
-   * 回滚到指定版本
+   * 删除元数据关系
    */
-  async rollbackToVersion(request: ModelVersionRequest): Promise<ModelResponse> {
+  async deleteMetaRelation(id: string): Promise<ApiResponse<any>> {
     try {
-      const response = await axios.post(`${API_URL}/${request.modelId}/rollback`, {
-        version: request.version,
-        comment: request.comment
+      const response = await request.delete(`${API_URL}/relations/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '删除元数据关系失败'
+      };
+    }
+  },
+
+  /**
+   * 获取所有关系类型
+   */
+  async getRelationTypes(): Promise<ApiResponse<string[]>> {
+    try {
+      const response = await request.get(`${API_URL}/relations/types/all`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取关系类型失败'
+      };
+    }
+  },
+
+  // ===== 元数据版本 =====
+
+  /**
+   * 获取元数据版本列表
+   */
+  async getMetaVersions(tableId?: string): Promise<ModelVersionsResponse> {
+    try {
+      const params = tableId ? { tableId } : undefined;
+      const response = await request.get(`${API_URL}/versions`, { params });
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取元数据版本失败'
+      };
+    }
+  },
+
+  /**
+   * 获取版本历史
+   */
+  async getVersionHistory(params?: { tableId?: string, publishedOnly?: boolean }): Promise<ModelVersionsResponse> {
+    try {
+      const response = await request.get(`${API_URL}/versions/history`, { params });
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取版本历史失败'
+      };
+    }
+  },
+
+  /**
+   * 获取单个元数据版本详情
+   */
+  async getMetaVersion(id: string): Promise<ApiResponse<MetaVersion>> {
+    try {
+      const response = await request.get(`${API_URL}/versions/${id}`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取元数据版本详情失败'
+      };
+    }
+  },
+
+  /**
+   * 创建元数据版本
+   */
+  async createMetaVersion(versionDto: CreateMetaVersionDto): Promise<ApiResponse<MetaVersion>> {
+    try {
+      const response = await request.post(`${API_URL}/versions`, versionDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '创建元数据版本失败'
+      };
+    }
+  },
+
+  /**
+   * 更新元数据版本
+   */
+  async updateMetaVersion(id: string, versionDto: UpdateMetaVersionDto): Promise<ApiResponse<MetaVersion>> {
+    try {
+      const response = await request.patch(`${API_URL}/versions/${id}`, versionDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '更新元数据版本失败'
+      };
+    }
+  },
+
+  /**
+   * 发布版本
+   */
+  async publishVersion(id: string): Promise<ApiResponse<MetaVersion>> {
+    try {
+      const response = await request.post(`${API_URL}/versions/${id}/publish`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '发布版本失败'
+      };
+    }
+  },
+
+  /**
+   * 比较两个版本
+   */
+  async compareVersions(oldVersionId: string, newVersionId: string): Promise<ModelVersionDiffResponse> {
+    try {
+      const response = await request.post(`${API_URL}/versions/compare`, {
+        oldVersionId,
+        newVersionId
+      });
+      return response;
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '比较版本失败'
+      };
+    }
+  },
+
+  /**
+   * 恢复版本
+   */
+  async restoreVersion(id: string): Promise<ApiResponse<MetaVersion>> {
+    try {
+      const response = await request.post(`${API_URL}/versions/${id}/restore`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '恢复版本失败'
+      };
+    }
+  },
+
+  // ===== 模型发布审批 =====
+
+  /**
+   * 创建模型发布审批申请
+   */
+  async createModelApproval(approvalDto: CreateModelApprovalDto): Promise<ModelApprovalResponse> {
+    try {
+      const response = await request.post(`${API_URL}/approvals`, approvalDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '创建模型发布审批申请失败'
+      };
+    }
+  },
+
+  /**
+   * 获取模型发布审批列表
+   */
+  async getModelApprovals(params?: { tableId?: string, status?: string, requestedBy?: string, approvedBy?: string }): Promise<ModelApprovalsResponse> {
+    try {
+      const response = await request.get(`${API_URL}/approvals`, { params });
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取模型发布审批列表失败'
+      };
+    }
+  },
+
+  /**
+   * 获取单个模型发布审批详情
+   */
+  async getModelApproval(id: string): Promise<ModelApprovalResponse> {
+    try {
+      const response = await request.get(`${API_URL}/approvals/${id}`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取模型发布审批详情失败'
+      };
+    }
+  },
+
+  /**
+   * 审批模型发布申请
+   */
+  async approveModel(id: string, approveDto: ApproveModelDto): Promise<ModelApprovalResponse> {
+    try {
+      const response = await request.put(`${API_URL}/approvals/${id}/approve`, approveDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '审批模型发布申请失败'
+      };
+    }
+  },
+
+  /**
+   * 取消模型发布审批申请
+   */
+  async cancelModelApproval(id: string): Promise<ApiResponse<any>> {
+    try {
+      const response = await request.delete(`${API_URL}/approvals/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '取消模型发布审批申请失败'
+      };
+    }
+  },
+
+  /**
+   * 获取模型审批历史
+   */
+  async getApprovalHistory(tableId: string): Promise<ModelApprovalHistoryResponse> {
+    try {
+      const response = await request.get(`${API_URL}/approvals/table/${tableId}/history`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取模型审批历史失败'
+      };
+    }
+  },
+
+  // ===== 模型变更影响分析 =====
+
+  /**
+   * 分析模型变更影响
+   */
+  async analyzeImpact(requestData: ImpactAnalysisRequest): Promise<ImpactAnalysisResponse> {
+    try {
+      const response = await request.post(`${API_URL}/impact-analysis`, requestData);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '分析模型变更影响失败'
+      };
+    }
+  },
+
+  // ===== 测试数据生成 =====
+
+  /**
+   * 生成测试数据
+   */
+  async generateTestData(requestData: TestDataGenerateRequest): Promise<TestDataPreviewResponse> {
+    try {
+      const response = await request.post(`${API_URL}/test-data/generate`, requestData);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '生成测试数据失败'
+      };
+    }
+  },
+
+  /**
+   * 预览测试数据
+   */
+  async previewTestData(requestData: TestDataGenerateRequest): Promise<TestDataPreviewResponse> {
+    try {
+      const response = await request.post(`${API_URL}/test-data/preview`, requestData);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '预览测试数据失败'
+      };
+    }
+  },
+
+  /**
+   * 保存测试数据模板
+   */
+  async saveTestDataTemplate(requestData: SaveTestDataTemplateRequest): Promise<TestDataTemplateResponse> {
+    try {
+      const response = await request.post(`${API_URL}/test-data/templates`, requestData);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '保存测试数据模板失败'
+      };
+    }
+  },
+
+  /**
+   * 获取表的测试数据模板
+   */
+  async getTableTestDataTemplates(tableId: string): Promise<TestDataTemplatesResponse> {
+    try {
+      const response = await request.get(`${API_URL}/test-data/templates/${tableId}`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取表的测试数据模板失败'
+      };
+    }
+  },
+
+  /**
+   * 获取测试数据模板详情
+   */
+  async getTestDataTemplate(id: string): Promise<TestDataTemplateResponse> {
+    try {
+      const response = await request.get(`${API_URL}/test-data/templates/detail/${id}`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取测试数据模板详情失败'
+      };
+    }
+  },
+
+  /**
+   * 删除测试数据模板
+   */
+  async deleteTestDataTemplate(id: string): Promise<ApiResponse<any>> {
+    try {
+      const response = await request.delete(`${API_URL}/test-data/templates/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '删除测试数据模板失败'
+      };
+    }
+  },
+
+  // ===== 模型可视化设计 =====
+
+  /**
+   * 保存可视化图表
+   */
+  async saveVisualDiagram(diagramDto: VisualDiagramSaveDto): Promise<VisualDiagramResponse> {
+    try {
+      const response = await request.post(`${API_URL}/visual-designer/diagrams`, diagramDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '保存可视化图表失败'
+      };
+    }
+  },
+
+  /**
+   * 更新可视化图表
+   */
+  async updateVisualDiagram(id: string, diagramDto: VisualDiagramSaveDto): Promise<VisualDiagramResponse> {
+    try {
+      const response = await request.put(`${API_URL}/visual-designer/diagrams/${id}`, diagramDto);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '更新可视化图表失败'
+      };
+    }
+  },
+
+  /**
+   * 获取所有可视化图表
+   */
+  async getVisualDiagrams(): Promise<VisualDiagramsResponse> {
+    try {
+      const response = await request.get(`${API_URL}/visual-designer/diagrams`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取所有可视化图表失败'
+      };
+    }
+  },
+
+  /**
+   * 获取单个可视化图表
+   */
+  async getVisualDiagram(id: string): Promise<VisualDiagramResponse> {
+    try {
+      const response = await request.get(`${API_URL}/visual-designer/diagrams/${id}`);
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取可视化图表失败'
+      };
+    }
+  },
+
+  /**
+   * 删除可视化图表
+   */
+  async deleteVisualDiagram(id: string): Promise<ApiResponse<any>> {
+    try {
+      const response = await request.delete(`${API_URL}/visual-designer/diagrams/${id}`);
+      return {
+        success: true,
+        data: response
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '删除可视化图表失败'
+      };
+    }
+  },
+
+  /**
+   * 自动生成ER图
+   */
+  async generateERDiagram(tableIds: string[]): Promise<VisualDiagramResponse> {
+    try {
+      const response = await request.post(`${API_URL}/visual-designer/generate-er-diagram`, { tableIds });
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '自动生成ER图失败'
+      };
+    }
+  },
+
+  // ===== 完整模型操作 =====
+
+  /**
+   * 创建完整数据模型
+   */
+  async createCompleteModel(
+    model: CreateMetaTableDto,
+    fields: CreateMetaFieldDto[],
+  ): Promise<ApiResponse<CreateCompleteModelResponse>> {
+    try {
+      const response = await request.post(`${API_URL}/complete`, {
+        model,
+        fields,
       });
       return {
         success: true,
-        data: response.data
+        data: response.data,
       };
     } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '回滚版本失败'
+        error: error.response?.data?.message || '创建完整数据模型失败',
       };
     }
   },
 
   /**
-   * 复制数据模型
+   * 发布数据模型
    */
-  async duplicateModel(id: string, newName: string): Promise<ModelResponse> {
+  async publishModel(tableId: string): Promise<ApiResponse<PublishModelResponse>> {
     try {
-      const response = await axios.post(`${API_URL}/${id}/duplicate`, { newName });
+      const response = await request.put(`${API_URL}/${tableId}/publish`);
       return {
         success: true,
-        data: response.data
+        data: response.data,
       };
     } catch (error: any) {
+      markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '复制数据模型失败'
+        error: error.response?.data?.message || '发布数据模型失败',
       };
     }
-  }
+  },
+
+  /**
+   * 克隆数据模型
+   */
+  async cloneModel(
+    tableId: string,
+    newName: string,
+    newDisplayName: string
+  ): Promise<ApiResponse<CloneModelResponse>> {
+    try {
+      const response = await request.post(`${API_URL}/${tableId}/clone`, {
+        newName,
+        newDisplayName,
+      });
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '克隆数据模型失败',
+      };
+    }
+  },
+
+  /**
+   * 获取完整数据模型信息
+   */
+  async getCompleteModel(tableId: string): Promise<ApiResponse<CompleteModel>> {
+    try {
+      const response = await request.get(`${API_URL}/${tableId}/complete`);
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '获取完整数据模型失败',
+      };
+    }
+  },
+
+  /**
+   * 导出数据模型定义
+   */
+  async exportModelDefinition(tableId: string): Promise<ApiResponse<ModelExportData>> {
+    try {
+      const response = await request.get(`${API_URL}/${tableId}/export`);
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '导出数据模型定义失败',
+      };
+    }
+  },
+
+  /**
+   * 导入数据模型定义
+   */
+  async importModelDefinition(
+    definition: ModelExportData,
+    tenant: string
+  ): Promise<ApiResponse<ImportModelResponse>> {
+    try {
+      const response = await request.post(`${API_URL}/import`, {
+        definition,
+        tenant,
+      });
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error: any) {
+      markErrorAsHandled(error);
+      return {
+        success: false,
+        error: error.response?.data?.message || '导入数据模型定义失败',
+      };
+    }
+  },
 };

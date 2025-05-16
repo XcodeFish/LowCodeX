@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as winston from 'winston';
 // 使用require导入，因为这个包没有提供TypeScript类型定义
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+
 const DailyRotateFile = require('winston-daily-rotate-file');
 
 @Injectable()

@@ -11,11 +11,13 @@ import {
   ConfigService as NestConfigService,
 } from '@nestjs/config';
 import { AbilityFactory } from '../auth/ability.factory';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
     PrismaModule,
     NestConfigModule,
+    forwardRef(() => AuthModule),
     JwtModule.registerAsync({
       imports: [NestConfigModule],
       inject: [NestConfigService],

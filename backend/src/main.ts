@@ -19,8 +19,10 @@ async function bootstrap() {
   }
 
   // 配置全局路由前缀
+  let apiPrefix = '';
   if (appConfig.useGlobalPrefix) {
-    app.setGlobalPrefix(`${appConfig.apiPrefix}/${appConfig.apiVersion}`);
+    apiPrefix = `${appConfig.apiPrefix}/${appConfig.apiVersion}`;
+    app.setGlobalPrefix(apiPrefix);
   }
 
   // 配置全局管道
@@ -58,13 +60,16 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig, {
     extraModels: [ApiResponse, PageData],
   });
-  SwaggerModule.setup('api/docs', app, document);
+
+  // 将Swagger文档路径设置为/docs，不受全局前缀影响
+  const docsPath = 'docs';
+  SwaggerModule.setup(docsPath, app, document);
 
   // 启动应用
   const port = process.env.PORT || appConfig.port;
   await app.listen(port);
   console.log(`应用已启动，监听端口: ${port}`);
-  console.log(`API文档: http://localhost:${port}/docs`);
+  console.log(`API文档: http://localhost:${port}/${docsPath}`);
 }
 
 bootstrap();
