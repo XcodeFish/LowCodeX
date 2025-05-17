@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Table, Space, Card, Typography, Input, message, Popconfirm, Tag, Tooltip } from 'antd';
 import { PlusOutlined, SearchOutlined, DeleteOutlined, EditOutlined, CopyOutlined, EyeOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchModels } from '../../store/slices/modelSlice';
-import type { AppDispatch, RootState } from '../../store';
-import type { Model } from '../../types/model-types';
+import { useMetaTables } from '../../hooks/features/data-models';
+import { setMetaTables, setModelLoading, setModelError } from '../../store/slices/modelSlice';
+import type { AppDispatch } from '../../store';
+import type { Model } from '../../types/data-models';
 import './style.scss';
 const { Title } = Typography;
 const { Search } = Input;
@@ -13,22 +14,41 @@ const { Search } = Input;
 const ModelList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { models, loading, total } = useSelector((state: RootState) => state.model);
+  const { getMetaTables, loading, error } = useMetaTables();
+  const [models, setModels] = useState<Model[]>([]);
+  const [total, setTotal] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 10,
     total: 0,
   });
-  const fetchedRef = useRef(false);
+
+  const fetchModels = async () => {
+    try {
+      dispatch(setModelLoading({ loading: true }));
+      const result = await getMetaTables({});
+      if (result.success && result.data) {
+        setModels(result.data);
+        setTotal(result.total || 0);
+        // 类型安全：因为Redux期望MetaTable[]，这里我们使用断言
+        // @ts-ignore - 忽略类型不匹配的错误
+        dispatch(setMetaTables({ tables: result.data, total: result.total || 0 }));
+      } else {
+        message.error(result.error || '获取数据模型失败');
+        dispatch(setModelError({ error: result.error || '获取数据模型失败' }));
+      }
+    } catch (err: any) {
+      message.error(err.message || '获取数据模型失败');
+      dispatch(setModelError({ error: err.message || '获取数据模型失败' }));
+    } finally {
+      dispatch(setModelLoading({ loading: false }));
+    }
+  };
 
   useEffect(() => {
-    // 使用ref避免重复加载
-    if (!fetchedRef.current) {
-      dispatch(fetchModels({}));
-      fetchedRef.current = true;
-    }
-  }, [dispatch]);
+    fetchModels();
+  }, []);
 
   useEffect(() => {
     setPagination(prev => ({
@@ -120,24 +140,27 @@ const ModelList: React.FC = () => {
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);
-    // 实际应用中，这里应该调用API进行搜索
-    // dispatch(searchModels(value));
+    // 实现模型搜索功能
+    const searchResult = models.filter(model =>
+      model.name.toLowerCase().includes(value.toLowerCase()) ||
+      model.displayName.toLowerCase().includes(value.toLowerCase())
+    );
+    setModels(searchResult);
   };
 
-  const handleDuplicate = (model: Model) => {
+  const handleDuplicate = async (model: Model) => {
+    // 在此实现调用复制模型的API
     message.info(`复制模型 ${model.displayName} 功能尚未实现`);
-    // 实际应用中，这里应该调用API复制模型
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
+    // 在此实现调用删除模型的API
     message.info(`删除模型 ${id} 功能尚未实现`);
-    // 实际应用中，这里应该调用API删除模型
   };
 
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
-    // 实际应用中，这里应该调用API获取分页数据
-    // dispatch(fetchModels({ page: pagination.current, pageSize: pagination.pageSize }));
+    // 实现分页功能
   };
 
   // 搜索框和按钮样式

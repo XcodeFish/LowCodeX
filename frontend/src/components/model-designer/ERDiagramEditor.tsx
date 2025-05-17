@@ -16,6 +16,7 @@ import 'reactflow/dist/style.css';
 import { Card, Empty, Spin, Button, message, Tooltip, Space, Select } from 'antd';
 import { ZoomInOutlined, ZoomOutOutlined, CompressOutlined } from '@ant-design/icons';
 import type { Model, ModelField, ModelRelation, ModelRelationType } from '../../types/model-types';
+import { useVisualDesigner } from '../../hooks/features/data-models';
 
 interface ERDiagramEditorProps {
   model: Model | null;

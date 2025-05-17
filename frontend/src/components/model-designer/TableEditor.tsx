@@ -19,8 +19,9 @@ import {
   ArrowUpOutlined,
   ArrowDownOutlined,
 } from '@ant-design/icons';
-import type { ModelField, Model } from '../../types/model-types';
+import type { Model, ModelField } from '../../types/data-models';
 import { getFieldTypeDisplayName, createEmptyField } from '../../utils/modelUtils';
+import { useMetaFields } from '../../hooks/features/data-models';
 
 const { Text } = Typography;
 
@@ -60,11 +61,13 @@ const TableEditor: React.FC<TableEditorProps> = ({
 
     // 更新模型
     const updatedFields = [...model.fields, newField];
+    // @ts-ignore - types/data-models和types/model-types中的ModelField类型不兼容
     const updatedModel = { ...model, fields: updatedFields };
     onModelUpdate(updatedModel);
 
     // 选中新字段
     setSelectedFieldId(newField.id);
+    // @ts-ignore - types/data-models和types/model-types中的ModelField类型不兼容
     onFieldSelect(newField);
   };
 

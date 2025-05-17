@@ -3,195 +3,237 @@ import type {
   Model,
   ModelRelation,
   ModelVersion,
-  CreateModelRequest,
-  UpdateModelRequest,
-  PublishModelRequest,
-  ModelVersionRequest
-} from '../../types';
-import { modelService } from '../../services/modelService';
+  MetaTable,
+  MetaField,
+  MetaRelation,
+  MetaVersion,
+  VisualDiagram,
+  ModelApproval,
+  ImpactAnalysisResponse,
+  TestDataTemplate
+} from '../../types/data-models';
 
+// 状态接口
 interface ModelState {
-  models: Model[];
-  currentModel: Model | null;
-  modelRelations: ModelRelation[];
-  modelVersions: ModelVersion[];
+  // 元数据表相关
+  metaTables: MetaTable[];
+  currentMetaTable: MetaTable | null;
+  totalMetaTables: number;
+
+  // 元数据字段相关
+  metaFields: MetaField[];
+
+  // 元数据关系相关
+  metaRelations: MetaRelation[];
+
+  // 元数据版本相关
+  metaVersions: MetaVersion[];
+  selectedVersion: MetaVersion | null;
+
+  // 模型审批相关
+  modelApprovals: ModelApproval[];
+
+  // 模型可视化设计相关
+  visualDiagrams: VisualDiagram[];
+  currentDiagram: VisualDiagram | null;
+
+  // 模型变更影响分析相关
+  impactAnalysisResult: ImpactAnalysisResponse | null;
+
+  // 测试数据相关
+  testDataTemplates: TestDataTemplate[];
+
+  // 通用状态
   loading: boolean;
   error: string | null;
-  selectedVersion: number | null;
-  total: number;
 }
 
+// 初始状态
 const initialState: ModelState = {
-  models: [],
-  currentModel: null,
-  modelRelations: [],
-  modelVersions: [],
-  loading: false,
-  error: null,
+  metaTables: [],
+  currentMetaTable: null,
+  totalMetaTables: 0,
+
+  metaFields: [],
+
+  metaRelations: [],
+
+  metaVersions: [],
   selectedVersion: null,
-  total: 0
+
+  modelApprovals: [],
+
+  visualDiagrams: [],
+  currentDiagram: null,
+
+  impactAnalysisResult: null,
+
+  testDataTemplates: [],
+
+  loading: false,
+  error: null
 };
 
-// 异步Action: 获取所有模型
-export const fetchModels = createAsyncThunk(
-  'model/fetchModels',
-  async (params: { applicationId?: string, isPublished?: boolean } | undefined, { rejectWithValue }) => {
-    try {
-      const response = await modelService.getModels(params);
-      if (response.success) {
-        return {
-          models: response.data || [],
-          total: response.total || 0
-        };
-      }
-      return rejectWithValue(response.error || '获取数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '获取数据模型失败');
-    }
+// 元数据表相关action
+export const setMetaTables = createAsyncThunk(
+  'model/setMetaTables',
+  async (payload: { tables: MetaTable[], total: number }) => {
+    return payload;
   }
 );
 
-// 异步Action: 获取单个模型
-export const fetchModelById = createAsyncThunk(
-  'model/fetchModelById',
-  async (id: string, { rejectWithValue }) => {
-    try {
-      const response = await modelService.getModelById(id);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '获取数据模型详情失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '获取数据模型详情失败');
-    }
+export const setCurrentMetaTable = createAsyncThunk(
+  'model/setCurrentMetaTable',
+  async (payload: { table: MetaTable }) => {
+    return payload;
   }
 );
 
-// 异步Action: 创建模型
-export const createModel = createAsyncThunk(
-  'model/createModel',
-  async (model: CreateModelRequest, { rejectWithValue }) => {
-    try {
-      const response = await modelService.createModel(model);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '创建数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '创建数据模型失败');
-    }
+export const addMetaTable = createAsyncThunk(
+  'model/addMetaTable',
+  async (payload: { table: MetaTable }) => {
+    return payload;
   }
 );
 
-// 异步Action: 更新模型
-export const updateModel = createAsyncThunk(
-  'model/updateModel',
-  async ({ id, model }: { id: string, model: UpdateModelRequest }, { rejectWithValue }) => {
-    try {
-      const response = await modelService.updateModel(id, model);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '更新数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '更新数据模型失败');
-    }
+export const updateMetaTable = createAsyncThunk(
+  'model/updateMetaTable',
+  async (payload: { table: MetaTable }) => {
+    return payload;
   }
 );
 
-// 异步Action: 删除模型
-export const deleteModel = createAsyncThunk(
-  'model/deleteModel',
-  async (id: string, { rejectWithValue }) => {
-    try {
-      const response = await modelService.deleteModel(id);
-      if (response.success) {
-        return id;
-      }
-      return rejectWithValue(response.error || '删除数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '删除数据模型失败');
-    }
+export const removeMetaTable = createAsyncThunk(
+  'model/removeMetaTable',
+  async (payload: { tableId: string }) => {
+    return payload;
   }
 );
 
-// 异步Action: 发布模型
-export const publishModel = createAsyncThunk(
-  'model/publishModel',
-  async (request: PublishModelRequest, { rejectWithValue }) => {
-    try {
-      const response = await modelService.publishModel(request);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '发布数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '发布数据模型失败');
-    }
+// 元数据字段相关action
+export const setMetaFields = createAsyncThunk(
+  'model/setMetaFields',
+  async (payload: { fields: MetaField[] }) => {
+    return payload;
   }
 );
 
-// 异步Action: 获取模型关系
-export const fetchModelRelations = createAsyncThunk(
-  'model/fetchModelRelations',
-  async (modelId: string, { rejectWithValue }) => {
-    try {
-      const response = await modelService.getModelRelations(modelId);
-      if (response.success) {
-        return response.data || [];
-      }
-      return rejectWithValue(response.error || '获取模型关系失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '获取模型关系失败');
-    }
+export const addMetaField = createAsyncThunk(
+  'model/addMetaField',
+  async (payload: { field: MetaField }) => {
+    return payload;
   }
 );
 
-// 异步Action: 获取模型版本
-export const fetchModelVersions = createAsyncThunk(
-  'model/fetchModelVersions',
-  async (modelId: string, { rejectWithValue }) => {
-    try {
-      const response = await modelService.getModelVersions(modelId);
-      if (response.success) {
-        return response.data || [];
-      }
-      return rejectWithValue(response.error || '获取模型版本失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '获取模型版本失败');
-    }
+export const updateMetaField = createAsyncThunk(
+  'model/updateMetaField',
+  async (payload: { field: MetaField }) => {
+    return payload;
   }
 );
 
-// 异步Action: 回滚到指定版本
-export const rollbackToVersion = createAsyncThunk(
-  'model/rollbackToVersion',
-  async (request: ModelVersionRequest, { rejectWithValue }) => {
-    try {
-      const response = await modelService.rollbackToVersion(request);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '回滚版本失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '回滚版本失败');
-    }
+export const removeMetaField = createAsyncThunk(
+  'model/removeMetaField',
+  async (payload: { fieldId: string }) => {
+    return payload;
   }
 );
 
-// 异步Action: 复制模型
-export const duplicateModel = createAsyncThunk(
-  'model/duplicateModel',
-  async ({ id, newName }: { id: string, newName: string }, { rejectWithValue }) => {
-    try {
-      const response = await modelService.duplicateModel(id, newName);
-      if (response.success) {
-        return response.data;
-      }
-      return rejectWithValue(response.error || '复制数据模型失败');
-    } catch (error: any) {
-      return rejectWithValue(error.message || '复制数据模型失败');
-    }
+// 元数据关系相关action
+export const setMetaRelations = createAsyncThunk(
+  'model/setMetaRelations',
+  async (payload: { relations: MetaRelation[] }) => {
+    return payload;
+  }
+);
+
+export const addMetaRelation = createAsyncThunk(
+  'model/addMetaRelation',
+  async (payload: { relation: MetaRelation }) => {
+    return payload;
+  }
+);
+
+export const updateMetaRelation = createAsyncThunk(
+  'model/updateMetaRelation',
+  async (payload: { relation: MetaRelation }) => {
+    return payload;
+  }
+);
+
+export const removeMetaRelation = createAsyncThunk(
+  'model/removeMetaRelation',
+  async (payload: { relationId: string }) => {
+    return payload;
+  }
+);
+
+// 元数据版本相关action
+export const setMetaVersions = createAsyncThunk(
+  'model/setMetaVersions',
+  async (payload: { versions: MetaVersion[] }) => {
+    return payload;
+  }
+);
+
+export const setSelectedVersion = createAsyncThunk(
+  'model/setSelectedVersion',
+  async (payload: { version: MetaVersion | null }) => {
+    return payload;
+  }
+);
+
+// 模型审批相关action
+export const setModelApprovals = createAsyncThunk(
+  'model/setModelApprovals',
+  async (payload: { approvals: ModelApproval[] }) => {
+    return payload;
+  }
+);
+
+// 可视化设计相关action
+export const setVisualDiagrams = createAsyncThunk(
+  'model/setVisualDiagrams',
+  async (payload: { diagrams: VisualDiagram[] }) => {
+    return payload;
+  }
+);
+
+export const setCurrentDiagram = createAsyncThunk(
+  'model/setCurrentDiagram',
+  async (payload: { diagram: VisualDiagram | null }) => {
+    return payload;
+  }
+);
+
+// 影响分析相关action
+export const setImpactAnalysisResult = createAsyncThunk(
+  'model/setImpactAnalysisResult',
+  async (payload: { result: ImpactAnalysisResponse | null }) => {
+    return payload;
+  }
+);
+
+// 测试数据相关action
+export const setTestDataTemplates = createAsyncThunk(
+  'model/setTestDataTemplates',
+  async (payload: { templates: TestDataTemplate[] }) => {
+    return payload;
+  }
+);
+
+// 通用状态action
+export const setModelLoading = createAsyncThunk(
+  'model/setLoading',
+  async (payload: { loading: boolean }) => {
+    return payload;
+  }
+);
+
+export const setModelError = createAsyncThunk(
+  'model/setError',
+  async (payload: { error: string | null }) => {
+    return payload;
   }
 );
 
@@ -199,190 +241,160 @@ const modelSlice = createSlice({
   name: 'model',
   initialState,
   reducers: {
-    clearCurrentModel: (state) => {
-      state.currentModel = null;
-      state.modelRelations = [];
-      state.modelVersions = [];
-      state.selectedVersion = null;
+    clearModelState: (state) => {
+      return initialState;
     },
-    setSelectedVersion: (state, action: PayloadAction<number | null>) => {
-      state.selectedVersion = action.payload;
+    clearCurrentMetaTable: (state) => {
+      state.currentMetaTable = null;
+      state.metaFields = [];
+      state.metaRelations = [];
+      state.metaVersions = [];
+      state.selectedVersion = null;
     },
     clearModelError: (state) => {
       state.error = null;
     }
   },
   extraReducers: (builder) => {
-    // 获取所有模型
-    builder.addCase(fetchModels.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(fetchModels.fulfilled, (state, action) => {
-      state.loading = false;
-      state.models = action.payload.models;
-      state.total = action.payload.total;
-    });
-    builder.addCase(fetchModels.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+    // 元数据表相关
+    builder.addCase(setMetaTables.fulfilled, (state, action) => {
+      state.metaTables = action.payload.tables;
+      state.totalMetaTables = action.payload.total;
     });
 
-    // 获取单个模型
-    builder.addCase(fetchModelById.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(fetchModelById.fulfilled, (state, action) => {
-      state.loading = false;
-      state.currentModel = action.payload as Model;
-    });
-    builder.addCase(fetchModelById.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+    builder.addCase(setCurrentMetaTable.fulfilled, (state, action) => {
+      state.currentMetaTable = action.payload.table;
     });
 
-    // 创建模型
-    builder.addCase(createModel.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(createModel.fulfilled, (state, action) => {
-      state.loading = false;
-      state.models.push(action.payload as Model);
-      state.currentModel = action.payload as Model;
-    });
-    builder.addCase(createModel.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+    builder.addCase(addMetaTable.fulfilled, (state, action) => {
+      state.metaTables.push(action.payload.table);
+      state.currentMetaTable = action.payload.table;
+      state.totalMetaTables += 1;
     });
 
-    // 更新模型
-    builder.addCase(updateModel.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(updateModel.fulfilled, (state, action) => {
-      state.loading = false;
-      const updatedModel = action.payload as Model;
-      // 更新列表中的模型
-      state.models = state.models.map(model =>
-        model.id === updatedModel.id ? updatedModel : model
+    builder.addCase(updateMetaTable.fulfilled, (state, action) => {
+      const updatedTable = action.payload.table;
+      state.metaTables = state.metaTables.map(table =>
+        table.id === updatedTable.id ? updatedTable : table
       );
-      state.currentModel = updatedModel;
-    });
-    builder.addCase(updateModel.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
-    });
-
-    // 删除模型
-    builder.addCase(deleteModel.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(deleteModel.fulfilled, (state, action) => {
-      state.loading = false;
-      const id = action.payload as string;
-      state.models = state.models.filter(model => model.id !== id);
-      if (state.currentModel?.id === id) {
-        state.currentModel = null;
+      if (state.currentMetaTable?.id === updatedTable.id) {
+        state.currentMetaTable = updatedTable;
       }
     });
-    builder.addCase(deleteModel.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
-    });
 
-    // 发布模型
-    builder.addCase(publishModel.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(publishModel.fulfilled, (state, action) => {
-      state.loading = false;
-      const publishedModel = action.payload as Model;
-
-      // 更新列表和当前模型
-      state.models = state.models.map(model =>
-        model.id === publishedModel.id ? publishedModel : model
-      );
-
-      if (state.currentModel?.id === publishedModel.id) {
-        state.currentModel = publishedModel;
+    builder.addCase(removeMetaTable.fulfilled, (state, action) => {
+      const tableId = action.payload.tableId;
+      state.metaTables = state.metaTables.filter(table => table.id !== tableId);
+      if (state.currentMetaTable?.id === tableId) {
+        state.currentMetaTable = null;
       }
-    });
-    builder.addCase(publishModel.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+      state.totalMetaTables -= 1;
     });
 
-    // 获取模型关系
-    builder.addCase(fetchModelRelations.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(fetchModelRelations.fulfilled, (state, action) => {
-      state.loading = false;
-      state.modelRelations = action.payload as ModelRelation[];
-    });
-    builder.addCase(fetchModelRelations.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+    // 元数据字段相关
+    builder.addCase(setMetaFields.fulfilled, (state, action) => {
+      state.metaFields = action.payload.fields;
     });
 
-    // 获取模型版本
-    builder.addCase(fetchModelVersions.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(fetchModelVersions.fulfilled, (state, action) => {
-      state.loading = false;
-      state.modelVersions = action.payload as ModelVersion[];
-    });
-    builder.addCase(fetchModelVersions.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+    builder.addCase(addMetaField.fulfilled, (state, action) => {
+      state.metaFields.push(action.payload.field);
     });
 
-    // 回滚到指定版本
-    builder.addCase(rollbackToVersion.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(rollbackToVersion.fulfilled, (state, action) => {
-      state.loading = false;
-      const updatedModel = action.payload as Model;
-
-      // 更新列表和当前模型
-      state.models = state.models.map(model =>
-        model.id === updatedModel.id ? updatedModel : model
+    builder.addCase(updateMetaField.fulfilled, (state, action) => {
+      const updatedField = action.payload.field;
+      state.metaFields = state.metaFields.map(field =>
+        field.id === updatedField.id ? updatedField : field
       );
-
-      state.currentModel = updatedModel;
-      state.selectedVersion = null;
-    });
-    builder.addCase(rollbackToVersion.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
     });
 
-    // 复制模型
-    builder.addCase(duplicateModel.pending, (state) => {
-      state.loading = true;
-      state.error = null;
+    builder.addCase(removeMetaField.fulfilled, (state, action) => {
+      state.metaFields = state.metaFields.filter(field =>
+        field.id !== action.payload.fieldId
+      );
     });
-    builder.addCase(duplicateModel.fulfilled, (state, action) => {
-      state.loading = false;
-      state.models.push(action.payload as Model);
+
+    // 元数据关系相关
+    builder.addCase(setMetaRelations.fulfilled, (state, action) => {
+      state.metaRelations = action.payload.relations;
     });
-    builder.addCase(duplicateModel.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as string;
+
+    builder.addCase(addMetaRelation.fulfilled, (state, action) => {
+      state.metaRelations.push(action.payload.relation);
+    });
+
+    builder.addCase(updateMetaRelation.fulfilled, (state, action) => {
+      const updatedRelation = action.payload.relation;
+      state.metaRelations = state.metaRelations.map(relation =>
+        relation.id === updatedRelation.id ? updatedRelation : relation
+      );
+    });
+
+    builder.addCase(removeMetaRelation.fulfilled, (state, action) => {
+      state.metaRelations = state.metaRelations.filter(relation =>
+        relation.id !== action.payload.relationId
+      );
+    });
+
+    // 元数据版本相关
+    builder.addCase(setMetaVersions.fulfilled, (state, action) => {
+      state.metaVersions = action.payload.versions;
+    });
+
+    builder.addCase(setSelectedVersion.fulfilled, (state, action) => {
+      state.selectedVersion = action.payload.version;
+    });
+
+    // 模型审批相关
+    builder.addCase(setModelApprovals.fulfilled, (state, action) => {
+      state.modelApprovals = action.payload.approvals;
+    });
+
+    // 可视化设计相关
+    builder.addCase(setVisualDiagrams.fulfilled, (state, action) => {
+      state.visualDiagrams = action.payload.diagrams;
+    });
+
+    builder.addCase(setCurrentDiagram.fulfilled, (state, action) => {
+      state.currentDiagram = action.payload.diagram;
+    });
+
+    // 影响分析相关
+    builder.addCase(setImpactAnalysisResult.fulfilled, (state, action) => {
+      state.impactAnalysisResult = action.payload.result;
+    });
+
+    // 测试数据相关
+    builder.addCase(setTestDataTemplates.fulfilled, (state, action) => {
+      state.testDataTemplates = action.payload.templates;
+    });
+
+    // 通用状态
+    builder.addCase(setModelLoading.fulfilled, (state, action) => {
+      state.loading = action.payload.loading;
+    });
+
+    builder.addCase(setModelError.fulfilled, (state, action) => {
+      state.error = action.payload.error;
     });
   }
 });
 
-export const { clearCurrentModel, setSelectedVersion, clearModelError } = modelSlice.actions;
+export const { clearModelState, clearCurrentMetaTable, clearModelError } = modelSlice.actions;
+
+// 选择器
+export const selectMetaTables = (state: { model: ModelState }) => state.model.metaTables;
+export const selectCurrentMetaTable = (state: { model: ModelState }) => state.model.currentMetaTable;
+export const selectTotalMetaTables = (state: { model: ModelState }) => state.model.totalMetaTables;
+export const selectMetaFields = (state: { model: ModelState }) => state.model.metaFields;
+export const selectMetaRelations = (state: { model: ModelState }) => state.model.metaRelations;
+export const selectMetaVersions = (state: { model: ModelState }) => state.model.metaVersions;
+export const selectSelectedVersion = (state: { model: ModelState }) => state.model.selectedVersion;
+export const selectModelApprovals = (state: { model: ModelState }) => state.model.modelApprovals;
+export const selectVisualDiagrams = (state: { model: ModelState }) => state.model.visualDiagrams;
+export const selectCurrentDiagram = (state: { model: ModelState }) => state.model.currentDiagram;
+export const selectImpactAnalysisResult = (state: { model: ModelState }) => state.model.impactAnalysisResult;
+export const selectTestDataTemplates = (state: { model: ModelState }) => state.model.testDataTemplates;
+export const selectModelLoading = (state: { model: ModelState }) => state.model.loading;
+export const selectModelError = (state: { model: ModelState }) => state.model.error;
 
 export default modelSlice.reducer;

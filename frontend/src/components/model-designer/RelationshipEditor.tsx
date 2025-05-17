@@ -18,6 +18,7 @@ import {
   LinkOutlined,
 } from '@ant-design/icons';
 import type { Model, ModelRelation, ModelRelationType } from '../../types/model-types';
+import { useMetaRelations } from '../../hooks/features/data-models';
 const { Option } = Select;
 
 interface RelationshipEditorProps {

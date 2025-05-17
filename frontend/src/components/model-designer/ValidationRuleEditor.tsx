@@ -16,7 +16,7 @@ import {
   QuestionCircleOutlined,
 } from '@ant-design/icons';
 import { FieldType } from '../../types';
-import type { ValidationRule, ValidationRuleType } from '../../types';
+import type { ValidationRule, ValidationRuleType } from '../../types/model-types';
 
 const { Text } = Typography;
 const { Option } = Select;
@@ -104,7 +104,7 @@ const ValidationRuleEditor: React.FC<ValidationRuleEditorProps> = ({
       case FieldType.STRING:
       case FieldType.RICH_TEXT:
         return 'length';
-      case FieldType.NUMBER:
+      case FieldType.DECIMAL:
       case FieldType.INTEGER:
       case FieldType.FLOAT:
         return 'range';
@@ -149,7 +149,7 @@ const ValidationRuleEditor: React.FC<ValidationRuleEditorProps> = ({
       case FieldType.STRING:
       case FieldType.RICH_TEXT:
         return [...commonTypes, 'length', 'regex'];
-      case FieldType.NUMBER:
+      case FieldType.DECIMAL:
       case FieldType.INTEGER:
       case FieldType.FLOAT:
         return [...commonTypes, 'range'];
