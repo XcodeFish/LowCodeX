@@ -32,6 +32,9 @@ import { SystemModule } from './modules/system/system.module';
 // 数据模型模块
 import { DataModelsModule } from './modules/data-models/data-models.module';
 
+// 表单模块
+import { FormsModule } from './modules/forms/forms.module';
+
 // 配置模块
 import { configModules } from './config';
 
@@ -54,6 +57,8 @@ import { configModules } from './config';
     SystemModule,
     // 数据模型模块
     DataModelsModule,
+    // 表单模块
+    FormsModule,
   ],
   controllers: [AppController],
   providers: [

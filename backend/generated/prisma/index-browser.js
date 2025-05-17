@@ -320,6 +320,29 @@ exports.Prisma.VisualDiagramScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FormScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  schema: 'schema',
+  description: 'description',
+  status: 'status',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  archivedAt: 'archivedAt'
+};
+
+exports.Prisma.FormDataScalarFieldEnum = {
+  id: 'id',
+  formId: 'formId',
+  data: 'data',
+  version: 'version',
+  archived: 'archived',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -493,6 +516,21 @@ exports.Prisma.VisualDiagramOrderByRelevanceFieldEnum = {
   updatedBy: 'updatedBy'
 };
 
+exports.Prisma.FormOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  schema: 'schema',
+  description: 'description',
+  status: 'status'
+};
+
+exports.Prisma.FormDataOrderByRelevanceFieldEnum = {
+  id: 'id',
+  formId: 'formId',
+  data: 'data'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -511,7 +549,9 @@ exports.Prisma.ModelName = {
   ModelApproval: 'ModelApproval',
   TestDataGeneration: 'TestDataGeneration',
   TestDataTemplate: 'TestDataTemplate',
-  VisualDiagram: 'VisualDiagram'
+  VisualDiagram: 'VisualDiagram',
+  Form: 'Form',
+  FormData: 'FormData'
 };
 
 /**
