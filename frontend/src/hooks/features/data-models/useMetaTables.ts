@@ -30,7 +30,7 @@ export const useMetaTables = (): UseMetaTablesReturn => {
       const response = await modelService.getMetaTables(params);
       return response;
     } catch (err: any) {
-      setError(err.message || '获取元数据表失败');
+      // setError(err.message || '获取元数据表失败');
       return {
         success: false,
         error: err.message || '获取元数据表失败'

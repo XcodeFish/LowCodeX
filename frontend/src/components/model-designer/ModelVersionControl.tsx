@@ -84,7 +84,7 @@ const ModelVersionControl: React.FC<ModelVersionControlProps> = ({
     const fetchVersions = async () => {
       if (modelId) {
         const response = await getMetaVersions(modelId);
-        if (response.success && response.data) {
+        if (response.code === 200 && response.data) {
           // @ts-ignore - 忽略类型不匹配的问题
           setLoadedVersions(response.data);
         }

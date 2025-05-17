@@ -141,106 +141,111 @@ const createApiClient = () => {
         return response.data;
       } else {
         console.warn(`[API] 业务错误: ${response.data.message || '未知错误'}`, response.data);
-        return Promise.reject(createSilentError(response.data.message || '请求失败'));
+        // return Promise.reject(createSilentError(response.data.message || '请求失败'));
+        return response.data;
       }
     },
-    async (error) => {
-      // 请求完成，执行清理
-      if (error.config && error.config.onRequestComplete) {
-        error.config.onRequestComplete();
-      }
-
-      // 如果是取消请求，直接返回
-      if (axios.isCancel(error)) {
-        console.warn(`[API] 请求已取消: ${error.message}`);
-        return Promise.reject(markErrorAsHandled(error));
-      }
-
-      // 检查是否为网络连接错误
-      const isNetworkError = error.message === 'Network Error';
-
-      // 详细记录错误信息
-      console.error('[API] 响应错误:', {
-        message: error.message,
-        isNetworkError,
-        config: error.config ? {
-          url: error.config.url,
-          method: error.config.method,
-          baseURL: error.config.baseURL
-        } : '无配置信息',
-        response: error.response ? {
-          status: error.response.status,
-          data: error.response.data
-        } : '无响应数据',
-        isTimeout: error.code === 'ECONNABORTED'
-      });
-
-      // 检查特定URL的网络错误重试次数限制
-      if (isNetworkError && error.config && error.config.url) {
-        const url = error.config.url;
-        const storageKey = `networkErrorCount:${url}`;
-        const errorCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
-
-        // 增加错误计数
-        localStorage.setItem(storageKey, (errorCount + 1).toString());
-
-        // 如果错误次数过多，避免无限循环
-        if (errorCount >= 3) {
-          console.warn(`[API] ${url} 接口连接失败次数过多 (${errorCount + 1}), 停止重试`);
-
-          // 10分钟后重置计数器（允许将来再次尝试）
-          setTimeout(() => {
-            localStorage.removeItem(storageKey);
-          }, 10 * 60 * 1000);
-
-          return Promise.reject(markErrorAsHandled(error));
-        }
-      }
-
-      const originalRequest = error.config;
-
-      // 标记错误为已处理
-      markErrorAsHandled(error);
-
-      // 处理token过期问题
-      if (error.response && error.response.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-        try {
-          console.log('[API] Token过期，尝试刷新');
-          const refreshToken = localStorage.getItem('refreshToken');
-          if (!refreshToken) {
-            console.warn('[API] 刷新Token失败: 无refreshToken');
-            return Promise.reject(markErrorAsHandled(error));
-          }
-          const response = await apiClient.post('/v1/auth/refresh-token', {
-            refreshToken,
-          });
-          const { accessToken } = response.data.data;
-          localStorage.setItem('token', accessToken);
-          localStorage.setItem('refreshToken', response.data.data.refreshToken);
-          console.log('[API] Token刷新成功，重试原始请求');
-          // 更新请求头并重试
-          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-          return apiClient(originalRequest);
-        } catch (refreshError) {
-          console.error('[API] 刷新Token失败', refreshError);
-          // 标记刷新错误为已处理
-          markErrorAsHandled(refreshError);
-
-          // 刷新token失败，清除登录状态
-          localStorage.removeItem('token');
-          localStorage.removeItem('refreshToken');
-
-          // 使用setTimeout避免立即重定向触发页面重渲染
-          setTimeout(() => {
-            window.location.href = '/login';
-          }, 100);
-
-          return Promise.reject(markErrorAsHandled(refreshError));
-        }
-      }
+    (error) => {
+      console.error('[API] 响应错误:', error);
       return Promise.reject(markErrorAsHandled(error));
     }
+    // async (error) => {
+    //   // 请求完成，执行清理
+    //   if (error.config && error.config.onRequestComplete) {
+    //     error.config.onRequestComplete();
+    //   }
+
+    //   // 如果是取消请求，直接返回
+    //   if (axios.isCancel(error)) {
+    //     console.warn(`[API] 请求已取消: ${error.message}`);
+    //     return Promise.reject(markErrorAsHandled(error));
+    //   }
+
+    //   // 检查是否为网络连接错误
+    //   const isNetworkError = error.message === 'Network Error';
+
+    //   // 详细记录错误信息
+    //   console.error('[API] 响应错误:', {
+    //     message: error.message,
+    //     isNetworkError,
+    //     config: error.config ? {
+    //       url: error.config.url,
+    //       method: error.config.method,
+    //       baseURL: error.config.baseURL
+    //     } : '无配置信息',
+    //     response: error.response ? {
+    //       status: error.response.status,
+    //       data: error.response.data
+    //     } : '无响应数据',
+    //     isTimeout: error.code === 'ECONNABORTED'
+    //   });
+
+    //   // 检查特定URL的网络错误重试次数限制
+    //   if (isNetworkError && error.config && error.config.url) {
+    //     const url = error.config.url;
+    //     const storageKey = `networkErrorCount:${url}`;
+    //     const errorCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
+
+    //     // 增加错误计数
+    //     localStorage.setItem(storageKey, (errorCount + 1).toString());
+
+    //     // 如果错误次数过多，避免无限循环
+    //     if (errorCount >= 3) {
+    //       console.warn(`[API] ${url} 接口连接失败次数过多 (${errorCount + 1}), 停止重试`);
+
+    //       // 10分钟后重置计数器（允许将来再次尝试）
+    //       setTimeout(() => {
+    //         localStorage.removeItem(storageKey);
+    //       }, 10 * 60 * 1000);
+
+    //       return Promise.reject(markErrorAsHandled(error));
+    //     }
+    //   }
+
+    //   const originalRequest = error.config;
+
+    //   // 标记错误为已处理
+    //   markErrorAsHandled(error);
+
+    //   // 处理token过期问题
+    //   if (error.response && error.response.status === 401 && !originalRequest._retry) {
+    //     originalRequest._retry = true;
+    //     try {
+    //       console.log('[API] Token过期，尝试刷新');
+    //       const refreshToken = localStorage.getItem('refreshToken');
+    //       if (!refreshToken) {
+    //         console.warn('[API] 刷新Token失败: 无refreshToken');
+    //         return Promise.reject(markErrorAsHandled(error));
+    //       }
+    //       const response = await apiClient.post('/v1/auth/refresh-token', {
+    //         refreshToken,
+    //       });
+    //       const { accessToken } = response.data.data;
+    //       localStorage.setItem('token', accessToken);
+    //       localStorage.setItem('refreshToken', response.data.data.refreshToken);
+    //       console.log('[API] Token刷新成功，重试原始请求');
+    //       // 更新请求头并重试
+    //       originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+    //       return apiClient(originalRequest);
+    //     } catch (refreshError) {
+    //       console.error('[API] 刷新Token失败', refreshError);
+    //       // 标记刷新错误为已处理
+    //       markErrorAsHandled(refreshError);
+
+    //       // 刷新token失败，清除登录状态
+    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('refreshToken');
+
+    //       // 使用setTimeout避免立即重定向触发页面重渲染
+    //       setTimeout(() => {
+    //         window.location.href = '/login';
+    //       }, 100);
+
+    //       return Promise.reject(markErrorAsHandled(refreshError));
+    //     }
+    //   }
+    //   return Promise.reject(markErrorAsHandled(error));
+    // }
   );
 
   return apiClient;

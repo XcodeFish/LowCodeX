@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { ConfigProvider, Spin } from 'antd';
+import { ConfigProvider, Spin, App as AntApp } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import { store } from './store';
 import { AppRouter } from './router';
@@ -18,6 +18,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ConfigProvider locale={zhCN} theme={themeConfig}>
+        <AntApp>
   <Suspense
     fallback={
       <div style={{
@@ -32,6 +33,7 @@ const App: React.FC = () => {
   >
     <AppRouter />
   </Suspense>
+        </AntApp>
 </ConfigProvider>
     </Provider>
   );

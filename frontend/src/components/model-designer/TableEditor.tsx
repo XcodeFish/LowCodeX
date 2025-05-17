@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   Button,
@@ -44,6 +44,10 @@ const TableEditor: React.FC<TableEditorProps> = ({
   // 当前选中的字段ID
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
 
+  useEffect(() => {
+    console.log('TableEditor渲染：', { model, readOnly });
+  }, [model, readOnly]);
+
   // 如果模型不存在，显示加载或空状态
   if (!model) {
     return (
@@ -55,6 +59,7 @@ const TableEditor: React.FC<TableEditorProps> = ({
 
   // 添加新字段
   const handleAddField = () => {
+    console.log('添加字段');
     // 计算新字段的顺序值
     const maxOrder = model.fields.reduce((max, field) => Math.max(max, field.order), -1);
     const newField = createEmptyField(maxOrder + 1);
@@ -69,10 +74,14 @@ const TableEditor: React.FC<TableEditorProps> = ({
     setSelectedFieldId(newField.id);
     // @ts-ignore - types/data-models和types/model-types中的ModelField类型不兼容
     onFieldSelect(newField);
+
+    message.success('字段已添加');
   };
 
   // 删除字段
   const handleDeleteField = (fieldId: string) => {
+    console.log('删除字段', fieldId);
+
     // 检查是否是主键
     const field = model.fields.find(f => f.id === fieldId);
     if (field?.isPrimaryKey) {
@@ -89,20 +98,31 @@ const TableEditor: React.FC<TableEditorProps> = ({
     if (selectedFieldId === fieldId) {
       setSelectedFieldId(null);
     }
+
+    message.success('字段已删除');
   };
 
   // 移动字段顺序
   const handleMoveField = (fieldId: string, direction: 'up' | 'down') => {
+    console.log('移动字段', { fieldId, direction });
+
     const fieldIndex = model.fields.findIndex(field => field.id === fieldId);
-    if (fieldIndex === -1) return;
+    if (fieldIndex === -1) {
+      console.log('找不到字段', fieldId);
+      return;
+    }
 
     // 主键字段始终在第一位
-    if (direction === 'up' && (fieldIndex <= 1 || model.fields[fieldIndex - 1].isPrimaryKey)) {
+    if (direction === 'up' && (fieldIndex <= 1 || model.fields[fieldIndex - 1]?.isPrimaryKey)) {
+      console.log('无法上移：已在顶部或前一个是主键');
+      message.info('字段已经在顶部或前一个是主键');
       return;
     }
 
     // 最后一个字段不能再往下移
     if (direction === 'down' && fieldIndex >= model.fields.length - 1) {
+      console.log('无法下移：已在底部');
+      message.info('字段已经在底部');
       return;
     }
 
@@ -125,10 +145,14 @@ const TableEditor: React.FC<TableEditorProps> = ({
     // 更新模型
     const updatedModel = { ...model, fields };
     onModelUpdate(updatedModel);
+
+    message.success(`字段已${direction === 'up' ? '上移' : '下移'}`);
   };
 
   // 更新单个字段属性
   const handleUpdateFieldAttribute = (fieldId: string, attribute: string, value: any) => {
+    console.log('更新字段属性', { fieldId, attribute, value });
+
     const updatedFields = model.fields.map(field => {
       if (field.id === fieldId) {
         return { ...field, [attribute]: value };
@@ -205,7 +229,9 @@ const TableEditor: React.FC<TableEditorProps> = ({
               icon={<EditOutlined />}
               type="text"
               size="small"
+              disabled={readOnly}
               onClick={() => {
+                console.log('点击编辑字段', record.id);
                 setSelectedFieldId(record.id);
                 onFieldSelect(record);
               }}
@@ -218,7 +244,11 @@ const TableEditor: React.FC<TableEditorProps> = ({
               type="text"
               size="small"
               disabled={readOnly || record.isPrimaryKey}
-              onClick={() => handleMoveField(record.id, 'up')}
+              onClick={(e) => {
+                console.log('点击上移字段', record.id);
+                e.stopPropagation();
+                handleMoveField(record.id, 'up');
+              }}
             />
           </Tooltip>
 
@@ -228,7 +258,11 @@ const TableEditor: React.FC<TableEditorProps> = ({
               type="text"
               size="small"
               disabled={readOnly || record.isPrimaryKey}
-              onClick={() => handleMoveField(record.id, 'down')}
+              onClick={(e) => {
+                console.log('点击下移字段', record.id);
+                e.stopPropagation();
+                handleMoveField(record.id, 'down');
+              }}
             />
           </Tooltip>
 
@@ -247,6 +281,10 @@ const TableEditor: React.FC<TableEditorProps> = ({
                   type="text"
                   size="small"
                   disabled={readOnly}
+                  onClick={(e) => {
+                    console.log('点击删除字段按钮', record.id);
+                    e.stopPropagation();
+                  }}
                 />
               </Tooltip>
             </Popconfirm>
@@ -256,36 +294,51 @@ const TableEditor: React.FC<TableEditorProps> = ({
     },
   ];
 
-  return (
-    <div>
-      <div style={{ marginBottom: 16, textAlign: 'right' }}>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={handleAddField}
-          disabled={readOnly}
-        >
-          添加字段
-        </Button>
-      </div>
+  // 行点击事件处理
+  const handleRowClick = (record: ModelField) => {
+    console.log('点击字段行', record.id);
+    setSelectedFieldId(record.id);
+    onFieldSelect(record);
+  };
 
+  // 渲染Footer，添加字段按钮
+  const renderFooter = () => (
+    <div style={{ textAlign: 'center', padding: '12px 0' }}>
+      <Button
+        type="dashed"
+        onClick={handleAddField}
+        icon={<PlusOutlined />}
+        disabled={readOnly}
+        style={{ width: '100%' }}
+      >
+        添加字段
+      </Button>
+    </div>
+  );
+
+  return (
+    <div className="table-editor">
       <Table
-        columns={columns}
-        dataSource={model.fields}
         rowKey="id"
-        rowClassName={(record) => record.id === selectedFieldId ? 'ant-table-row-selected' : ''}
-        pagination={false}
-        size="small"
+        dataSource={model.fields}
+        columns={columns}
+        footer={renderFooter}
         onRow={(record) => ({
-          onClick: () => {
-            setSelectedFieldId(record.id);
-            onFieldSelect(record);
-          },
-          style: {
-            cursor: 'pointer'
-          }
+          onClick: () => handleRowClick(record),
+          className: selectedFieldId === record.id ? 'selected-row' : ''
         })}
+        rowClassName={(record) =>
+          selectedFieldId === record.id ? 'selected-row' : ''
+        }
+        pagination={false}
       />
+      <style>
+        {`
+          .table-editor .selected-row {
+            background-color: #e6f7ff;
+          }
+        `}
+      </style>
     </div>
   );
 };

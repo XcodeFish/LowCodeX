@@ -13,8 +13,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // 禁用 @ 别名，强制使用相对路径
-      // '@': path.resolve(process.cwd(), 'src'),
+      // 启用 @ 别名，指向src目录
+      '@': path.resolve(process.cwd(), 'src'),
       // 强制所有React导入指向同一位置
       'react': path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),

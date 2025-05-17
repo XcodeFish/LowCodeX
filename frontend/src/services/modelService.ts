@@ -40,7 +40,7 @@ import type {
 } from '../types/data-models';
 import request, { markErrorAsHandled } from './request';
 
-const API_URL = '/api/v1/data-models';
+const API_URL = '/v1/data-models';
 
 /**
  * 数据模型服务
@@ -54,13 +54,20 @@ export const modelService = {
    */
   async getMetaTables(params?: { tenant?: string, applicationId?: string }): Promise<ModelsResponse> {
     try {
-      const response = await request.get(`${API_URL}/tables`, { params });
-      return response;
+       const response = await request.get(`${API_URL}/tables`, { params });
+        // 适配后端返回结构
+        if (response && (response.code === 200 || response.success)) {
+          return response;
+        }
+        return {
+          success: false,
+          error: response?.message || '获取元数据表失败1'
+        };
     } catch (error: any) {
-      markErrorAsHandled(error);
+      // markErrorAsHandled(error);
       return {
         success: false,
-        error: error.response?.data?.message || '获取元数据表失败'
+        error: error.response?.data?.message || '获取元数据表失败2'
       };
     }
   },

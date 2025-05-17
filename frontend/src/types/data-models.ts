@@ -315,6 +315,7 @@ export interface ModelExportData {
  */
 export interface ApiResponse<T> {
   success: boolean;                 // 是否成功
+  code?: number;                   // 状态码
   data?: T;                         // 返回数据
   error?: string;                   // 错误信息
   total?: number;                   // 总数量
@@ -456,7 +457,9 @@ export interface ModelRelation {
  * 旧版ModelResponse接口类型
  */
 export interface ModelResponse {
-  success: boolean;
+  success?: boolean;
+  code?: number;
+  message?: string;
   data?: Model;
   error?: string;
 }
@@ -465,7 +468,9 @@ export interface ModelResponse {
  * 旧版ModelsResponse接口类型
  */
 export interface ModelsResponse {
-  success: boolean;
+  success?: boolean;
+  code?: number;
+  message?: string;
   data?: Model[];
   total?: number;
   error?: string;
@@ -489,7 +494,8 @@ export interface ModelVersion {
  * 旧版ModelVersionsResponse接口类型
  */
 export interface ModelVersionsResponse {
-  success: boolean;
+  success?: boolean;
+  code?: number;
   data?: ModelVersion[];
   error?: string;
 }
@@ -498,7 +504,8 @@ export interface ModelVersionsResponse {
  * 旧版ModelRelationsResponse接口类型
  */
 export interface ModelRelationsResponse {
-  success: boolean;
+  success?: boolean;
+  code?: number;
   data?: ModelRelation[];
   error?: string;
 }
@@ -579,7 +586,8 @@ export interface ModelDiff {
  * 旧版ModelVersionDiffResponse接口类型
  */
 export interface ModelVersionDiffResponse {
-  success: boolean;
+  success?: boolean;
+  code?: number;
   data?: ModelDiff;
   error?: string;
 }

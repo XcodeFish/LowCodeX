@@ -7,6 +7,7 @@ import { ModelApprovalController } from './controllers/model-approval.controller
 import { ImpactAnalysisController } from './controllers/impact-analysis.controller';
 import { TestDataGeneratorController } from './controllers/test-data-generator.controller';
 import { VisualDesignerController } from './controllers/visual-designer.controller';
+import { DataModelsController } from './data-models.controller';
 
 import { MetaTablesService } from './services/meta-tables.service';
 import { MetaFieldsService } from './services/meta-fields.service';
@@ -34,6 +35,7 @@ import { SystemModule } from '../system/system.module';
     ImpactAnalysisController,
     TestDataGeneratorController,
     VisualDesignerController,
+    DataModelsController,
   ],
   providers: [
     PrismaService,

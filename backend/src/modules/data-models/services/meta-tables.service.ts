@@ -101,7 +101,7 @@ export class MetaTablesService {
     return this.prisma.metaTable.findMany({
       where: {
         tenant: currentTenant,
-        application: application || null,
+        OR: [{ application: application || null }, { application: '' }],
       },
       include: {
         fields: true,

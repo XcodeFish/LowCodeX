@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Tabs, Button, Space, message, Spin, Typography } from 'antd';
+import { Card, Tabs, Button, Space, message, Spin, Typography, Modal, Form, Input, Row, Col } from 'antd';
 import { ArrowLeftOutlined, SaveOutlined, CheckOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { useMetaTables, useCompleteModel } from '../../hooks/features/data-models';
@@ -15,8 +15,10 @@ import type { AppDispatch } from '../../store';
 import TableEditor from '../../components/model-designer/TableEditor';
 import ERDiagramEditor from '../../components/model-designer/ERDiagramEditor';
 import ModelVersionControl from '../../components/model-designer/ModelVersionControl';
+import FieldPropertiesPanel from '../../components/model-designer/FieldPropertiesPanel';
 import { createEmptyModel } from '../../utils/modelUtils';
-import type { Model, CreateMetaTableDto, UpdateMetaTableDto } from '../../types/data-models';
+import type { Model, CreateMetaTableDto, UpdateMetaTableDto, ModelField } from '../../types/data-models';
+import { TableStatus } from '../../types/data-models';
 
 const { Title } = Typography;
 
@@ -25,13 +27,16 @@ const ModelEditor: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { getMetaTable, createMetaTable, updateMetaTable: updateTable, loading: tablesLoading, error: tablesError } = useMetaTables();
-  const { publishModel } = useCompleteModel();
+  const { publishModel, createCompleteModel } = useCompleteModel();
   const [activeTab, setActiveTab] = useState('1');
   const [isEdited, setIsEdited] = useState(false);
   const [localModel, setLocalModel] = useState<Model | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedField, setSelectedField] = useState<ModelField | null>(null);
+  const [isFieldModalVisible, setIsFieldModalVisible] = useState(false);
+  const [form] = Form.useForm();
 
   const isNewModel = !id || id === 'new';
 
@@ -42,7 +47,7 @@ const ModelEditor: React.FC = () => {
         setLoading(true);
         dispatch(setModelLoading({ loading: true }));
         const response = await getMetaTable(id);
-        if (response.success && response.data) {
+        if (response.code === 200 && response.data) {
           setLocalModel(response.data);
           // @ts-ignore - Model和MetaTable类型不完全兼容，但功能上是一致的
           dispatch(setCurrentMetaTable({ table: response.data }));
@@ -74,26 +79,63 @@ const ModelEditor: React.FC = () => {
     fetchModelData();
   }, [id, isNewModel]);
 
+  // 同步输入框内容到localModel
+  const handleModelInputChange = (key: keyof Model, value: string) => {
+    if (!localModel) return;
+    setLocalModel({ ...localModel, [key]: value });
+    setIsEdited(true);
+  };
+
   const handleSave = async () => {
     if (!localModel) return;
-
+    // 校验必填项
+    if (!localModel.name || !localModel.displayName) {
+      message.error('请填写模型的技术名称和显示名称');
+      return;
+    }
     setSubmitting(true);
-
     try {
       if (isNewModel) {
-        // 创建新模型
-        const createRequest: CreateMetaTableDto = {
+        // 1. 组装模型参数
+        const model = {
           name: localModel.name,
           displayName: localModel.displayName,
           description: localModel.description || '',
-          tenant: localModel.tenantId || 'default',
-          application: localModel.applicationId
+          isSystem: (localModel as any).isSystem ?? false,
+          isSoftDelete: (localModel as any).isSoftDelete ?? false,
+          isVersioned: (localModel as any).isVersioned ?? false,
+          status: (localModel as any).status || TableStatus.DRAFT,
+          tenant: localModel.tenantId || 'default-tenant',
+          application: localModel.applicationId || '',
+          auditFields: (localModel as any).auditFields ?? false,
+          apiEnabled: (localModel as any).apiEnabled ?? false,
+          customOptions: (localModel as any).customOptions || {},
         };
-
-        const response = await createMetaTable(createRequest);
-        if (response.success && response.data) {
-          // @ts-ignore - Model和MetaTable类型不完全兼容
-          dispatch(addMetaTable({ table: response.data }));
+        // 2. 组装字段参数
+        const fields = (localModel.fields || []).map((f, idx) => ({
+          tableId: '', // 新建时可为空，后端自动填充
+          name: f.name,
+          displayName: f.displayName,
+          description: f.description || '',
+          type: f.type,
+          isPrimaryKey: f.isPrimaryKey ?? false,
+          isRequired: f.isRequired ?? false,
+          isUnique: f.isUnique ?? false,
+          isSystem: f.isSystem ?? false,
+          isHidden: f.isHidden ?? false,
+          ordinal: typeof f.order === 'number' ? f.order : idx,
+          defaultValue: f.defaultValue,
+          validationRules: f.validationRules || [],
+          isSearchable: f.isSearchable ?? false,
+          isSortable: f.isSortable ?? false,
+          isFilterable: (f as any).isFilterable ?? false,
+          isAggregatable: (f as any).isAggregatable ?? false,
+          advancedSettings: (f as any).advancedSettings || {},
+        }));
+        // 3. 调用完整模型创建接口
+        const response = await createCompleteModel(model, fields);
+        if (response.code === 200 && response.data) {
+          dispatch(addMetaTable({ table: response.data.table }));
           message.success('模型创建成功');
           navigate('/models');
         } else {
@@ -108,7 +150,7 @@ const ModelEditor: React.FC = () => {
         };
 
         const response = await updateTable(id, updateRequest);
-        if (response.success && response.data) {
+        if (response.code === 200 && response.data) {
           // @ts-ignore - Model和MetaTable类型不完全兼容
           dispatch(updateMetaTable({ table: response.data }));
           message.success('模型保存成功');
@@ -131,7 +173,7 @@ const ModelEditor: React.FC = () => {
     try {
       setSubmitting(true);
       const response = await publishModel(id);
-      if (response.success) {
+      if (response.code === 200) {
         message.success('模型发布成功');
       } else {
         message.error(response.error || '发布失败');
@@ -153,6 +195,36 @@ const ModelEditor: React.FC = () => {
     setIsEdited(true);
   };
 
+  // 处理字段选择，打开弹窗
+  const handleFieldSelect = (field: any) => {
+    setSelectedField(field);
+    setIsFieldModalVisible(true);
+  };
+
+  // 处理字段更新
+  const handleFieldUpdate = (updatedField: any) => {
+    if (!localModel) return;
+    const updatedFields = localModel.fields.map(field =>
+      field.id === updatedField.id ? updatedField : field
+    );
+    const updatedModel = { ...localModel, fields: updatedFields };
+    // @ts-ignore - 类型可能不完全兼容
+    setLocalModel(updatedModel);
+    setSelectedField(updatedField);
+    setIsEdited(true);
+  };
+
+  // 确认字段编辑并关闭弹窗
+  const handleFieldEditConfirm = () => {
+    message.success('字段属性已更新');
+    setIsFieldModalVisible(false);
+  };
+
+  // 关闭字段属性弹窗
+  const handleFieldModalClose = () => {
+    setIsFieldModalVisible(false);
+  };
+
   // 处理版本还原
   const handleRestoreVersion = (versionId: string) => {
     message.info(`还原到版本 ${versionId}`);
@@ -166,7 +238,7 @@ const ModelEditor: React.FC = () => {
   };
 
   // 如果正在加载，显示加载状态
-  if (!isNewModel && (loading || tablesLoading)) {
+  if (!localModel || (!isNewModel && (loading || tablesLoading))) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
         <Spin size="large" />
@@ -187,6 +259,44 @@ const ModelEditor: React.FC = () => {
     );
   }
 
+  // 顶部表单区域
+  const renderModelBaseInfo = () => (
+    <Form
+      layout="inline"
+      style={{ marginBottom: 24 }}
+      form={form}
+      initialValues={{
+        name: localModel.name,
+        displayName: localModel.displayName
+      }}
+    >
+      <Form.Item
+        label="技术名称"
+        name="name"
+        rules={[{ required: true, message: '请输入技术名称' }]}
+      >
+        <Input
+          placeholder="请输入技术名称（英文、下划线）"
+          value={localModel.name}
+          onChange={e => handleModelInputChange('name', e.target.value)}
+          style={{ width: 220 }}
+        />
+      </Form.Item>
+      <Form.Item
+        label="显示名称"
+        name="displayName"
+        rules={[{ required: true, message: '请输入显示名称' }]}
+      >
+        <Input
+          placeholder="请输入显示名称"
+          value={localModel.displayName}
+          onChange={e => handleModelInputChange('displayName', e.target.value)}
+          style={{ width: 220 }}
+        />
+      </Form.Item>
+    </Form>
+  );
+
   // 准备Tab项配置
   const tabItems = [
     {
@@ -196,7 +306,8 @@ const ModelEditor: React.FC = () => {
         <TableEditor
           // @ts-ignore - Model和MetaTable类型不完全兼容
           model={localModel}
-          onFieldSelect={(field) => console.log('Selected field:', field)}
+          // @ts-ignore - 类型不兼容，使用ts-ignore忽略
+          onFieldSelect={handleFieldSelect}
           // @ts-ignore - Model和MetaTable类型不完全兼容
           onModelUpdate={handleModelUpdate}
         />
@@ -209,7 +320,8 @@ const ModelEditor: React.FC = () => {
         <ERDiagramEditor
           // @ts-ignore - Model和MetaTable类型不完全兼容
           model={localModel}
-          onFieldSelect={(field) => console.log('Selected field:', field)}
+          // @ts-ignore - 类型不兼容，使用ts-ignore忽略
+          onFieldSelect={handleFieldSelect}
           // @ts-ignore - Model和MetaTable类型不完全兼容
           onModelUpdate={handleModelUpdate}
         />
@@ -236,46 +348,75 @@ const ModelEditor: React.FC = () => {
   }
 
   return (
-    <Card
-      className="model-editor"
-      title={
-        <Space>
-          <Button
-            icon={<ArrowLeftOutlined />}
-            onClick={() => navigate('/models')}
-            type="text"
-          />
-          <Title level={4} style={{ margin: 0 }}>
-            {isNewModel ? '创建新模型' : `编辑模型: ${localModel?.displayName || ''}`}
-          </Title>
-        </Space>
-      }
-      extra={
-        <Space>
-          <Button
-            onClick={handleSave}
-            type="primary"
-            icon={<SaveOutlined />}
-            disabled={!isEdited || submitting}
-            loading={submitting}
-          >
-            保存
-          </Button>
-          {!isNewModel && (
+    <>
+      <Card
+        className="model-editor"
+        title={
+          <Space>
             <Button
-              onClick={handlePublish}
+              icon={<ArrowLeftOutlined />}
+              onClick={() => navigate('/models')}
+              type="text"
+            />
+            <Title level={4} style={{ margin: 0 }}>
+              {isNewModel ? '创建新模型' : `编辑模型: ${localModel?.displayName || ''}`}
+            </Title>
+          </Space>
+        }
+        extra={
+          <Space>
+            <Button
+              onClick={handleSave}
               type="primary"
-              icon={<CheckOutlined />}
+              icon={<SaveOutlined />}
+              disabled={!isEdited || submitting}
               loading={submitting}
             >
-              发布
+              保存
             </Button>
-          )}
-        </Space>
-      }
-    >
-      <Tabs activeKey={activeTab} onChange={handleTabChange} items={tabItems} />
-    </Card>
+            {!isNewModel && (
+              <Button
+                onClick={handlePublish}
+                type="primary"
+                icon={<CheckOutlined />}
+                loading={submitting}
+              >
+                发布
+              </Button>
+            )}
+          </Space>
+        }
+      >
+        {renderModelBaseInfo()}
+        <Tabs activeKey={activeTab} onChange={handleTabChange} items={tabItems} />
+      </Card>
+
+      {/* 字段属性编辑弹窗 */}
+      <Modal
+        title="编辑字段属性"
+        open={isFieldModalVisible}
+        onCancel={handleFieldModalClose}
+        footer={[
+          <Button key="cancel" onClick={handleFieldModalClose}>
+            取消
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleFieldEditConfirm}>
+            确认
+          </Button>
+        ]}
+        width={700}
+        destroyOnClose
+      >
+        {selectedField && (
+          <FieldPropertiesPanel
+            // @ts-ignore - 类型可能不完全兼容
+            field={selectedField}
+            // @ts-ignore - 类型可能不完全兼容
+            onFieldUpdate={handleFieldUpdate}
+          />
+        )}
+      </Modal>
+    </>
   );
 };
 
