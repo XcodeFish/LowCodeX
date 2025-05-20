@@ -341,5 +341,139 @@ model FormData {
   @@map("form_data")
 }
 
+// 工作流定义
+model WorkflowDefinition {
+  id           String   @id @default(uuid())
+  code         String   @unique
+  name         String
+  description  String?  @db.Text
+  definition   String   @db.Text // JSON格式存储流程定义数据
+  version      Int      @default(1)
+  status       String   @default("draft") // draft, published, deprecated
+  categoryId   String?
+  tags         String?  @db.Text // JSON数组存储标签
+  tenantId     String?
+  createdBy    String
+  updatedBy    String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  publishedAt  DateTime? @map("published_at")
+
+  // 关联关系
+  versions     WorkflowVersion[]
+  instances    WorkflowInstance[]
+
+  @@map("workflow_definitions")
+}
+
+// 工作流版本
+model WorkflowVersion {
+  id           String   @id @default(uuid())
+  workflowId   String
+  version      Int
+  definition   String   @db.Text
+  changelog    String?  @db.Text
+  createdBy    String
+  createdAt    DateTime @default(now()) @map("created_at")
+  publishedAt  DateTime? @map("published_at")
+  status       String   @default("draft") // draft, published, deprecated
+
+  // 关联关系
+  workflow     WorkflowDefinition @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@unique([workflowId, version])
+  @@map("workflow_versions")
+}
+
+// 节点类型
+model NodeType {
+  id           String   @id @default(uuid())
+  code         String   @unique
+  name         String
+  category     String   // event, task, gateway, boundary
+  description  String?  @db.Text
+  icon         String?
+  properties   String   @db.Text // JSON格式存储节点属性定义
+  isSystem     Boolean  @default(false) // 是否系统内置节点类型
+  tenantId     String?  // 系统节点类型为null，自定义节点类型关联租户
+  createdBy    String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("node_types")
+}
+
+// 工作流实例
+model WorkflowInstance {
+  id              String   @id @default(uuid())
+  workflowId      String
+  workflowVersion Int
+  businessKey     String?  // 业务关联标识
+  status          String   // running, completed, terminated, suspended
+  variables       String   @db.Text // JSON格式存储流程变量
+  startedBy       String
+  startedAt       DateTime @default(now()) @map("started_at")
+  endedAt         DateTime? @map("ended_at")
+  tenantId        String?
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // 关联关系
+  workflow        WorkflowDefinition @relation(fields: [workflowId], references: [id])
+  tasks           WorkflowTask[]
+  history         WorkflowHistory[]
+
+  @@map("workflow_instances")
+}
+
+// 工作流任务
+model WorkflowTask {
+  id              String   @id @default(uuid())
+  instanceId      String
+  nodeId          String   // 流程定义中的节点ID
+  nodeName        String
+  nodeType        String
+  status          String   // pending, claimed, completed, canceled
+  assignee        String?  // 指派的用户ID
+  candidateUsers  String?  @db.Text // JSON数组存储候选用户ID
+  candidateGroups String?  @db.Text // JSON数组存储候选组ID
+  formId          String?  // 关联的表单ID
+  formData        String?  @db.Text // JSON格式存储表单数据
+  dueDate         DateTime?
+  priority        Int?     @default(0)
+  createdAt       DateTime @default(now()) @map("created_at")
+  claimedAt       DateTime? @map("claimed_at")
+  completedAt     DateTime? @map("completed_at")
+  tenantId        String?
+
+  // 关联关系
+  instance        WorkflowInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@map("workflow_tasks")
+}
+
+// 工作流历史
+model WorkflowHistory {
+  id              String   @id @default(uuid())
+  instanceId      String
+  nodeId          String
+  nodeName        String
+  nodeType        String
+  actionType      String   // start, complete, claim, delegate, suspend, resume, terminate
+  actionBy        String
+  actionAt        DateTime @default(now()) @map("action_at")
+  comments        String?  @db.Text
+  previousState   String?
+  currentState    String
+  variables       String?  @db.Text // JSON格式存储当时的变量
+  tenantId        String?
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  // 关联关系
+  instance        WorkflowInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@map("workflow_history")
+}
+
 // npx prisma generate
 

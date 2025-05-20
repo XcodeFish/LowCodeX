@@ -343,6 +343,103 @@ exports.Prisma.FormDataScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WorkflowDefinitionScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  definition: 'definition',
+  version: 'version',
+  status: 'status',
+  categoryId: 'categoryId',
+  tags: 'tags',
+  tenantId: 'tenantId',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt'
+};
+
+exports.Prisma.WorkflowVersionScalarFieldEnum = {
+  id: 'id',
+  workflowId: 'workflowId',
+  version: 'version',
+  definition: 'definition',
+  changelog: 'changelog',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  publishedAt: 'publishedAt',
+  status: 'status'
+};
+
+exports.Prisma.NodeTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  category: 'category',
+  description: 'description',
+  icon: 'icon',
+  properties: 'properties',
+  isSystem: 'isSystem',
+  tenantId: 'tenantId',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WorkflowInstanceScalarFieldEnum = {
+  id: 'id',
+  workflowId: 'workflowId',
+  workflowVersion: 'workflowVersion',
+  businessKey: 'businessKey',
+  status: 'status',
+  variables: 'variables',
+  startedBy: 'startedBy',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WorkflowTaskScalarFieldEnum = {
+  id: 'id',
+  instanceId: 'instanceId',
+  nodeId: 'nodeId',
+  nodeName: 'nodeName',
+  nodeType: 'nodeType',
+  status: 'status',
+  assignee: 'assignee',
+  candidateUsers: 'candidateUsers',
+  candidateGroups: 'candidateGroups',
+  formId: 'formId',
+  formData: 'formData',
+  dueDate: 'dueDate',
+  priority: 'priority',
+  createdAt: 'createdAt',
+  claimedAt: 'claimedAt',
+  completedAt: 'completedAt',
+  tenantId: 'tenantId'
+};
+
+exports.Prisma.WorkflowHistoryScalarFieldEnum = {
+  id: 'id',
+  instanceId: 'instanceId',
+  nodeId: 'nodeId',
+  nodeName: 'nodeName',
+  nodeType: 'nodeType',
+  actionType: 'actionType',
+  actionBy: 'actionBy',
+  actionAt: 'actionAt',
+  comments: 'comments',
+  previousState: 'previousState',
+  currentState: 'currentState',
+  variables: 'variables',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -531,6 +628,81 @@ exports.Prisma.FormDataOrderByRelevanceFieldEnum = {
   data: 'data'
 };
 
+exports.Prisma.WorkflowDefinitionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  definition: 'definition',
+  status: 'status',
+  categoryId: 'categoryId',
+  tags: 'tags',
+  tenantId: 'tenantId',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+};
+
+exports.Prisma.WorkflowVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  workflowId: 'workflowId',
+  definition: 'definition',
+  changelog: 'changelog',
+  createdBy: 'createdBy',
+  status: 'status'
+};
+
+exports.Prisma.NodeTypeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  category: 'category',
+  description: 'description',
+  icon: 'icon',
+  properties: 'properties',
+  tenantId: 'tenantId',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.WorkflowInstanceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  workflowId: 'workflowId',
+  businessKey: 'businessKey',
+  status: 'status',
+  variables: 'variables',
+  startedBy: 'startedBy',
+  tenantId: 'tenantId'
+};
+
+exports.Prisma.WorkflowTaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  instanceId: 'instanceId',
+  nodeId: 'nodeId',
+  nodeName: 'nodeName',
+  nodeType: 'nodeType',
+  status: 'status',
+  assignee: 'assignee',
+  candidateUsers: 'candidateUsers',
+  candidateGroups: 'candidateGroups',
+  formId: 'formId',
+  formData: 'formData',
+  tenantId: 'tenantId'
+};
+
+exports.Prisma.WorkflowHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  instanceId: 'instanceId',
+  nodeId: 'nodeId',
+  nodeName: 'nodeName',
+  nodeType: 'nodeType',
+  actionType: 'actionType',
+  actionBy: 'actionBy',
+  comments: 'comments',
+  previousState: 'previousState',
+  currentState: 'currentState',
+  variables: 'variables',
+  tenantId: 'tenantId'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -551,7 +723,13 @@ exports.Prisma.ModelName = {
   TestDataTemplate: 'TestDataTemplate',
   VisualDiagram: 'VisualDiagram',
   Form: 'Form',
-  FormData: 'FormData'
+  FormData: 'FormData',
+  WorkflowDefinition: 'WorkflowDefinition',
+  WorkflowVersion: 'WorkflowVersion',
+  NodeType: 'NodeType',
+  WorkflowInstance: 'WorkflowInstance',
+  WorkflowTask: 'WorkflowTask',
+  WorkflowHistory: 'WorkflowHistory'
 };
 
 /**
